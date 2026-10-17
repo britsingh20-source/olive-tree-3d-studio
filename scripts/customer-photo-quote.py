@@ -18,7 +18,7 @@ pdfmetrics.registerFont(TTFont('QuoteBold','/usr/share/fonts/truetype/dejavu/Dej
 houses={'ground':'Ground floor','first1':'First floor · House 1','first2':'First floor · House 2','second':'Second floor · House'}
 rooms={'kitchen':'Kitchen','master':'Bedroom 1','bedroom2':'Bedroom 2','bedroom3':'Bedroom 3','hall':'Hall','pooja':'Pooja room','unassigned':'Wardrobe · bedroom placement pending'}
 green=HexColor('#2d503d');ink=HexColor('#263b2e');muted=HexColor('#6b7667');pale=HexColor('#eff3e9')
-W,H=A4;c=canvas.Canvas(str(out),pagesize=A4);c.setTitle('Olive Tree Interiors - Mr. Pradap - Perur - Visual Quotation');c.setAuthor('Olive Tree Interiors');pages=[];total_pages=sum(sum((sum(i['house']==h and i['room']==r for i in items)+2)//3 for r in dict.fromkeys(i['room'] for i in items if i['house']==h))+1 for h in houses)+1
+W,H=A4;c=canvas.Canvas(str(out),pagesize=A4);c.setTitle('Mr. Pradap Quotation');c.setAuthor('Olive Tree Interiors');pages=[];total_pages=sum(sum((sum(i['house']==h and i['room']==r for i in items)+2)//3 for r in dict.fromkeys(i['room'] for i in items if i['house']==h))+1 for h in houses)+1
 page_no=0
 def money(n):
  whole,decimal=f'{n:.2f}'.split('.')

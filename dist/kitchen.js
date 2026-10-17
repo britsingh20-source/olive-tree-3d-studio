@@ -1,4 +1,4 @@
-import {showQuotationPDF} from './quotation-pdf.js?v=36';
+import {showQuotationPDF} from './quotation-pdf.js?v=37';
 import * as THREE from 'three';
 import {createMicaHotspot,highlightMicaTray} from './mica-hotspot.js?v=23';
 import { OrbitControls } from './vendor/OrbitControls.js';
