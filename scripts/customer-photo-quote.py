@@ -18,7 +18,7 @@ pdfmetrics.registerFont(TTFont('QuoteBold','/usr/share/fonts/truetype/dejavu/Dej
 houses={'ground':'Ground floor','first1':'First floor · House 1','first2':'First floor · House 2','second':'Second floor · House'}
 rooms={'kitchen':'Kitchen','master':'Bedroom 1','bedroom2':'Bedroom 2','bedroom3':'Bedroom 3','hall':'Hall','pooja':'Pooja room','unassigned':'Wardrobe · bedroom placement pending'}
 green=HexColor('#2d503d');ink=HexColor('#263b2e');muted=HexColor('#6b7667');pale=HexColor('#eff3e9')
-W,H=A4;c=canvas.Canvas(str(out),pagesize=A4);c.setTitle('Olive Tree Interiors - Mr. Pradap - Perur - Visual Quotation');c.setAuthor('Olive Tree Interiors');pages=[];total_pages=sum((sum(i['house']==h for i in items)+2)//3 for h in houses)+1
+W,H=A4;c=canvas.Canvas(str(out),pagesize=A4);c.setTitle('Olive Tree Interiors - Mr. Pradap - Perur - Visual Quotation');c.setAuthor('Olive Tree Interiors');pages=[];total_pages=sum(sum((sum(i['house']==h and i['room']==r for i in items)+2)//3 for r in dict.fromkeys(i['room'] for i in items if i['house']==h))+1 for h in houses)+1
 page_no=0
 def money(n):
  whole,decimal=f'{n:.2f}'.split('.')
@@ -37,32 +37,56 @@ def begin(title):
  global page_no
  page_no+=1;c.setFillColor(green);c.rect(0,H-77,W,77,fill=1,stroke=0)
  txt('Olive Tree Interiors',30,H-33,20,True,white);txt('Mr. Pradap  |  Perur  |  Interior quotation',30,H-56,9,False,white)
- txt(title,30,H-103,12,True);txt('Dimensions in feet  ·  Rates per sq.ft  ·  Original specification',30,H-120,8,False,muted)
+ txt(title,30,H-103,12,True);txt('Dimensions in feet  ·  Rates per sq.ft  ·  Original specification',30,H-136,8,False,muted)
  txt('Olive Tree Interiors  |  9003787621',30,23,8,False,muted);txt(f'{page_no} / {total_pages}',520,23,8,False,muted)
 
 totals={}
 for house,label in houses.items():
  entries=[i for i in items if i['house']==house];totals[house]=sum(i['area']*i['rate'] for i in entries if i['id']!=7)
- for start in range(0,len(entries),3):
-  begin(label+(' · continued' if start else ''))
-  for j,i in enumerate(entries[start:start+3]):
-   top=H-139-j*211;bottom=top-197
-   c.setStrokeColor(HexColor('#cbd5c4'));c.setFillColor(white);c.rect(27,bottom,W-54,197,fill=1,stroke=1)
-   c.setFillColor(pale);c.rect(27,top-25,W-54,25,fill=1,stroke=0)
-   room='Bedroom 1 · Master bedroom' if i['house']=='ground' and i['room']=='master' else rooms[i['room']]
-   txt(room,39,top-16,8,True,green)
-   y=para(f"{i['id']}. {i['name']}",39,top-36,306,11,ink,True)-8
-   txt(f"{i['size']}  ·  {i['area']:g} sq.ft",39,y,9);y-=17
-   txt(money(i['rate'])+' / sq.ft',39,y,9);y-=20
-   txt(money(i['area']*i['rate']),39,y,12,True,green);txt('OPTIONAL · EXCLUDED' if i['id']==7 else 'INCLUDED',185,y+1,7,True,muted);y-=12
-   y=para(i['spec'],39,y,306,8)-6
-   y=para('2 mm edge banding on applicable board edges; factory finishing.',39,y,306,8,muted)
-   if y<bottom+5:raise ValueError(f'Text overflow: {i["id"]}')
-   image=root/'dist/quote-photos'/photos[str(i['id'])]
-   c.drawImage(str(image),355,bottom+28,width=201,height=133,preserveAspectRatio=True,anchor='c',mask='auto')
-   txt('AI-generated photo reference',373,bottom+14,6.7,False,muted)
-  if start+3>=len(entries):txt(label+' subtotal: '+money(totals[house]),30,53,10,True,green)
-  c.showPage()
+ room_totals=[]
+ for room_key in dict.fromkeys(i['room'] for i in entries):
+  room_entries=[i for i in entries if i['room']==room_key]
+  room_label='Bedroom 1 · Master bedroom' if house=='ground' and room_key=='master' else rooms[room_key]
+  total_label='Wardrobe (room pending)' if room_key=='unassigned' else room_label
+  room_total=sum(i['area']*i['rate'] for i in room_entries if i['id']!=7)
+  room_totals.append((total_label,room_total))
+  for start in range(0,len(room_entries),3):
+   begin(label)
+   txt(room_label+(' · continued' if start else ''),30,H-119,10,True,green)
+   for j,i in enumerate(room_entries[start:start+3]):
+    top=H-155-j*211;bottom=top-197
+    c.setStrokeColor(HexColor('#cbd5c4'));c.setFillColor(white);c.rect(27,bottom,W-54,197,fill=1,stroke=1)
+    c.setFillColor(pale);c.rect(27,top-25,W-54,25,fill=1,stroke=0)
+    room='Bedroom 1 · Master bedroom' if i['house']=='ground' and i['room']=='master' else rooms[i['room']]
+    txt(room,39,top-16,8,True,green)
+    y=para(f"{i['id']}. {i['name']}",39,top-36,306,11,ink,True)-8
+    txt(f"{i['size']}  ·  {i['area']:g} sq.ft",39,y,9);y-=17
+    txt(money(i['rate'])+' / sq.ft',39,y,9);y-=20
+    txt(money(i['area']*i['rate']),39,y,12,True,green);txt('OPTIONAL · EXCLUDED' if i['id']==7 else 'INCLUDED',185,y+1,7,True,muted);y-=12
+    y=para(i['spec'],39,y,306,8)-6
+    y=para('2 mm edge banding on applicable board edges; factory finishing.',39,y,306,8,muted)
+    if y<bottom+5:raise ValueError(f'Text overflow: {i["id"]}')
+    image=root/'dist/quote-photos'/photos[str(i['id'])]
+    c.drawImage(str(image),355,bottom+28,width=201,height=133,preserveAspectRatio=True,anchor='c',mask='auto')
+    txt('AI-generated photo reference',373,bottom+14,6.7,False,muted)
+
+   if start+3>=len(room_entries):
+    c.setFillColor(pale);c.rect(27,42,W-54,23,fill=1,stroke=0)
+    txt(total_label+' TOTAL',37,49,9,True,green)
+    c.setFont('QuoteBold',10);c.setFillColor(green);c.drawRightString(W-38,49,money(room_total))
+   c.showPage()
+ begin(label+' · house summary')
+ txt('HOUSE COMPLETE',30,H-120,10,True,green)
+ y=H-177
+ for name,value in room_totals:
+  c.setFillColor(pale);c.rect(27,y-12,W-54,37,fill=1,stroke=0)
+  txt(name,39,y,10,True);c.setFont('QuoteBold',10);c.setFillColor(ink);c.drawRightString(W-39,y,money(value));y-=46
+ c.setFillColor(green);c.rect(27,y-47,W-54,78,fill=1,stroke=0)
+ txt('HOUSE GRAND TOTAL',40,y+9,12,True,white)
+ c.setFont('QuoteBold',20);c.setFillColor(white);c.drawRightString(W-40,y-22,money(totals[house]))
+ c.setStrokeColor(HexColor('#c5a355'));c.setLineWidth(4);c.line(27,y-60,W-27,y-60)
+ para('End of '+label+'. All room totals above are included in this house total. Optional or excluded items do not contribute to these totals.',35,y-83,520,9,muted)
+ c.showPage()
 begin('Quotation summary');y=H-160
 for house,label in houses.items():txt(label,35,y,11,True);txt(money(totals[house]),350,y,11,True);y-=43
 c.setFillColor(green);c.rect(27,y-35,W-54,61,fill=1,stroke=0);txt('Selected quotation total',40,y+2,11,True,white);txt(money(sum(totals.values())),350,y+2,16,True,white);y-=76
