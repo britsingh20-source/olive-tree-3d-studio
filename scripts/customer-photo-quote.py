@@ -12,13 +12,14 @@ from xml.sax.saxutils import escape
 root=Path(__file__).resolve().parents[1]
 items=json.loads(re.search(r'const data=(\[.*?\]);const roomItems=',(root/'dist/kitchen.js').read_text())[1])
 photos=json.loads((root/'dist/quote-photos/manifest.json').read_text())
+terms=json.loads((root/'dist/quotation-terms.js').read_text().split('=',1)[1].strip().removesuffix(';'))
 out=Path(sys.argv[1]);out.parent.mkdir(parents=True,exist_ok=True)
 pdfmetrics.registerFont(TTFont('QuoteSans','/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
 pdfmetrics.registerFont(TTFont('QuoteBold','/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
 houses={'ground':'Ground floor','first1':'First floor · House 1','first2':'First floor · House 2','second':'Second floor · House'}
 rooms={'kitchen':'Kitchen','master':'Bedroom 1','bedroom2':'Bedroom 2','bedroom3':'Bedroom 3','hall':'Hall','pooja':'Pooja room','unassigned':'Wardrobe · bedroom placement pending'}
 green=HexColor('#2d503d');ink=HexColor('#263b2e');muted=HexColor('#6b7667');pale=HexColor('#eff3e9')
-W,H=A4;c=canvas.Canvas(str(out),pagesize=A4);c.setTitle('Mr. Pradap Quotation');c.setAuthor('Olive Tree Interiors');pages=[];total_pages=sum(sum((sum(i['house']==h and i['room']==r for i in items)+2)//3 for r in dict.fromkeys(i['room'] for i in items if i['house']==h))+1 for h in houses)+1
+W,H=A4;c=canvas.Canvas(str(out),pagesize=A4);c.setTitle('Mr. Pradap Quotation');c.setAuthor('Olive Tree Interiors');pages=[];total_pages=sum(sum((sum(i['house']==h and i['room']==r for i in items)+2)//3 for r in dict.fromkeys(i['room'] for i in items if i['house']==h))+1 for h in houses)+2
 page_no=0
 def money(n):
  whole,decimal=f'{n:.2f}'.split('.')
@@ -36,7 +37,8 @@ def para(text,x,y,w,size=8,color=ink,bold=False):
 def begin(title):
  global page_no
  page_no+=1;c.setFillColor(green);c.rect(0,H-77,W,77,fill=1,stroke=0)
- txt('Olive Tree Interiors',30,H-33,20,True,white);txt('Mr. Pradap  |  Perur  |  Interior quotation',30,H-56,9,False,white)
+ txt('Olive Tree Interiors',30,H-33,20,True,white);txt('Mr. Pradap  |  Perur  |  Interior quotation',30,H-53,9,False,white)
+ txt(terms['address'],30,H-69,7.8,False,white)
  txt(title,30,H-103,12,True);txt('Dimensions in feet  ·  Rates per sq.ft  ·  Original specification',30,H-136,8,False,muted)
  txt('Olive Tree Interiors  |  9003787621',30,23,8,False,muted);txt(f'{page_no} / {total_pages}',520,23,8,False,muted)
 
@@ -93,4 +95,18 @@ c.setFillColor(green);c.rect(27,y-35,W-54,61,fill=1,stroke=0);txt('Selected quot
 y=para('Optional crockery unit: ₹75,600.00, excluded from the total above. Total including optional crockery: ₹14,91,450.00.',35,y,520,9)-20
 y=para('Images are AI-generated realistic design references for the corresponding type of unit. Final sizes, finishes, hardware and internal arrangements follow the written specification and approved design.',35,y,520,9)-20
 para('All items include factory finishing and 2 mm edge banding on applicable board edges. This quotation includes pooja CNC shuttering and an internal drawer box in each of the four houses.',35,y,520,9)
+c.showPage()
+begin('Material specifications & payment schedule')
+y=H-167
+for material in terms['materials']:
+ txt(material['label'],35,y,9.5,True,green)
+ y=para(material['description'],35,y-8,520,8.7)-16
+assert y>380,y
+txt('PAYMENT SCHEDULE',35,y-8,12,True,green);y-=39
+for stage in terms['payments']:
+ c.setFillColor(pale);c.rect(27,y-18,W-54,38,fill=1,stroke=0)
+ txt(str(stage['percent'])+'%',38,y,10,True,green)
+ para(stage['stage'],88,y+9,285,8.5)
+ c.setFont('QuoteBold',10);c.setFillColor(ink);c.drawRightString(W-39,y,money(sum(totals.values())*stage['percent']/100));y-=45
+para('Stage amounts are based on the selected quotation total of '+money(sum(totals.values()))+'. The payment percentages total 100%. Amounts will follow any approved change to the selected scope.',35,y-7,520,8.5,muted)
 c.showPage();c.save();assert sum(totals.values())==1415850;print(str(out))
