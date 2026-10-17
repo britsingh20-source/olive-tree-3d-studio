@@ -1,0 +1,74 @@
+[
+  {
+    "color": "#66cc00",
+    "name": "Normal shutters",
+    "spec": "Shutters only, including loft shutters. No plywood boxes or shelves supplied.",
+    "finish": true
+  },
+  {
+    "color": "#00ffff",
+    "name": "Oil pull-out",
+    "spec": "Plywood box, shutter and oil pull-out accessory included.",
+    "finish": true
+  },
+  {
+    "color": "#ffff00",
+    "name": "Cutlery tandem",
+    "spec": "Plywood box, drawer front, tandem mechanism and cutlery tray included.",
+    "finish": true
+  },
+  {
+    "color": "#ffffcc",
+    "name": "Thali baskets",
+    "spec": "Plywood box, drawer fronts, thali baskets and sliding mechanisms included.",
+    "finish": true
+  },
+  {
+    "color": "#cc6600",
+    "name": "Wicker baskets",
+    "spec": "Plywood box, basket fronts, wicker baskets and sliding mechanisms included.",
+    "finish": true
+  },
+  {
+    "color": "#ff00ff",
+    "name": "Hydraulic wall box",
+    "spec": "Plywood box, glass shutters and hydraulic pull-out mechanism included.",
+    "finish": true
+  },
+  {
+    "color": "#ffccff",
+    "name": "Dishwasher-liquid drawer",
+    "spec": "Storage drawer above the dishwasher for dishwasher liquid.",
+    "finish": true
+  },
+  {
+    "color": "#0000ff",
+    "name": "Microwave unit",
+    "spec": "Microwave section. Concealed lighting provision as discussed; final specification from your input.",
+    "finish": true
+  },
+  {
+    "color": "#ff0000",
+    "name": "Tall unit",
+    "spec": "Complete plywood tall-unit box with a full-height handleless hinged door. Door-mounted baskets swing with the door, which also brings the upright inner basket rack forward. Accessories supplied by the customer; mechanism shown is illustrative.",
+    "finish": true
+  },
+  {
+    "color": "#8e8e8e",
+    "name": "Cylinder shutters",
+    "spec": "Normal shutters for the cylinder section. Shutters only; no cabinet box.",
+    "finish": true
+  },
+  {
+    "color": "#ffbf00",
+    "name": "Dishwasher",
+    "spec": "Dishwasher appliance position. Appliance supply and pricing to be confirmed in your final input.",
+    "finish": false
+  },
+  {
+    "color": "#a1a1a1",
+    "name": "Two-door fridge",
+    "spec": "Two-door refrigerator in the reserved fridge recess. Shown for layout and appliance placement; appliance supply and pricing are not included here.",
+    "finish": false
+  }
+]

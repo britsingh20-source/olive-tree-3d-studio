@@ -1,0 +1,18 @@
+{
+  "source": "tv unitt.skp",
+  "sourceRole": "Front arrangement reference; identification colours replaced with finished materials.",
+  "width": 4.8768,
+  "height": 2.1336,
+  "sideWidth": 0.9144,
+  "centralWidth": 3.048,
+  "depth": 0.381,
+  "baseWidths": [
+    0.3048,
+    0.4572,
+    0.4572,
+    0.6096,
+    0.4572,
+    0.4572,
+    0.3048
+  ]
+}
