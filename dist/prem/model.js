@@ -2,7 +2,7 @@ import * as T from 'three';
 import {RoundedBoxGeometry} from '../vendor/RoundedBoxGeometry.js';
 import {exactLayout} from './exact-layout.js';
 export {exactLayout};
-export const DEFAULT_FINISH='#86a79a';
+export const DEFAULT_FINISH='#789283';
 export const project={id:'prem-temple-town-exact-skp-v2',customer:'Mr. Prem',location:'Temple Town · Teachers Colony · Karamadai',quotation:null,dimensionStatus:'Cabinet front positions, widths, heights and divisions read from the supplied SKP. Internal hardware is a design visualization.'};
 export const definitions=exactLayout.units;
 export function buildModel(){
@@ -46,7 +46,11 @@ export function buildModel(){
  }
  // Keep every remaining source polygon: continuous worktops, outer side
  // panels, plinth, floor outline, fillers and the original stepped sections.
- for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const pts=f.points.flat(),isFloor=pts.every(p=>Math.abs(p[1])<1e-8),isPlinth=Math.max(...pts.map(p=>p[1]))<.08;let mat=isFloor?plinth:white;if(f.materialId){mat=units[0].side;}
+ const stoneFaceIds=new Set([46522,46524,46526,46816,46839,47033]);
+ for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const pts=f.points.flat(),isFloor=pts.every(p=>Math.abs(p[1])<1e-8),isPlinth=Math.max(...pts.map(p=>p[1]))<.08;let mat=isFloor||isPlinth?plinth:white;
+ // Original white carcass surfaces receive the chosen exterior mica. The
+ // separate stone worktop and its edge polygons keep their stone material.
+ if(!isFloor&&!isPlinth&&!stoneFaceIds.has(f.id)){const center=pts.reduce((v,p)=>v.add(new T.Vector3(...p)),new T.Vector3()).multiplyScalar(1/pts.length);let closest=units[0],distance=Infinity;for(const u of units.filter(u=>u.kind!=='dishwasher'))for(const part of u.parts){const d=center.distanceToSquared(new T.Vector3(...part.center));if(d<distance){distance=d;closest=u;}}mat=closest.side;}
  const mesh=sourceFace(f,mat,architecture);mesh.userData.floor=isFloor;mesh.userData.wall=Math.abs(f.normal[1])<.5;}
  // Track source meshes by face ID for regression checks and imported overlays.
  let reference=false;const allMeshes=[];root.traverse(o=>{if(o.isMesh)allMeshes.push(o);});
