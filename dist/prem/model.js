@@ -42,6 +42,22 @@ export function buildModel(){
  const w=hi[0]-lo[0],h=hi[1]-lo[1],d=hi[2]-lo[2],frame=new T.Group();frame.position.set((lo[0]+hi[0])/2,(lo[1]+hi[1])/2,lo[2]);frame.rotation.y=Math.PI;group.add(frame);u.angle=Math.PI;const pivot=new T.Group();pivot.position.y=-h/2;frame.add(pivot);box(pivot,w-.006,h-.006,.025,0,h/2,-.013,steel);box(pivot,w-.025,.05,.014,0,h-.04,-.001,black);const rack=interior(u,frame);wire(rack,w-.07,d-.06,-h*.25,-d/2,.13);wire(rack,w-.07,d-.06,h*.20,-d/2,.13);action(u,pivot,'flap',Math.PI/2);
  }else for(const part of def.parts){const frame=localPart(u,part),{w,h,depth:d}=part;carcass(u,frame,w,h,d);
  if(def.kind==='shelves'||def.kind==='pantry'||def.kind==='glass'){shelves(u,frame,w,h,d,def.kind==='pantry'?5:2);shutter(u,frame,part,{glass:def.kind==='glass'});if(def.kind==='glass'){const led=new T.MeshStandardMaterial({color:'#fff0c9',emissive:'#ffd59d',emissiveIntensity:2});box(frame,w-.04,.008,.014,0,h/2-.025,-d+.025,led);const light=new T.PointLight('#ffe1af',.5,.9);light.position.set(0,h/2-.06,-d/2);frame.add(light);}}
+ else if(def.kind==='tall'){
+ u.name='Tall unit · hinged door & baskets';
+ const door=shutter(u,frame,part),linked=u.actions[u.actions.length-1];
+ linked.mechanism='hinged-tall-pantry';
+ const doorStorage=interior(u,door);doorStorage.position.x=w/2;doorStorage.userData.doorStorage=true;
+ const rack=interior(u,frame);rack.userData.linkedRack=true;
+ const rackDepth=Math.max(.12,d-.22),rackZ=-d+.035+rackDepth/2,rackWidth=w-.12;
+ for(const x of [-rackWidth/2,rackWidth/2])rod(rack,[x,-h/2+.08,-d+.035],[x,h/2-.08,-d+.035],.007);
+ for(let i=0;i<6;i++){
+  const y=-h/2+.13+(h-.4)*i/5;
+  const innerBasket=new T.Group();innerBasket.userData.innerBasket=true;rack.add(innerBasket);wire(innerBasket,rackWidth,rackDepth,y,rackZ,.13);
+  const doorBasket=new T.Group();doorBasket.userData.doorBasket=true;doorStorage.add(doorBasket);wire(doorBasket,w-.14,.11,y,-.09,.11);
+ }
+ linked.rack=rack;linked.rackTravel=Math.min(.28,d*.6);linked.rackInitial=rack.position.clone();
+ for(const node of [doorStorage,rack])node.traverse(o=>{if(o.isMesh)o.userData.action=linked;});
+ }
  else if(def.kind==='wicker'){shutter(u,frame,part);for(let i=0;i<2;i++)tray(u,frame,w,h,d,'wicker',-h/2+h/2*(i+.5),h/2,false);}
  else tray(u,frame,w,h,d,def.kind,0,h,true,part);
  }
@@ -75,5 +91,5 @@ export function buildModel(){
  // Track source meshes by face ID for regression checks and imported overlays.
  let reference=false;const allMeshes=[];root.traverse(o=>{if(o.isMesh)allMeshes.push(o);});
  function setReference(on){reference=on;if(on){for(const a of actions){a.open=false;a.value=0;a.node.position.copy(a.initial);a.node.rotation.set(0,0,0);}}for(const mesh of allMeshes){if(on){mesh.userData.finishedMaterial??=mesh.material;const f=faceById.get(mesh.userData.sourceFace);if(f){mesh.userData.referenceMaterial??=new T.MeshStandardMaterial({color:f.color,roughness:.65,side:T.DoubleSide});mesh.material=mesh.userData.referenceMaterial;mesh.visible=true;}else mesh.visible=false;}else{if(mesh.userData.finishedMaterial)mesh.material=mesh.userData.finishedMaterial;mesh.visible=!mesh.userData.referenceOnly;}}}
- root.updateMatrixWorld(true);return {root,architecture,units,products,actions,sourceMeshes,exactLayout,setReference,update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='slide')a.node.position.z=a.initial.z+a.travel*a.value;else if(a.type==='flap')a.node.rotation.x=a.travel*a.value;else a.node.rotation.y=a.travel*a.value;}for(const u of units){const visible=!reference&&u.actions.some(a=>a.value>.015);for(const p of u.interiors)p.visible=visible;}}};
+ root.updateMatrixWorld(true);return {root,architecture,units,products,actions,sourceMeshes,exactLayout,setReference,update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='slide')a.node.position.z=a.initial.z+a.travel*a.value;else if(a.type==='flap')a.node.rotation.x=a.travel*a.value;else a.node.rotation.y=a.travel*a.value;if(a.rack){const progress=T.MathUtils.clamp((a.value-.35)/.65,0,1);a.rack.position.z=a.rackInitial.z+a.rackTravel*progress;}}for(const u of units){const visible=!reference&&u.actions.some(a=>a.value>.015);for(const p of u.interiors)p.visible=visible;}}};
 }
