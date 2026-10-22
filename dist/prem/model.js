@@ -52,8 +52,16 @@ export function buildModel(){
  // separate stone worktop and its edge polygons keep their stone material.
  if(!isFloor&&!isPlinth&&!stoneFaceIds.has(f.id)){const center=pts.reduce((v,p)=>v.add(new T.Vector3(...p)),new T.Vector3()).multiplyScalar(1/pts.length);let closest=units[0],distance=Infinity;for(const u of units.filter(u=>u.kind!=='dishwasher'))for(const part of u.parts){const d=center.distanceToSquared(new T.Vector3(...part.center));if(d<distance){distance=d;closest=u;}}mat=closest.side;}
  const mesh=sourceFace(f,mat,architecture);mesh.userData.floor=isFloor;mesh.userData.wall=Math.abs(f.normal[1])<.5;}
+ // Select the complete low-level cabinet run as one customer-facing item.
+ const baseMembers=units.filter(u=>!['dishwasher','glass','pantry','tall'].includes(u.kind)&&u.parts.every(p=>p.center[1]<1));
+ const baseGroup=new T.Group();root.add(baseGroup);
+ const base={id:'base-cabinet',name:'Complete kitchen base cabinet',kind:'base',group:baseGroup,members:baseMembers,angle:Math.PI/4,actions:baseMembers.flatMap(u=>u.actions)};
+ for(const u of units){u.product=baseMembers.includes(u)?base:u;if(u.product===u)u.members=[u];else baseGroup.add(u.group);}
+ // Include the adjoining worktop and exposed base panels in the item view.
+ for(const mesh of [...architecture.children]){const f=faceById.get(mesh.userData.sourceFace),pts=f.points.flat();if(!mesh.userData.floor&&Math.max(...pts.map(p=>p[1]))<1.1&&Math.min(...pts.map(p=>p[1]))<.85){baseGroup.add(mesh);mesh.userData.unit=baseMembers[0];}}
+ const products=[base,...units.filter(u=>u.product===u)];
  // Track source meshes by face ID for regression checks and imported overlays.
  let reference=false;const allMeshes=[];root.traverse(o=>{if(o.isMesh)allMeshes.push(o);});
  function setReference(on){reference=on;if(on){for(const a of actions){a.open=false;a.value=0;a.node.position.copy(a.initial);a.node.rotation.set(0,0,0);}}for(const mesh of allMeshes){if(on){mesh.userData.finishedMaterial??=mesh.material;const f=faceById.get(mesh.userData.sourceFace);if(f){mesh.userData.referenceMaterial??=new T.MeshStandardMaterial({color:f.color,roughness:.65,side:T.DoubleSide});mesh.material=mesh.userData.referenceMaterial;mesh.visible=true;}else mesh.visible=false;}else{if(mesh.userData.finishedMaterial)mesh.material=mesh.userData.finishedMaterial;mesh.visible=!mesh.userData.referenceOnly;}}}
- root.updateMatrixWorld(true);return {root,architecture,units,actions,sourceMeshes,exactLayout,setReference,update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='slide')a.node.position.z=a.initial.z+a.travel*a.value;else if(a.type==='flap')a.node.rotation.x=a.travel*a.value;else a.node.rotation.y=a.travel*a.value;}for(const u of units){const visible=!reference&&u.actions.some(a=>a.value>.015);for(const p of u.interiors)p.visible=visible;}}};
+ root.updateMatrixWorld(true);return {root,architecture,units,products,actions,sourceMeshes,exactLayout,setReference,update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='slide')a.node.position.z=a.initial.z+a.travel*a.value;else if(a.type==='flap')a.node.rotation.x=a.travel*a.value;else a.node.rotation.y=a.travel*a.value;}for(const u of units){const visible=!reference&&u.actions.some(a=>a.value>.015);for(const p of u.interiors)p.visible=visible;}}};
 }
