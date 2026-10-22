@@ -2,12 +2,12 @@ import * as T from 'three';
 import {RoundedBoxGeometry} from '../vendor/RoundedBoxGeometry.js';
 import {exactLayout} from './exact-layout.js';
 export {exactLayout};
-export const DEFAULT_FINISH='#789283';
+export const DEFAULT_FINISH='#23576c';
 export const project={id:'prem-temple-town-exact-skp-v2',customer:'Mr. Prem',location:'Temple Town · Teachers Colony · Karamadai',quotation:null,dimensionStatus:'Cabinet front positions, widths, heights and divisions read from the supplied SKP. Internal hardware is a design visualization.'};
 export const definitions=exactLayout.units;
 export function buildModel(){
  const root=new T.Group(),architecture=new T.Group();root.add(architecture);const units=[],actions=[],sourceMeshes=[];
- const liner=new T.MeshStandardMaterial({color:'#eee9df',roughness:.7}),steel=new T.MeshStandardMaterial({color:'#a5afb0',metalness:.85,roughness:.26}),wicker=new T.MeshStandardMaterial({color:'#b08c5d',roughness:.82}),black=new T.MeshStandardMaterial({color:'#313c3d',roughness:.28}),white=new T.MeshPhysicalMaterial({color:'#f4f0e7',roughness:.26,clearcoat:.55,side:T.DoubleSide}),plinth=new T.MeshStandardMaterial({color:'#dddcd3',roughness:.6,side:T.DoubleSide});
+ const liner=new T.MeshStandardMaterial({color:'#e9e3d5',roughness:.75}),steel=new T.MeshStandardMaterial({color:'#929b9d',metalness:.85,roughness:.25}),wicker=new T.MeshStandardMaterial({color:'#b99461',roughness:.85}),black=new T.MeshStandardMaterial({color:'#313c3d',roughness:.28}),white=new T.MeshPhysicalMaterial({color:'#f4f0e7',roughness:.26,clearcoat:.55,side:T.DoubleSide}),plinth=new T.MeshStandardMaterial({color:'#dddcd3',roughness:.6,side:T.DoubleSide});
  const faceById=new Map(exactLayout.sourceFaces.map(f=>[f.id,f]));
  function box(parent,w,h,d,x,y,z,mat){if(Math.min(w,h,d)<.0001)return null;const m=new T.Mesh(new RoundedBoxGeometry(w,h,d,2,Math.min(.002,w/6,h/6,d/6)),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
  function rod(parent,a,b,r=.003,mat=steel){const av=new T.Vector3(...a),bv=new T.Vector3(...b),v=bv.clone().sub(av),m=new T.Mesh(new T.CylinderGeometry(r,r,v.length(),6),mat);m.position.copy(av).add(bv).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.normalize());parent.add(m);return m;}
@@ -19,7 +19,7 @@ export function buildModel(){
  function carcass(u,frame,w,h,d){const t=.018;box(frame,t,h,d,-w/2+t/2,0,-d/2,u.side);box(frame,t,h,d,w/2-t/2,0,-d/2,u.side);box(frame,w-2*t,t,d,0,-h/2+t/2,-d/2,liner);box(frame,w-2*t,t,d,0,h/2-t/2,-d/2,liner);box(frame,w-2*t,h-2*t,t,0,0,-d+t/2,liner);}
  function shelves(u,frame,w,h,d,count){const inside=interior(u,frame);for(let i=1;i<=count;i++)box(inside,w-.045,.018,d-.045,0,-h/2+h*i/(count+1),-d/2,liner);}
  function shutter(u,frame,part,{glass=false,hinge=true}={}){const pivot=new T.Group();pivot.position.x=-part.w/2;frame.add(pivot);const {w,h}=part;frame.updateWorldMatrix(true,true);
- if(glass){const pane=new T.MeshPhysicalMaterial({color:'#b9d6d0',transparent:true,opacity:.22,roughness:.06,metalness:.04,clearcoat:1,side:T.DoubleSide,depthWrite:false});const f=faceById.get(part.faceId);sourceFace(f,pane,pivot);for(const x of [.012,w-.012])box(pivot,.024,h,.021,x,0,-.008,steel);for(const y of [-h/2+.012,h/2-.012])box(pivot,w,.024,.021,w/2,y,-.008,steel);}
+ if(glass){const pane=new T.MeshPhysicalMaterial({color:'#b9d4c6',transparent:true,opacity:.56,roughness:.025,metalness:.05,clearcoat:1,clearcoatRoughness:.02,envMapIntensity:1.5,side:T.DoubleSide,depthWrite:false});const f=faceById.get(part.faceId);sourceFace(f,pane,pivot);for(const x of [.012,w-.012])box(pivot,.024,h,.021,x,0,-.008,steel);for(const y of [-h/2+.012,h/2-.012])box(pivot,w,.024,.021,w/2,y,-.008,steel);}
  else{sourceFace(faceById.get(part.faceId),u.front,pivot);box(pivot,w-.001,h-.001,.017,w/2,0,-.0095,u.front);}
  if(hinge)action(u,pivot,'hinge',-1.65);return pivot;}
  function tray(u,frame,w,h,d,kind,y=0,hh=h,hasFront=true,part=null){const p=new T.Group();p.position.y=y;frame.add(p);if(hasFront){if(part){frame.updateWorldMatrix(true,true);sourceFace(faceById.get(part.faceId),u.front,p);box(p,w-.001,hh-.001,.017,0,0,-.0095,u.front);}else box(p,w-.05,hh-.06,.014,0,0,-.015,liner);}
@@ -31,7 +31,7 @@ export function buildModel(){
  else{box(inside,ww,.012,dd,0,base,z,liner);for(const x of [-ww/2,ww/2])box(inside,.012,Math.max(.04,hh-.05),dd,x,base+(hh-.05)/2,z,steel);box(inside,ww,Math.max(.04,hh-.05),.012,0,base+(hh-.05)/2,z-dd/2,liner);}
  action(u,p,'slide',Math.min(.46,d*.78));return p;}
  const assigned=new Set();
- for(const def of definitions){const group=new T.Group();root.add(group);const front=new T.MeshPhysicalMaterial({color:DEFAULT_FINISH,roughness:.12,metalness:0,clearcoat:1,clearcoatRoughness:.045,envMapIntensity:1.5,side:T.DoubleSide}),side=front.clone(),u={...def,group,front,side,actions:[],interiors:[],angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};units.push(u);def.sourceFaces.forEach(id=>assigned.add(id));
+ for(const def of definitions){const group=new T.Group();root.add(group);const front=new T.MeshPhysicalMaterial({color:DEFAULT_FINISH,roughness:.07,metalness:0,clearcoat:1,clearcoatRoughness:.025,ior:1.49,specularIntensity:1,envMapIntensity:1.25,side:T.DoubleSide}),side=front.clone(),u={...def,group,front,side,actions:[],interiors:[],angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};units.push(u);def.sourceFaces.forEach(id=>assigned.add(id));
  if(def.kind==='dishwasher'){
  // The three blue faces describe the original appliance bay, including its
  // rear and sides. Keep those faces and fit the appliance within that bay.

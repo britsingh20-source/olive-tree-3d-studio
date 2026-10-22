@@ -37,3 +37,7 @@ The GPU renderer uses Three.js with PBR/clearcoat and a room environment. A simp
 ## Validation
 
 `node check-prem.mjs` compares every closed source mesh vertex in world space to its SKP-derived coordinates within one micrometre. It also checks all 63 unique face IDs, 20 selectable units, source drawer divisions, mechanisms, fixed architecture during movement, and narrow/wide camera framing. Existing Pradap files and quotation remain untouched.
+
+## Current appearance preset
+
+At the client's request, the finish and viewing preset now follows the existing polished kitchen at the main Olive Tree studio: blue acrylic `#23576c`, roughness 0.07, clearcoat 1, clearcoat roughness 0.025, IOR 1.49, specular intensity 1 and material environment intensity 1.25. The renderer uses sRGB output, ACES exposure 1, the same four bright reflection panels, PMREM blur 0.012, environment intensity 0.85 and the existing key/fill/hemisphere lighting levels. Orbit damping and auto-rotation speed match that viewer. This replaces the earlier sage-green default while retaining sage green as a selectable option. These changes affect appearance and camera controls only; `exact-layout.js` is unchanged.
