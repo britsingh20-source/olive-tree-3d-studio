@@ -11,6 +11,15 @@ assert.equal(exactLayout.validation.sourceVertexCount,113);assert.equal(exactLay
 assert.equal(m.sourceMeshes.length,63);assert.equal(new Set(m.sourceMeshes.map(o=>o.userData.sourceFace)).size,63);m.root.updateMatrixWorld(true);
 for(const mesh of m.sourceMeshes){const f=exactLayout.sourceFaces.find(f=>f.id===mesh.userData.sourceFace),original=f.points.flat();assert.equal(mesh.geometry.attributes.position.count,original.length);for(let i=0;i<original.length;i++){const p=new T.Vector3().fromBufferAttribute(mesh.geometry.attributes.position,i).applyMatrix4(mesh.matrixWorld);assert(p.distanceTo(new T.Vector3(...original[i]))<.000001,'Source vertex shifted, face '+f.id);}}
 m.setReference(true);let visibleReference=0;m.root.traverse(o=>{if(o.isMesh&&o.visible){assert(o.userData.sourceFace!==undefined);visibleReference++;}});assert.equal(visibleReference,63);m.setReference(false);
+// Finished doors use one solid beveled front, without the coplanar imported
+// face overlay. Reference mode must still retain every original SKP face.
+const referenceFronts=m.sourceMeshes.filter(o=>o.userData.referenceOnly);
+assert(referenceFronts.length>20);assert(referenceFronts.every(o=>!o.visible));
+for(const u of m.units.filter(u=>!['glass','dishwasher'].includes(u.kind))){
+ let solid=0;u.group.traverse(o=>{if(o.isMesh&&o.material===u.front&&o.visible&&!o.userData.sourceFace)solid++;});
+ assert(solid>=u.parts.length,'Missing solid fronts: '+u.id);
+}
+
 const unit=id=>m.units.find(u=>u.id===id);
 for(const id of ['tandem-orange','tandem-red-left','tandem-red-back'])assert.equal(unit(id).actions.length,2);
 assert.equal(unit('rice').actions.length,1);assert.equal(unit('wicker').actions.length,3);assert.equal(unit('wicker').actions.filter(a=>a.type==='slide').length,2);
