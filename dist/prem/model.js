@@ -61,6 +61,14 @@ export function buildModel(){
  const baseGroup=new T.Group();root.add(baseGroup);
  const base={id:'base-cabinet',name:'Complete kitchen base cabinet',kind:'base',group:baseGroup,members:baseMembers,angle:Math.PI/4,actions:baseMembers.flatMap(u=>u.actions)};
  for(const u of units){u.product=baseMembers.includes(u)?base:u;if(u.product===u)u.members=[u];else baseGroup.add(u.group);}
+ // The raised appliance surround belongs to the dishwasher, not the base run.
+ const dishwasher=units.find(u=>u.kind==='dishwasher');
+ const dishwasherFrameFaceIds=new Set([46520,46522,46816,46828,46851,46939]);
+ for(const mesh of [...architecture.children])if(dishwasherFrameFaceIds.has(mesh.userData.sourceFace)){
+  dishwasher.group.add(mesh);mesh.userData.unit=dishwasher;mesh.userData.dishwasherFrame=true;
+  // Keep the surround independent from later mica changes to the base run.
+  mesh.material=mesh.material.clone();
+ }
  // Include the adjoining worktop and exposed base panels in the item view.
  for(const mesh of [...architecture.children]){const f=faceById.get(mesh.userData.sourceFace),pts=f.points.flat();if(!mesh.userData.floor&&Math.max(...pts.map(p=>p[1]))<1.1&&Math.min(...pts.map(p=>p[1]))<.85){baseGroup.add(mesh);mesh.userData.unit=baseMembers[0];}}
  const products=[base,...units.filter(u=>u.product===u)];

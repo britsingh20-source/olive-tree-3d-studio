@@ -28,6 +28,9 @@ assert.equal(base.members.length,15);assert.equal(m.products.length,6);
 for(const member of base.members){assert.equal(member.product,base);assert.equal(member.group.parent,base.group);assert(base.actions.every(a=>base.members.includes(a.unit)));}
 for(const id of ['dishwasher','pantry','tall','glass-wall','wall-corner'])assert.equal(unit(id).product,unit(id));
 assert.equal(new Set(base.actions).size,base.members.reduce((n,u)=>n+u.actions.length,0));
+const dishwasherFrame=m.sourceMeshes.filter(o=>o.userData.dishwasherFrame);assert.equal(dishwasherFrame.length,6);
+for(const mesh of dishwasherFrame){assert.equal(mesh.parent,unit('dishwasher').group);assert.equal(mesh.userData.unit,unit('dishwasher'));assert(!base.members.some(u=>mesh.material===u.side||mesh.material===u.sideSkin));}
+
 
 for(const id of ['tandem-orange','tandem-red-left','tandem-red-back'])assert.equal(unit(id).actions.length,2);
 assert.equal(unit('rice').actions.length,1);assert.equal(unit('wicker').actions.length,3);assert.equal(unit('wicker').actions.filter(a=>a.type==='slide').length,2);
