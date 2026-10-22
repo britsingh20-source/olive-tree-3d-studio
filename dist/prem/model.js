@@ -31,7 +31,10 @@ export function buildModel(){
  else{box(inside,ww,.012,dd,0,base,z,liner);for(const x of [-ww/2,ww/2])box(inside,.012,Math.max(.04,hh-.05),dd,x,base+(hh-.05)/2,z,steel);box(inside,ww,Math.max(.04,hh-.05),.012,0,base+(hh-.05)/2,z-dd/2,liner);}
  action(u,p,'slide',Math.min(.46,d*.78));return p;}
  const assigned=new Set();
- for(const def of definitions){const group=new T.Group();root.add(group);const front=new T.MeshPhysicalMaterial({color:DEFAULT_FINISH,roughness:.07,metalness:0,clearcoat:1,clearcoatRoughness:.025,ior:1.49,specularIntensity:1,envMapIntensity:1.25,side:T.DoubleSide}),side=front.clone(),u={...def,group,front,side,actions:[],interiors:[],angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};units.push(u);def.sourceFaces.forEach(id=>assigned.add(id));
+ for(const def of definitions){const group=new T.Group();root.add(group);const front=new T.MeshPhysicalMaterial({color:DEFAULT_FINISH,roughness:.07,metalness:0,clearcoat:1,clearcoatRoughness:.025,ior:1.49,specularIntensity:1,envMapIntensity:1.25,side:T.DoubleSide}),side=front.clone(),sideSkin=side.clone(),u={...def,group,front,side,sideSkin,actions:[],interiors:[],angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};// Imported outer skins share planes with the generated carcass panels.
+ // Give only the skins a depth priority, leaving all measured vertices intact.
+ sideSkin.polygonOffset=true;sideSkin.polygonOffsetFactor=-2;sideSkin.polygonOffsetUnits=-4;
+ units.push(u);def.sourceFaces.forEach(id=>assigned.add(id));
  if(def.kind==='dishwasher'){
  // The three blue faces describe the original appliance bay, including its
  // rear and sides. Keep those faces and fit the appliance within that bay.
@@ -50,8 +53,9 @@ export function buildModel(){
  for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const pts=f.points.flat(),isFloor=pts.every(p=>Math.abs(p[1])<1e-8),isPlinth=Math.max(...pts.map(p=>p[1]))<.08;let mat=isFloor||isPlinth?plinth:white;
  // Original white carcass surfaces receive the chosen exterior mica. The
  // separate stone worktop and its edge polygons keep their stone material.
- if(!isFloor&&!isPlinth&&!stoneFaceIds.has(f.id)){const center=pts.reduce((v,p)=>v.add(new T.Vector3(...p)),new T.Vector3()).multiplyScalar(1/pts.length);let closest=units[0],distance=Infinity;for(const u of units.filter(u=>u.kind!=='dishwasher'))for(const part of u.parts){const d=center.distanceToSquared(new T.Vector3(...part.center));if(d<distance){distance=d;closest=u;}}mat=closest.side;}
- const mesh=sourceFace(f,mat,architecture);mesh.userData.floor=isFloor;mesh.userData.wall=Math.abs(f.normal[1])<.5;}
+ if(!isFloor&&!isPlinth&&!stoneFaceIds.has(f.id)){const center=pts.reduce((v,p)=>v.add(new T.Vector3(...p)),new T.Vector3()).multiplyScalar(1/pts.length);let closest=units[0],distance=Infinity;for(const u of units.filter(u=>u.kind!=='dishwasher'))for(const part of u.parts){const d=center.distanceToSquared(new T.Vector3(...part.center));if(d<distance){distance=d;closest=u;}}mat=closest.sideSkin;}
+ const mesh=sourceFace(f,mat,architecture);if(units.some(u=>mat===u.sideSkin)){mesh.userData.outerSkin=true;mesh.castShadow=false;}
+ mesh.userData.floor=isFloor;mesh.userData.wall=Math.abs(f.normal[1])<.5;}
  // Select the complete low-level cabinet run as one customer-facing item.
  const baseMembers=units.filter(u=>!['dishwasher','glass','pantry','tall'].includes(u.kind)&&u.parts.every(p=>p.center[1]<1));
  const baseGroup=new T.Group();root.add(baseGroup);

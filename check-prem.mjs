@@ -21,6 +21,8 @@ for(const u of m.units.filter(u=>!['glass','dishwasher'].includes(u.kind))){
 }
 
 const unit=id=>m.units.find(u=>u.id===id);
+for(const skin of m.sourceMeshes.filter(o=>o.userData.outerSkin)){assert(skin.material.polygonOffset);assert(skin.material.polygonOffsetUnits<0);assert.equal(skin.castShadow,false);}
+for(const u of m.units){assert.notEqual(u.sideSkin,u.side);assert.equal(u.sideSkin.color.getHex(),u.side.color.getHex());}
 const base=m.products.find(p=>p.id==='base-cabinet');assert(base);
 assert.equal(base.members.length,15);assert.equal(m.products.length,6);
 for(const member of base.members){assert.equal(member.product,base);assert.equal(member.group.parent,base.group);assert(base.actions.every(a=>base.members.includes(a.unit)));}
