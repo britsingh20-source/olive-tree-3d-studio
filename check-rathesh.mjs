@@ -20,3 +20,8 @@ const tour=createKitchenTour({units:m.units,onOverview(){tourEvents++;},onVisit(
 tour.start();assert(tour.active);tour.update(4);tour.stop();const afterStop=tourEvents;tour.update(1000);assert.equal(tourEvents,afterStop,'Stopped tour must never continue opening cabinets');assert.equal(tour.stop(),false);
 tour.start();for(let i=0;i<1000&&tour.active;i++)tour.update(.5);assert.equal(completed,1);assert.equal(visits.size,m.units.length);assert.equal(opens.size,m.actions.length);assert.equal(tour.active,false);
 console.log('Passed: automatic tour covers every unit/action, stops without later callbacks, replays, and completes once.');
+
+let overviewCount=0,located=null,zoomed=null,demonstrated=null,lastWasClose=true;
+const contextualTour=createKitchenTour({units:m.units,onOverview(){assert(lastWasClose);overviewCount++;located=zoomed=demonstrated=null;},onReturn(){assert(lastWasClose);},onLocate(u){assert(!located);located=u;},onZoom(u){assert.equal(u,located);zoomed=u;},onVisit(u){assert.equal(u,located);assert.equal(u,zoomed);demonstrated=u;},onAction(a,open){assert.equal(demonstrated,a.unit);lastWasClose=!open;},onStatus(){},onComplete(){}});
+contextualTour.start();for(let i=0;i<10000&&contextualTour.active;i++)contextualTour.update(.1);assert.equal(overviewCount,m.units.length+2);assert.equal(contextualTour.active,false);
+console.log('Passed: each section is located and zoomed from the full kitchen, then closed before returning to the full kitchen.');

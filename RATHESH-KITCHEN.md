@@ -26,3 +26,5 @@ The base run and loft each select as a complete product. Individual door/drawer/
 Regeneration: extract using `scripts/extract-prem-skp.py`, then run `scripts/prepare-rathesh-layout.py input.json dist/rathesh/exact-layout.js`. Do not run the Prem-specific layout generator against Rathesh inputs.
 
 The automatic tour starts with the full kitchen, then visits each functional section and opens/closes every action. Unit views temporarily isolate a section; stopping restores its ordinary customer-facing product selection. Touch, wheel or keyboard interaction cancels the tour; replay is explicit. The tour clock runs in animation frames and pauses while the document is hidden, so no background timer can resume a stopped tour. The notification sits above the scene.
+
+Tour context sequence: full kitchen → highlight the next unit in its installed location → zoom in while the kitchen remains visible → isolated section demonstration → close → full kitchen. This repeats for every functional section. Highlight materials and outlines are temporary and cleared on stop, return and completion; saved mica selections are unchanged.
