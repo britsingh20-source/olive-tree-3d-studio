@@ -27,3 +27,7 @@ node check-rathesh.mjs
 ```
 
 The hall check verifies original face coordinates, independent products, eight hinges, CNC holes, cleaner entrance, glass display internals and phone/desktop framing. WebGL provides PBR materials and reflections; the compatibility renderer provides simplified geometry and controls on browsers without WebGL.
+
+## Finish and shutter correction (25 October 2026)
+
+Default walnut texture now uses the customer's uploaded wood sample pixels, including both CNC shutters. Corrected CNC cap triangulation to prevent missing/overlapping faces; checks compare each cap's rendered triangle area against the shutter outline minus cut-outs. The glossy white mineral sheet has more visible grey veins. The hall-only CPU renderer now preserves polygon holes and shows the same wood and stone textures; other client renderers are untouched.
