@@ -17,7 +17,7 @@ Confirmed reference mapping:
 | Brown #a56348 | Glass shutters |
 | Open section beside rice | Two wicker baskets; no shutters |
 
-Finish reference `download (1).png` is for materials only. Solid fronts default to glossy beige #c9b9a4. Open boxes and visible interiors use wood grain. No handles are added. Actual glass panes remain transparent, with dark frames and wooden interiors.
+Finish reference `download (1).png` is for materials only. Solid fronts default to glossy beige #b4a08a. Open boxes and visible interiors use wood grain. No handles are added. Actual glass panes remain transparent, with dark frames and wooden interiors.
 
 The base run and loft each select as a complete product. Individual door/drawer/basket actions remain independent. Six customer-facing products contain 16 functional sections. Horizontal mica controls sit below the selected product. Saved choices are isolated by the Rathesh project key in browser local storage; no cross-device synchronization is implied. Rates have not been supplied.
 

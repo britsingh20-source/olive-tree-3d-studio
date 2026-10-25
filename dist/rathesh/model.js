@@ -2,7 +2,7 @@ import * as T from 'three';
 import {RoundedBoxGeometry} from '../vendor/RoundedBoxGeometry.js';
 import {exactLayout} from './exact-layout.js';
 export {exactLayout};
-export const DEFAULT_FINISH='#c9b9a4';
+export const DEFAULT_FINISH='#b4a08a';
 export const project={id:'rathesh-g-kng-puthur-kitchen-v1',customer:'Mr. Rathesh G',location:'KNG Puthur',quotation:null};
 export const definitions=exactLayout.units;
 function createWoodTexture(){const w=128,h=512,data=new Uint8Array(w*h*4);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const warp=Math.sin(y*.014)*2+Math.sin(y*.036+x*.018)*1.5,grain=Math.sin((x+warp)*1.5)*9+Math.sin((x+warp)*.35)*11+Math.sin(x*14.87+y*12.43)*3;const i=(y*w+x)*4;data[i]=159+grain;data[i+1]=116+grain*.8;data[i+2]=76+grain*.6;data[i+3]=255;}const t=new T.DataTexture(data,w,h);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.magFilter=T.LinearFilter;t.minFilter=T.LinearMipmapLinearFilter;t.generateMipmaps=true;t.needsUpdate=true;return t;}
