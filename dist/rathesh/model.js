@@ -87,8 +87,8 @@ export function buildModel(){
  }
  const baseMembers=units.filter(u=>u.parts.every(p=>p.center[1]+p.h/2<.9));
  const baseGroup=new T.Group();root.add(baseGroup);
- const base={id:'base-cabinet',name:'Complete kitchen base cabinet',kind:'base',group:baseGroup,members:baseMembers,angle:Math.PI/2,actions:baseMembers.flatMap(u=>u.actions)};
- for(const u of units){u.product=baseMembers.includes(u)?base:u;if(u.product===u)u.members=[u];else baseGroup.add(u.group);}
+ const base={id:'base-cabinet',name:'Complete kitchen base cabinet',kind:'base',group:baseGroup,members:baseMembers,angle:0,actions:baseMembers.flatMap(u=>u.actions)};
+ for(const u of units){if(u.id==='loft')u.angle=0;u.product=baseMembers.includes(u)?base:u;if(u.product===u)u.members=[u];else baseGroup.add(u.group);}
  for(const mesh of [...architecture.children]){const f=faceById.get(mesh.userData.sourceFace),pts=f.points.flat();if(!mesh.userData.floor&&Math.max(...pts.map(p=>p[1]))<.90){baseGroup.add(mesh);mesh.userData.unit??=baseMembers[0];}}
  const products=[base,...units.filter(u=>u.product===u)];
  // Track source meshes by face ID for regression checks and imported overlays.

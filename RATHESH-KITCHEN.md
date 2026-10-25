@@ -24,3 +24,5 @@ The base run and loft each select as a complete product. Individual door/drawer/
 `node check-rathesh.mjs` verifies every source vertex within 0.001 mm of its converted SKP coordinate, source-face coverage, functional mapping, shutter-free wicker baskets, S-corner motion, grouped products, and phone/desktop camera framing. Internal hardware is illustrative, derived from the identified mechanism rather than a manufacturer CAD assembly.
 
 Regeneration: extract using `scripts/extract-prem-skp.py`, then run `scripts/prepare-rathesh-layout.py input.json dist/rathesh/exact-layout.js`. Do not run the Prem-specific layout generator against Rathesh inputs.
+
+The automatic tour starts with the full kitchen, then visits each functional section and opens/closes every action. Unit views temporarily isolate a section; stopping restores its ordinary customer-facing product selection. Touch, wheel or keyboard interaction cancels the tour; replay is explicit. The tour clock runs in animation frames and pauses while the document is hidden, so no background timer can resume a stopped tour. The notification sits above the scene.
