@@ -31,3 +31,5 @@ node check-venki-study.mjs
 ```
 
 Customer correction: replaced pots on the four side-opening shelves with books. Added a single potted bonsai in the existing tall, narrow front-facing open niche immediately beside the glass book cabinet. These two areas are separately selectable, with all original source surfaces retained in place.
+
+Loft shutters remain closed in the interactive model: no opening actions on tap, Open all or the automatic tour. Selection and mica changes remain available.

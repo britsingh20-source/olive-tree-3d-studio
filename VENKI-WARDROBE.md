@@ -38,3 +38,5 @@ node check-venki.mjs
 ```
 
 Customer correction: exchanged the left single-shutter and right double-shutter internal arrangements. External widths, leaf positions, finishes, concealed lighting and the middle section are retained. Bedding contents are resized to the narrower left bay. Existing finish storage IDs remain stable.
+
+Loft shutters remain closed in the interactive model: no opening actions on tap, Open all or the automatic tour. Selection and mica changes remain available.
