@@ -3,7 +3,7 @@ import {createKitchenTour as createWardrobeTour} from '../rathesh/tour.js?v=cont
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {CompatibilityRenderer} from './compatibility.js?v=finish2';
 import {RoomEnvironment} from '../vendor/RoomEnvironment.js';
-import {buildModel,DEFAULT_FINISH,project,createWoodTexture} from './model.js?v=venki1';
+import {buildModel,DEFAULT_FINISH,project,createWoodTexture} from './model.js?v=swap2';
 const $=id=>document.getElementById(id),stage=$('stage'),storageKey=project.id;
 const palette=[{name:'Beige matte',color:DEFAULT_FINISH},{name:'Walnut brown matte',color:'#76523b',wood:true},{name:'Ivory matte',color:'#e4dfd2'},{name:'Warm grey matte',color:'#aaa69d'},{name:'Sage matte',color:'#a3ac96'},{name:'Natural oak matte',color:'#b89568',wood:true},{name:'Charcoal matte',color:'#454742'}];
 const specs={loft:'Loft shuttering only. Seven handleless beige-matte shutters. Existing loft structure remains; no plywood carcass boxes are added.',hanging:'Full-length handleless shutters. Top storage, hanger rod, two internal drawers, three shoe-storage tiers and concealed LED strip lighting.',shelves:'Full-length handleless shutters. Shelves for folded clothes and bedding, one drawer, a larger lower storage space and concealed LED strip lighting.',drawer:'Pull-out makeup drawer with a beige-matte front.',louver:'Matte PVC wooden louver panel below the makeup drawer.',open:'Four open compartments for cosmetics and decorative items, finished in matte walnut-brown wood-grain mica.',mirror:'Fixed dressing mirror with touch-controlled LED perimeter lighting. Tap the mirror or the light button to switch it on or off.',trim:'Matte walnut-brown wood-grain mica on the dressing surround and marked exposed areas.'};

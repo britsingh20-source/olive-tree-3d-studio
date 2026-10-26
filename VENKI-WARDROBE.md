@@ -9,9 +9,9 @@ Both supplied SketchUp files contain the same 64 root faces and 105 vertices, wi
 | Identification | Finished interpretation |
 | --- | --- |
 | Top yellow row | Seven loft shutters only, without plywood box carcasses |
-| Peach single shutter | Top storage, hanging rod, two drawers and three lower shoe tiers |
+| Peach single shutter (left) | Folded-clothes/bedding shelves, one drawer and larger bottom storage |
 | Green pair | Top storage, hanging rod, two drawers and three lower shoe tiers |
-| Orange pair | Folded-clothes/bedding shelves, one drawer and larger bottom storage |
+| Orange pair (right) | Top storage, hanging rod, two drawers and three lower shoe tiers |
 | Blue mirror | Fixed mirror with touch-controlled perimeter lighting |
 | Narrow yellow strip below mirror | Pull-out makeup drawer, beige matte front |
 | Brown panel below drawer | Matte PVC wooden louver backing |
@@ -36,3 +36,5 @@ Rebuild layout from the bounded SKP extractor output:
 python scripts/prepare-venki-layout.py extracted.json dist/venki/exact-layout.js
 node check-venki.mjs
 ```
+
+Customer correction: exchanged the left single-shutter and right double-shutter internal arrangements. External widths, leaf positions, finishes, concealed lighting and the middle section are retained. Bedding contents are resized to the narrower left bay. Existing finish storage IDs remain stable.
