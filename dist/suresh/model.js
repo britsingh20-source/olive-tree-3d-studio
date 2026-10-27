@@ -3,10 +3,11 @@ import {earcut} from './triangulate.js';
 import {exactLayout} from './exact-layout.js';
 export {exactLayout};
 export const DEFAULT_FINISH='#76523b';
-export const project={id:'suresh-tv-unit-v1',customer:'Mr. Suresh',location:'',quotation:null};
-const I=.0254,walnut={name:'Walnut brown matte',color:DEFAULT_FINISH,wood:true},marble={name:'Cream marble gloss',color:'#e1d8c6',marble:true};
+export const project={id:'suresh-tv-unit-texture-v2',customer:'Mr. Suresh',location:'',quotation:null};
+const I=.0254,walnut={name:'Reference wood matte',color:DEFAULT_FINISH,wood:true},marble={name:'Cream marble gloss',color:'#e1d8c6',marble:true};
 function texture(d,w,h){const t=new T.DataTexture(d,w,h);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.minFilter=T.LinearMipmapLinearFilter;t.magFilter=T.LinearFilter;t.generateMipmaps=true;t.anisotropy=8;t.userData.shared=true;t.needsUpdate=true;return t;}
-export function createWoodTexture(){const w=256,h=1024,d=new Uint8Array(w*h*4);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const warp=Math.sin(y*.006)*3+Math.sin(y*.018+x*.008)*2,v=Math.sin((x+warp)*.34)*8+Math.sin((x+warp)*1.1)*3+Math.sin(x*13.13+y*19.1)*1.6,i=(y*w+x)*4;d[i]=118+v;d[i+1]=82+v*.7;d[i+2]=59+v*.45;d[i+3]=255;}return texture(d,w,h);}
+let suppliedWood;
+export function createWoodTexture(){if(!suppliedWood){suppliedWood=new T.TextureLoader().load(new URL('./wood-finish.jpg',import.meta.url).href);suppliedWood.colorSpace=T.SRGBColorSpace;suppliedWood.wrapS=suppliedWood.wrapT=T.RepeatWrapping;suppliedWood.minFilter=T.LinearMipmapLinearFilter;suppliedWood.magFilter=T.LinearFilter;suppliedWood.anisotropy=8;suppliedWood.userData.shared=true;}return suppliedWood;}
 export function createMarbleTexture(){const w=1024,h=1024,d=new Uint8Array(w*h*4);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const nx=x/w,ny=y/h,q=nx*.9+ny*.66+.10*Math.sin(ny*7)+.014*Math.sin(nx*39+ny*23)+.006*Math.sin(nx*91-ny*47),vein=Math.abs(Math.sin(q*9.8)),fine=Math.abs(Math.sin((nx*.5-ny*.8+.025*Math.sin(ny*33))*29)),dark=Math.exp(-vein*55)*95+Math.exp(-fine*220)*22,cloud=Math.sin(nx*6+ny*9)*6+Math.sin(nx*18-ny*7)*2,i=(y*w+x)*4;d[i]=218+cloud-dark*.79;d[i+1]=207+cloud-dark*.88;d[i+2]=188+cloud-dark;d[i+3]=255;}return texture(d,w,h);}
 export function buildModel(){
  const root=new T.Group(),architecture=new T.Group(),referenceRoot=new T.Group();root.add(architecture,referenceRoot);referenceRoot.visible=false;
