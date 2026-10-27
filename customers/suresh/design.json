@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-27",
+  "customer": {
+    "id": "suresh",
+    "name": "Mr. Suresh"
+  },
+  "viewer": {
+    "route": "/suresh/",
+    "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/suresh/",
+    "directory": "dist/suresh",
+    "storageKey": "suresh-tv-unit-texture-v2"
+  },
+  "source": {
+    "filename": "sanganoor tv panel (3).skp",
+    "sha256": "44423a42d3d11c1e94b78e75486613fb9a07e3f73bec725fbf33355e9b304f9e",
+    "originalFileInRepository": false,
+    "extractor": "scripts/extract-prem-skp.py",
+    "layout": "dist/suresh/exact-layout.js",
+    "units": "inches",
+    "vertices": 73,
+    "edges": 119,
+    "rootFaces": 48,
+    "omitted": "Non-cabinet Ty figure",
+    "bounds": {
+      "width": 84,
+      "height": 104,
+      "depth": 12
+    },
+    "tvBacking": {
+      "width": 67,
+      "height": 48
+    },
+    "sideCompartments": 4,
+    "lowerShutters": 5
+  },
+  "confirmed": [
+    {
+      "sourceColour": "#a56348",
+      "unit": "Upper and lower PVC louvers",
+      "material": "PVC",
+      "finish": "W207 reference: warm brown vertical wood grain, black recessed grooves",
+      "movement": "Fixed; no opening",
+      "asset": "dist/suresh/pvc-w207-reference.jpeg",
+      "referenceFilename": "IMG_8785.jpeg",
+      "textureImplementation": "A wood-grain region of the reference photo is sampled onto geometric slats; exact fabrication profile is unconfirmed"
+    },
+    {
+      "sourceColour": "#5a7a43",
+      "unit": "TV backing",
+      "finish": "Glossy cream/beige marble look with grey/gold veining",
+      "reference": "Supplied reference image; current marble is a procedural visual approximation"
+    },
+    {
+      "sourceColour": "#ffd562",
+      "unit": "Wooden lower shutters",
+      "finish": "Customer-supplied wood photo texture",
+      "sheen": "Matte",
+      "handles": "Handleless",
+      "movement": "Lift upward",
+      "asset": "dist/suresh/wood-finish.jpg",
+      "referenceFilename": "33cde3afb10ec9e76b414ca8ae3662bf.jpg"
+    },
+    {
+      "sourceColour": "#4d6fb2",
+      "unit": "Glass lower shutter",
+      "finish": "Grey-tinted glass",
+      "handles": "Handleless",
+      "movement": "Lift upward"
+    },
+    {
+      "sourceColour": "#db3500",
+      "unit": "Concealed LED strip",
+      "colour": "Warm white"
+    },
+    {
+      "unit": "Lower storage interiors",
+      "arrangement": "Open storage, no added shelves or accessories"
+    },
+    {
+      "unit": "Side compartments",
+      "arrangement": "Retain the four source compartments; no added fittings"
+    },
+    {
+      "unit": "TV",
+      "diagonalInches": 65,
+      "displayAspectRatio": "16:9 rendering assumption"
+    }
+  ],
+  "scopeNotes": [
+    "New wood photo texture must not replace the separate W207 PVC finish.",
+    "Top decorative panel is fixed louvers, not an opening loft.",
+    "Earlier generic walnut finish was superseded by the supplied wood texture; PVC reference was subsequently confirmed separately."
+  ],
+  "unconfirmed": [
+    "Exact carcass grade and fabrication thickness",
+    "Specific hinge/lift hardware",
+    "Actual W207 slat/profile dimensions and spacing",
+    "Customer-specific rates and terms for import into this viewer"
+  ],
+  "visualApproximations": [
+    "Louver profile spacing and render depth",
+    "Panel render thicknesses and small shutter reveals",
+    "TV casing and 16:9 representation",
+    "Procedural marble veining"
+  ],
+  "quotation": {
+    "viewerPricing": null,
+    "status": "Not imported or confirmed in viewer",
+    "instruction": "Do not copy another customer's prices or generic standard rates. A separate Suresh quotation has been referenced in conversation; read its current authorized version and confirm import scope before using it."
+  }
+}

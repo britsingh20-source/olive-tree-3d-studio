@@ -24,3 +24,7 @@ Run `node check-home.mjs` for quotation and room route checks. The photo PDF tes
 ## Asset bundle
 
 Images and binary models are stored in checked archive parts under `assets/`. Run `python3 scripts/unpack-assets.py` after cloning. The deployment workflow does this automatically.
+
+## Continue across chats
+
+Read [CONTINUE.md](CONTINUE.md), [AGENTS.md](AGENTS.md) and the [studio workflow](docs/STUDIO-WORKFLOW.md). Confirmed customer decisions and current checkpoints are indexed in [customers/index.json](customers/index.json). Update them with every approved change so a new chat can resume without repeating the brief.

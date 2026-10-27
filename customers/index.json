@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "customers": [
+    {
+      "id": "suresh",
+      "name": "Mr. Suresh",
+      "project": "TV unit",
+      "route": "/suresh/",
+      "design": "customers/suresh/design.json",
+      "status": "customers/suresh/STATUS.md"
+    }
+  ]
+}

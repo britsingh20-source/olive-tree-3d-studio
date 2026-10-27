@@ -1,0 +1,33 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "olive-tree-studio",
+  "version": "1.0.0",
+  "description": "Continue Olive Tree interior 3D projects from durable GitHub customer records without repeating confirmed design questions.",
+  "author": {
+    "name": "Olive Tree Interiors"
+  },
+  "repository": "https://github.com/britsingh20-source/olive-tree-3d-studio",
+  "keywords": [
+    "interiors",
+    "SketchUp",
+    "3D",
+    "customer continuity"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Olive Tree Studio",
+        "shortDescription": "Continue your 3D projects",
+        "longDescription": "A private workflow plugin for Olive Tree Interiors. Reads the studio repository workflow and customer checkpoints before continuing design work, asks only for missing decisions, preserves verified source geometry and customer-specific pricing, and records changes for future chats. Uses available GitHub, file and browser tools; does not include its own converter or repository credentials.",
+        "developerName": "Olive Tree Interiors",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Continue Mr. Suresh's TV unit from the studio repository. Read the customer record and status first.",
+          "Inspect my SketchUp model and ask only about missing design details, using its source colours."
+        ],
+        "brandColor": "#244E43"
+      }
+    }
+  }
+}
