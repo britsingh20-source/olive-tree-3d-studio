@@ -2,7 +2,7 @@
 
 Repository: https://github.com/britsingh20-source/olive-tree-3d-studio
 
-Paste this into a new chat (select the Olive Tree Studio plugin when available):
+Open the private [Olive Tree Studio plugin](https://chatgpt.com/plugins/plugins_6ae0c66a474c8191b0b7db3317348d6a), add/select it in the new chat, and paste:
 
 > Continue Mr. Suresh's project in britsingh20-source/olive-tree-3d-studio. Read AGENTS.md, docs/STUDIO-WORKFLOW.md, customers/index.json, then the indexed customer design and status records. Inspect the current source before editing. Resume outstanding work without repeating confirmed questions. Ask only for genuinely missing details.
 

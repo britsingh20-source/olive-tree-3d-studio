@@ -1,0 +1,10 @@
+{
+  "pluginId": "plugins_6ae0c66a474c8191b0b7db3317348d6a",
+  "releaseId": "pluginrel_6ae0c66d90fc8191a80325af78ad3d88",
+  "version": "1.0.0",
+  "scope": "USER",
+  "visibility": "PRIVATE",
+  "url": "https://chatgpt.com/plugins/plugins_6ae0c66a474c8191b0b7db3317348d6a",
+  "source": "plugins/olive-tree-studio",
+  "note": "Update this existing plugin identity; do not create duplicates. No MCP server, credentials, or repository permissions are bundled. Source read-back verified; activation in a new chat remains user action."
+}
