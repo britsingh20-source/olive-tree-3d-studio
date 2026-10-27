@@ -22,7 +22,7 @@ The original source geometry is separately inspectable. Louver profile spacing, 
 
 ## Checks
 `node check-suresh.mjs`: all 48 reference faces, 73 source vertices, bounds, five upward lift actions, open/closed movement, handleless/open storage state, 65-inch screen, fixed vertical louvers, and guided-tour sequencing.
-Desktop 1440 × 1000 and phone 390 × 844 compatibility-view inspection: overview, individual product selection, wooden/glass shutter movement, finish change and reload persistence, horizontal overflow, source reference and controls. Compatibility view does not reproduce full PBR lighting; WebGL gloss/material appearance remains unverified in the test browser.
+Desktop 1440 × 1000 and phone 390 × 844 compatibility-view inspection: overview, individual product selection, wooden/glass shutter movement, finish change and reload persistence, horizontal overflow, source reference and controls. The live site was also inspected in the in-app browser using full WebGL material rendering. Material samples and the marble pattern remain visual previews.
 
 ## Rebuild geometry
 ```sh
