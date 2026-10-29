@@ -99,10 +99,19 @@
       "finish": "Brown mica",
       "userResponse": "Brown mica just table",
       "scopeNote": "Treat as table; do not infer a cupboard or opening shutter. Exact brown shade and any equivalence to walnut finish are unconfirmed."
+    },
+    {
+      "sourceColour": "#5a7a43",
+      "unit": "Green-marked section beside mirror",
+      "purpose": "Side-opening shutter",
+      "movement": "Side opening; hinge edge and swing direction pending",
+      "finish": null,
+      "userResponse": "That is not that is side opening shuttter",
+      "scopeNote": "Do not treat as a fixed side panel. Finish and handle treatment have not been confirmed for this shutter."
     }
   ],
   "unconfirmed": [
-    "Green side surface purpose",
+    "Green shutter finish, hinge edge, swing direction and handle treatment",
     "Shutter mechanisms and internal storage",
     "Materials, lighting and accessories",
     "Exact beige shade",
