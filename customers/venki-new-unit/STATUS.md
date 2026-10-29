@@ -6,7 +6,7 @@ Separate design intake; existing /venki/ and /venki/study/ viewers remain unchan
 
 ## Confirmed
 
-Four tall yellow source shutter panels: beige. Exact shade and sheen pending. Small yellow strip remains unresolved; do not automatically apply the shutter answer to it.
+Four tall yellow source shutter panels: beige. Exact shade and sheen pending. Small yellow horizontal strip beneath blue section is confirmed as a drawer front. Its finish remains pending.
 
 ## Actual checks
 
@@ -16,4 +16,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Clarify the small yellow horizontal strip beneath the blue section, then map remaining source colours one question at a time. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Confirm whether the drawer front is also beige, then map remaining source colours one question at a time. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
