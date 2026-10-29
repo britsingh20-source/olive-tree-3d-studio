@@ -107,17 +107,19 @@
       "movement": "Side-opening shutter, hinged at rear edge near mirror backing, swinging inward toward mirror",
       "finish": "Walnut brown mica",
       "userResponse": "That is not that is side opening shuttter",
-      "scopeNote": "Side-opening shutter, not fixed. Handle treatment remains pending. Verify hinge rotation and clearance against mirror geometry during implementation; opening angle is not yet confirmed.",
+      "scopeNote": "Side-opening shutter, not fixed. Verify hinge rotation and mirror clearance during implementation; opening angle is not yet confirmed.",
       "sheen": "Matte",
       "finishConfirmation": "User answered Walnut brown matte",
       "hingeEdge": "Rear edge near mirror backing",
       "hingeConfirmation": "User answered Rear edge",
       "swingDirection": "Inward toward the mirror",
-      "swingConfirmation": "User answered Inward toward the mirror"
+      "swingConfirmation": "User answered Inward toward the mirror",
+      "handles": "Handleless",
+      "handleConfirmation": "User confirmed side shutter should also be handleless"
     }
   ],
   "unconfirmed": [
-    "Green shutter handle treatment and safe opening angle",
+    "Green shutter safe opening angle after clearance check",
     "Shutter mechanisms and internal storage",
     "Materials, lighting and accessories",
     "Exact beige shade",
