@@ -6,7 +6,7 @@ Updated 29 October 2026. Confirmed choices are in design.json.
 
 New route: https://britsingh20-source.github.io/olive-tree-3d-studio/venki-new-unit/
 
-Implemented in dist/venki-new-unit; publication explicitly approved by the user; deployment and live visual verification pending. This is a separate unit. Existing /venki/ and /venki/study/ files are untouched.
+Implemented in dist/venki-new-unit; publication explicitly approved by the user; published at commit fbcebbf5790ab0632a277b98da9fea3a967a9eb7. Live desktop compatibility-mode checks completed; full WebGL/mobile checks pending. This is a separate unit. Existing /venki/ and /venki/study/ files are untouched.
 
 - Two double-door cabinets with handleless beige-matte fronts; four evenly spaced shelves per cabinet. No hanging rails or internal drawers in these cabinets.
 - Fixed tall beige front; smaller side section in walnut brown matte mica. No opening action on fixed section.
@@ -40,3 +40,7 @@ See design.json. Exact laminate shades/grain, physical material grades/thickness
 ## Next action
 
 User explicitly approved public publication of the viewer and design records on 29 October 2026. Publish using the connected GitHub tools, then inspect live viewer in cloud browser. Verify full/individual view, side/rear rotation persistence, doors/drawer, mirror light, reference mode, finish reload and mobile layout/touch when available. Record actual renderer/device and limits. User confirmed evenly spaced shelves in latest turn; do not repeat that question.
+
+## Live check after publication
+
+29 October 2026: opened the exact customer URL in cloud Chrome, approximately 1348 x 926 viewport. Page loaded with correct new-unit title, eight selectable units and model canvas. Renderer explicitly reported Compatibility view (WebGL unavailable). Observed closed model, clicked Open all and observed cabinets with shelf interiors and pulled-out drawer; no claim of full WebGL material fidelity. Browser-resize/touch, finish reload and full tour checks remain pending. Public route verified live. The initial shell HTTP probe returned 404 before deployment completed; subsequent cloud-browser page load is the live verification.
