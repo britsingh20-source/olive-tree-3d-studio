@@ -12,6 +12,8 @@ Blue rectangular section above drawer: mirror with lighting. Light colour and co
 
 Mirror surround and four open compartments beside mirror: walnut brown mica confirmed. Exact texture and sheen pending. Lower brown section beneath drawer has not been mapped by this confirmation.
 
+Tall red section at far left: fixed section, no opening action. Finish pending; do not treat as a shutter.
+
 ## Actual checks
 
 Python scripts/extract-prem-skp.py read all three supplied SKP files successfully. Each has 82 vertices, 125 edges, 50 root faces. All extracted geometry/materials compare equal. Face-loop continuity and planarity checks passed in the extractor. Root bounds are 132 x 24 x 84 inches. Non-cabinet Ty instance omitted. This is source extraction, not a finished viewer or full SketchUp component validation.
@@ -20,4 +22,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, starting with the tall red section at the far left; lower brown area and green side surface also remain unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming the finish for the fixed tall red section at far left; lower brown area and green side surface also remain unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
