@@ -74,12 +74,18 @@
       "unit": "Tall red section at far left",
       "purpose": "Fixed section",
       "movement": "Fixed; no opening action",
-      "finish": null,
-      "userResponse": "Fixed section that is not shutter opening"
+      "finish": "Beige",
+      "userResponse": "Fixed section that is not shutter opening",
+      "scopeNote": "Beige applies to tall fixed front; user separately specified walnut brown mica on smaller side section."
+    },
+    {
+      "unit": "Smaller side section beside tall fixed beige section",
+      "finish": "Walnut brown mica",
+      "userResponse": "Beige but the side smaller one is walnut brown mica",
+      "scopeNote": "Keep separate from large beige fixed front. Confirm precise side surface visually if geometry assignment is ambiguous."
     }
   ],
   "unconfirmed": [
-    "Finish of fixed tall red section at far left",
     "Purpose and finish of lower brown section beneath beige drawer",
     "Green side surface purpose",
     "Shutter mechanisms and internal storage",
