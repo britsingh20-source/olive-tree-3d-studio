@@ -59,16 +59,26 @@
       "userResponse": "Mirror with light",
       "lightingColour": null,
       "lightingControl": null
+    },
+    {
+      "sourceColour": "#a56348",
+      "unit": "Mirror surround and four open compartments beside mirror",
+      "finish": "Walnut brown mica",
+      "sheen": null,
+      "exactTexture": null,
+      "userResponse": "Walnut brown mica",
+      "scopeNote": "Confirmation answers mirror-surround/compartment question only; lower brown section beneath drawer remains unresolved."
     }
   ],
   "unconfirmed": [
     "Red section purpose and finish",
-    "Brown surfaces purpose and finish",
+    "Purpose and finish of lower brown section beneath beige drawer",
     "Green side surface purpose",
     "Shutter mechanisms and internal storage",
     "Materials, handles, lighting and accessories",
     "Exact beige shade and sheen",
-    "Mirror light colour and control"
+    "Mirror light colour and control",
+    "Walnut mica sheen and exact texture"
   ],
   "quotation": {
     "status": "No quote imported for this new unit"
