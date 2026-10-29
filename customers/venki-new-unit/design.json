@@ -48,9 +48,11 @@
       "internalStorage": {
         "type": "Shelves",
         "userResponse": "Shelves",
-        "shelfCount": null,
+        "shelfCount": 4,
         "spacing": null,
-        "scopeNote": "Shelf storage confirmed; do not add hanging rails or internal drawers without confirmation."
+        "scopeNote": "Four shelves per section confirmed; number/width of internal bays and shelf spacing remain unresolved. Do not assume one bay per shutter or add hanging rails/internal drawers.",
+        "countScope": "Per storage section, answering how many shelves in each section",
+        "countConfirmation": "4 shelves"
       }
     },
     {
@@ -134,7 +136,7 @@
     "Exact beige shade",
     "Exact walnut mica texture",
     "Exact brown mica shade for table",
-    "Shelf count and arrangement behind four tall beige shutters"
+    "Internal bay grouping and shelf spacing behind four tall beige shutters"
   ],
   "quotation": {
     "status": "No quote imported for this new unit"
