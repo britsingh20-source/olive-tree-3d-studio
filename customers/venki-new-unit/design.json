@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-29",
+  "customer": {
+    "id": "venki-new-unit",
+    "name": "Mr. Venki"
+  },
+  "project": "Entirely new unit, separate from existing Venki viewers",
+  "viewer": {
+    "route": null,
+    "status": "Design intake; not implemented"
+  },
+  "source": {
+    "files": [
+      "Untitled (5)(1).skp",
+      "Untitled (6)(1).skp",
+      "Untitled (7)(1).skp"
+    ],
+    "sha256": [
+      "20294a23484050f639db2a1f83ea5161c148c99794a672133f95b935592a8594",
+      "849233a550dd945afe994b1199895b00b9214f7d1b8af5ae9a83589978b767e7",
+      "3f213b70edc37e675f2c952aaa8a7de27288925773344aa99ca10bcffe593d52"
+    ],
+    "extractor": "scripts/extract-prem-skp.py",
+    "sourceUnits": "inches",
+    "bounds": {
+      "width": 132,
+      "depth": 24,
+      "height": 84
+    },
+    "vertices": 82,
+    "edges": 125,
+    "rootFaces": 50,
+    "comparison": "All three extracted root geometries and materials match",
+    "omitted": "Ty human instance",
+    "originalFilesInRepository": false
+  },
+  "confirmed": [
+    {
+      "sourceColour": "#ffd562",
+      "unit": "Four tall shutter panels on right",
+      "finish": "Beige",
+      "exactShade": null,
+      "sheen": null,
+      "userResponse": "Beige colour shutters"
+    }
+  ],
+  "unconfirmed": [
+    "Purpose and finish of small yellow horizontal strip beneath blue section",
+    "Red section purpose and finish",
+    "Brown surfaces purpose and finish",
+    "Blue section purpose",
+    "Green side surface purpose",
+    "Shutter mechanisms and internal storage",
+    "Materials, handles, lighting and accessories",
+    "Exact beige shade and sheen"
+  ],
+  "quotation": {
+    "status": "No quote imported for this new unit"
+  }
+}
