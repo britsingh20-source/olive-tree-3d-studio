@@ -6,7 +6,7 @@ Separate design intake; existing /venki/ and /venki/study/ viewers remain unchan
 
 ## Confirmed
 
-Four tall yellow source shutter panels: beige. Exact shade and sheen pending. Small yellow horizontal strip beneath blue section is confirmed as a drawer front. Drawer front finish is confirmed beige.
+Four tall yellow source shutter panels: beige matte. Exact shade pending. Small yellow horizontal strip beneath blue section is confirmed as a drawer front. Drawer front finish is confirmed beige matte.
 
 Blue rectangular section above drawer: mirror with lighting. Light colour and control remain unconfirmed.
 
@@ -24,4 +24,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, confirming matte/gloss sheen for the beige shutters and drawer. Green side surface and remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming the sheen for walnut brown mica on the mirror surround and four open compartments. Green side surface and remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
