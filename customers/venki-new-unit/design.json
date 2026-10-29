@@ -51,16 +51,24 @@
       "finish": "Beige",
       "userResponse": "Drawer",
       "finishConfirmation": "User confirmed drawer front should also have beige finish"
+    },
+    {
+      "sourceColour": "#4d6fb2",
+      "unit": "Blue rectangle above beige drawer",
+      "purpose": "Mirror with lighting",
+      "userResponse": "Mirror with light",
+      "lightingColour": null,
+      "lightingControl": null
     }
   ],
   "unconfirmed": [
     "Red section purpose and finish",
     "Brown surfaces purpose and finish",
-    "Blue section purpose",
     "Green side surface purpose",
     "Shutter mechanisms and internal storage",
     "Materials, handles, lighting and accessories",
-    "Exact beige shade and sheen"
+    "Exact beige shade and sheen",
+    "Mirror light colour and control"
   ],
   "quotation": {
     "status": "No quote imported for this new unit"
