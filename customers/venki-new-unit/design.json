@@ -132,7 +132,15 @@
       "swingDirection": "Inward toward the mirror",
       "swingConfirmation": "User answered Inward toward the mirror",
       "handles": "Handleless",
-      "handleConfirmation": "User confirmed side shutter should also be handleless"
+      "handleConfirmation": "User confirmed side shutter should also be handleless",
+      "internalStorage": {
+        "type": "Hanging rod only",
+        "rodCount": 1,
+        "shelves": false,
+        "drawers": false,
+        "userResponse": "Just hanging rod",
+        "rodPosition": "Not yet confirmed"
+      }
     }
   ],
   "unconfirmed": [
