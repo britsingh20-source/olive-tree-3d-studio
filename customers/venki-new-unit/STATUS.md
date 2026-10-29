@@ -12,7 +12,7 @@ Blue rectangular section above drawer: mirror with lighting. Light colour and co
 
 Mirror surround and four open compartments beside mirror: walnut brown mica confirmed. Exact texture and sheen pending. Lower brown section beneath drawer has not been mapped by this confirmation.
 
-Tall red section at far left: fixed section, no opening action. Finish pending; do not treat as a shutter.
+Tall red section at far left: fixed section, no opening action, beige finish. Its smaller side section is walnut brown mica. Keep the front and side finishes separate; confirm visually if the precise side surface is ambiguous.
 
 ## Actual checks
 
@@ -22,4 +22,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, confirming the finish for the fixed tall red section at far left; lower brown area and green side surface also remain unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, starting with the lower brown area beneath the drawer; green side surface also remains unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
