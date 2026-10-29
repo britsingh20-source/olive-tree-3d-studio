@@ -41,8 +41,9 @@
       "unit": "Four tall shutter panels on right",
       "finish": "Beige",
       "exactShade": null,
-      "sheen": null,
-      "userResponse": "Beige colour shutters"
+      "sheen": "Matte",
+      "userResponse": "Beige colour shutters",
+      "sheenConfirmation": "User answered Matte for beige shutters and drawer front"
     },
     {
       "sourceColour": "#ffd562",
@@ -50,7 +51,9 @@
       "purpose": "Drawer front",
       "finish": "Beige",
       "userResponse": "Drawer",
-      "finishConfirmation": "User confirmed drawer front should also have beige finish"
+      "finishConfirmation": "User confirmed drawer front should also have beige finish",
+      "sheen": "Matte",
+      "sheenConfirmation": "User answered Matte for beige shutters and drawer front"
     },
     {
       "sourceColour": "#4d6fb2",
@@ -97,7 +100,7 @@
     "Green side surface purpose",
     "Shutter mechanisms and internal storage",
     "Materials, handles, lighting and accessories",
-    "Exact beige shade and sheen",
+    "Exact beige shade",
     "Mirror light colour and control",
     "Walnut mica sheen and exact texture",
     "Exact brown mica shade for table"
