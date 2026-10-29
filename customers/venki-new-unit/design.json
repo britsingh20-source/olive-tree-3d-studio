@@ -83,16 +83,24 @@
       "finish": "Walnut brown mica",
       "userResponse": "Beige but the side smaller one is walnut brown mica",
       "scopeNote": "Keep separate from large beige fixed front. Confirm precise side surface visually if geometry assignment is ambiguous."
+    },
+    {
+      "sourceColour": "#a56348",
+      "unit": "Lower brown section beneath beige drawer",
+      "purpose": "Table",
+      "finish": "Brown mica",
+      "userResponse": "Brown mica just table",
+      "scopeNote": "Treat as table; do not infer a cupboard or opening shutter. Exact brown shade and any equivalence to walnut finish are unconfirmed."
     }
   ],
   "unconfirmed": [
-    "Purpose and finish of lower brown section beneath beige drawer",
     "Green side surface purpose",
     "Shutter mechanisms and internal storage",
     "Materials, handles, lighting and accessories",
     "Exact beige shade and sheen",
     "Mirror light colour and control",
-    "Walnut mica sheen and exact texture"
+    "Walnut mica sheen and exact texture",
+    "Exact brown mica shade for table"
   ],
   "quotation": {
     "status": "No quote imported for this new unit"
