@@ -8,6 +8,14 @@
       "route": "/suresh/",
       "design": "customers/suresh/design.json",
       "status": "customers/suresh/STATUS.md"
+    },
+    {
+      "id": "venki-new-unit",
+      "name": "Mr. Venki",
+      "project": "New unit — design intake",
+      "route": null,
+      "design": "customers/venki-new-unit/design.json",
+      "status": "customers/venki-new-unit/STATUS.md"
     }
   ]
 }
