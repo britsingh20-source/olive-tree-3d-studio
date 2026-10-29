@@ -10,9 +10,9 @@ Four tall yellow source shutter panels: beige matte. Exact shade pending. Small 
 
 Blue rectangular section above drawer: mirror with lighting. Light colour and control remain unconfirmed.
 
-Mirror surround and four open compartments beside mirror: walnut brown mica confirmed. Exact texture and sheen pending. Lower brown section beneath drawer has not been mapped by this confirmation.
+Mirror surround and four open compartments beside mirror: walnut brown mica, matte confirmed. Exact texture pending. Lower brown section beneath drawer has not been mapped by this confirmation.
 
-Tall red section at far left: fixed section, no opening action, beige finish. Its smaller side section is walnut brown mica. Keep the front and side finishes separate; confirm visually if the precise side surface is ambiguous.
+Tall red section at far left: fixed section, no opening action, beige finish. Its smaller side section is walnut brown mica, matte. Keep the front and side finishes separate; confirm visually if the precise side surface is ambiguous.
 
 Lower brown section beneath beige drawer: table finished in brown mica. No cupboard/shutter action confirmed. Exact brown shade remains unspecified.
 
@@ -24,4 +24,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, confirming the sheen for walnut brown mica on the mirror surround and four open compartments. Green side surface and remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming handles versus handleless treatment for the four beige shutters and drawer. Green side surface and remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
