@@ -62,8 +62,9 @@
       "unit": "Blue rectangle above beige drawer",
       "purpose": "Mirror with lighting",
       "userResponse": "Mirror with light",
-      "lightingColour": null,
-      "lightingControl": null
+      "lightingColour": "Warm white",
+      "lightingControl": null,
+      "lightingColourConfirmation": "User answered Warm white"
     },
     {
       "sourceColour": "#a56348",
@@ -123,7 +124,7 @@
     "Shutter mechanisms and internal storage",
     "Materials, lighting and accessories",
     "Exact beige shade",
-    "Mirror light colour and control",
+    "Mirror light control",
     "Exact walnut mica texture",
     "Exact brown mica shade for table"
   ],
