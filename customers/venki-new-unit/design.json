@@ -67,10 +67,11 @@
       "sourceColour": "#a56348",
       "unit": "Mirror surround and four open compartments beside mirror",
       "finish": "Walnut brown mica",
-      "sheen": null,
+      "sheen": "Matte",
       "exactTexture": null,
       "userResponse": "Walnut brown mica",
-      "scopeNote": "Confirmation answers mirror-surround/compartment question only; lower brown section beneath drawer remains unresolved."
+      "scopeNote": "Confirmation answers mirror-surround/compartment question only; lower brown section beneath drawer remains unresolved.",
+      "sheenConfirmation": "User confirmed walnut brown mica should also be matte"
     },
     {
       "sourceColour": "#9a0a05",
@@ -85,7 +86,9 @@
       "unit": "Smaller side section beside tall fixed beige section",
       "finish": "Walnut brown mica",
       "userResponse": "Beige but the side smaller one is walnut brown mica",
-      "scopeNote": "Keep separate from large beige fixed front. Confirm precise side surface visually if geometry assignment is ambiguous."
+      "scopeNote": "Keep separate from large beige fixed front. Confirm precise side surface visually if geometry assignment is ambiguous.",
+      "sheen": "Matte",
+      "sheenConfirmation": "User confirmed walnut brown mica should also be matte"
     },
     {
       "sourceColour": "#a56348",
@@ -102,7 +105,7 @@
     "Materials, handles, lighting and accessories",
     "Exact beige shade",
     "Mirror light colour and control",
-    "Walnut mica sheen and exact texture",
+    "Exact walnut mica texture",
     "Exact brown mica shade for table"
   ],
   "quotation": {
