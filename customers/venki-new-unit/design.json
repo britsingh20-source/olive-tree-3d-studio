@@ -11,7 +11,8 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/venki-new-unit/",
     "directory": "dist/venki-new-unit",
     "storageKey": "venki-new-unit-v1",
-    "status": "Implemented; deployment/live visual check pending"
+    "status": "Live; cloud desktop compatibility-renderer load and Open all checked; full WebGL/mobile verification pending",
+    "deployedCommit": "fbcebbf5790ab0632a277b98da9fea3a967a9eb7"
   },
   "source": {
     "files": [
