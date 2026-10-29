@@ -44,7 +44,14 @@
       "sheen": "Matte",
       "userResponse": "Beige colour shutters",
       "sheenConfirmation": "User answered Matte for beige shutters and drawer front",
-      "handles": "Handleless"
+      "handles": "Handleless",
+      "internalStorage": {
+        "type": "Shelves",
+        "userResponse": "Shelves",
+        "shelfCount": null,
+        "spacing": null,
+        "scopeNote": "Shelf storage confirmed; do not add hanging rails or internal drawers without confirmation."
+      }
     },
     {
       "sourceColour": "#ffd562",
@@ -126,7 +133,8 @@
     "Materials, lighting and accessories",
     "Exact beige shade",
     "Exact walnut mica texture",
-    "Exact brown mica shade for table"
+    "Exact brown mica shade for table",
+    "Shelf count and arrangement behind four tall beige shutters"
   ],
   "quotation": {
     "status": "No quote imported for this new unit"
