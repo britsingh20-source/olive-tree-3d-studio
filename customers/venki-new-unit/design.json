@@ -63,8 +63,9 @@
       "purpose": "Mirror with lighting",
       "userResponse": "Mirror with light",
       "lightingColour": "Warm white",
-      "lightingControl": null,
-      "lightingColourConfirmation": "User answered Warm white"
+      "lightingControl": "Touch sensor on mirror",
+      "lightingColourConfirmation": "User answered Warm white",
+      "lightingControlConfirmation": "User answered Touch sensor"
     },
     {
       "sourceColour": "#a56348",
@@ -124,7 +125,6 @@
     "Shutter mechanisms and internal storage",
     "Materials, lighting and accessories",
     "Exact beige shade",
-    "Mirror light control",
     "Exact walnut mica texture",
     "Exact brown mica shade for table"
   ],
