@@ -22,6 +22,8 @@ Green-marked section beside mirror: side-opening shutter confirmed, correcting p
 
 Storage behind four tall beige shutters: shelves confirmed. Two double-door cabinets, each with four shelves, confirmed. Shelf spacing pending; no hanging rails or internal drawers confirmed.
 
+Behind walnut brown side-opening shutter: hanging rod only, no shelves or drawers, confirmed. Rod placement remains unspecified.
+
 ## Actual checks
 
 Python scripts/extract-prem-skp.py read all three supplied SKP files successfully. Each has 82 vertices, 125 edges, 50 root faces. All extracted geometry/materials compare equal. Face-loop continuity and planarity checks passed in the extractor. Root bounds are 132 x 24 x 84 inches. Non-cabinet Ty instance omitted. This is source extraction, not a finished viewer or full SketchUp component validation.
@@ -30,4 +32,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, confirming storage behind the walnut brown side-opening shutter. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming whether the four shelves in each double-door cabinet should be evenly spaced, then implementing the confirmed design with unresolved fabrication details kept explicit. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
