@@ -104,18 +104,20 @@
       "sourceColour": "#5a7a43",
       "unit": "Green-marked section beside mirror",
       "purpose": "Side-opening shutter",
-      "movement": "Side-opening shutter, hinged at rear edge near mirror backing; swing direction pending",
+      "movement": "Side-opening shutter, hinged at rear edge near mirror backing, swinging inward toward mirror",
       "finish": "Walnut brown mica",
       "userResponse": "That is not that is side opening shuttter",
-      "scopeNote": "Side-opening shutter, not fixed. Swing direction and handle treatment remain pending.",
+      "scopeNote": "Side-opening shutter, not fixed. Handle treatment remains pending. Verify hinge rotation and clearance against mirror geometry during implementation; opening angle is not yet confirmed.",
       "sheen": "Matte",
       "finishConfirmation": "User answered Walnut brown matte",
       "hingeEdge": "Rear edge near mirror backing",
-      "hingeConfirmation": "User answered Rear edge"
+      "hingeConfirmation": "User answered Rear edge",
+      "swingDirection": "Inward toward the mirror",
+      "swingConfirmation": "User answered Inward toward the mirror"
     }
   ],
   "unconfirmed": [
-    "Green shutter swing direction and handle treatment",
+    "Green shutter handle treatment and safe opening angle",
     "Shutter mechanisms and internal storage",
     "Materials, lighting and accessories",
     "Exact beige shade",
