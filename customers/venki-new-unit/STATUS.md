@@ -14,6 +14,8 @@ Mirror surround and four open compartments beside mirror: walnut brown mica conf
 
 Tall red section at far left: fixed section, no opening action, beige finish. Its smaller side section is walnut brown mica. Keep the front and side finishes separate; confirm visually if the precise side surface is ambiguous.
 
+Lower brown section beneath beige drawer: table finished in brown mica. No cupboard/shutter action confirmed. Exact brown shade remains unspecified.
+
 ## Actual checks
 
 Python scripts/extract-prem-skp.py read all three supplied SKP files successfully. Each has 82 vertices, 125 edges, 50 root faces. All extracted geometry/materials compare equal. Face-loop continuity and planarity checks passed in the extractor. Root bounds are 132 x 24 x 84 inches. Non-cabinet Ty instance omitted. This is source extraction, not a finished viewer or full SketchUp component validation.
@@ -22,4 +24,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, starting with the lower brown area beneath the drawer; green side surface also remains unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming matte/gloss sheen for the beige shutters and drawer. Green side surface and remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
