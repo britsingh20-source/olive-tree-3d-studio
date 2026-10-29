@@ -8,6 +8,8 @@ Separate design intake; existing /venki/ and /venki/study/ viewers remain unchan
 
 Four tall yellow source shutter panels: beige. Exact shade and sheen pending. Small yellow horizontal strip beneath blue section is confirmed as a drawer front. Drawer front finish is confirmed beige.
 
+Blue rectangular section above drawer: mirror with lighting. Light colour and control remain unconfirmed.
+
 ## Actual checks
 
 Python scripts/extract-prem-skp.py read all three supplied SKP files successfully. Each has 82 vertices, 125 edges, 50 root faces. All extracted geometry/materials compare equal. Face-loop continuity and planarity checks passed in the extractor. Root bounds are 132 x 24 x 84 inches. Non-cabinet Ty instance omitted. This is source extraction, not a finished viewer or full SketchUp component validation.
@@ -16,4 +18,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, starting with the blue rectangular section. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, starting with the brown surfaces around the mirror and in the four open compartments. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
