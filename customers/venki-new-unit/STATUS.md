@@ -20,7 +20,7 @@ Four beige shutters and beige drawer: handleless design confirmed. User requeste
 
 Green-marked section beside mirror: side-opening shutter confirmed, correcting prior side-panel description. Walnut brown mica matte finish confirmed. Rear hinge edge near mirror backing confirmed. Swing inward toward mirror confirmed. Handleless confirmed. Safe opening angle remains pending; verify mirror clearance during implementation. Do not make this section fixed.
 
-Storage behind four tall beige shutters: shelves confirmed. Four shelves per section confirmed. Bay grouping and spacing pending; no hanging rails or internal drawers confirmed.
+Storage behind four tall beige shutters: shelves confirmed. Two double-door cabinets, each with four shelves, confirmed. Shelf spacing pending; no hanging rails or internal drawers confirmed.
 
 ## Actual checks
 
@@ -30,4 +30,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, confirming whether the four beige shutters form two double-door cabinets or four separate single-door cabinets, then resolving side-shutter storage. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming storage behind the walnut brown side-opening shutter. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
