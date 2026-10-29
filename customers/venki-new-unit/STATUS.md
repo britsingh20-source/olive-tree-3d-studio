@@ -1,35 +1,42 @@
-# Mr. Venki — entirely new unit
+# Mr. Venki — new unit checkpoint
 
-Updated 29 October 2026.
+Updated 29 October 2026. Confirmed choices are in design.json.
 
-Separate design intake; existing /venki/ and /venki/study/ viewers remain unchanged. No new viewer is deployed.
+## Current implementation
 
-## Confirmed
+New route: https://britsingh20-source.github.io/olive-tree-3d-studio/venki-new-unit/
 
-Four tall yellow source shutter panels: beige matte. Exact shade pending. Small yellow horizontal strip beneath blue section is confirmed as a drawer front. Drawer front finish is confirmed beige matte.
+Implemented in dist/venki-new-unit; publication explicitly approved by the user; deployment and live visual verification pending. This is a separate unit. Existing /venki/ and /venki/study/ files are untouched.
 
-Blue rectangular section above drawer: mirror with lighting. Warm-white lighting with touch-sensor control on the mirror confirmed.
+- Two double-door cabinets with handleless beige-matte fronts; four evenly spaced shelves per cabinet. No hanging rails or internal drawers in these cabinets.
+- Fixed tall beige front; smaller side section in walnut brown matte mica. No opening action on fixed section.
+- Walnut brown matte handleless side shutter: rear-edge hinge, swings inward toward mirror through 90 degrees in the preview. One hanging rod only behind it.
+- Mirror with warm-white light and touch toggle. Walnut brown matte mirror surround and four open compartments.
+- Beige-matte handleless makeup drawer; fixed brown mica table beneath it. No PVC louver assumption.
+- Select individual units, rotate/zoom/pan, front/top controls, doors/drawer, front/side mica choices, browser persistence, reference colours and optional guided tour.
+- Tour starts only by explicit button. Manual rotation uses no damping; resize does not call fit; dragged-out-and-back gestures are marked moved to prevent accidental selection.
+- No loft or quotation prices added.
 
-Mirror surround and four open compartments beside mirror: walnut brown mica, matte confirmed. Exact texture pending. Lower brown section beneath drawer has not been mapped by this confirmation.
+## Source and assets
 
-Tall red section at far left: fixed section, no opening action, beige finish. Its smaller side section is walnut brown mica, matte. Keep the front and side finishes separate; confirm visually if the precise side surface is ambiguous.
+Three uploads Untitled (5)(1).skp, Untitled (6)(1).skp and Untitled (7)(1).skp were downloaded and read with scripts/extract-prem-skp.py. Each has 82 vertices, 125 edges, 50 root faces; all extracted geometry/materials compare equal. Bounds: 132 x 24 x 84 inches. Ty human instance omitted. SHA256 values are in design.json.
 
-Lower brown section beneath beige drawer: table finished in brown mica. No cupboard/shutter action confirmed. Exact brown shade remains unspecified.
+Normalized source face loops, IDs and colours retained in dist/venki-new-unit/exact-layout.js and displayed under Reference colours. Fixed brown faces use the actual extracted polygons, including table opening loops. New casing, thicknesses and moving fronts are render approximations around verified source planes.
 
-Four beige shutters and beige drawer: handleless design confirmed. User requested returning to the unresolved green source colour before other details.
+Original SKPs are not committed. Scratch copies and JSON exist at /workspace/scratch/b44db19839ae/venki-work, but may expire. The extracted layout is durable in the repository. Procedural walnut texture reuses existing Venki createWoodTexture; no exact laminate photo was supplied.
 
-Green-marked section beside mirror: side-opening shutter confirmed, correcting prior side-panel description. Walnut brown mica matte finish confirmed. Rear hinge edge near mirror backing confirmed. Swing inward toward mirror confirmed. Handleless confirmed. Safe opening angle remains pending; verify mirror clearance during implementation. Do not make this section fixed.
+## Actual verification
 
-Storage behind four tall beige shutters: shelves confirmed. Two double-door cabinets, each with four shelves, confirmed. Shelf spacing pending; no hanging rails or internal drawers confirmed.
+- All three extractions passed extractor loop-continuity and face-planarity assertions.
+- node --check passed new model.js and studio.js.
+- node check-venki-new-unit.mjs passed: all 50 source face vertices/loops preserved; 132 x 84 x 24 inch renderer bounds; two double-door cabinets; four evenly spaced shelves each; no actions on fixed front/surround/table; one rod and no shelves/drawers behind side shutter; rear hinge and inward rotation; open/close animation; mirror toggle; reference mode; resize harness with zero fit calls and no camera movement.
+- Swept the side shutter 0–90 degrees in one-degree steps: no mirror collision or crossing into open compartments. Minimum axis-aligned Z gap to mirror pane about 57 mm in the render. This is a render clearance check, not fabrication approval.
+- No browser screenshots or full WebGL validation completed yet. Local browser installation failed (download was not a valid archive); cloud browser cannot access localhost. Do not claim desktop/mobile interactions or material fidelity verified from source tests.
 
-Behind walnut brown side-opening shutter: hanging rod only, no shelves or drawers, confirmed. Rod placement remains unspecified.
+## Approximations / outstanding
 
-## Actual checks
-
-Python scripts/extract-prem-skp.py read all three supplied SKP files successfully. Each has 82 vertices, 125 edges, 50 root faces. All extracted geometry/materials compare equal. Face-loop continuity and planarity checks passed in the extractor. Root bounds are 132 x 24 x 84 inches. Non-cabinet Ty instance omitted. This is source extraction, not a finished viewer or full SketchUp component validation.
-
-Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp, corresponding JSON and Venki_New_Unit_Source_Colours.png. Scratch paths may expire; original uploads are retained separately. No SKP files or extracted layout committed yet.
+See design.json. Exact laminate shades/grain, physical material grades/thicknesses, fittings, rod placement and mirror reflection remain illustrative. Table brown tone uses provisional walnut colour. No customer-specific prices imported.
 
 ## Next action
 
-Map the remaining source colours one question at a time, confirming whether the four shelves in each double-door cabinet should be evenly spaced, then implementing the confirmed design with unresolved fabrication details kept explicit. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+User explicitly approved public publication of the viewer and design records on 29 October 2026. Publish using the connected GitHub tools, then inspect live viewer in cloud browser. Verify full/individual view, side/rear rotation persistence, doors/drawer, mirror light, reference mode, finish reload and mobile layout/touch when available. Record actual renderer/device and limits. User confirmed evenly spaced shelves in latest turn; do not repeat that question.

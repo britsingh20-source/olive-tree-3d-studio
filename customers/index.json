@@ -12,8 +12,8 @@
     {
       "id": "venki-new-unit",
       "name": "Mr. Venki",
-      "project": "New unit — design intake",
-      "route": null,
+      "project": "New unit \u2014 design intake",
+      "route": "/venki-new-unit/",
       "design": "customers/venki-new-unit/design.json",
       "status": "customers/venki-new-unit/STATUS.md"
     }

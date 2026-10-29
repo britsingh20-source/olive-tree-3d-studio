@@ -7,8 +7,11 @@
   },
   "project": "Entirely new unit, separate from existing Venki viewers",
   "viewer": {
-    "route": null,
-    "status": "Design intake; not implemented"
+    "route": "/venki-new-unit/",
+    "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/venki-new-unit/",
+    "directory": "dist/venki-new-unit",
+    "storageKey": "venki-new-unit-v1",
+    "status": "Implemented; deployment/live visual check pending"
   },
   "source": {
     "files": [
@@ -33,7 +36,8 @@
     "rootFaces": 50,
     "comparison": "All three extracted root geometries and materials match",
     "omitted": "Ty human instance",
-    "originalFilesInRepository": false
+    "originalFilesInRepository": false,
+    "layout": "dist/venki-new-unit/exact-layout.js"
   },
   "confirmed": [
     {
@@ -49,10 +53,11 @@
         "type": "Shelves",
         "userResponse": "Shelves",
         "shelfCount": 4,
-        "spacing": null,
+        "spacing": "Evenly spaced",
         "scopeNote": "Two double-door cabinets with four shelves each. Shelf spacing remains pending. No hanging rails or internal drawers confirmed.",
         "countScope": "Four shelves per double-door cabinet",
-        "countConfirmation": "4 shelves"
+        "countConfirmation": "4 shelves",
+        "spacingConfirmation": "User answered Yes to evenly spaced shelves"
       },
       "grouping": {
         "cabinetCount": 2,
@@ -144,15 +149,21 @@
     }
   ],
   "unconfirmed": [
-    "Green shutter safe opening angle after clearance check",
-    "Shutter mechanisms and internal storage",
     "Materials, lighting and accessories",
     "Exact beige shade",
     "Exact walnut mica texture",
     "Exact brown mica shade for table",
-    "Shelf spacing inside two double-door cabinets"
+    "Exact material grades, fabrication dimensions/hardware and laminate samples"
   ],
   "quotation": {
     "status": "No quote imported for this new unit"
-  }
+  },
+  "visualApproximations": [
+    "16 mm render panel thickness and 3 mm shutter reveals; fabrication thickness not confirmed",
+    "Procedural walnut grain and preview beige shade; exact laminate samples not supplied",
+    "Table brown preview uses walnut tone; exact table shade not confirmed",
+    "Mirror is a reflective material approximation, not a true planar reflection",
+    "Hanging rod position and diameter are illustrative",
+    "Beige fixed-front matte sheen matches preview palette but was not separately specified"
+  ]
 }
