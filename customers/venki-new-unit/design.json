@@ -43,10 +43,17 @@
       "exactShade": null,
       "sheen": null,
       "userResponse": "Beige colour shutters"
+    },
+    {
+      "sourceColour": "#ffd562",
+      "unit": "Small horizontal strip beneath blue section",
+      "purpose": "Drawer front",
+      "finish": null,
+      "userResponse": "Drawer"
     }
   ],
   "unconfirmed": [
-    "Purpose and finish of small yellow horizontal strip beneath blue section",
+    "Finish of drawer front beneath blue section",
     "Red section purpose and finish",
     "Brown surfaces purpose and finish",
     "Blue section purpose",
