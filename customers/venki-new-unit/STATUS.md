@@ -18,6 +18,8 @@ Lower brown section beneath beige drawer: table finished in brown mica. No cupbo
 
 Four beige shutters and beige drawer: handleless design confirmed. User requested returning to the unresolved green source colour before other details.
 
+Green-marked section beside mirror: side-opening shutter confirmed, correcting prior side-panel description. Finish, hinge edge, swing direction and handle treatment pending. Do not make this section fixed.
+
 ## Actual checks
 
 Python scripts/extract-prem-skp.py read all three supplied SKP files successfully. Each has 82 vertices, 125 edges, 50 root faces. All extracted geometry/materials compare equal. Face-loop continuity and planarity checks passed in the extractor. Root bounds are 132 x 24 x 84 inches. Non-cabinet Ty instance omitted. This is source extraction, not a finished viewer or full SketchUp component validation.
@@ -26,4 +28,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, identifying the green-marked side panel beside the mirror and its finish. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming the finish of the green-marked side-opening shutter. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
