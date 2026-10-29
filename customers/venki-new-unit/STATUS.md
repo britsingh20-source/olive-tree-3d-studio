@@ -18,7 +18,7 @@ Lower brown section beneath beige drawer: table finished in brown mica. No cupbo
 
 Four beige shutters and beige drawer: handleless design confirmed. User requested returning to the unresolved green source colour before other details.
 
-Green-marked section beside mirror: side-opening shutter confirmed, correcting prior side-panel description. Walnut brown mica matte finish confirmed. Hinge edge, swing direction and handle treatment pending. Do not make this section fixed.
+Green-marked section beside mirror: side-opening shutter confirmed, correcting prior side-panel description. Walnut brown mica matte finish confirmed. Rear hinge edge near mirror backing confirmed. Swing direction and handle treatment pending. Do not make this section fixed.
 
 ## Actual checks
 
@@ -28,4 +28,4 @@ Local work at /workspace/scratch/b44db19839ae/venki-work contains unit0/1/2.skp,
 
 ## Next action
 
-Map the remaining source colours one question at a time, confirming the hinge edge of the green-marked side-opening shutter (front edge beside the narrow red strip, or rear edge near the mirror backing). Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
+Map the remaining source colours one question at a time, confirming whether the rear-hinged green side shutter swings outward away from the mirror or inward toward it. Remaining functional details are unresolved. Do not reuse old Venki design choices or rates for this new unit. Reuse existing Studio architecture when implementation begins.
