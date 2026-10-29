@@ -105,13 +105,15 @@
       "unit": "Green-marked section beside mirror",
       "purpose": "Side-opening shutter",
       "movement": "Side opening; hinge edge and swing direction pending",
-      "finish": null,
+      "finish": "Walnut brown mica",
       "userResponse": "That is not that is side opening shuttter",
-      "scopeNote": "Do not treat as a fixed side panel. Finish and handle treatment have not been confirmed for this shutter."
+      "scopeNote": "Side-opening shutter, not fixed. Hinge edge, swing direction and handle treatment remain pending.",
+      "sheen": "Matte",
+      "finishConfirmation": "User answered Walnut brown matte"
     }
   ],
   "unconfirmed": [
-    "Green shutter finish, hinge edge, swing direction and handle treatment",
+    "Green shutter hinge edge, swing direction and handle treatment",
     "Shutter mechanisms and internal storage",
     "Materials, lighting and accessories",
     "Exact beige shade",
