@@ -118,6 +118,29 @@
       "userResponse": "shutter finish daytona wood",
       "referenceImage": "User reattached open wardrobe reference with left/centre highlighted",
       "interiorFinish": "White"
+    },
+    {
+      "sourceColour": "#4d6fb2",
+      "unit": "Two blue tall panels at far right",
+      "purpose": "Glass shutters with internal shelf units",
+      "shutters": {
+        "material": "Glass",
+        "frameAndGlassTint": "Pending confirmation; supplied photo shows dark framing"
+      },
+      "interiorFinish": {
+        "name": "Daytona wood",
+        "scope": "Inner box",
+        "reference": "Previously supplied Daytona colour/grain sample"
+      },
+      "internalLayout": {
+        "type": "Shelves",
+        "countAndSpacing": "Not confirmed"
+      },
+      "referenceImage": {
+        "description": "Tall glass display cabinet with dark frame, wood-lined interior and warm shelf lighting",
+        "scope": "Reference supplied with glass-shutter/shelf confirmation; lighting, frame specification and glass tint not yet explicitly confirmed"
+      },
+      "userResponse": "glass shutters with inside shleve units the inner box should be daytona wood"
     }
   ],
   "unconfirmed": [
@@ -126,7 +149,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "What do the two blue tall panels at the far right represent, and what finish should they have?",
+  "nextQuestion": "Should the glass unit also have the black frames and warm-white shelf lighting shown in the reference?",
   "quotation": {
     "status": "No customer quote imported"
   }

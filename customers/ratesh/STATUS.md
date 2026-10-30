@@ -31,3 +31,7 @@ User confirmed the two brown tall panels at far left (#a56348) are shutters with
 ## Brown group interiors confirmed — 2026-10-31
 
 User explicitly confirmed white interiors with hanger rods and shelves only behind the two brown-coded shutters at far left. No drawers. Exact rod/shelf counts and positions still pending. Matte Daytona wood shutters remain recorded. Next: resolve the two blue tall panels at far right (#4d6fb2), purpose and finish. No viewer implementation or new visual tests.
+
+## Blue group glass unit confirmed — 2026-10-31
+
+Two blue tall panels at far right (#4d6fb2): glass shutters, internal shelves, Daytona wood inner box. User supplied a glass cabinet photograph with dark framing and warm shelf lighting. Frame details, glass tint, lighting and shelf count are not explicitly confirmed. No original reference-image bytes saved yet. Next: confirm black frames and warm-white shelf lighting from reference. No viewer or new visual validation.
