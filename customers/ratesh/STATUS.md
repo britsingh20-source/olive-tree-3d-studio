@@ -109,3 +109,7 @@ Next: implementation from the supplied geometry, finish sample and reference arr
 ## Purple section — 2026-10-31
 
 User identified previously unresolved purple section (#6600cc) as a side-opening door with Daytona wood finish. Continue selected matte finish. Hinge edge and swing direction remain unconfirmed. Do not borrow Venki side-door mechanics. Next: clarify hinge edge using source geometry. No viewer changes or visual tests.
+
+## Purple door hinge edge — 2026-10-31
+
+User confirmed rear-edge hinges for the purple-coded side-opening Daytona wood door. Swing direction remains pending. Source face is on the cabinet side adjacent to the bay-window space; verify clearance when implementing. Next: ask outward toward bay-window space or inward into cabinet. No viewer changes or visual tests.

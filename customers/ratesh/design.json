@@ -233,8 +233,9 @@
       "purpose": "Side-opening door",
       "movement": {
         "type": "Side-opening",
-        "hingeEdge": null,
-        "swingDirection": null
+        "hingeEdge": "Rear edge",
+        "swingDirection": null,
+        "hingeConfirmation": "User answered rear edge"
       },
       "finish": {
         "name": "Daytona wood",
@@ -249,9 +250,9 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Which edge should the purple side-opening door be hinged on?",
+  "nextQuestion": "Should the side-opening door swing outward into the bay-window space or inward into its cabinet?",
   "quotation": {
     "status": "No customer quote imported"
   },
-  "nextAction": "Resolve hinge edge and swing direction for purple side-opening door, then implement confirmed design."
+  "nextAction": "Confirm swing direction for the rear-hinged purple side-opening door, then implement confirmed design."
 }
