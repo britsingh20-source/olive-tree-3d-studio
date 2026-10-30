@@ -148,6 +148,15 @@
         "reference": "User-supplied glass cabinet photograph",
         "confirmation": "User answered yes to black frames and warm-white shelf lighting"
       }
+    },
+    {
+      "sourceColour": "#00cccc",
+      "unit": "Long cyan section at bottom centre, between left wardrobe and right glass unit",
+      "purpose": "Bay window seating",
+      "userResponse": "bay window seating",
+      "finish": null,
+      "cushion": null,
+      "storage": null
     }
   ],
   "unconfirmed": [
@@ -156,7 +165,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "What is the long cyan section across the bottom centre, and what finish should it have?",
+  "nextQuestion": "What finish should the bay-window seating base have?",
   "quotation": {
     "status": "No customer quote imported"
   }

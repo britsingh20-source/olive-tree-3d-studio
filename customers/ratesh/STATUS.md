@@ -39,3 +39,7 @@ Two blue tall panels at far right (#4d6fb2): glass shutters, internal shelves, D
 ## Glass frames and lighting confirmed — 2026-10-31
 
 User answered yes to black frames and warm-white shelf lighting for the blue-coded glass unit. Daytona wood inner box and internal shelves remain confirmed. Glass tint, exact frame profile, lighting controls and shelf count remain unresolved. Next: ask purpose and finish of the long cyan section across bottom centre (#00cccc). Viewer not implemented; no new render validation.
+
+## Cyan section purpose confirmed — 2026-10-31
+
+User identified the long cyan bottom-centre section (#00cccc) as bay window seating. Base finish, cushion and storage/opening functions are not confirmed. Next: ask the seating-base finish. No viewer or new visual validation.
