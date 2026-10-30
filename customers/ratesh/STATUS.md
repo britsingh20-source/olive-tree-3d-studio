@@ -11,3 +11,11 @@ A front orthographic source-colour PNG was generated and visually inspected. It 
 No design finishes or functions confirmed. No customer-specific rates imported. No viewer deployed and no WebGL testing performed.
 
 Next: show the preview and ask what the two yellow tall panels represent and what finish to apply. Continue one source-colour question at a time; do not copy Venki or Suresh design decisions.
+
+## Confirmed design — 2026-10-31
+
+Following the question about the two yellow tall panels, user supplied an internal wardrobe reference and a light wood sample. Confirmed: hanger rods and shelves only, white interiors, shutters matching attached Daytona wood colour/grain. Reference is for rod/shelf placement only; drawers and lights in the photograph are not approved. Exact counts/positions remain unconfirmed.
+
+The wood sample visibly reads ACE MICA, Block Wall Salt, Design No. 1305; user calls it Daytona wood. Preserve both labels and follow the attached visual sample rather than substituting a product based on its name. Reference images were seen in chat but their original bytes have not been materialized or saved as repository textures. Do not claim texture implementation.
+
+Next: ask matte or glossy for the confirmed shutters, then continue unresolved source colours one at a time. Viewer remains unimplemented. No new visual/WebGL test performed.
