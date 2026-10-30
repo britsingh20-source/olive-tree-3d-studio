@@ -51,3 +51,7 @@ User confirmed matte Daytona wood for the cyan-coded bay-window seating base. Cu
 ## Bay-window cushion — 2026-10-31
 
 User confirmed a white cushion on the matte Daytona wood bay-window seating base. Cushion fabric/thickness and base storage/opening functions remain unspecified. Next: ask whether base contains storage or is fixed without storage. No viewer changes or visual tests.
+
+## Bay-window storage — 2026-10-31
+
+User confirmed storage inside the matte Daytona wood seating base with white cushion. Opening mechanism remains pending; do not add a lift-up action or drawers without confirmation. Next: ask front shutters, pull-out drawers or lift-up seat. No viewer changes or visual tests.
