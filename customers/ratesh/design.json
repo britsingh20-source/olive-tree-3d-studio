@@ -97,6 +97,22 @@
       },
       "userResponse": "the highlighted area this is only for hanger rod and shelf placements maintain white inner and shutters with daytona wood finish image attached adapt the grains colour",
       "mappingNote": "Confirmation follows question about two yellow tall panels; applicability to other source-colour sections remains pending"
+    },
+    {
+      "sourceColour": "#a56348",
+      "unit": "Two brown tall panels at far left",
+      "purpose": "Shutters",
+      "shutterFinish": {
+        "userName": "Daytona wood",
+        "reference": "Same supplied light wood colour/grain sample as yellow-coded shutters",
+        "sheen": "Matte",
+        "sheenBasis": "Same named finish as previously confirmed matte Daytona wood; assistant stated continuity explicitly."
+      },
+      "internalLayout": {
+        "status": "Pending; attached wardrobe image shows highlighted left/central region but counts, dimensions and scope for this source-colour group are not confirmed."
+      },
+      "userResponse": "shutter finish daytona wood",
+      "referenceImage": "User reattached open wardrobe reference with left/centre highlighted"
     }
   ],
   "unconfirmed": [
@@ -105,7 +121,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "What do the two brown tall panels at the far left represent, and what finish should they have?",
+  "nextQuestion": "Should these brown-coded shutters also have white interiors with hanger rods and shelves only?",
   "quotation": {
     "status": "No customer quote imported"
   }
