@@ -196,7 +196,11 @@
         "scope": "Backing and surround",
         "userConfirmation": "Yes to matte Daytona wood backing and surround"
       },
-      "lighting": null
+      "lighting": {
+        "included": true,
+        "colour": "Warm white",
+        "userConfirmation": "Yes to warm-white lighting for the narrow open glass shelves"
+      }
     }
   ],
   "unconfirmed": [
@@ -205,7 +209,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Would you like warm-white lighting for these narrow open glass shelves too?",
+  "nextQuestion": "For the tall glass cabinet at far right, should the glass be clear or tinted?",
   "quotation": {
     "status": "No customer quote imported"
   }
