@@ -7,8 +7,11 @@
   },
   "project": "Wardrobe",
   "viewer": {
-    "status": "Intake only; no viewer implemented",
-    "route": null
+    "status": "Implemented; local WebGL preview checked; publication verification pending",
+    "route": "/ratesh/",
+    "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/",
+    "directory": "dist/ratesh",
+    "storageKey": "ratesh-wardrobe-v1"
   },
   "source": {
     "files": [
@@ -72,7 +75,8 @@
         "color": "#6600cc"
       }
     },
-    "previewLibraryFileId": "libfile_3217e7232c28819191bd0a6b093cadbc"
+    "previewLibraryFileId": "libfile_3217e7232c28819191bd0a6b093cadbc",
+    "layout": "dist/ratesh/exact-layout.js"
   },
   "confirmed": [
     {
@@ -86,7 +90,7 @@
         "samplePrintedLabel": "ACE MICA — Block Wall Salt — Design No. 1305",
         "authority": "Attached image is the visual colour/grain reference; user calls finish Daytona wood",
         "sheen": "Matte",
-        "assetStatus": "Reference seen in current chat; original image bytes not yet materialized",
+        "assetStatus": "Original source JPEG recovered locally, visually verified, and included at dist/ratesh/daytona-reference.jpg",
         "sheenConfirmation": "User answered matte to matte-or-glossy question."
       },
       "internalLayout": {
@@ -154,7 +158,7 @@
       },
       "internalLayout": {
         "type": "Shelves",
-        "countAndSpacing": "Four Daytona wood shelves confirmed; spacing pending",
+        "countAndSpacing": "Four Daytona wood shelves; evenly spaced for preview, fabrication spacing not specified.",
         "shelfCount": 4,
         "countConfirmation": "User answered 4 to shelf count for tall smoke-grey glass cabinet",
         "shelfMaterial": "Daytona wood",
@@ -162,7 +166,7 @@
       },
       "referenceImage": {
         "description": "Tall glass display cabinet with dark frame, wood-lined interior and warm shelf lighting",
-        "scope": "Glass cabinet visual reference; black frames and warm-white shelf lighting explicitly confirmed. Exact frame profile, glass tint and shelf count remain pending."
+        "scope": "Black frames, smoke-grey tinted glass, four Daytona wood shelves and warm-white lighting confirmed. Frame profile and exact hardware illustrative."
       },
       "userResponse": "glass shutters with inside shleve units the inner box should be daytona wood",
       "lighting": {
@@ -264,5 +268,23 @@
   "quotation": {
     "status": "No customer quote imported"
   },
-  "nextAction": "Implement confirmed design from verified source geometry and references; side-door storage is apple hooks only. Keep exact hook hardware/count unspecified."
+  "nextAction": "Verify deployed viewer and review visual result with customer.",
+  "assets": {
+    "woodTexture": {
+      "path": "dist/ratesh/daytona-reference.jpg",
+      "sourceFilename": "e633b4492084e061acd84b32a331b721.jpg",
+      "libraryFileId": "libfile_231d43b491608191850062cc9a44b5e6",
+      "printedLabel": "ACE MICA — Block Wall Salt — Design No. 1305",
+      "userName": "Daytona wood",
+      "mapping": "Actual JPEG with UV range excluding bottom text; vertical grain on front panels"
+    }
+  },
+  "visualApproximations": [
+    "16 mm render panels and 3 mm shutter reveals; fabrication dimensions unconfirmed",
+    "Wardrobe internal spacing scaled from highlighted reference, with drawers omitted",
+    "Four tall cabinet shelves spaced evenly for preview",
+    "Three illustrative apple hooks; exact hardware/count/placement unconfirmed",
+    "Cushion thickness 65 mm and lift angle approximately 60 degrees are render approximations",
+    "Door angles and black glass frame profile are illustrative; smoke tint is an approximation"
+  ]
 }

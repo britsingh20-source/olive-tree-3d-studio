@@ -20,8 +20,8 @@
     {
       "id": "ratesh",
       "name": "Mr. Ratesh",
-      "project": "Wardrobe — source-colour intake",
-      "route": null,
+      "project": "Wardrobe, bay-window seating and glass display",
+      "route": "/ratesh/",
       "design": "customers/ratesh/design.json",
       "status": "customers/ratesh/STATUS.md"
     }
