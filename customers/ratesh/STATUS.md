@@ -113,3 +113,7 @@ User identified previously unresolved purple section (#6600cc) as a side-opening
 ## Purple door hinge edge — 2026-10-31
 
 User confirmed rear-edge hinges for the purple-coded side-opening Daytona wood door. Swing direction remains pending. Source face is on the cabinet side adjacent to the bay-window space; verify clearance when implementing. Next: ask outward toward bay-window space or inward into cabinet. No viewer changes or visual tests.
+
+## Purple door swing — 2026-10-31
+
+User confirmed the rear-hinged purple Daytona wood side door swings outward into the bay-window space. Check clearance against bay-window cushion/seat when implementing; no opening angle or hardware specified. Internal storage behind this door remains unconfirmed and must not be copied from another customer. Next: ask what storage is behind the side door. No viewer changes or visual tests.
