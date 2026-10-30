@@ -47,3 +47,7 @@ User identified the long cyan bottom-centre section (#00cccc) as bay window seat
 ## Bay-window base finish — 2026-10-31
 
 User confirmed matte Daytona wood for the cyan-coded bay-window seating base. Cushion and storage/opening functions remain pending. Next: ask whether to add a cushion and its colour. No viewer implementation or visual validation.
+
+## Bay-window cushion — 2026-10-31
+
+User confirmed a white cushion on the matte Daytona wood bay-window seating base. Cushion fabric/thickness and base storage/opening functions remain unspecified. Next: ask whether base contains storage or is fixed without storage. No viewer changes or visual tests.

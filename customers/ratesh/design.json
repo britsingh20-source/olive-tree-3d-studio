@@ -160,7 +160,11 @@
         "scope": "Bay-window seating base",
         "userConfirmation": "matte Daytona wood"
       },
-      "cushion": null,
+      "cushion": {
+        "included": true,
+        "colour": "White",
+        "userConfirmation": "yes white colour cushion"
+      },
       "storage": null
     }
   ],
@@ -170,7 +174,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should the bay-window seating have a cushion, and if so, what colour?",
+  "nextQuestion": "Should the bay-window seating base have storage inside or remain fixed without storage?",
   "quotation": {
     "status": "No customer quote imported"
   }
