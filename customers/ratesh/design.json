@@ -96,7 +96,12 @@
         "countsAndDimensions": "Not confirmed; do not infer from photograph"
       },
       "userResponse": "the highlighted area this is only for hanger rod and shelf placements maintain white inner and shutters with daytona wood finish image attached adapt the grains colour",
-      "mappingNote": "Confirmation follows question about two yellow tall panels; applicability to other source-colour sections remains pending"
+      "mappingNote": "Confirmation follows question about two yellow tall panels; applicability to other source-colour sections remains pending",
+      "handles": {
+        "type": "Handleless",
+        "userConfirmation": "handleless design",
+        "mechanism": "Not specified"
+      }
     },
     {
       "sourceColour": "#a56348",
@@ -117,7 +122,12 @@
       },
       "userResponse": "shutter finish daytona wood",
       "referenceImage": "User reattached open wardrobe reference with left/centre highlighted",
-      "interiorFinish": "White"
+      "interiorFinish": "White",
+      "handles": {
+        "type": "Handleless",
+        "userConfirmation": "handleless design",
+        "mechanism": "Not specified"
+      }
     },
     {
       "sourceColour": "#4d6fb2",
@@ -213,7 +223,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should the Daytona wood wardrobe shutters have handles or a handleless design?",
+  "nextQuestion": "How many shelves should the tall smoke-grey glass cabinet have?",
   "quotation": {
     "status": "No customer quote imported"
   }
