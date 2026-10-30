@@ -12,10 +12,18 @@
     {
       "id": "venki-new-unit",
       "name": "Mr. Venki",
-      "project": "New unit \u2014 design intake",
+      "project": "New unit — design intake",
       "route": "/venki-new-unit/",
       "design": "customers/venki-new-unit/design.json",
       "status": "customers/venki-new-unit/STATUS.md"
+    },
+    {
+      "id": "ratesh",
+      "name": "Mr. Ratesh",
+      "project": "Wardrobe — source-colour intake",
+      "route": null,
+      "design": "customers/ratesh/design.json",
+      "status": "customers/ratesh/STATUS.md"
     }
   ]
 }

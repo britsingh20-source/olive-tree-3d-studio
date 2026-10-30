@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-31",
+  "customer": {
+    "id": "ratesh",
+    "name": "Mr. Ratesh"
+  },
+  "project": "Wardrobe",
+  "viewer": {
+    "status": "Intake only; no viewer implemented",
+    "route": null
+  },
+  "source": {
+    "files": [
+      {
+        "name": "pn puthur wardrobe.skp",
+        "sha256": "05ff9ba658a68ddd76c6488c665183e47c6a3b7d2d26ed9cf8b6b71373197ec5"
+      },
+      {
+        "name": "pn puthur wardrobe (1).skp",
+        "sha256": "631e5f40ca22178c305dbc3092205ca24695f90df4c4038f1c835820f676453f"
+      },
+      {
+        "name": "pn puthur wardrobe (2).skp",
+        "sha256": "1d3bd7ef0691d10d8cbb44ef000e9483aff4549da491ee9b29627ae0c704347e"
+      }
+    ],
+    "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py",
+    "sourceUnits": "inches",
+    "bounds": {
+      "width": 192,
+      "depth": 24,
+      "height": 84
+    },
+    "vertices": 116,
+    "edges": 189,
+    "rootFaces": 75,
+    "omittedInstances": {},
+    "comparison": "All three extracted vertices, edges, faces and materials match; source hashes differ.",
+    "geometry": "customers/ratesh/source-geometry.json",
+    "materials": {
+      "46361": {
+        "name": "Ty_Red",
+        "color": "#9a0a05"
+      },
+      "46363": {
+        "name": "Ty_Skin",
+        "color": "#ffb299"
+      },
+      "46364": {
+        "name": "Ty_Brown1",
+        "color": "#a56348"
+      },
+      "46368": {
+        "name": "Ty_Green",
+        "color": "#5a7a43"
+      },
+      "46370": {
+        "name": "Ty_Yellow",
+        "color": "#ffd562"
+      },
+      "46371": {
+        "name": "Ty_Blue2",
+        "color": "#4d6fb2"
+      },
+      "47263": {
+        "name": "[Color H06]",
+        "color": "#00cccc"
+      },
+      "47264": {
+        "name": "[Color J06]",
+        "color": "#6600cc"
+      }
+    },
+    "previewLibraryFileId": "libfile_3217e7232c28819191bd0a6b093cadbc"
+  },
+  "confirmed": [],
+  "unconfirmed": [
+    "Purpose and finish of each source-colour section",
+    "Internal arrangement, materials, sheen, opening actions, handles, lighting and accessories"
+  ],
+  "nextQuestion": "What do the two yellow tall panels represent, and what finish should they have?",
+  "quotation": {
+    "status": "No customer quote imported"
+  }
+}
