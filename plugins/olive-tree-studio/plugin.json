@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "olive-tree-studio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Continue Olive Tree interior 3D projects from durable GitHub customer records without repeating confirmed design questions.",
   "author": {
     "name": "Olive Tree Interiors"
@@ -18,7 +18,7 @@
       "interface": {
         "displayName": "Olive Tree Studio",
         "shortDescription": "Continue your 3D projects",
-        "longDescription": "A private workflow plugin for Olive Tree Interiors. Reads the studio repository workflow and customer checkpoints before continuing design work, asks only for missing decisions, preserves verified source geometry and customer-specific pricing, and records changes for future chats. Uses available GitHub, file and browser tools; does not include its own converter or repository credentials.",
+        "longDescription": "A private workflow plugin for Olive Tree Interiors. Reads the studio repository workflow and customer checkpoints before continuing design work, asks only for missing decisions, preserves verified source geometry and customer-specific pricing, and records changes for future chats. Uses available GitHub, file and browser tools; includes the established bounded Python SKP reader, not a universal converter or repository credentials.",
         "developerName": "Olive Tree Interiors",
         "category": "Productivity",
         "capabilities": [],

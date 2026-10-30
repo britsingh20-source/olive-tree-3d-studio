@@ -20,6 +20,12 @@ These files are the durable project record, not bundled snapshots. Fetch current
 
 For Mr. Suresh, current paths are customers/suresh/design.json and customers/suresh/STATUS.md; viewer route /suresh/. Do not repeat confirmed questions. Read recent fixes and unverified items before claiming completion.
 
+## SKP intake: Python first
+
+For every attached .skp file, read [SKP intake and failure handling](references/skp-intake.md) before reporting that it cannot be read. Resolve the current attachment and obtain its actual bytes using the file provider's supported transfer workflow. Run the bundled `scripts/read_skp.py` proactively; do not wait for the user to mention Python or an old chat. The bundle includes the established bounded extractor. Inspect a newer repository extractor when available, but do not depend on old chats or recreate it from memory.
+
+Separate file access/download, execution availability, container inspection and geometry parsing. A DNS/download error or unavailable runtime is not evidence of a bad/unsupported SKP. Do not repeatedly ask for the same upload, a PC folder or GLB/OBJ before trying the established reader on real bytes. Only request another export after an observed parser/layout limitation. Record the exact stage and result, preserve validated geometry, then show source colours and continue design questions.
+
 ## Working method
 
 Follow the current repository workflow and the user's latest instructions. Reuse existing architecture and visual style. Inspect source geometry, images, extraction scripts and verified dimensions before asking for alternative exports. Use the established bounded extractor when applicable; if it fails, explain the observed blocker and request only a suitable missing export or source.

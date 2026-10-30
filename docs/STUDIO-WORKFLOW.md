@@ -10,6 +10,14 @@ Use the existing studio architecture and stylesheet. Inspect the source model, i
 
 If extraction genuinely fails, state the exact observed blocker and request the smallest usable alternative: a geometry export such as GLB/glTF, OBJ with materials, or DAE, retaining units/components. Request a dimensioned view only for dimensions that cannot be verified. Never claim to inspect an attachment that was not actually read.
 
+## Mandatory SKP intake and failure routing
+
+For each SKP attachment, run the bundled Python-first procedure in `plugins/olive-tree-studio/skills/olive-tree-studio/references/skp-intake.md` without waiting for the user to mention an old chat. Obtain actual bytes through the file provider's supported transfer workflow, then run `plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py INPUT.skp OUTPUT.json`. Its sibling `extract_skp.py` is the bounded established reader, bundled so a new chat need not reconstruct it. Prefer inspected current repository code if newer.
+
+Keep access/download, execution availability, container inspection, parsing and validation separate. DNS/transfer/runtime errors do not establish that an SKP is bad or unsupported. Do not repeatedly request another upload, PC folder or GLB/OBJ before actually attempting the reader on available bytes. Report unsupported TLV layouts/components precisely and never silently omit non-Ty cabinet instances. This is not a universal SketchUp converter.
+
+Plugin 1.0.1 reader validation: supported synthetic triangle with Ty, missing source, empty source, unsupported container, unsupported TLV layout, non-Ty components and source/output collision. All seven passed on Windows Python 3.14.2. The core bundled extractor matches the repository reader previously used for the actual Venki files; no new claim of parsing a current customer upload is implied by these synthetic tests.
+
 ## Clarify design through source colours
 
 Show each unresolved source colour visually and ask what it represents, one clear question at a time. Avoid A/B labels, unexplained position descriptions, or asking for colour codes already extractable from the model. If multiple brown shades are present, show separate swatches so the user can name each section.
