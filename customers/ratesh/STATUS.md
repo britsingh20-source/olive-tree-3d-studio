@@ -43,3 +43,7 @@ User answered yes to black frames and warm-white shelf lighting for the blue-cod
 ## Cyan section purpose confirmed — 2026-10-31
 
 User identified the long cyan bottom-centre section (#00cccc) as bay window seating. Base finish, cushion and storage/opening functions are not confirmed. Next: ask the seating-base finish. No viewer or new visual validation.
+
+## Bay-window base finish — 2026-10-31
+
+User confirmed matte Daytona wood for the cyan-coded bay-window seating base. Cushion and storage/opening functions remain pending. Next: ask whether to add a cushion and its colour. No viewer implementation or visual validation.

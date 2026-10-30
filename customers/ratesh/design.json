@@ -154,7 +154,12 @@
       "unit": "Long cyan section at bottom centre, between left wardrobe and right glass unit",
       "purpose": "Bay window seating",
       "userResponse": "bay window seating",
-      "finish": null,
+      "finish": {
+        "name": "Daytona wood",
+        "sheen": "Matte",
+        "scope": "Bay-window seating base",
+        "userConfirmation": "matte Daytona wood"
+      },
       "cushion": null,
       "storage": null
     }
@@ -165,7 +170,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "What finish should the bay-window seating base have?",
+  "nextQuestion": "Should the bay-window seating have a cushion, and if so, what colour?",
   "quotation": {
     "status": "No customer quote imported"
   }
