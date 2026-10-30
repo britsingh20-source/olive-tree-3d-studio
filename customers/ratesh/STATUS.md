@@ -75,3 +75,7 @@ User confirmed matte Daytona wood for backing and surround of the narrow open gl
 ## Narrow glass-shelf lighting — 2026-10-31
 
 User confirmed warm-white lighting for the narrow open glass shelves. Glass shelves and matte Daytona wood backing/surround remain confirmed. Next: confirm clear or tinted glass for the separate tall glass cabinet at far right. No viewer changes or visual tests.
+
+## Tall cabinet glass — 2026-10-31
+
+User confirmed tinted glass for the tall right cabinet with black frames, Daytona wood inner box, shelves and warm-white lighting. Tint colour is not yet confirmed. Next: ask smoke-grey or bronze tint. No viewer changes or visual tests.

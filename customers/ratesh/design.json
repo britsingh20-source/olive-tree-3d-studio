@@ -125,8 +125,11 @@
       "purpose": "Glass shutters with internal shelf units",
       "shutters": {
         "material": "Glass",
-        "frameAndGlassTint": "Black frames confirmed; glass tint remains pending",
-        "frameColour": "Black"
+        "frameAndGlassTint": "Black frames and tinted glass confirmed; tint colour pending",
+        "frameColour": "Black",
+        "glassTint": "Tinted",
+        "tintColour": null,
+        "tintConfirmation": "User answered tinted to clear-or-tinted question"
       },
       "interiorFinish": {
         "name": "Daytona wood",
@@ -209,7 +212,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "For the tall glass cabinet at far right, should the glass be clear or tinted?",
+  "nextQuestion": "Should the tinted glass be smoke grey or bronze?",
   "quotation": {
     "status": "No customer quote imported"
   }
