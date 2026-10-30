@@ -7,12 +7,12 @@
   },
   "project": "Wardrobe",
   "viewer": {
-    "status": "Live design updated with three decorative shelf plants; deployment verification pending",
+    "status": "Live; three shelf plants visually verified",
     "route": "/ratesh/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/",
     "directory": "dist/ratesh",
     "storageKey": "ratesh-wardrobe-v1",
-    "deployedCommit": "008fa9bf4d163642c3d438b19adf502cc0173fdc",
+    "deployedCommit": "985de618a2fc23fa934116bbfdc8c6635074ab63",
     "assetVersion": "plants1"
   },
   "source": {

@@ -50,3 +50,5 @@ Ready for customer review. No further design explanation is needed for the alrea
 User requested small plants on the glass shelves. Added one compact green plant in an ivory pot to each of the three narrow open glass shelves. Pots sit on shelf tops, in front of Daytona backing; warm lights remain visible. Plants belong to the open-shelf selectable unit and do not recolour when mica changes. Decorative species/pot shapes are illustrative.
 
 Validation: model.js syntax passed; local 1280 × 712 WebGL preview selected Open glass shelves and visually confirmed three plants standing on the shelves with visible warm lighting. No source geometry or opening actions changed. No new mobile-specific check needed for this static decoration change. Module versions bumped to plants1 for both studio.js and model.js. Deployment verification pending.
+
+Plant update commit 985de618a2fc23fa934116bbfdc8c6635074ab63 deployed successfully in run 41118233495. Existing live /ratesh/ tab refreshed; selected Open glass shelves and visually confirmed all three plants, pots, shelves and warm lighting. Captured live console errors: none. Ready for customer review.
