@@ -28,3 +28,11 @@ Actual supplied wood image recovered from local PC, visually checked against att
 Publication and live route verification pending at this checkpoint. Exact panel thickness, hardware, hook count/placement, cushion thickness, frame profile, shelf spacing and opening angles are visual approximations listed in design.json. No quote imported. CPU compatibility rendering and real handset/hardware testing not performed.
 
 Next: verify deployment/live assets, seat framing, lighting controls and tour stop/replay; record results before sharing customer URL.
+
+## Publication and final checks — 2026-10-31
+
+Viewer code commit a70797f1dbe43702e61ee9ad305f99234d120242 deployed successfully in GitHub Actions run 41116691420. Live /ratesh/ route opened in browser and rendered. Captured console error list empty. Final local seat-opening screenshot confirms entire raised lid remains in frame. Live tour starts and stops; stop now restores finish/detail controls without reframing the camera. Delayed full-tour completion not tested. Real handset and CPU fallback still not tested. Finish persistence was tested locally; production uses the same code and separate origin storage.
+
+Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/
+
+Next: verify final tour-control patch deployment, then share URL. Customer can review the design; unconfirmed fabrication dimensions/hardware remain clearly marked.

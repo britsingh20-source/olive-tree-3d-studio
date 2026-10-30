@@ -7,11 +7,12 @@
   },
   "project": "Wardrobe",
   "viewer": {
-    "status": "Implemented; local WebGL preview checked; publication verification pending",
+    "status": "Live; deployed viewer loaded and opening/finish controls checked",
     "route": "/ratesh/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/",
     "directory": "dist/ratesh",
-    "storageKey": "ratesh-wardrobe-v1"
+    "storageKey": "ratesh-wardrobe-v1",
+    "deployedCommit": "a70797f1dbe43702e61ee9ad305f99234d120242"
   },
   "source": {
     "files": [
@@ -268,7 +269,7 @@
   "quotation": {
     "status": "No customer quote imported"
   },
-  "nextAction": "Verify deployed viewer and review visual result with customer.",
+  "nextAction": "Customer review of live 3D viewer; fabrication details remain illustrative.",
   "assets": {
     "woodTexture": {
       "path": "dist/ratesh/daytona-reference.jpg",
