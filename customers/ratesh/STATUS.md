@@ -117,3 +117,7 @@ User confirmed rear-edge hinges for the purple-coded side-opening Daytona wood d
 ## Purple door swing — 2026-10-31
 
 User confirmed the rear-hinged purple Daytona wood side door swings outward into the bay-window space. Check clearance against bay-window cushion/seat when implementing; no opening angle or hardware specified. Internal storage behind this door remains unconfirmed and must not be copied from another customer. Next: ask what storage is behind the side door. No viewer changes or visual tests.
+
+## Side-door storage — 2026-10-31
+
+User confirmed only apple hooks for shirt hanging behind the purple-coded side-opening door. No shelves, drawers or hanger rod in this compartment. Hook count and exact hardware/placement are unspecified. Preserve rear-edge hinges and outward swing into bay-window space. Next: implementation from confirmed geometry and reference finishes; exact hook hardware should not be presented as fabrication-approved. Viewer remains unimplemented; no new visual tests.

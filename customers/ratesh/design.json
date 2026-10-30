@@ -243,7 +243,16 @@
         "sheen": "Matte",
         "sheenBasis": "Continue previously selected matte Daytona wood finish"
       },
-      "userResponse": "side opening door daytona wood"
+      "userResponse": "side opening door daytona wood",
+      "internalStorage": {
+        "type": "Apple hooks for shirt hanging only",
+        "shelves": false,
+        "drawers": false,
+        "hangingRod": false,
+        "userConfirmation": "only apple hooks for shirt hanging",
+        "hookCount": null,
+        "hookPlacement": null
+      }
     }
   ],
   "unconfirmed": [
@@ -251,9 +260,9 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "What storage should be behind the purple side-opening door?",
+  "nextQuestion": null,
   "quotation": {
     "status": "No customer quote imported"
   },
-  "nextAction": "Resolve storage behind purple side-opening door; use confirmed rear hinges and outward swing and verify bay-window clearance during implementation."
+  "nextAction": "Implement confirmed design from verified source geometry and references; side-door storage is apple hooks only. Keep exact hook hardware/count unspecified."
 }
