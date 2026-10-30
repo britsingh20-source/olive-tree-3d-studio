@@ -105,3 +105,7 @@ User confirmed three glass shelves for the narrow open section above the fixed u
 User said 'already structure given' after a repeated question about the left wardrobe internals. This supersedes the request to re-describe rod/shelf arrangement. Use the earlier highlighted wardrobe reference for hanger rods and shelves, keeping white interiors and no drawers as explicitly confirmed; preserve verified SKP outer geometry. Do not ask the user to repeat the reference structure. Reference proportions are not fabricated exact measurements.
 
 Next: implementation from the supplied geometry, finish sample and reference arrangement. Viewer still unimplemented; no new visual testing. Earlier pending-count language is superseded for visual arrangement, not converted into invented fabrication dimensions.
+
+## Purple section — 2026-10-31
+
+User identified previously unresolved purple section (#6600cc) as a side-opening door with Daytona wood finish. Continue selected matte finish. Hinge edge and swing direction remain unconfirmed. Do not borrow Venki side-door mechanics. Next: clarify hinge edge using source geometry. No viewer changes or visual tests.

@@ -226,6 +226,22 @@
       },
       "shelfCount": 3,
       "countConfirmation": "User answered 3 to shelf count for narrow open section above fixed unit"
+    },
+    {
+      "sourceColour": "#6600cc",
+      "unit": "Purple section shown by user",
+      "purpose": "Side-opening door",
+      "movement": {
+        "type": "Side-opening",
+        "hingeEdge": null,
+        "swingDirection": null
+      },
+      "finish": {
+        "name": "Daytona wood",
+        "sheen": "Matte",
+        "sheenBasis": "Continue previously selected matte Daytona wood finish"
+      },
+      "userResponse": "side opening door daytona wood"
     }
   ],
   "unconfirmed": [
@@ -233,9 +249,9 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": null,
+  "nextQuestion": "Which edge should the purple side-opening door be hinged on?",
   "quotation": {
     "status": "No customer quote imported"
   },
-  "nextAction": "Implement confirmed design using verified SKP geometry and the supplied reference arrangement. Do not repeat wardrobe structure questions. Keep any unverified fabrication dimensions distinct from render proportions."
+  "nextAction": "Resolve hinge edge and swing direction for purple side-opening door, then implement confirmed design."
 }
