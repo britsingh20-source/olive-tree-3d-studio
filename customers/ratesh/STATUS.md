@@ -44,3 +44,9 @@ The tour-stop patch uses studio.js?v=ratesh2 so returning clients load the updat
 Final viewer source commit 008fa9bf4d163642c3d438b19adf502cc0173fdc deployed successfully (run 41117004605). Live DOM confirms studio.js?v=ratesh2 and a rendered canvas without fallback note. Live lighting off/on and Reference colours toggles responded. Tour replay/stop tested on the final version; when stopped in a focused wardrobe view, finish strip, details and quote selection controls returned. Captured live console errors: none. Full tour completion and real mobile hardware remain untested.
 
 Ready for customer review. No further design explanation is needed for the already supplied wardrobe structure. Exact hardware and fabrication dimensions remain approximations as listed in design.json.
+
+## Small plants on glass shelves — 2026-10-31
+
+User requested small plants on the glass shelves. Added one compact green plant in an ivory pot to each of the three narrow open glass shelves. Pots sit on shelf tops, in front of Daytona backing; warm lights remain visible. Plants belong to the open-shelf selectable unit and do not recolour when mica changes. Decorative species/pot shapes are illustrative.
+
+Validation: model.js syntax passed; local 1280 × 712 WebGL preview selected Open glass shelves and visually confirmed three plants standing on the shelves with visible warm lighting. No source geometry or opening actions changed. No new mobile-specific check needed for this static decoration change. Module versions bumped to plants1 for both studio.js and model.js. Deployment verification pending.

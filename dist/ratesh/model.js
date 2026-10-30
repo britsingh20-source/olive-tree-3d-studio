@@ -63,6 +63,29 @@ export function buildModel(){
  for(const y of [-26.5*I,26.5*I])box(display.group,10*I,1*I,3*I,0,y,-1.5*I,display.side);
  for(const y of [43.5,56.5,69.5]){box(display.group,10*I,.008,6*I,0,y*I-display.y,-3*I,glassMaterial);strip(display,(y-.6)*I,9*I,2.6*I);}
  strip(display,82.4*I,9*I,2.6*I);display.shelfCount=3;display.shelfMaterial='Glass';
+ // Small decorative plants stand on the three open glass shelves.
+ const potMat=new T.MeshStandardMaterial({color:'#e7e3d9',roughness:.92});
+ const soilMat=new T.MeshStandardMaterial({color:'#493d2f',roughness:1});
+ const stemMat=new T.MeshStandardMaterial({color:'#526d42',roughness:.9});
+ const leafMats=['#496e47','#668853','#78935f'].map(color=>new T.MeshStandardMaterial({color,roughness:.88,side:T.DoubleSide}));
+ const plantShelfHeights=[43.5,56.5,69.5];display.plantCount=3;display.plants=[];
+ for(let i=0;i<3;i++){
+  const plant=new T.Group();plant.name='Shelf plant '+(i+1);plant.userData.decor='shelf-plant';
+  plant.position.set((i===1?1:-1)*.025,plantShelfHeights[i]*I-display.y+.004,-.039);
+  display.group.add(plant);display.plants.push(plant);
+  const pot=new T.Mesh(new T.CylinderGeometry(.025,.019,.044,18),potMat);pot.position.y=.022;pot.castShadow=true;pot.receiveShadow=true;plant.add(pot);
+  const soil=new T.Mesh(new T.CylinderGeometry(.022,.022,.002,18),soilMat);soil.position.y=.043;plant.add(soil);
+  const stem=new T.Mesh(new T.CylinderGeometry(.0015,.002,.098,8),stemMat);stem.position.y=.091;plant.add(stem);
+  for(let j=0;j<8;j++){
+   const sign=j%2?1:-1,level=Math.floor(j/2);
+   const leaf=new T.Mesh(new T.SphereGeometry(1,10,6),leafMats[(i+j)%3]);
+   leaf.scale.set(.025-level*.002,.009,.010);leaf.rotation.z=sign*(.45+level*.1);
+   leaf.position.set(sign*(.018-level*.001),.064+level*.021,(j%3-1)*.006);
+   leaf.castShadow=true;plant.add(leaf);
+  }
+  const tip=new T.Mesh(new T.SphereGeometry(1,10,6),leafMats[i]);tip.scale.set(.010,.024,.009);tip.position.y=.151;plant.add(tip);
+ }
+
  const side=unit('side-door','Side-opening shirt cabinet','side',150*I,57*I,12*I,54*I,24*I);side.angle=-Math.PI/2;
  box(side.group,12*I,54*I,t,0,0,-24*I+t/2,side.side);
  box(side.group,t,54*I,21*I,6*I-t/2,0,-13.5*I,side.side);

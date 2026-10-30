@@ -7,13 +7,13 @@
   },
   "project": "Wardrobe",
   "viewer": {
-    "status": "Live; final module version, tour stop controls, lighting and reference mode verified",
+    "status": "Live design updated with three decorative shelf plants; deployment verification pending",
     "route": "/ratesh/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/",
     "directory": "dist/ratesh",
     "storageKey": "ratesh-wardrobe-v1",
     "deployedCommit": "008fa9bf4d163642c3d438b19adf502cc0173fdc",
-    "assetVersion": "ratesh2"
+    "assetVersion": "plants1"
   },
   "source": {
     "files": [
@@ -231,7 +231,15 @@
         "userConfirmation": "Yes to warm-white lighting for the narrow open glass shelves"
       },
       "shelfCount": 3,
-      "countConfirmation": "User answered 3 to shelf count for narrow open section above fixed unit"
+      "countConfirmation": "User answered 3 to shelf count for narrow open section above fixed unit",
+      "decoration": {
+        "type": "Small potted plants",
+        "count": 3,
+        "arrangement": "One on each of the three open glass shelves",
+        "potColour": "Ivory",
+        "userRequest": "can we place small plants on the glass shelves",
+        "note": "Decorative 3D styling; plant species and pot product are illustrative."
+      }
     },
     {
       "sourceColour": "#6600cc",
