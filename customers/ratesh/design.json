@@ -125,11 +125,12 @@
       "purpose": "Glass shutters with internal shelf units",
       "shutters": {
         "material": "Glass",
-        "frameAndGlassTint": "Black frames and tinted glass confirmed; tint colour pending",
+        "frameAndGlassTint": "Black frames with smoke-grey tinted glass",
         "frameColour": "Black",
         "glassTint": "Tinted",
-        "tintColour": null,
-        "tintConfirmation": "User answered tinted to clear-or-tinted question"
+        "tintColour": "Smoke-grey",
+        "tintConfirmation": "User answered tinted to clear-or-tinted question",
+        "tintColourConfirmation": "User answered smoke-grey"
       },
       "interiorFinish": {
         "name": "Daytona wood",
@@ -212,7 +213,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should the tinted glass be smoke grey or bronze?",
+  "nextQuestion": "Should the Daytona wood wardrobe shutters have handles or a handleless design?",
   "quotation": {
     "status": "No customer quote imported"
   }

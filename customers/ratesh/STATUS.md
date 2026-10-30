@@ -79,3 +79,7 @@ User confirmed warm-white lighting for the narrow open glass shelves. Glass shel
 ## Tall cabinet glass — 2026-10-31
 
 User confirmed tinted glass for the tall right cabinet with black frames, Daytona wood inner box, shelves and warm-white lighting. Tint colour is not yet confirmed. Next: ask smoke-grey or bronze tint. No viewer changes or visual tests.
+
+## Tall cabinet tint colour — 2026-10-31
+
+User confirmed smoke-grey tint for the tall right glass cabinet. Black frames, Daytona wood inner box, shelves and warm-white lighting remain confirmed. Next: resolve handles versus handleless for the Daytona wood wardrobe shutters. No viewer changes or visual tests.
