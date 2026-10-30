@@ -91,3 +91,7 @@ User confirmed handleless design for the Daytona wood wardrobe shutters (yellow 
 ## Tall glass cabinet shelf count — 2026-10-31
 
 User confirmed four shelves for the tall smoke-grey glass cabinet. Shelf material and spacing remain unspecified; the Daytona wood confirmation applies to the inner box. Next: ask whether these four shelves are Daytona wood or glass. No viewer changes or visual tests.
+
+## Tall cabinet shelf material — 2026-10-31
+
+User confirmed Daytona wood for all four shelves inside the tall smoke-grey glass cabinet. These are separate from the narrow open section's glass shelves. Shelf spacing remains unspecified. Next: confirm shelf count for the narrow open glass-shelf section above the fixed unit. No viewer changes or visual tests.
