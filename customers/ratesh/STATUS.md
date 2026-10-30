@@ -95,3 +95,7 @@ User confirmed four shelves for the tall smoke-grey glass cabinet. Shelf materia
 ## Tall cabinet shelf material — 2026-10-31
 
 User confirmed Daytona wood for all four shelves inside the tall smoke-grey glass cabinet. These are separate from the narrow open section's glass shelves. Shelf spacing remains unspecified. Next: confirm shelf count for the narrow open glass-shelf section above the fixed unit. No viewer changes or visual tests.
+
+## Narrow glass shelf count — 2026-10-31
+
+User confirmed three glass shelves for the narrow open section above the fixed unit. Matte Daytona wood backing/surround and warm-white lighting remain confirmed. Separate tall cabinet has four Daytona wood shelves behind smoke-grey glass. Next: resolve hanger-rod and shelf arrangement behind the left wardrobe's brown/yellow shutter groups; no exact internal counts or spacing have been approved. No viewer changes or visual tests.

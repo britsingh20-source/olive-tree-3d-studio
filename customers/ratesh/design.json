@@ -218,7 +218,9 @@
         "included": true,
         "colour": "Warm white",
         "userConfirmation": "Yes to warm-white lighting for the narrow open glass shelves"
-      }
+      },
+      "shelfCount": 3,
+      "countConfirmation": "User answered 3 to shelf count for narrow open section above fixed unit"
     }
   ],
   "unconfirmed": [
@@ -227,7 +229,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "How many glass shelves should the narrow open section above the fixed unit have?",
+  "nextQuestion": "For the left wardrobe behind the brown and yellow shutters, how should the hanger rods and shelves be arranged?",
   "quotation": {
     "status": "No customer quote imported"
   }
