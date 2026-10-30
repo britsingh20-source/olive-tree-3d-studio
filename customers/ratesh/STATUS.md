@@ -27,3 +27,7 @@ User confirmed matte for the Daytona wood shutters of the yellow-coded section. 
 ## Brown-coded shutter finish — 2026-10-31
 
 User confirmed the two brown tall panels at far left (#a56348) are shutters with Daytona wood finish, and reattached the highlighted wardrobe reference. Continue the same previously selected matte Daytona finish; no separate sheen change requested. Internal layout for this group is not yet confirmed. Next: ask if white interiors with hanger rods and shelves only also applies to this brown-coded group. No new viewer implementation or render validation.
+
+## Brown group interiors confirmed — 2026-10-31
+
+User explicitly confirmed white interiors with hanger rods and shelves only behind the two brown-coded shutters at far left. No drawers. Exact rod/shelf counts and positions still pending. Matte Daytona wood shutters remain recorded. Next: resolve the two blue tall panels at far right (#4d6fb2), purpose and finish. No viewer implementation or new visual tests.

@@ -109,10 +109,15 @@
         "sheenBasis": "Same named finish as previously confirmed matte Daytona wood; assistant stated continuity explicitly."
       },
       "internalLayout": {
-        "status": "Pending; attached wardrobe image shows highlighted left/central region but counts, dimensions and scope for this source-colour group are not confirmed."
+        "type": "Hanger rods and shelves only",
+        "drawers": false,
+        "reference": "User-supplied highlighted wardrobe image for rod and shelf placement",
+        "countsAndDimensions": "Not yet confirmed",
+        "userConfirmation": "white interiors with hanger rods and shelves only"
       },
       "userResponse": "shutter finish daytona wood",
-      "referenceImage": "User reattached open wardrobe reference with left/centre highlighted"
+      "referenceImage": "User reattached open wardrobe reference with left/centre highlighted",
+      "interiorFinish": "White"
     }
   ],
   "unconfirmed": [
@@ -121,7 +126,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should these brown-coded shutters also have white interiors with hanger rods and shelves only?",
+  "nextQuestion": "What do the two blue tall panels at the far right represent, and what finish should they have?",
   "quotation": {
     "status": "No customer quote imported"
   }
