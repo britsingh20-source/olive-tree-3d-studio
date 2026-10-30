@@ -190,7 +190,12 @@
       "purpose": "Open glass shelves",
       "shelfMaterial": "Glass",
       "userResponse": "glass shelves",
-      "surroundFinish": null,
+      "surroundFinish": {
+        "name": "Daytona wood",
+        "sheen": "Matte",
+        "scope": "Backing and surround",
+        "userConfirmation": "Yes to matte Daytona wood backing and surround"
+      },
       "lighting": null
     }
   ],
@@ -200,7 +205,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should the backing and surround of these narrow glass shelves also use matte Daytona wood?",
+  "nextQuestion": "Would you like warm-white lighting for these narrow open glass shelves too?",
   "quotation": {
     "status": "No customer quote imported"
   }

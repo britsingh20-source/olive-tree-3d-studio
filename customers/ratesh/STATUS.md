@@ -67,3 +67,7 @@ User confirmed the red lower section (#9a0a05) beside the glass unit is fixed an
 ## Narrow shelf material — 2026-10-31
 
 User confirmed glass shelves for the narrow open shelf section above the red fixed unit, beside the right glass cabinet. Backing/surround finish and lighting remain pending. Next: ask if backing and surround should use matte Daytona wood. No viewer changes or visual tests.
+
+## Glass-shelf surround — 2026-10-31
+
+User confirmed matte Daytona wood for backing and surround of the narrow open glass shelves above the red fixed section. Lighting remains unconfirmed for this narrow section; the existing warm-white confirmation applies to the separate tall glass cabinet. Next: ask whether warm-white lighting is wanted for the narrow glass shelves too. No viewer changes or visual tests.
