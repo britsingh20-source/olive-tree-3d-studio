@@ -38,3 +38,9 @@ Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/
 Next: verify final tour-control patch deployment, then share URL. Customer can review the design; unconfirmed fabrication dimensions/hardware remain clearly marked.
 
 The tour-stop patch uses studio.js?v=ratesh2 so returning clients load the updated controls.
+
+## Final live verification
+
+Final viewer source commit 008fa9bf4d163642c3d438b19adf502cc0173fdc deployed successfully (run 41117004605). Live DOM confirms studio.js?v=ratesh2 and a rendered canvas without fallback note. Live lighting off/on and Reference colours toggles responded. Tour replay/stop tested on the final version; when stopped in a focused wardrobe view, finish strip, details and quote selection controls returned. Captured live console errors: none. Full tour completion and real mobile hardware remain untested.
+
+Ready for customer review. No further design explanation is needed for the already supplied wardrobe structure. Exact hardware and fabrication dimensions remain approximations as listed in design.json.
