@@ -90,10 +90,13 @@
         "sheenConfirmation": "User answered matte to matte-or-glossy question."
       },
       "internalLayout": {
-        "reference": "Highlighted area in attached open wardrobe image",
+        "reference": "Previously supplied highlighted wardrobe structure",
         "scope": "Reference for hanger-rod and shelf placement only",
         "drawers": false,
-        "countsAndDimensions": "Not confirmed; do not infer from photograph"
+        "countsAndDimensions": "Derive visible placement from supplied reference and verified SKP; reference proportions do not establish fabrication dimensions. Do not ask user to repeat the provided structure.",
+        "type": "Hanger rods and shelves only",
+        "arrangement": "Follow the supplied highlighted reference for hanger-rod and shelf placement within the verified SKP geometry",
+        "confirmation": "User corrected repeated arrangement question: already structure given"
       },
       "userResponse": "the highlighted area this is only for hanger rod and shelf placements maintain white inner and shutters with daytona wood finish image attached adapt the grains colour",
       "mappingNote": "Confirmation follows question about two yellow tall panels; applicability to other source-colour sections remains pending",
@@ -116,9 +119,11 @@
       "internalLayout": {
         "type": "Hanger rods and shelves only",
         "drawers": false,
-        "reference": "User-supplied highlighted wardrobe image for rod and shelf placement",
-        "countsAndDimensions": "Not yet confirmed",
-        "userConfirmation": "white interiors with hanger rods and shelves only"
+        "reference": "Previously supplied highlighted wardrobe structure",
+        "countsAndDimensions": "Derive visible placement from supplied reference and verified SKP; reference proportions do not establish fabrication dimensions. Do not ask user to repeat the provided structure.",
+        "userConfirmation": "white interiors with hanger rods and shelves only",
+        "arrangement": "Follow the supplied highlighted reference for hanger-rod and shelf placement within the verified SKP geometry",
+        "confirmation": "User corrected repeated arrangement question: already structure given"
       },
       "userResponse": "shutter finish daytona wood",
       "referenceImage": "User reattached open wardrobe reference with left/centre highlighted",
@@ -224,13 +229,13 @@
     }
   ],
   "unconfirmed": [
-    "Exact shelf and rod counts/positions where source geometry does not specify them",
     "Purpose and finish of other source-colour sections",
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "For the left wardrobe behind the brown and yellow shutters, how should the hanger rods and shelves be arranged?",
+  "nextQuestion": null,
   "quotation": {
     "status": "No customer quote imported"
-  }
+  },
+  "nextAction": "Implement confirmed design using verified SKP geometry and the supplied reference arrangement. Do not repeat wardrobe structure questions. Keep any unverified fabrication dimensions distinct from render proportions."
 }

@@ -99,3 +99,9 @@ User confirmed Daytona wood for all four shelves inside the tall smoke-grey glas
 ## Narrow glass shelf count — 2026-10-31
 
 User confirmed three glass shelves for the narrow open section above the fixed unit. Matte Daytona wood backing/surround and warm-white lighting remain confirmed. Separate tall cabinet has four Daytona wood shelves behind smoke-grey glass. Next: resolve hanger-rod and shelf arrangement behind the left wardrobe's brown/yellow shutter groups; no exact internal counts or spacing have been approved. No viewer changes or visual tests.
+
+## Reference structure correction — 2026-10-31
+
+User said 'already structure given' after a repeated question about the left wardrobe internals. This supersedes the request to re-describe rod/shelf arrangement. Use the earlier highlighted wardrobe reference for hanger rods and shelves, keeping white interiors and no drawers as explicitly confirmed; preserve verified SKP outer geometry. Do not ask the user to repeat the reference structure. Reference proportions are not fabricated exact measurements.
+
+Next: implementation from the supplied geometry, finish sample and reference arrangement. Viewer still unimplemented; no new visual testing. Earlier pending-count language is superseded for visual arrangement, not converted into invented fabrication dimensions.
