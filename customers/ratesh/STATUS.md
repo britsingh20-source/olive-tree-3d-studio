@@ -55,3 +55,7 @@ User confirmed a white cushion on the matte Daytona wood bay-window seating base
 ## Bay-window storage — 2026-10-31
 
 User confirmed storage inside the matte Daytona wood seating base with white cushion. Opening mechanism remains pending; do not add a lift-up action or drawers without confirmation. Next: ask front shutters, pull-out drawers or lift-up seat. No viewer changes or visual tests.
+
+## Bay-window storage access — 2026-10-31
+
+User confirmed lift-up seat access to the storage inside the bay-window base. Matte Daytona wood base and white cushion remain confirmed. Hinge edge, opening angle and hardware are not specified. Next: resolve the red lower panel (#9a0a05) beside the right glass unit. No viewer changes or visual tests.

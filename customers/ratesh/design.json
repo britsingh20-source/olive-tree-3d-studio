@@ -168,7 +168,8 @@
       "storage": {
         "included": true,
         "userConfirmation": "storage inside",
-        "openingMechanism": null
+        "openingMechanism": "Lift-up seat",
+        "openingConfirmation": "lift-up seat"
       }
     }
   ],
@@ -178,7 +179,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should the seating storage open using front shutters, pull-out drawers, or a lift-up seat?",
+  "nextQuestion": "What is the red lower panel beside the glass unit, and what finish should it have?",
   "quotation": {
     "status": "No customer quote imported"
   }
