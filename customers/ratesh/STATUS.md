@@ -19,3 +19,7 @@ Following the question about the two yellow tall panels, user supplied an intern
 The wood sample visibly reads ACE MICA, Block Wall Salt, Design No. 1305; user calls it Daytona wood. Preserve both labels and follow the attached visual sample rather than substituting a product based on its name. Reference images were seen in chat but their original bytes have not been materialized or saved as repository textures. Do not claim texture implementation.
 
 Next: ask matte or glossy for the confirmed shutters, then continue unresolved source colours one at a time. Viewer remains unimplemented. No new visual/WebGL test performed.
+
+## Shutter sheen confirmation — 2026-10-31
+
+User confirmed matte for the Daytona wood shutters of the yellow-coded section. White interiors and hanger rods/shelves remain confirmed. No viewer or texture implementation yet. Next: ask the purpose and finish of the two brown tall panels at the far left (#a56348).

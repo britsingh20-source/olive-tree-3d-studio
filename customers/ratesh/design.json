@@ -85,8 +85,9 @@
         "colourAndGrain": "Match attached light golden wood sample, predominantly vertical grain",
         "samplePrintedLabel": "ACE MICA — Block Wall Salt — Design No. 1305",
         "authority": "Attached image is the visual colour/grain reference; user calls finish Daytona wood",
-        "sheen": null,
-        "assetStatus": "Reference seen in current chat; original image bytes not yet materialized"
+        "sheen": "Matte",
+        "assetStatus": "Reference seen in current chat; original image bytes not yet materialized",
+        "sheenConfirmation": "User answered matte to matte-or-glossy question."
       },
       "internalLayout": {
         "reference": "Highlighted area in attached open wardrobe image",
@@ -99,13 +100,12 @@
     }
   ],
   "unconfirmed": [
-    "Matte or glossy sheen for Daytona wood shutters",
     "Exact shelf and rod counts/positions where source geometry does not specify them",
     "Purpose and finish of other source-colour sections",
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should the Daytona wood shutters be matte or glossy?",
+  "nextQuestion": "What do the two brown tall panels at the far left represent, and what finish should they have?",
   "quotation": {
     "status": "No customer quote imported"
   }
