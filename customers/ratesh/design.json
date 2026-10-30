@@ -12,7 +12,8 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/",
     "directory": "dist/ratesh",
     "storageKey": "ratesh-wardrobe-v1",
-    "deployedCommit": "a70797f1dbe43702e61ee9ad305f99234d120242"
+    "deployedCommit": "a70797f1dbe43702e61ee9ad305f99234d120242",
+    "assetVersion": "ratesh2"
   },
   "source": {
     "files": [

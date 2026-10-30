@@ -36,3 +36,5 @@ Viewer code commit a70797f1dbe43702e61ee9ad305f99234d120242 deployed successfull
 Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/
 
 Next: verify final tour-control patch deployment, then share URL. Customer can review the design; unconfirmed fabrication dimensions/hardware remain clearly marked.
+
+The tour-stop patch uses studio.js?v=ratesh2 so returning clients load the updated controls.
