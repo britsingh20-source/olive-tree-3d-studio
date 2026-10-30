@@ -125,7 +125,8 @@
       "purpose": "Glass shutters with internal shelf units",
       "shutters": {
         "material": "Glass",
-        "frameAndGlassTint": "Pending confirmation; supplied photo shows dark framing"
+        "frameAndGlassTint": "Black frames confirmed; glass tint remains pending",
+        "frameColour": "Black"
       },
       "interiorFinish": {
         "name": "Daytona wood",
@@ -138,9 +139,15 @@
       },
       "referenceImage": {
         "description": "Tall glass display cabinet with dark frame, wood-lined interior and warm shelf lighting",
-        "scope": "Reference supplied with glass-shutter/shelf confirmation; lighting, frame specification and glass tint not yet explicitly confirmed"
+        "scope": "Glass cabinet visual reference; black frames and warm-white shelf lighting explicitly confirmed. Exact frame profile, glass tint and shelf count remain pending."
       },
-      "userResponse": "glass shutters with inside shleve units the inner box should be daytona wood"
+      "userResponse": "glass shutters with inside shleve units the inner box should be daytona wood",
+      "lighting": {
+        "type": "Shelf lighting",
+        "colour": "Warm white",
+        "reference": "User-supplied glass cabinet photograph",
+        "confirmation": "User answered yes to black frames and warm-white shelf lighting"
+      }
     }
   ],
   "unconfirmed": [
@@ -149,7 +156,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "Should the glass unit also have the black frames and warm-white shelf lighting shown in the reference?",
+  "nextQuestion": "What is the long cyan section across the bottom centre, and what finish should it have?",
   "quotation": {
     "status": "No customer quote imported"
   }

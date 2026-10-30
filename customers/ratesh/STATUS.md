@@ -35,3 +35,7 @@ User explicitly confirmed white interiors with hanger rods and shelves only behi
 ## Blue group glass unit confirmed — 2026-10-31
 
 Two blue tall panels at far right (#4d6fb2): glass shutters, internal shelves, Daytona wood inner box. User supplied a glass cabinet photograph with dark framing and warm shelf lighting. Frame details, glass tint, lighting and shelf count are not explicitly confirmed. No original reference-image bytes saved yet. Next: confirm black frames and warm-white shelf lighting from reference. No viewer or new visual validation.
+
+## Glass frames and lighting confirmed — 2026-10-31
+
+User answered yes to black frames and warm-white shelf lighting for the blue-coded glass unit. Daytona wood inner box and internal shelves remain confirmed. Glass tint, exact frame profile, lighting controls and shelf count remain unresolved. Next: ask purpose and finish of the long cyan section across bottom centre (#00cccc). Viewer not implemented; no new render validation.
