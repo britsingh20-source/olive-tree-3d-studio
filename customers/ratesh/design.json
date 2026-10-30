@@ -149,7 +149,9 @@
       },
       "internalLayout": {
         "type": "Shelves",
-        "countAndSpacing": "Not confirmed"
+        "countAndSpacing": "Four shelves confirmed; spacing and shelf material pending",
+        "shelfCount": 4,
+        "countConfirmation": "User answered 4 to shelf count for tall smoke-grey glass cabinet"
       },
       "referenceImage": {
         "description": "Tall glass display cabinet with dark frame, wood-lined interior and warm shelf lighting",
@@ -223,7 +225,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "How many shelves should the tall smoke-grey glass cabinet have?",
+  "nextQuestion": "Should the four shelves inside the tall smoke-grey cabinet be Daytona wood or glass?",
   "quotation": {
     "status": "No customer quote imported"
   }

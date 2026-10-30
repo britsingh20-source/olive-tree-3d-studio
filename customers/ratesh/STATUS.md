@@ -87,3 +87,7 @@ User confirmed smoke-grey tint for the tall right glass cabinet. Black frames, D
 ## Wardrobe handles — 2026-10-31
 
 User confirmed handleless design for the Daytona wood wardrobe shutters (yellow and brown source-colour groups). Specific finger-grip/push-to-open mechanism is not confirmed. This confirmation does not change black glass-cabinet frame hardware. Next: ask shelf count for the tall smoke-grey glass cabinet. No viewer changes or visual tests.
+
+## Tall glass cabinet shelf count — 2026-10-31
+
+User confirmed four shelves for the tall smoke-grey glass cabinet. Shelf material and spacing remain unspecified; the Daytona wood confirmation applies to the inner box. Next: ask whether these four shelves are Daytona wood or glass. No viewer changes or visual tests.
