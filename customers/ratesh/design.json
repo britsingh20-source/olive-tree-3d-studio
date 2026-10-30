@@ -183,6 +183,15 @@
         "sheenBasis": "Continue the previously selected matte Daytona wood finish"
       },
       "userResponse": "fixed unit daytona wood finish"
+    },
+    {
+      "sourceColour": "#5a7a43",
+      "unit": "Narrow open shelves directly above the red fixed unit, beside right glass cabinet",
+      "purpose": "Open glass shelves",
+      "shelfMaterial": "Glass",
+      "userResponse": "glass shelves",
+      "surroundFinish": null,
+      "lighting": null
     }
   ],
   "unconfirmed": [
@@ -191,7 +200,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "What finish should the narrow open shelf section directly above the red fixed unit have?",
+  "nextQuestion": "Should the backing and surround of these narrow glass shelves also use matte Daytona wood?",
   "quotation": {
     "status": "No customer quote imported"
   }

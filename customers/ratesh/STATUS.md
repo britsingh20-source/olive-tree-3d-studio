@@ -63,3 +63,7 @@ User confirmed lift-up seat access to the storage inside the bay-window base. Ma
 ## Red lower section — 2026-10-31
 
 User confirmed the red lower section (#9a0a05) beside the glass unit is fixed and has Daytona wood finish. Continue selected matte Daytona finish. No opening action for this fixed section. Next: confirm finish of narrow open shelf section directly above it (green shelf edges in front source view). No viewer changes or visual tests.
+
+## Narrow shelf material — 2026-10-31
+
+User confirmed glass shelves for the narrow open shelf section above the red fixed unit, beside the right glass cabinet. Backing/surround finish and lighting remain pending. Next: ask if backing and surround should use matte Daytona wood. No viewer changes or visual tests.
