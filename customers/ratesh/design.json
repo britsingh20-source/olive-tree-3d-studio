@@ -171,6 +171,18 @@
         "openingMechanism": "Lift-up seat",
         "openingConfirmation": "lift-up seat"
       }
+    },
+    {
+      "sourceColour": "#9a0a05",
+      "unit": "Red lower section beside the right glass unit",
+      "purpose": "Fixed unit",
+      "movement": "Fixed; no opening action",
+      "finish": {
+        "name": "Daytona wood",
+        "sheen": "Matte",
+        "sheenBasis": "Continue the previously selected matte Daytona wood finish"
+      },
+      "userResponse": "fixed unit daytona wood finish"
     }
   ],
   "unconfirmed": [
@@ -179,7 +191,7 @@
     "Materials, handles, lighting and accessories where not confirmed",
     "Whether same finish applies to other shutter groups"
   ],
-  "nextQuestion": "What is the red lower panel beside the glass unit, and what finish should it have?",
+  "nextQuestion": "What finish should the narrow open shelf section directly above the red fixed unit have?",
   "quotation": {
     "status": "No customer quote imported"
   }

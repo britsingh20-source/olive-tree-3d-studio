@@ -59,3 +59,7 @@ User confirmed storage inside the matte Daytona wood seating base with white cus
 ## Bay-window storage access — 2026-10-31
 
 User confirmed lift-up seat access to the storage inside the bay-window base. Matte Daytona wood base and white cushion remain confirmed. Hinge edge, opening angle and hardware are not specified. Next: resolve the red lower panel (#9a0a05) beside the right glass unit. No viewer changes or visual tests.
+
+## Red lower section — 2026-10-31
+
+User confirmed the red lower section (#9a0a05) beside the glass unit is fixed and has Daytona wood finish. Continue selected matte Daytona finish. No opening action for this fixed section. Next: confirm finish of narrow open shelf section directly above it (green shelf edges in front source view). No viewer changes or visual tests.
