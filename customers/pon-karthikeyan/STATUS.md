@@ -105,6 +105,26 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - The other previously confirmed lights are unchanged.
 - Check passed.
 
+## Revision 7 — 17 Nov 2026
+
+- **All point lights removed (customer: LED strip only, the spots looked odd).** Every light is now an emissive strip plus an additive gradient wash on the lit surface:
+  - under the ledge;
+  - the vertical strip by the TV panel;
+  - the louver ceiling line and side return;
+  - under the console (floor and wall);
+  - the pooja strip and pooja interior.
+
+  The Lighting button toggles all washes.
+- **Tall black-glass cabinet:** vertical strips inside on both sides, washing the back and sides.
+- **Pooja front (foyer side):**
+  - Green grass mat.
+  - Illustrative stainless-steel CNC scenery panel (tree, hills, birds).
+  - This corrects the earlier 'green matte' reading of 'green matt'.
+- **Verified:**
+  - Check passed: no lights in the scene graph, 2 tall-cabinet strips, the grass foyer face, and 12 glow washes that toggle with Lighting.
+  - Local SwiftShader screenshots show the full view without hot-spots and the open tall cabinet lit inside.
+  - Wash strengths were tuned after the first screenshot.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

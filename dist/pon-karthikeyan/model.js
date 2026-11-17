@@ -61,8 +61,16 @@ export function buildModel(){
   u.sideSkin=u.side;u.members=[u];u.product=u;units.push(u);return u;}
  function act(u,node,type,travel,extra={}){const a={unit:u,node,type,travel,initial:node.position.clone(),open:false,value:0,...extra};actions.push(a);u.actions.push(a);node.traverse(o=>{if(o.isMesh)o.userData.action=a;});return a;}
  // Warm-white LED: visible strip plus a small point light, switched by setLights.
- function led(u,x0,x1,y0,y1,z0,z1,lx,ly,lz,intensity=.22,distance=1.2){B(u.group,x0,x1,y0,y1,z0,z1,lightMaterial).castShadow=false;
-  const l=new T.PointLight('#ffd9a0',intensity,distance,2);l.position.set(lx*I,lz*I,-ly*I);u.group.add(l);u.lightNodes.push(l);lights.push(l);}
+ // Rev 7: LED strip lighting only — no point/spot lights (they left round hot-spots).
+ // A strip is an emissive bar; its wash is an additive gradient on the lit surface.
+ function led(u,x0,x1,y0,y1,z0,z1){const o=B(u.group,x0,x1,y0,y1,z0,z1,lightMaterial);o.castShadow=false;o.receiveShadow=false;(u.strips??=[]).push(o);return o;}
+ const glowTex=canvasTexture(256,8,(c,w,h)=>{const g=c.createLinearGradient(0,0,w,0);g.addColorStop(0,'rgba(255,214,150,0)');g.addColorStop(.55,'rgba(255,214,150,.5)');g.addColorStop(1,'rgba(255,236,200,1)');c.fillStyle=g;c.fillRect(0,0,w,h);});
+ const glowMat=(rot,strength=1)=>{const t=glowTex?.clone();if(t){t.center.set(.5,.5);t.rotation=rot;t.needsUpdate=true;}return new T.MeshBasicMaterial({color:new T.Color('#ffe9cc').multiplyScalar(strength),map:t||null,transparent:true,opacity:glowTex?1:.5,blending:T.AdditiveBlending,depthWrite:false,toneMapped:false});};
+ // rot: 0 brightest at +u end, PI at -u end, PI/2 at top, -PI/2 at bottom.
+ function glow(u,orient,cx,cy,cz,w,h,rot,strength=1){const m=new T.Mesh(new T.PlaneGeometry(w*I,h*I),glowMat(rot,strength));m.position.set(cx*I,cz*I,-cy*I);
+  if(orient==='floor')m.rotation.x=-Math.PI/2;else if(orient==='+x')m.rotation.y=Math.PI/2;else if(orient==='-x')m.rotation.y=-Math.PI/2;
+  m.renderOrder=5;m.userData.glow=true;u.group.add(m);(u.glows??=[]).push(m);return m;}
+ const glowF=(u,x0,x1,z0,z1,y,rot,k)=>glow(u,'front',(x0+x1)/2,y,(z0+z1)/2,x1-x0,z1-z0,rot,k);
  function polygon(f,material,shift=0,grain='h'){const n=new T.Vector3(...f.normal).normalize(),ax=Math.abs(n.y)<.8?new T.Vector3(0,1,0).cross(n).normalize():new T.Vector3(1,0,0),ay=n.clone().cross(ax).normalize(),loops=f.points.map(l=>l.map(p=>new T.Vector3(p[0],p[1]+shift,p[2]))),flat=loops.flat(),xy=flat.flatMap(p=>[p.dot(ax),p.dot(ay)]),holes=[];let count=loops[0].length;for(const l of loops.slice(1)){holes.push(count);count+=l.length;}
   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(flat.flatMap(p=>p.toArray()),3));g.setIndex(earcut(xy,holes));g.computeVertexNormals();worldUV(g,new T.Vector3(),grain);const m=new T.Mesh(g,material);m.castShadow=m.receiveShadow=true;return m;}
  const face=id=>exactLayout.sourceFaces.find(f=>f.id===id);
@@ -83,12 +91,9 @@ export function buildModel(){
  // the niche side only, with one vertical concealed strip from the console up to the louvers.
  const box=B(panel.group,24.1,118.5,69.05,72.15,20,68,panel.front);box.userData.role='tv-panel-box';
  panel.depthInches=3;panel.revealInches=1.5;panel.revealSide='niche side (right)';
- led(panel,118.85,119.25,71.5,71.95,20.2,83.8,119.6,71.6,44,.35,1.0);
+ led(panel,118.85,119.25,71.5,71.95,20.2,83.8);
  panel.concealedLight='One vertical warm-white strip on the niche side, console to louvers';
- const glowTex=canvasTexture(256,8,(c,w,h)=>{const g=c.createLinearGradient(0,0,w,0);g.addColorStop(0,'rgba(255,214,150,0)');g.addColorStop(.55,'rgba(255,214,150,.55)');g.addColorStop(1,'rgba(255,236,200,1)');c.fillStyle=g;c.fillRect(0,0,w,h);});
- const glowMat=rot=>{const t=glowTex?.clone();if(t){t.center.set(.5,.5);t.rotation=rot;t.needsUpdate=true;}return new T.MeshBasicMaterial({color:'#ffe9cc',map:t||null,transparent:true,opacity:glowTex?1:.6,blending:T.AdditiveBlending,depthWrite:false,toneMapped:false});};
- const glowPlane=(u,x0,x1,z0,z1,y,rot)=>{const m=new T.Mesh(new T.PlaneGeometry((x1-x0)*I,(z1-z0)*I),glowMat(rot));m.position.set((x0+x1)/2*I,(z0+z1)/2*I,-y*I);m.renderOrder=5;u.group.add(m);(u.glows??=[]).push(m);return m;};
- glowPlane(panel,118.5,120,20,84,72.1,Math.PI);   // vertical wash beside the panel
+ glowF(panel,118.5,120,20,84,72.1,Math.PI);      // vertical wash beside the panel
 
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();
  B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
@@ -97,7 +102,7 @@ export function buildModel(){
  // ---- 2. Wood mica decorative ledge with warm-white LED below ----
  const ledge=unit('ledge','Wooden mica display ledge','ledge',wood,wood);
  B(ledge.group,24.1,120,64,72.05,68,70,ledge.front);
- led(ledge,26,118,66.4,67,67.8,68,72,67.5,66.5,.30,1.4);
+ led(ledge,26,118,66.4,67,67.8,68);glowF(ledge,24.1,118.5,54,68,68.95,Math.PI/2,.8);   // wash down the TV panel
  const decor=[std('#e9e3d6',.7),std('#8a6a48',.6),std('#c9b48f',.5)];
  for(const [x,r,h,m] of [[38,1.6,6,0],[42,1.2,4,1],[100,1.8,7,2],[105,1.1,3.5,0]]){const v=new T.Mesh(new T.CylinderGeometry(r*.75*I,r*I,h*I,20),decor[m]);v.position.set(x*I,(70+h/2)*I,-68*I);v.castShadow=true;ledge.group.add(v);}
  ledge.decorNote='Small decoratives are illustrative.';
@@ -118,7 +123,7 @@ export function buildModel(){
  mergedBoxes(louver.group,slatBoxes,slatMat);slats=slatBoxes.length;
  louver.slatCount=slats;louver.slatPitchInches=LP;louver.slatWidthInches=LW;
  B(louver.group,.5,142.2,71.15,71.45,119.45,119.75,lightMaterial).castShadow=false;B(louver.group,142.2,142.5,1.5,71.15,119.45,119.75,lightMaterial).castShadow=false;
- for(const [x,y] of [[36,70.2],[108,70.2],[141,30]]){const l=new T.PointLight('#ffd9a0',.3,1.5,2);l.position.set(x*I,116*I,-y*I);louver.group.add(l);louver.lightNodes.push(l);lights.push(l);}
+ glowF(louver,.5,142.6,104,119.7,71.5,Math.PI/2,.42);glow(louver,'-x',142.6,36.45,111.85,70.3,15.7,Math.PI/2,.42);
  louver.coveLight='Warm white, ceiling line';
 
  // ---- 4. Tall left unit: black tinted glass shutter, left hinge ----
@@ -138,6 +143,11 @@ export function buildModel(){
  const tallDoor=pivotAt(tg,3.8,55.5,52);B(tallDoor,3.85,24.05,54.8,55.5,20.1,83.9,blackGlass);
  const ta=act(tall,tallDoor,'hinge',-Math.PI*.47);ta.confirmedHinge='left';tall.hingeEdge='left';
  tall.interiorNote='Inside arrangement not specified yet; shown empty.';
+ // Rev 7: vertical LED strips inside the tall glass cabinet, on both inner sides at the front.
+ led(tall,4.55,4.85,56.2,56.9,21,83);led(tall,23.05,23.35,56.2,56.9,21,83);
+ glowF(tall,4.55,13.95,21,83,71.2,Math.PI,.7);glowF(tall,13.95,23.35,21,83,71.2,0,.7);
+ glow(tall,'+x',4.6,64,52,14.3,62,Math.PI,.6);glow(tall,'-x',23.3,64,52,14.3,62,0,.6);
+ tall.interiorLight='Vertical warm-white LED strips, both sides';
 
  // ---- 5. Floating lower console: five wood shutters + one lift-up glass shutter ----
  const con=unit('console','Floating lower console','console',wood,wood);
@@ -153,7 +163,7 @@ export function buildModel(){
   const left=how==='left',p=pivotAt(cg,left?x0:x1,55.5,14);B(p,x0+.1,x1-.1,54.8,55.5,8.1,19.9,con.front);
   const a=act(con,p,'hinge',(left?-1:1)*Math.PI*.47);a.hingeSide=how;a.hingeSideApproximate=true;con.hinges.push(how);}
  con.woodShutterCount=5;con.floatHeightInches=8;
- led(con,5,118,57,57.6,7.6,8,40,60,4,.3,1.3);{const l=new T.PointLight('#ffd9a0',.3,1.3,2);l.position.set(92*I,4*I,-60*I);con.group.add(l);con.lightNodes.push(l);lights.push(l);}   // glow under the floating console
+ led(con,5,118,57,57.6,7.6,8);glow(con,'floor',61.9,58,.06,116,28,Math.PI/2,.75);glowF(con,3.8,120,0,8,72.9,Math.PI/2,.6);   // even glow under the floating console
  con.underGlow='Warm white';
 
  // ---- 6. Awards niche: green wallpaper walls, two L-shaped wood mica shelves ----
@@ -190,12 +200,25 @@ export function buildModel(){
  // ---- 8. Tall right block: green matte front, concealed light strip, CNC pooja shutters ----
  const pooja=unit('pooja','Pooja unit with CNC shutters','pooja',green,wood,{finishable:false});pooja.angle=-Math.PI/2;
  const pg=pooja.group;pg.userData.origin=new T.Vector3();
- B(pg,124,144.1,1,1.75,0,84,pooja.front);                   // green matte front face
+ // Rev 7: the front faces the foyer — green grass mat with a stainless-steel CNC scenery panel.
+ const grassMap=canvasTexture(256,256,(c,w,h)=>{c.fillStyle='#4f7a32';c.fillRect(0,0,w,h);for(let i=0;i<9000;i++){const x=Math.random()*w,y=Math.random()*h,l=3+Math.random()*7,g=90+Math.random()*90;c.strokeStyle=`rgba(${40+Math.random()*50|0},${g|0},${25+Math.random()*30|0},.8)`;c.lineWidth=1;c.beginPath();c.moveTo(x,y);c.lineTo(x+(Math.random()-.5)*3,y-l);c.stroke();}});
+ const grass=new T.MeshStandardMaterial({color:grassMap?'#ffffff':'#4f7a32',map:grassMap,roughness:1});grass.userData.compatColor='#4f7a32';grass.userData.tile=.25;
+ pooja.front=grass;pooja.foyerFace='Green grass mat';
+ B(pg,124,144.1,1,1.75,0,84,grass);
+ const artMap=canvasTexture(256,704,(c,w,h)=>{c.fillStyle='#fff';c.strokeStyle='#fff';c.lineCap='round';
+  c.beginPath();c.moveTo(0,h);for(let x=0;x<=w;x+=8)c.lineTo(x,h-60-Math.sin(x/40)*18-Math.sin(x/17)*6);c.lineTo(w,h);c.fill();          // hills
+  c.lineWidth=16;c.beginPath();c.moveTo(w*.5,h-70);c.bezierCurveTo(w*.48,h*.65,w*.53,h*.5,w*.5,h*.38);c.stroke();                       // trunk
+  const branch=(x,y,a,len,wd)=>{if(len<10)return;const x2=x+Math.cos(a)*len,y2=y-Math.sin(a)*len;c.lineWidth=wd;c.beginPath();c.moveTo(x,y);c.lineTo(x2,y2);c.stroke();branch(x2,y2,a+.45,len*.7,wd*.68);branch(x2,y2,a-.42,len*.72,wd*.68);};
+  branch(w*.5,h*.38,Math.PI/2,95,11);
+  for(let i=0;i<70;i++){const a=Math.random()*Math.PI*2,r=20+Math.random()*95;c.beginPath();c.ellipse(w*.5+Math.cos(a)*r,h*.22+Math.sin(a)*r*.75,6,3,a,0,Math.PI*2);c.fill();}
+  c.lineWidth=3;for(const [x,y,s] of [[40,120,1],[70,95,.8],[200,140,.9],[215,110,.7]]){c.beginPath();c.moveTo(x-10*s,y);c.quadraticCurveTo(x-4*s,y-7*s,x,y);c.quadraticCurveTo(x+4*s,y-7*s,x+10*s,y);c.stroke();}});
+ const steel=new T.MeshStandardMaterial({color:'#d4d8dc',metalness:.92,roughness:.28,alphaMap:artMap,alphaTest:.5,transparent:false,side:T.DoubleSide});steel.userData.compatColor='#c9cdd1';
+ if(artMap){const art=new T.Mesh(new T.PlaneGeometry(15*I,41.25*I),steel);art.position.set(134*I,46*I,-.9*I);art.castShadow=true;pg.add(art);pooja.foyerArt='Stainless-steel CNC-cut scenery panel (illustrative)';}
  B(pg,120,124,0,.75,0,84,pooja.side,'v');                   // 4 in front strip, wood mica
- led(pooja,124.05,124.35,.8,1,2,82,125,.5,42,.18,.9);       // concealed vertical strip light
+ led(pooja,124.05,124.35,.8,1,2,82);glow(pooja,'front',127,.95,42,6,80,Math.PI,.4);   // concealed vertical strip light
  B(pg,120.75,143.4,1.75,37,0,.75,carcass);B(pg,120.75,143.4,1.75,37,83.25,84,carcass);B(pg,143.4,144.1,1.75,37,0,84,carcass);B(pg,120.75,143.4,36.25,37,.75,83.25,carcass);
  B(pg,121,143,10,28,44,44.75,carcass);
- const shrine=new T.PointLight('#ffc77a',.25,1.2,2);shrine.position.set(132*I,70*I,-19*I);pg.add(shrine);pooja.lightNodes.push(shrine);lights.push(shrine);
+ led(pooja,121,143,2.6,3.2,82.3,82.9);glow(pooja,'-x',143.35,19,64,34,38,Math.PI/2,.7);   // strip inside the pooja top
  const doorTex=n=>{const t=new T.TextureLoader().load('./pooja-door-'+n+'.jpg');t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.userData.shared=true;return t;};
  const doorEdge=pooja.side;pooja.doors=[];
  for(const [y0,y1,hingeY,img,sign] of [[0,18.5,0,'right',1],[18.5,37,37,'left',-1]]){
@@ -212,7 +235,7 @@ export function buildModel(){
  let reference=false;
  return {root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
  setReference(on){reference=on;referenceRoot.visible=on;for(const u of units)u.group.visible=!on;architecture.visible=!on;},
- setLights(on){for(const l of lights)l.visible=on;for(const u of units)for(const g of u.glows||[])g.visible=on;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
+ setLights(on){for(const u of units)for(const g of u.glows||[])g.visible=on;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
  update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
  };
 }
