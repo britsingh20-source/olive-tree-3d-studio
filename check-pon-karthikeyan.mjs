@@ -16,7 +16,10 @@ for(const [i,w] of [153.045,120,82].entries())assert(Math.abs(src.getComponent(i
 // Confirmed decisions.
 assert.deepEqual(m.units.map(u=>u.id),['tv-panel','ledge','louver','tall-glass','console','awards-niche','robot-bay','pooja']);
 for(const id of ['tv-panel','ledge','louver','awards-niche','robot-bay'])assert.equal(get(id).actions.length,0,id+' must not open');
-assert.equal(get('louver').fixed,true);assert.equal(get('louver').finishable,false);
+assert.equal(get('louver').fixed,true);assert(get('louver').slatCount>100,'louver slats on header and side return');
+// Rev 2: TV panel stands 3 in off the wall.
+{const panel=get('tv-panel');assert.equal(panel.depthInches,3);const back=panel.group.children[0],bx=new T.Box3().setFromObject(back);assert(Math.abs((bx.max.z-bx.min.z)/I-3.9)<.01);}
+assert.equal(get('awards-niche').background,'Green floral mica');assert.match(get('pooja').doorFinish,/Wooden mica/);assert.equal(get('louver').finishable,false);
 const tall=get('tall-glass');assert.equal(tall.actions.length,1);assert.equal(tall.hingeEdge,'left');
 const con=get('console');assert.equal(con.woodShutterCount,5);assert.equal(con.actions.filter(a=>a.type==='hinge').length,5);assert.equal(con.actions.filter(a=>a.type==='lift').length,1);assert.equal(con.glassLift.type,'lift');assert.equal(con.floatHeightInches,8);
 const niche=get('awards-niche');assert.equal(niche.shelfCount,2);assert.equal(niche.shelfMaterial,'Wood mica');
@@ -40,4 +43,4 @@ m.setReference(true);assert(m.units.every(u=>!u.group.visible));m.setReference(f
 // A stage resize updates projection only; it never calls fit or moves the camera.
 const code=fs.readFileSync('dist/pon-karthikeyan/studio.js','utf8'),resize=code.slice(code.indexOf('function resize()'),code.indexOf('async function start()'));let fitted=0,sized=0;const cam={fov:40,aspect:1,position:{x:1,y:2,z:3},updateProjectionMatrix(){}};const run=new Function('stage','renderer','camera','window','fit',"let lastStageSize='';"+resize+';return resize;')({clientWidth:1000,clientHeight:600},{capabilities:{maxTextureSize:8192},setPixelRatio(){},setSize(){sized++;}},cam,{devicePixelRatio:1},()=>fitted++);run();run();assert.equal(sized,1);assert.equal(fitted,0);assert.deepEqual(cam.position,{x:1,y:2,z:3});
 assert(code.includes('controls.enableDamping=false'));
-console.log(JSON.stringify({sourceFaces:95,sourceBoundsInches:[153.06,82,120],units:m.units.length,actions:m.actions.length,lights:m.lights.length,checks:'source loops/bounds, fixed louver/ledge/niche/bay, left-hinged tall glass, 5 hinged + 1 lift console, pooja double doors open toward TV without hitting console, open/close, lights, reference mode, no resize recenter, no damping'}));
+console.log(JSON.stringify({sourceFaces:95,sourceBoundsInches:[153.06,82,120],units:m.units.length,actions:m.actions.length,lights:m.lights.length,checks:'source loops/bounds, 3 in TV panel, louver slats incl. side return, floral niche, wood-mica pooja doors, fixed louver/ledge/niche/bay, left-hinged tall glass, 5 hinged + 1 lift console, pooja double doors open toward TV without hitting console, open/close, lights, reference mode, no resize recenter, no damping'}));

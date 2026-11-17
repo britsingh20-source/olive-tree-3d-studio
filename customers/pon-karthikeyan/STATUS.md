@@ -56,6 +56,27 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **Live check after deployment:** loaded the live URL in headless Chrome (SwiftShader WebGL) at 1280×900. studio.js, model.js, exact-layout.js and all four texture images returned 200. The closed view and Open all both rendered correctly; the only 404 was favicon.
 - **Not yet done:** a real phone (touch/pinch), a real GPU, and the full tour running to completion.
 
+## Revision 2 — 17 Nov 2026 (customer feedback with second reference image)
+
+- **PVC louvers rebuilt as 3D vertical slats over a dark backing.**
+  - The slats are 1.4 in wide on a 2 in pitch, with an even procedural grain in the walnut tone of the PVC photo.
+  - They are merged into one mesh for performance.
+  - The louvers now also cover the side-wall return above 7 ft.
+  - A warm LED strip runs along the ceiling line, with 3 point lights.
+- **TV panel stands 3 in off the wall** and is now matte green (#6b8559). The TV was moved forward to sit on the panel, and the upper green strip stays on the wall.
+- **Awards niche background is now green floral mica** (procedural tone-on-tone pattern).
+- **Pooja CNC shutters now use the customer's wood mica.** The board areas were replaced with vertical-grain wood; the cut-outs, bells, lotus and handle are kept. Door edges are wood mica too.
+- **Wood grain is now consistent.** UVs are worked out from world position with mirrored repeat, so the grain runs continuously across the console shutters. Tall members (tall-unit side, rounded edge, pooja strip and doors) have vertical grain.
+- **Lighting cut from 13 to 8 point lights** for phone performance.
+- The finish tray adds sage green and olive green alternatives.
+
+### Rev 2 verification
+
+- `node check-pon-karthikeyan.mjs` passed. It adds checks for the 3 in panel depth, the louver slat count (header plus side return), the floral niche and the wood pooja doors.
+- **Local headless Chrome (SwiftShader software WebGL), 1280×900:** inspected the full view, the pooja (closed) and the niche.
+  - The software renderer ran at about 1 fps, and the existing Ratesh page was equally slow. That is a limit of the test machine, not a measure of performance.
+  - Real-phone frame rate has not been measured.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

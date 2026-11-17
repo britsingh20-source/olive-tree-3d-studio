@@ -8,19 +8,30 @@ export {exactLayout};
 // minimum corner): sx = width, sy = depth from the front (0) to the wall (82),
 // sz = height. They convert to three.js as x = sx, y = sz, z = -sy.
 export const DEFAULT_FINISH='#9f612f'; // average of the customer's wood mica photo
-export const GREEN_MICA='#6f7553';    // estimate: reference photo is under warm light
+export const GREEN_MICA='#6b8559';    // matte green (rev 2: customer asked for a clearer matte green)
+export const LOUVER_COLOUR='#8d5d42'; // walnut tone from the customer's PVC louver reference
 export const project={id:'pon-karthikeyan-tv-v1',customer:'Mr. Pon Karthikeyan',quotation:null};
 export const WOOD_TEXTURE='./wood-mica-reference.jpg';
-const I=.0254,WOOD_TILE=.62;
+const I=.0254,WOOD_TILE=1.05;
 let woodTexture,louverTexture;
 export function createWoodTexture(){
  if(!woodTexture){woodTexture=new T.TextureLoader().load(WOOD_TEXTURE);woodTexture.colorSpace=T.SRGBColorSpace;
- woodTexture.wrapS=woodTexture.wrapT=T.RepeatWrapping;woodTexture.anisotropy=8;woodTexture.userData.shared=true;}return woodTexture;
+ woodTexture.wrapS=woodTexture.wrapT=T.MirroredRepeatWrapping;woodTexture.anisotropy=8;woodTexture.userData.shared=true;}return woodTexture;
 }
 function createLouverTexture(){
  if(!louverTexture){louverTexture=new T.TextureLoader().load('./pvc-louver-reference.jpg');louverTexture.colorSpace=T.SRGBColorSpace;
  louverTexture.wrapS=louverTexture.wrapT=T.RepeatWrapping;louverTexture.anisotropy=8;louverTexture.userData.shared=true;}return louverTexture;
 }
+const hasCanvas=()=>typeof document!=='undefined'&&!!document.createElement('canvas').getContext?.('2d');
+function canvasTexture(w,h,draw){if(!hasCanvas())return null;const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=8;t.userData.shared=true;return t;}
+// Even, straight vertical grain for every louver slat (rev 2: the photo tiling looked uneven).
+function slatTexture(){return canvasTexture(64,512,(c,w,h)=>{c.fillStyle=LOUVER_COLOUR;c.fillRect(0,0,w,h);for(let i=0;i<46;i++){const x=(i*13.7)%w,v=(Math.sin(i*12.9)+1)/2;c.strokeStyle=v>.5?'rgba(255,225,190,.07)':'rgba(40,18,8,.13)';c.lineWidth=.6+v*1.6;c.beginPath();c.moveTo(x,0);c.bezierCurveTo(x+2,h*.3,x-2,h*.7,x+1,h);c.stroke();}});}
+// Tone-on-tone green floral mica for the awards niche background.
+function floralTexture(){return canvasTexture(512,512,(c,w,h)=>{c.fillStyle=GREEN_MICA;c.fillRect(0,0,w,h);
+ const flower=(x,y,r,a)=>{c.save();c.translate(x,y);c.rotate(a);c.fillStyle='rgba(225,240,205,.16)';for(let k=0;k<6;k++){c.rotate(Math.PI/3);c.beginPath();c.ellipse(0,-r*.55,r*.24,r*.5,0,0,Math.PI*2);c.fill();}c.fillStyle='rgba(240,230,190,.22)';c.beginPath();c.arc(0,0,r*.16,0,Math.PI*2);c.fill();c.restore();};
+ const leaf=(x,y,r,a)=>{c.save();c.translate(x,y);c.rotate(a);c.fillStyle='rgba(20,45,20,.18)';c.beginPath();c.ellipse(0,0,r*.18,r*.5,0,0,Math.PI*2);c.fill();c.strokeStyle='rgba(225,240,205,.10)';c.lineWidth=1.2;c.beginPath();c.moveTo(0,-r*.45);c.lineTo(0,r*.45);c.stroke();c.restore();};
+ c.strokeStyle='rgba(225,240,205,.10)';c.lineWidth=2;for(let i=0;i<4;i++){c.beginPath();c.moveTo(i*128+20,0);c.bezierCurveTo(i*128+90,170,i*128-30,340,i*128+40,512);c.stroke();}
+ for(const [x,y,r] of [[64,64,58],[320,64,58],[192,192,46],[448,192,46],[64,320,58],[320,320,58],[192,448,46],[448,448,46]]){flower(x,y,r,x*.01);for(let k=0;k<3;k++)leaf(x+Math.cos(k*2.1+y)*r*1.05,y+Math.sin(k*2.1+y)*r*1.05,r*.9,k*2.1+y);}});}
 const wood={name:'Wood mica (your sample)',color:DEFAULT_FINISH,wood:true},green={name:'Green matte mica',color:GREEN_MICA};
 
 export function buildModel(){
@@ -33,11 +44,17 @@ export function buildModel(){
  const tvMaterial=new T.MeshPhysicalMaterial({color:'#0c0d0f',roughness:.18,metalness:.3,clearcoat:1});
  function mat(f){const m=new T.MeshPhysicalMaterial({color:f.wood?'#ffffff':f.color,map:f.wood?createWoodTexture():null,roughness:.84,clearcoat:0,side:T.DoubleSide});m.userData.compatColor=f.color;return m;}
  // Box from source-inch extents. UVs are scaled by real size so textures keep their grain scale.
- function B(parent,x0,x1,y0,y1,z0,z1,m,tileU=WOOD_TILE,tileV=tileU){
-  const w=(x1-x0)*I,h=(z1-z0)*I,d=(y1-y0)*I,g=new T.BoxGeometry(w,h,d),uv=g.attributes.uv,dims=[[d,h],[d,h],[w,d],[w,d],[w,h],[w,h]];
-  for(let f=0;f<6;f++)for(let i=0;i<4;i++){const k=f*4+i;uv.setXY(k,uv.getX(k)*dims[f][0]/tileU,uv.getY(k)*dims[f][1]/tileV);}
+ // UVs come from world position, so the grain runs continuously and in one
+ // direction across neighbouring shutters (rev 2: no mismatched grain).
+ function worldUV(g,center,grain='h',tile=WOOD_TILE){const pos=g.attributes.position,nor=g.attributes.normal,uvs=[];for(let i=0;i<pos.count;i++){const x=pos.getX(i)+center.x,y=pos.getY(i)+center.y,z=pos.getZ(i)+center.z,nx=Math.abs(nor.getX(i)),ny=Math.abs(nor.getY(i));let u,v;if(ny>.5){u=x;v=z;}else if(nx>.5){u=z;v=y;}else{u=x;v=y;}if(grain==='v')[u,v]=[v,u];uvs.push(u/tile,v/tile);}g.setAttribute('uv',new T.Float32BufferAttribute(uvs,2));}
+ function B(parent,x0,x1,y0,y1,z0,z1,m,grain='h'){
+  const w=(x1-x0)*I,h=(z1-z0)*I,d=(y1-y0)*I,g=new T.BoxGeometry(w,h,d),center=new T.Vector3((x0+x1)/2*I,(z0+z1)/2*I,-(y0+y1)/2*I);
+  worldUV(g,center,grain,m.userData?.tile||WOOD_TILE);
   const o=new T.Mesh(g,m),origin=parent.userData.origin||new T.Vector3();
-  o.position.set((x0+x1)/2*I-origin.x,(z0+z1)/2*I-origin.y,-(y0+y1)/2*I-origin.z);o.castShadow=o.receiveShadow=true;parent.add(o);return o;}
+  o.position.set(center.x-origin.x,center.y-origin.y,center.z-origin.z);o.castShadow=o.receiveShadow=true;parent.add(o);return o;}
+ // Many identical boxes (louver slats) merged into one mesh for speed on phones.
+ function mergedBoxes(parent,boxes,m,grain='h'){const pos=[],nor=[],uv=[];for(const [x0,x1,y0,y1,z0,z1] of boxes){const g=new T.BoxGeometry((x1-x0)*I,(z1-z0)*I,(y1-y0)*I),c=new T.Vector3((x0+x1)/2*I,(z0+z1)/2*I,-(y0+y1)/2*I);worldUV(g,c,grain,m.userData?.tile||WOOD_TILE);g.translate(c.x,c.y,c.z);const n=g.toNonIndexed();pos.push(...n.attributes.position.array);nor.push(...n.attributes.normal.array);uv.push(...n.attributes.uv.array);g.dispose();n.dispose();}
+  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('normal',new T.Float32BufferAttribute(nor,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));const o=new T.Mesh(g,m);o.receiveShadow=true;parent.add(o);return o;}
  function pivotAt(parent,sx,sy,sz){const p=new T.Group();p.position.set(sx*I,sz*I,-sy*I);p.userData.origin=p.position.clone();parent.add(p);return p;}
  function unit(id,name,kind,front,side,extra={}){const group=new T.Group();root.add(group);
   const u={id,name,kind,group,angle:0,front:mat(front),side:mat(side),defaultFront:{...front},defaultSide:{...side},actions:[],interiors:[],lightNodes:[],finishable:true,...extra};
@@ -46,8 +63,8 @@ export function buildModel(){
  // Warm-white LED: visible strip plus a small point light, switched by setLights.
  function led(u,x0,x1,y0,y1,z0,z1,lx,ly,lz,intensity=.22,distance=1.2){B(u.group,x0,x1,y0,y1,z0,z1,lightMaterial).castShadow=false;
   const l=new T.PointLight('#ffd9a0',intensity,distance,2);l.position.set(lx*I,lz*I,-ly*I);u.group.add(l);u.lightNodes.push(l);lights.push(l);}
- function polygon(f,material,shift=0,tile=WOOD_TILE){const n=new T.Vector3(...f.normal).normalize(),ax=Math.abs(n.y)<.8?new T.Vector3(0,1,0).cross(n).normalize():new T.Vector3(1,0,0),ay=n.clone().cross(ax).normalize(),loops=f.points.map(l=>l.map(p=>new T.Vector3(p[0],p[1]+shift,p[2]))),flat=loops.flat(),xy=flat.flatMap(p=>[p.dot(ax),p.dot(ay)]),holes=[];let count=loops[0].length;for(const l of loops.slice(1)){holes.push(count);count+=l.length;}
-  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(flat.flatMap(p=>p.toArray()),3));g.setAttribute('uv',new T.Float32BufferAttribute(xy.map(v=>v/tile),2));g.setIndex(earcut(xy,holes));g.computeVertexNormals();const m=new T.Mesh(g,material);m.castShadow=m.receiveShadow=true;return m;}
+ function polygon(f,material,shift=0,grain='h'){const n=new T.Vector3(...f.normal).normalize(),ax=Math.abs(n.y)<.8?new T.Vector3(0,1,0).cross(n).normalize():new T.Vector3(1,0,0),ay=n.clone().cross(ax).normalize(),loops=f.points.map(l=>l.map(p=>new T.Vector3(p[0],p[1]+shift,p[2]))),flat=loops.flat(),xy=flat.flatMap(p=>[p.dot(ax),p.dot(ay)]),holes=[];let count=loops[0].length;for(const l of loops.slice(1)){holes.push(count);count+=l.length;}
+  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(flat.flatMap(p=>p.toArray()),3));g.setIndex(earcut(xy,holes));g.computeVertexNormals();worldUV(g,new T.Vector3(),grain);const m=new T.Mesh(g,material);m.castShadow=m.receiveShadow=true;return m;}
  const face=id=>exactLayout.sourceFaces.find(f=>f.id===id);
 
  // ---- Room: TV wall (9 in), side wall pier, floor ----
@@ -60,10 +77,11 @@ export function buildModel(){
 
  // ---- 1. Green matte mica TV panels with the TV ----
  const panel=unit('tv-panel','Green matte TV panel','panel',green,green);
- B(panel.group,24.1,120,72.05,72.95,20,68,panel.front);      // behind TV (source orange)
+ B(panel.group,24.1,120,69.05,72.95,20,68,panel.front);      // behind TV (source orange): 3 in deep panel standing off the wall (rev 2)
+ panel.depthInches=3;
  B(panel.group,24.1,120,72.05,72.95,70,84,panel.front);      // above ledge (source olive)
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();
- B(tv,72-28.55,72+28.55,70.4,71.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,71.6,72.05,36,52,std('#222',.6));
+ B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
  panel.tvNote='Illustrative 65-inch TV; actual TV size not specified.';
 
  // ---- 2. Wood mica decorative ledge with warm-white LED below ----
@@ -74,19 +92,32 @@ export function buildModel(){
  for(const [x,r,h,m] of [[38,1.6,6,0],[42,1.2,4,1],[100,1.8,7,2],[105,1.1,3.5,0]]){const v=new T.Mesh(new T.CylinderGeometry(r*.75*I,r*I,h*I,20),decor[m]);v.position.set(x*I,(70+h/2)*I,-68*I);v.castShadow=true;ledge.group.add(v);}
  ledge.decorNote='Small decoratives are illustrative.';
 
- // ---- 3. Fixed PVC louver header (no opening action) ----
- const louverMat=new T.MeshStandardMaterial({map:createLouverTexture(),roughness:.7});louverMat.userData.compatColor='#6e4a32';
- const louver=unit('louver','PVC louver header','louver',{name:'PVC louver',color:'#6e4a32'},{name:'PVC louver',color:'#6e4a32'},{finishable:false,fixed:true});
- louver.front=louver.side=louver.sideSkin=louverMat;
- B(louver.group,.1,144.1,72.4,72.95,84,120,louverMat,.46,.55);
+ // ---- 3. Fixed PVC louvers (header + side-wall return), 3D slats with cove LED ----
+ // Rev 2: follows the customer's reference — individual vertical slats over a dark
+ // backing, even grain, warm LED washing down from the ceiling line.
+ const slatMap=slatTexture();
+ const slatMat=new T.MeshStandardMaterial({color:slatMap?'#ffffff':LOUVER_COLOUR,map:slatMap,roughness:.72});slatMat.userData.compatColor=LOUVER_COLOUR;slatMat.userData.tile=.5;
+ const gapMat=std('#241a16',.95);
+ const louver=unit('louver','PVC louvers','louver',{name:'PVC louver',color:LOUVER_COLOUR},{name:'PVC louver',color:LOUVER_COLOUR},{finishable:false,fixed:true});
+ louver.front=louver.side=louver.sideSkin=slatMat;
+ const LP=2,LW=1.4;let slats=0;
+ B(louver.group,.1,143.4,72.35,72.95,84,120,gapMat);                 // dark backing, TV wall
+ const slatBoxes=[];for(let x=.1+.3;x+LW<=143.4;x+=LP)slatBoxes.push([x,x+LW,71.6,72.35,84.05,119.95]);
+ B(louver.group,143.4,144.05,1.05,72.35,84,120,gapMat);              // dark backing, side-wall return
+ for(let y=1.05+.3;y+LW<=72.35;y+=LP)slatBoxes.push([142.65,143.4,y,y+LW,84.05,119.95]);
+ mergedBoxes(louver.group,slatBoxes,slatMat);slats=slatBoxes.length;
+ louver.slatCount=slats;louver.slatPitchInches=LP;louver.slatWidthInches=LW;
+ B(louver.group,.5,142.2,71.15,71.45,119.45,119.75,lightMaterial).castShadow=false;B(louver.group,142.2,142.5,1.5,71.15,119.45,119.75,lightMaterial).castShadow=false;
+ for(const [x,y] of [[36,70.2],[108,70.2],[141,30]]){const l=new T.PointLight('#ffd9a0',.3,1.5,2);l.position.set(x*I,116*I,-y*I);louver.group.add(l);louver.lightNodes.push(l);lights.push(l);}
+ louver.coveLight='Warm white, ceiling line';
 
  // ---- 4. Tall left unit: black tinted glass shutter, left hinge ----
  const tall=unit('tall-glass','Tall black-glass cabinet','glass',{name:'Black tinted glass',color:'#15181a'},wood,{finishable:false});
  const tg=tall.group;tg.userData.origin=new T.Vector3();
- B(tg,23.35,24.1,55.5,72,20,84,tall.side);                 // side toward TV (wood mica)
+ B(tg,23.35,24.1,55.5,72,20,84,tall.side,'v');             // side toward TV (wood mica)
  B(tg,3.8,23.35,71.25,72,20,84,tall.side);                 // back
  B(tg,3.8,23.35,55.6,71.25,20,20.75,tall.side);B(tg,3.8,23.35,55.6,71.25,83.25,84,tall.side);
- for(const id of [44951,44953,44955,44957]){const m=polygon(face(id),tall.side);tg.add(m);} // exact rounded edge
+ for(const id of [44951,44953,44955,44957]){const m=polygon(face(id),tall.side,0,'v');tg.add(m);} // exact rounded edge
  const cap=polygon(face(44039),tall.side);tg.add(cap);
  const bottomCap=polygon(face(44039),tall.side,-76*I);tg.add(bottomCap);   // same outline at 8 in
  const tallDoor=pivotAt(tg,3.8,55.5,52);B(tallDoor,3.85,24.05,54.8,55.5,20.1,83.9,blackGlass);
@@ -106,16 +137,15 @@ export function buildModel(){
   const left=how==='left',p=pivotAt(cg,left?x0:x1,55.5,14);B(p,x0+.1,x1-.1,54.8,55.5,8.1,19.9,con.front);
   const a=act(con,p,'hinge',(left?-1:1)*Math.PI*.47);a.hingeSide=how;a.hingeSideApproximate=true;con.hinges.push(how);}
  con.woodShutterCount=5;con.floatHeightInches=8;
- for(const x of [22,60,98])led(con,x-17,x+17,57,57.6,7.6,8,x,60,4,.28,1.1);   // glow under the floating console
+ led(con,5,118,57,57.6,7.6,8,40,60,4,.3,1.3);{const l=new T.PointLight('#ffd9a0',.3,1.3,2);l.position.set(92*I,4*I,-60*I);con.group.add(l);con.lightNodes.push(l);lights.push(l);}   // glow under the floating console
  con.underGlow='Warm white';
 
  // ---- 6. Awards niche: green wallpaper walls, two L-shaped wood mica shelves ----
- const paperCanvas=typeof document!=='undefined'?document.createElement('canvas'):null;let paperMap=null;
- if(paperCanvas?.getContext){paperCanvas.width=paperCanvas.height=256;const c=paperCanvas.getContext('2d');if(c){c.fillStyle=GREEN_MICA;c.fillRect(0,0,256,256);for(let i=0;i<5200;i++){const v=Math.random();c.fillStyle=v>.5?'rgba(255,255,230,.06)':'rgba(20,25,10,.08)';c.fillRect(Math.random()*256,Math.random()*256,1+v*2,1+v*2);}paperMap=new T.CanvasTexture(paperCanvas);paperMap.colorSpace=T.SRGBColorSpace;paperMap.wrapS=paperMap.wrapT=T.RepeatWrapping;}}
- const paper=new T.MeshStandardMaterial({color:paperMap?'#ffffff':GREEN_MICA,map:paperMap,roughness:.95});paper.userData.compatColor=GREEN_MICA;
- const niche=unit('awards-niche','Awards display niche','niche',{name:'Green textured wallpaper',color:GREEN_MICA},wood,{finishable:false});niche.angle=-Math.PI/2+.35;
+ const floral=floralTexture();
+ const paper=new T.MeshStandardMaterial({color:floral?'#ffffff':GREEN_MICA,map:floral,roughness:.88});paper.userData.compatColor=GREEN_MICA;paper.userData.tile=.55;
+ const niche=unit('awards-niche','Awards display niche','niche',{name:'Green floral mica',color:GREEN_MICA},wood,{finishable:false});niche.angle=-Math.PI/2+.35;
  const ng=niche.group;ng.userData.origin=new T.Vector3();
- B(ng,120,144.1,72.3,73,20,84,paper,.3);B(ng,143.4,144.1,37,73,20,84,paper,.3);B(ng,120,144.1,37,37.7,20,84,paper,.3);
+ B(ng,120,144.1,72.3,73,20,84,paper);B(ng,143.4,144.1,37,73,20,84,paper);B(ng,120,144.1,37,37.7,20,84,paper);niche.background='Green floral mica';
  for(const z of [37,55]){B(ng,120,144.1,61,72.3,z,z+1,niche.side);B(ng,132.1,143.4,37.7,61,z,z+1,niche.side);}
  niche.shelfCount=2;niche.shelfMaterial='Wood mica';niche.purpose='Academic achievements: medals, winning cups, award certificates';
  const gold=std('#c9a24b',.32,{metalness:.85}),frameMat=std('#3b2a1d',.6),paperWhite=std('#f4f1e8',.9);
@@ -145,20 +175,20 @@ export function buildModel(){
  const pooja=unit('pooja','Pooja unit with CNC shutters','pooja',green,wood,{finishable:false});pooja.angle=-Math.PI/2;
  const pg=pooja.group;pg.userData.origin=new T.Vector3();
  B(pg,124,144.1,1,1.75,0,84,pooja.front);                   // green matte front face
- B(pg,120,124,0,.75,0,84,pooja.side);                       // 4 in front strip (wood finish provisional)
+ B(pg,120,124,0,.75,0,84,pooja.side,'v');                   // 4 in front strip, wood mica
  led(pooja,124.05,124.35,.8,1,2,82,125,.5,42,.18,.9);       // concealed vertical strip light
  B(pg,120.75,143.4,1.75,37,0,.75,carcass);B(pg,120.75,143.4,1.75,37,83.25,84,carcass);B(pg,143.4,144.1,1.75,37,0,84,carcass);B(pg,120.75,143.4,36.25,37,.75,83.25,carcass);
  B(pg,121,143,10,28,44,44.75,carcass);
  const shrine=new T.PointLight('#ffc77a',.25,1.2,2);shrine.position.set(132*I,70*I,-19*I);pg.add(shrine);pooja.lightNodes.push(shrine);lights.push(shrine);
  const doorTex=n=>{const t=new T.TextureLoader().load('./pooja-door-'+n+'.jpg');t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.userData.shared=true;return t;};
- const doorEdge=std('#d8d2c7',.8);pooja.doors=[];
+ const doorEdge=pooja.side;pooja.doors=[];
  for(const [y0,y1,hingeY,img,sign] of [[0,18.5,0,'right',1],[18.5,37,37,'left',-1]]){
-  const p=pivotAt(pg,120,hingeY,42);B(p,119.25,120,y0+.06,y1-.06,.4,83.6,doorEdge);
-  const face=new T.MeshStandardMaterial({map:doorTex(img),roughness:.75});face.userData.compatColor='#d8d0c4';
+  const p=pivotAt(pg,120,hingeY,42);B(p,119.25,120,y0+.06,y1-.06,.4,83.6,doorEdge,'v');
+  const face=new T.MeshStandardMaterial({map:doorTex(img),roughness:.75});face.userData.compatColor=DEFAULT_FINISH;
   const plane=new T.Mesh(new T.PlaneGeometry((y1-y0-.12)*I,83.2*I),face);plane.rotation.y=-Math.PI/2;
   plane.position.set(119.24*I-p.position.x,42*I-p.position.y,-(y0+y1)/2*I-p.position.z);p.add(plane);
   const a=act(pooja,p,'hinge',sign*Math.PI*.47);a.opensToward='TV area';pooja.doors.push(p);}
- pooja.doorCount=2;pooja.carving='CNC per customer reference';pooja.frontStripLight='Concealed strip light';
+ pooja.doorCount=2;pooja.carving='CNC per customer reference';pooja.doorFinish='Wooden mica (customer sample) with CNC cut pattern';pooja.frontStripLight='Concealed strip light';
 
  // ---- Reference colours: every extracted source face ----
  for(const f of exactLayout.sourceFaces){const m=polygon(f,new T.MeshStandardMaterial({color:f.color,side:T.DoubleSide,roughness:1}));m.castShadow=false;m.userData.sourceFace=f.id;referenceRoot.add(m);sourceMeshes.push(m);}
