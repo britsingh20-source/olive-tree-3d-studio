@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk6",
+    "assetVersion": "pk7",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -281,6 +281,11 @@
       "date": "2026-11-17",
       "section": "Rev 5 · strip under louvers",
       "decision": "Concealed strip light along the bottom edge of the louvers, between the louvers and the green panel, full width from the left glass cabinet to the right end."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 6 · lighting around TV panel",
+      "decision": "Customer: 'only the side vertical light enough'. Removed the rev-5 full-width strip under the louvers; only the vertical strip beside the TV panel (niche side) remains. Previously confirmed under-ledge LED, louver ceiling-line cove, console under-glow and pooja lights unchanged."
     }
   ],
   "approximations": [

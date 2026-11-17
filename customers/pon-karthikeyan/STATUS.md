@@ -99,6 +99,12 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **New concealed strip along the bottom of the louvers** at 84 in, running full width from the left glass cabinet to the right end. It has 2 point lights and a glow wash down the green panel.
 - **Verified:** check passed (1 panel light, panel x 24.1–118.5, full-width louver bottom strip). Local SwiftShader full-view screenshot shows the wash under the louvers and the vertical strip by the niche.
 
+## Revision 6 — 17 Nov 2026
+
+- Removed the full-width strip under the louvers, following the customer's "only the side vertical light enough". Only the vertical TV-panel strip on the niche side remains.
+- The other previously confirmed lights are unchanged.
+- Check passed.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.
