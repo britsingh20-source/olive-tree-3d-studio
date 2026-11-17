@@ -76,6 +76,7 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **Local headless Chrome (SwiftShader software WebGL), 1280×900:** inspected the full view, the pooja (closed) and the niche.
   - The software renderer ran at about 1 fps, and the existing Ratesh page was equally slow. That is a limit of the test machine, not a measure of performance.
   - Real-phone frame rate has not been measured.
+- **Deployed:** commit b4ad201, Actions run 44083616525 succeeded. In headless Chrome the live URL loaded the pk2 modules and textures (all 200) and the full view rendered as in the local check.
 
 ## Next action
 
