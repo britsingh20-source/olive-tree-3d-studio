@@ -200,6 +200,20 @@ export function buildModel(){
  const top=new T.Mesh(new T.CylinderGeometry(7.2*I,7.2*I,.12*I,40),std('#3c4044',.3,{metalness:.3}));top.position.y=3.65*I;robot.add(top);
  const lidar=new T.Mesh(new T.CylinderGeometry(1.6*I,1.6*I,1*I,24),std('#1a1c1e',.4));lidar.position.set(0,4.2*I,2*I);robot.add(lidar);
  for(const m of robot.children)m.castShadow=true;
+ // Rev 9: cleaning animation. The robot leaves through the open slot under the console,
+ // cleans the floor in front of the TV unit in back-and-forth rows, and returns to its dock.
+ const brush=new T.Mesh(new T.CylinderGeometry(2.2*I,2.2*I,.15*I,6),std('#6b6f73',.6));brush.position.set(-5.5*I,.3*I,5.5*I);robot.add(brush);
+ const dock=[131,64],route=[dock,[116,64],[100,64],[100,48]];
+ const rows=[46,37,28,19];rows.forEach((y,k)=>{const xs=k%2?[18,100]:[100,18];route.push([xs[0],y],[xs[1],y]);});
+ route.push([100,19],[100,48],[100,64],[116,64],dock);
+ const pts=route.map(([x,y])=>new T.Vector3(x*I,0,-y*I)),lens=[];let total=0;for(let k=1;k<pts.length;k++){const l=pts[k].distanceTo(pts[k-1]);lens.push(l);total+=l;}
+ const cleaner={active:false,distance:0,speed:.42,route,total,
+  start(){this.active=true;this.distance=0;},stop(){this.active=false;this.distance=0;robot.position.copy(pts[0]);robot.rotation.y=-Math.PI/2;},
+  update(dt){if(!this.active)return;this.distance=Math.min(total,this.distance+this.speed*dt);let d=this.distance,k=0;while(k<lens.length-1&&d>lens[k]){d-=lens[k];k++;}
+   const a=pts[k],b=pts[k+1],t=lens[k]?d/lens[k]:1;robot.position.lerpVectors(a,b,t);const target=Math.atan2(b.x-a.x,b.z-a.z);
+   let diff=((target-robot.rotation.y+Math.PI)%(Math.PI*2)+Math.PI*2)%(Math.PI*2)-Math.PI;robot.rotation.y+=diff*Math.min(1,dt*8);brush.rotation.y+=dt*18;
+   if(this.distance>=total){this.active=false;robot.position.copy(pts[0]);robot.rotation.y=-Math.PI/2;this.onDone?.();}}};
+ robot.rotation.y=-Math.PI/2;bay.cleaner=cleaner;bay.robot=robot;
  bay.robotDiameterInches=16;bay.exit='Open slot facing the TV area, under the floating console';bay.fixedShutter=true;
 
  // ---- 8. Tall right block: green matte front, concealed light strip, CNC pooja shutters ----
@@ -251,9 +265,9 @@ export function buildModel(){
  for(const f of exactLayout.sourceFaces){const m=polygon(f,new T.MeshStandardMaterial({color:f.color,side:T.DoubleSide,roughness:1}));m.castShadow=false;m.userData.sourceFace=f.id;referenceRoot.add(m);sourceMeshes.push(m);}
  for(const u of units)u.group.traverse(o=>{if(o.isMesh)o.userData.unit=u;});
  let reference=false;
- return {root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
+ return {robot:bay.cleaner,root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
  setReference(on){reference=on;referenceRoot.visible=on;for(const u of units)u.group.visible=!on;architecture.visible=!on;},
  setLights(on){for(const u of units)for(const g of u.glows||[])g.visible=on;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
- update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
+ update(dt){bay.cleaner.update(dt);for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
  };
 }

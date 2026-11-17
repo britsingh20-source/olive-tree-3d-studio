@@ -132,6 +132,14 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **Pebble box:** added at the foot of the foyer face — 24.1 in wide (pooja width), 15 in high, 8 in deep (assumed), wooden mica, filled with merged white/grey pebbles.
 - **Verified:** check passed. Local SwiftShader screenshots show the foyer side (grass, SS art, pebble box) and the opened tall cabinet with its glass shelves lit.
 
+## Revision 9 — 17 Nov 2026
+
+- **Robot cleaner animation** (button "▶ Robot cleaner", which toggles to Stop).
+  - **Route:** the robot leaves the dock, goes under the console through the open slot, cleans 4 serpentine rows in front of the unit, then returns and parks. It turns smoothly and its side brush spins.
+  - **Implementation:** the route is driven by `model.robot.update(dt)` inside `model.update`, and `onDone` resets the button.
+- **Verified:** check simulates the full run at 60 fps. The robot only passes x 120–144 under the console (y > 55 in); it reaches the far left (x < 20 in) and the front area, finishes, and ends exactly at the dock.
+- **Not visually verified:** the motion itself. The local software renderer runs at about 1 fps and the studio clamps frame steps to 0.05 s, so it can't show the animation meaningfully. It needs a real browser.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

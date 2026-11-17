@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk9",
+    "assetVersion": "pk10",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -316,6 +316,11 @@
       "date": "2026-11-17",
       "section": "Rev 8 · pebble box",
       "decision": "Box at the foyer face, pooja width, 15 in high, filled with pebbles."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 9 · robot cleaner animation",
+      "decision": "Customer asked: animate the robot mop automatically coming out, cleaning and going back in. Added a 'Robot cleaner' button: robot exits the open slot under the console, cleans the floor in front of the unit in four back-and-forth rows, returns and parks in its bay (about 40 s at 60 fps)."
     }
   ],
   "approximations": [
@@ -337,7 +342,8 @@
     "Grass mat is a procedural texture; SS CNC art is an illustrative tree/hills/birds scenery panel about 15 x 41 in — actual design to be chosen.",
     "Light washes are drawn as additive gradients beside each strip (no real light sources), to look like LED strip light without hot-spots.",
     "Tall cabinet glass shelf count (4) and spacing assumed.",
-    "Pebble box depth 8 in and wooden mica finish assumed; pebbles illustrative white/grey river pebbles."
+    "Pebble box depth 8 in and wooden mica finish assumed; pebbles illustrative white/grey river pebbles.",
+    "Robot cleaning route (4 rows, x 18-100 in, 19-46 in in front of the wall line) and speed are illustrative."
   ],
   "openQuestions": [
     "Number of glass shelves in the tall cabinet (4 shown)",
