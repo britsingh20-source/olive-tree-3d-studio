@@ -40,7 +40,7 @@ for(const a of m.actions)a.open=false;for(let i=0;i<240;i++)m.update(1/60);for(c
 const robot=bay.group.children.find(o=>o.isGroup);const rb=new T.Box3().setFromObject(robot);assert(rb.max.y<8*I,'robot lower than the 8 in slot');assert(rb.getSize(new T.Vector3()).z<17.5*I,'robot narrower than the 17.5 in slot');assert(rb.min.x>120*I&&rb.max.x<144.1*I,'robot inside the bay');
 // Rev 7: strip lighting only — no point/spot lights anywhere.
 let pointLights=0;m.root.traverse(o=>{if(o.isLight)pointLights++;});assert.equal(pointLights,0);
-assert.equal(get('tall-glass').strips.length,2,'vertical strips inside tall glass cabinet');assert.equal(get('pooja').foyerFace,'Green grass mat');
+assert.equal(get('tall-glass').strips.length,2,'vertical strips inside tall glass cabinet');assert.equal(get('pooja').foyerFace,'Green grass mat');assert.equal(get('tall-glass').glassShelves.length,4);assert.equal(get('pooja').pebbleBox.heightInches,15);
 const glows=m.units.flatMap(u=>u.glows||[]);assert(glows.length>=10);m.setLights(false);assert(glows.every(g=>!g.visible));m.setLights(true);assert(glows.every(g=>g.visible));
 m.setReference(true);assert(m.units.every(u=>!u.group.visible));m.setReference(false);assert(m.units.every(u=>u.group.visible));
 // A stage resize updates projection only; it never calls fit or moves the camera.

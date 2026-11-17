@@ -125,6 +125,13 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - Local SwiftShader screenshots show the full view without hot-spots and the open tall cabinet lit inside.
   - Wash strengths were tuned after the first screenshot.
 
+## Revision 8 — 17 Nov 2026
+
+- **Tall glass cabinet:** 4 evenly spaced transparent glass shelves added (count assumed).
+- **Grass mat:** finish redone as dense mixed-green blades with bump, at a smaller tile size.
+- **Pebble box:** added at the foot of the foyer face — 24.1 in wide (pooja width), 15 in high, 8 in deep (assumed), wooden mica, filled with merged white/grey pebbles.
+- **Verified:** check passed. Local SwiftShader screenshots show the foyer side (grass, SS art, pebble box) and the opened tall cabinet with its glass shelves lit.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

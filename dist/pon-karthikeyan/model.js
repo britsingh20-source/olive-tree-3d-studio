@@ -148,6 +148,11 @@ export function buildModel(){
  glowF(tall,4.55,13.95,21,83,71.2,Math.PI,.7);glowF(tall,13.95,23.35,21,83,71.2,0,.7);
  glow(tall,'+x',4.6,64,52,14.3,62,Math.PI,.6);glow(tall,'-x',23.3,64,52,14.3,62,0,.6);
  tall.interiorLight='Vertical warm-white LED strips, both sides';
+ // Rev 8: transparent glass shelves, evenly spaced (count not specified — 4 shown).
+ const clear=new T.MeshPhysicalMaterial({color:'#dfeeea',transparent:true,opacity:.28,roughness:.04,metalness:0,clearcoat:1,side:T.DoubleSide,depthWrite:false});clear.userData.compatColor='#cfe0dc';
+ const edge=new T.MeshStandardMaterial({color:'#a9c9c0',transparent:true,opacity:.7,roughness:.1});
+ tall.glassShelves=[];for(const z of [33.25,45.75,58.25,70.75]){tall.glassShelves.push(B(tg,4.95,22.95,57.2,71.2,z,z+.25,clear));B(tg,4.95,22.95,57.1,57.2,z,z+.25,edge);}
+ tall.shelfCount=4;tall.shelfMaterial='Transparent glass';
 
  // ---- 5. Floating lower console: five wood shutters + one lift-up glass shutter ----
  const con=unit('console','Floating lower console','console',wood,wood);
@@ -201,8 +206,11 @@ export function buildModel(){
  const pooja=unit('pooja','Pooja unit with CNC shutters','pooja',green,wood,{finishable:false});pooja.angle=-Math.PI/2;
  const pg=pooja.group;pg.userData.origin=new T.Vector3();
  // Rev 7: the front faces the foyer — green grass mat with a stainless-steel CNC scenery panel.
- const grassMap=canvasTexture(256,256,(c,w,h)=>{c.fillStyle='#4f7a32';c.fillRect(0,0,w,h);for(let i=0;i<9000;i++){const x=Math.random()*w,y=Math.random()*h,l=3+Math.random()*7,g=90+Math.random()*90;c.strokeStyle=`rgba(${40+Math.random()*50|0},${g|0},${25+Math.random()*30|0},.8)`;c.lineWidth=1;c.beginPath();c.moveTo(x,y);c.lineTo(x+(Math.random()-.5)*3,y-l);c.stroke();}});
- const grass=new T.MeshStandardMaterial({color:grassMap?'#ffffff':'#4f7a32',map:grassMap,roughness:1});grass.userData.compatColor='#4f7a32';grass.userData.tile=.25;
+ // Rev 8: brighter artificial-grass look — dense blades in mixed greens over a darker base.
+ const grassMap=canvasTexture(512,512,(c,w,h)=>{c.fillStyle='#3f7a26';c.fillRect(0,0,w,h);const cols=['#3a7322','#4f8f2c','#62a635','#76b941','#8ccb52','#a3d866','#5e9a30'];
+  for(let pass=0;pass<3;pass++)for(let i=0;i<16000;i++){const x=Math.random()*w,y=Math.random()*h,l=5+Math.random()*(pass===2?9:7),bend=(Math.random()-.5)*4;c.strokeStyle=cols[(Math.random()*cols.length)|0];c.globalAlpha=pass===0?.9:pass===1?.85:.7;c.lineWidth=pass===2?1:1.4;c.beginPath();c.moveTo(x,y);c.quadraticCurveTo(x+bend*.5,y-l*.6,x+bend,y-l);c.stroke();}
+  c.globalAlpha=.5;c.fillStyle='#c7ec8a';for(let i=0;i<1800;i++)c.fillRect(Math.random()*w,Math.random()*h,1,1.5);c.globalAlpha=1;});
+ const grass=new T.MeshStandardMaterial({color:grassMap?'#ffffff':'#5f9c35',map:grassMap,bumpMap:grassMap,bumpScale:2,roughness:.95});grass.userData.compatColor='#5f9c35';grass.userData.tile=.18;
  pooja.front=grass;pooja.foyerFace='Green grass mat';
  B(pg,124,144.1,1,1.75,0,84,grass);
  const artMap=canvasTexture(256,704,(c,w,h)=>{c.fillStyle='#fff';c.strokeStyle='#fff';c.lineCap='round';
@@ -213,6 +221,16 @@ export function buildModel(){
   for(let i=0;i<70;i++){const a=Math.random()*Math.PI*2,r=20+Math.random()*95;c.beginPath();c.ellipse(w*.5+Math.cos(a)*r,h*.22+Math.sin(a)*r*.75,6,3,a,0,Math.PI*2);c.fill();}
   c.lineWidth=3;for(const [x,y,s] of [[40,120,1],[70,95,.8],[200,140,.9],[215,110,.7]]){c.beginPath();c.moveTo(x-10*s,y);c.quadraticCurveTo(x-4*s,y-7*s,x,y);c.quadraticCurveTo(x+4*s,y-7*s,x+10*s,y);c.stroke();}});
  const steel=new T.MeshStandardMaterial({color:'#d4d8dc',metalness:.92,roughness:.28,alphaMap:artMap,alphaTest:.5,transparent:false,side:T.DoubleSide});steel.userData.compatColor='#c9cdd1';
+ // Rev 8: pebble box at the foot of the foyer face — full pooja width (24 in), 15 in high.
+ // Depth not given: 8 in shown. Box in wooden mica (finish not given).
+ const boxMat=pooja.side;
+ B(pg,120,144.1,-8,-7.25,0,15,boxMat);B(pg,120,120.75,-7.25,1,0,15,boxMat);B(pg,143.35,144.1,-7.25,1,0,15,boxMat);
+ B(pg,120.75,143.35,-7.25,1,0,13.4,std('#3b3732',1));                 // fill below the pebbles
+ { const pos=[],nor=[],col=[],tones=['#e9e6df','#d8d3c9','#bdb7ab','#9e978b','#f2f0ea','#cfc6b6'];let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+   for(let layer=0;layer<2;layer++)for(let x=121.6;x<142.6;x+=1.35)for(let y=-6.5;y<0;y+=1.35){const g=new T.SphereGeometry(.68*I,9,6),sx=.85+rnd()*.5,sz=.75+rnd()*.5;g.scale(sx,.5+rnd()*.15,sz);g.rotateY(rnd()*Math.PI);
+     g.translate((x+(rnd()-.5)*.8)*I,(13.6+layer*.6+rnd()*.3)*I,-(y+(rnd()-.5)*.8)*I);const n=g.toNonIndexed(),c=new T.Color(tones[(rnd()*tones.length)|0]);pos.push(...n.attributes.position.array);nor.push(...n.attributes.normal.array);for(let k=0;k<n.attributes.position.count;k++)col.push(c.r,c.g,c.b);g.dispose();n.dispose();}
+   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('normal',new T.Float32BufferAttribute(nor,3));g.setAttribute('color',new T.Float32BufferAttribute(col,3));
+   const pm=new T.MeshStandardMaterial({vertexColors:true,roughness:.55});pm.userData.compatColor='#d6d0c4';const pebbles=new T.Mesh(g,pm);pebbles.castShadow=pebbles.receiveShadow=true;pg.add(pebbles);pooja.pebbleBox={widthInches:24.1,heightInches:15,depthInches:8,finish:'Wooden mica (provisional)',pebbles:'White/grey river pebbles (illustrative)'};}
  if(artMap){const art=new T.Mesh(new T.PlaneGeometry(15*I,41.25*I),steel);art.position.set(134*I,46*I,-.9*I);art.castShadow=true;pg.add(art);pooja.foyerArt='Stainless-steel CNC-cut scenery panel (illustrative)';}
  B(pg,120,124,0,.75,0,84,pooja.side,'v');                   // 4 in front strip, wood mica
  led(pooja,124.05,124.35,.8,1,2,82);glow(pooja,'front',127,.95,42,6,80,Math.PI,.4);   // concealed vertical strip light

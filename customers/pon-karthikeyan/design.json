@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk8",
+    "assetVersion": "pk9",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -301,6 +301,21 @@
       "date": "2026-11-17",
       "section": "Rev 7 · pooja front face (#99ff99, 20 x 84 in) — correction",
       "decision": "Earlier 'light green place green matt' meant GREEN GRASS MAT, not green matte mica. This side faces the FOYER. Green grass mat with a stainless-steel CNC-cut decorative piece — non-religious, scenery/statue-type design."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 8 · tall black-glass cabinet",
+      "decision": "Transparent glass shelves inside (count not specified — 4 evenly spaced shown)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 8 · foyer grass mat",
+      "decision": "Grass looked dark green, not like grass — finish improved to a brighter artificial-grass look."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 8 · pebble box",
+      "decision": "Box at the foyer face, pooja width, 15 in high, filled with pebbles."
     }
   ],
   "approximations": [
@@ -320,9 +335,13 @@
     "Pooja door images: board areas of the CNC reference replaced with the customer's wood mica photo (vertical grain); cut-outs, bells, lotus and handle kept from the reference.",
     "TV panel drawn flush with the tall unit and the ledge; a 1.5 in reveal only on the niche side (panel about 94.4 x 48 in) to show the vertical strip. Confirm reveal on site.",
     "Grass mat is a procedural texture; SS CNC art is an illustrative tree/hills/birds scenery panel about 15 x 41 in — actual design to be chosen.",
-    "Light washes are drawn as additive gradients beside each strip (no real light sources), to look like LED strip light without hot-spots."
+    "Light washes are drawn as additive gradients beside each strip (no real light sources), to look like LED strip light without hot-spots.",
+    "Tall cabinet glass shelf count (4) and spacing assumed.",
+    "Pebble box depth 8 in and wooden mica finish assumed; pebbles illustrative white/grey river pebbles."
   ],
   "openQuestions": [
+    "Number of glass shelves in the tall cabinet (4 shown)",
+    "Pebble box depth (8 shown) and finish (wooden mica shown)",
     "Does the 9 in wall end beside the pooja (currently green matte) also get grass mat as part of the foyer?",
     "Actual SS CNC art design/size for the foyer panel",
     "Inside of the tall black-glass cabinet (shelves? lighting?)",
