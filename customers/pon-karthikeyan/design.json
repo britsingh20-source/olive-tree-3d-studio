@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-11-17",
+  "customer": {
+    "id": "pon-karthikeyan",
+    "name": "Mr. Pon Karthikeyan"
+  },
+  "project": "TV unit (Irugur)",
+  "viewer": {
+    "status": "Built locally and tested; not yet published (repository write access pending)",
+    "route": "/pon-karthikeyan/",
+    "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
+    "directory": "dist/pon-karthikeyan",
+    "storageKey": "pon-karthikeyan-tv-v1",
+    "assetVersion": "pk1"
+  },
+  "source": {
+    "files": [
+      {
+        "name": "tv unit irugur.skp",
+        "sha256": "96d63f87efcbdb1ead75befc9806672e2cdc8f6210932653a411426794053e87",
+        "bytes": 216254
+      },
+      {
+        "name": "tv unit irugur (1).skp",
+        "sha256": "b412c675f487290f3557b6d216a2298239908c4316e391925ff34e5049f92a9a",
+        "bytes": 226324
+      }
+    ],
+    "obtainedFrom": "User PC folder Downloads\\NEW via desktop bridge (direct chat uploads arrived byte-corrupted: non-ASCII bytes replaced by U+FFFD; not a model fault)",
+    "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py (identical to scripts/extract-prem-skp.py)",
+    "sourceUnits": "inches",
+    "bounds": {
+      "width": 153.06,
+      "depth": 82,
+      "height": 120
+    },
+    "vertices": 149,
+    "edges": 242,
+    "rootFaces": 95,
+    "omittedInstances": {},
+    "comparison": "Both files: identical vertices, edges, faces and materials; hashes differ.",
+    "geometry": "customers/pon-karthikeyan/source-geometry.json"
+  },
+  "sourceColours": {
+    "#ff6532": {
+      "name": "B04_Peach_Ember",
+      "faces": 1,
+      "meaning": "Back panel behind TV (about 96 x 48 in): green matte mica"
+    },
+    "#666600": {
+      "name": "E08_Lime_Depth",
+      "faces": 1,
+      "meaning": "Strip above TV panel (about 96 x 14 in): same green matte mica as the TV back panel"
+    },
+    "#ffd865": {
+      "name": "D03_Lemon_Mist",
+      "faces": 1,
+      "meaning": "Top section above unit (144 x 36 in, 7-10 ft): PVC louver panel, fixed/decorative"
+    },
+    "#6600cc": {
+      "name": "J06_Plum_Shadow",
+      "faces": 2,
+      "meaning": "Black tinted glass shutters: (1) tall left front 20 x 64 in, (2) bottom-row front 20 x 12 in, 4th from left"
+    },
+    "#ff0000": {
+      "name": "A05_Cherry_Blaze",
+      "faces": 4,
+      "meaning": "Rounded left edge of tall left unit (full height, ~4 in curve): wooden mica"
+    },
+    "#006666": {
+      "name": "H08_Emerald_Abyss",
+      "faces": 6,
+      "meaning": "Five bottom-row fronts: wooden mica side-hinged shutters; side face of tall left unit toward TV: wooden mica"
+    },
+    "#ff99ff": {
+      "name": "K02_Rosy_Glow",
+      "faces": 1,
+      "meaning": "Ledge top: wooden mica (customer texture) — decorative display ledge"
+    },
+    "#ff65ff": {
+      "name": "K03_Orchid_Kiss",
+      "faces": 3,
+      "meaning": "Ledge front edge and underside: wooden mica (customer texture)"
+    },
+    "#00ffff": {
+      "name": "H05_Lagoon_Spark",
+      "faces": 1,
+      "meaning": "Thin strip under the ledge: warm-white LED strip lighting the green panel below"
+    },
+    "#cc0066": {
+      "name": "L06_Crimson_Glow",
+      "faces": 10,
+      "meaning": "Two niche shelves: wooden mica — awards/achievements display (medals, cups, certificates)"
+    },
+    "#00ff00": {
+      "name": "G05_Neon_Leaf",
+      "faces": 6,
+      "meaning": "Back and side walls of open niche beside TV: textured green wallpaper matched to the green TV mica"
+    },
+    "#ffbf00": {
+      "name": "D05_Goldenrod_Hue",
+      "faces": 1,
+      "meaning": "Side of base under the niche (18.5 x 20 in): fixed shutter, wooden mica"
+    },
+    "#31ffff": {
+      "name": "H04_Cool_Tide",
+      "faces": 1,
+      "meaning": "Open slot (17.5 x 8 in) at the right end of the plinth: robot floor-cleaner exit — keep open"
+    },
+    "#661900": {
+      "name": "B08_Burnt_Sienna",
+      "faces": 3,
+      "meaning": "(a) 4 in front strip: concealed strip-light reveal; (b) long side facing TV (37 x 84 in, two ~18 in panels): pooja shutters with CNC carving"
+    },
+    "#00cccc": {
+      "name": "H06_Ocean_Depth",
+      "faces": 1,
+      "meaning": null
+    },
+    "#99ff99": {
+      "name": "G02_Spring_Lime",
+      "faces": 1,
+      "meaning": "Tall right block front face (20 x 84 in): green matte (same green matte mica)"
+    },
+    "#ccffff": {
+      "name": "H01_Misty_Ice",
+      "faces": 1,
+      "meaning": "9 in wall end beside the unit (full 10 ft height): green matte, continued from the unit"
+    },
+    "#ffffff": {
+      "name": "Default",
+      "faces": 51,
+      "meaning": "Console top: wooden mica; other white faces are wall/carcass"
+    }
+  },
+  "confirmed": [
+    {
+      "date": "2026-11-17",
+      "section": "#ff6532 back panel behind TV",
+      "decision": "Green matte mica panel, as in the customer's reference image (sage/olive green panel behind the TV). Material confirmed as mica in the next answer."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "#666600 strip above TV panel",
+      "decision": "Same green matte mica as the TV back panel."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Ledge between green panels (#ff99ff/#ff65ff), 96 x 8 x 2 in",
+      "decision": "Wooden mica finish using the customer's supplied wood mica photo; used to place small decorative items."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "#00ffff strip under ledge",
+      "decision": "Warm-white LED strip (customer answered yes to: warm-white LED strip lighting the panel below, as in reference photo)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "#ffd865 top section 144 x 36 in",
+      "decision": "PVC louver panel per customer's PVC reference photo (vertical wood-grain louvers with black grooves). Fixed decorative surface — no opening action."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "#6600cc fronts (tall left 20 x 64 in; bottom row 4th, 20 x 12 in)",
+      "decision": "Black tinted glass shutters (both)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Tall left black glass shutter (20 x 64 in)",
+      "decision": "Hinged on the left (rounded-edge side), swings open."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Bottom-row black glass shutter (20 x 12 in, 4th from left)",
+      "decision": "Lifts upward to open (customer correction; supersedes earlier 'side hinge' answer)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Five bottom-row fronts (#006666, all except 4th)",
+      "decision": "Wooden mica finished shutters. Rendered with the customer's wood mica photo (same wooden mica as the ledge, per the customer's 'wooden mica' wording)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Five wooden mica bottom shutters",
+      "decision": "Swing open on side hinges."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Tall left unit rounded edge (#ff0000) and side face toward TV (#006666)",
+      "decision": "Wooden mica."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Tall right block front face #99ff99 (20 x 84 in)",
+      "decision": "Green matte (same green as TV panel)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Tall right block 4 in front strip #661900",
+      "decision": "4 in strip providing a concealed LED strip light (customer: 'acts as 4 inch strip to provide concealed strip light'). Light colour assumed warm white to match other confirmed lighting — render approximation."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Tall right block long side facing TV #661900 (37 x 84 in, split into two ~18 in source panels)",
+      "decision": "Pooja shutters with CNC carving, per customer's CNC reference image (jali mandala with backlit copper/mirror inserts, hanging bells, lotus motifs, round wooden centre handle)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "#ccffff 9 in wall end beside the unit",
+      "decision": "Continue the green matte finish onto this wall end (customer chose option 1)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Open niche walls #00ff00",
+      "decision": "Textured green wallpaper, colour matched to the green TV mica."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Niche shelves #cc0066 (two)",
+      "decision": "Wooden mica finish. Purpose: display of academic achievements — medals, winning cups, award certificates."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Base under the awards niche (#31ffff / #ffbf00)",
+      "decision": "Robot floor-cleaner parking bay. Customer: bay about 20 in depth, robot about 16-18 in diameter; show a ~16 in diameter robot cleaner inside, visible. The robot comes out only through the H04 #31ffff face, so that face is an open slot. #ffbf00 is a fixed shutter in wooden mica (no opening action)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Console top and under-console light",
+      "decision": "Customer replied 'Yes, proceed' to: wooden mica console top, and warm-white LED glow under the floating console (8 in above floor). Both applied."
+    }
+  ],
+  "approximations": [
+    "Green shade: reference photo is under warm lighting (sampled ~#635332); render uses an olive-green estimate until an exact laminate/paint code or sample is supplied. Reference image's surface looks lightly textured; texture not confirmed.",
+    "Hinge side of each of the five wooden bottom shutters not specified; render will choose per-shutter hinge sides (marked as approximation) until the customer states otherwise.",
+    "Pooja shutters: carving pattern, base colour (light/white as in reference), insert material and handle follow the reference photo visually; exact CNC drawing, board colour, back-light and handle not separately confirmed. Two doors assumed from the two equal source panels; opening (outward double doors meeting at centre) follows reference.",
+    "Green wallpaper texture pattern is a render approximation (no wallpaper sample supplied); colour matched to the green mica.",
+    "Robot cleaner rendered as a generic ~16 in dia x ~3.5 in round robot (height/brand not given). Bay internal partitions are render approximations.",
+    "Illustrative 65-inch TV (TV size not given).",
+    "Small ledge decoratives, trophies, certificates and medal are illustrative props.",
+    "Inside of the tall black-glass cabinet not specified — shown empty.",
+    "Pooja interior (one shelf, warm light) is illustrative; door board colour and carving taken from the reference photo, cropped into left/right door images (pooja-door-left/right.jpg).",
+    "4 in pooja front strip rendered in wood mica (colour not stated); concealed strip light shown warm white.",
+    "#00cccc 1 in edge rendered as the concealed-light gap.",
+    "Pooja inner side facing the niche (#ffffff in source) rendered as the niche wallpaper.",
+    "Black tinted glass rendered at 72% opacity."
+  ],
+  "openQuestions": [
+    "Inside of the tall black-glass cabinet (shelves? lighting?)",
+    "Lighting in the awards niche",
+    "Hinge side of each wooden console shutter (optional)",
+    "Exact green mica code, wood mica brand/design no. (optional)",
+    "Pooja interior layout and door board colour (optional)",
+    "Quotation rates for this customer"
+  ],
+  "quotation": {
+    "status": "No rates supplied for this customer"
+  },
+  "reference": {
+    "image": "Customer reference photo shared in chat 2026-11-17 (inspiration image: green matte TV panel with profile lighting, fluted wood panel, lit open wood shelves, green lower cabinets with wood top). Not committed; only the confirmed green panel is applied so far."
+  },
+  "textures": {
+    "woodMica": {
+      "file": "dist/pon-karthikeyan/wood-mica-reference.jpg",
+      "sha256": "1a2b58801055150205362712a097191c220a94bf9271174fa91aad1467aa1568",
+      "source": "Customer-supplied wood mica photo, 17 Nov 2026; brand/design number not given",
+      "usedOn": [
+        "ledge"
+      ]
+    },
+    "pvcLouver": {
+      "file": "dist/pon-karthikeyan/pvc-louver-reference.jpg",
+      "sha256": "ea2bdd39ab7f13aea0512f3a91e06f319f69dc7445d904edf253eff131ffc0a6",
+      "source": "Customer-supplied PVC louver reference photo (pvc_reference.jpg), 17 Nov 2026",
+      "usedOn": [
+        "top header section"
+      ],
+      "note": "Separate material from the wood mica; louver groove spacing/profile depth are render approximations from the photo."
+    },
+    "poojaCnc": {
+      "file": "dist/pon-karthikeyan/pooja-cnc-reference.jpg",
+      "sha256": "843493cb2fc6062250026993a32ccd0714826a5a099937de6397073f0bb1ed22",
+      "source": "Customer-supplied CNC pooja door reference (WhatsApp screenshot), 17 Nov 2026",
+      "usedOn": [
+        "pooja shutters on tall right block side facing TV"
+      ]
+    }
+  },
+  "implementation": {
+    "directory": "dist/pon-karthikeyan",
+    "files": [
+      "index.html",
+      "studio.js",
+      "model.js",
+      "exact-layout.js",
+      "wood-mica-reference.jpg",
+      "pvc-louver-reference.jpg",
+      "pooja-cnc-reference.jpg",
+      "pooja-door-left.jpg",
+      "pooja-door-right.jpg"
+    ],
+    "layoutScript": "scripts/prepare-pon-karthikeyan-layout.py",
+    "check": "check-pon-karthikeyan.mjs",
+    "template": "dist/ratesh (studio.js/index.html), shared rathesh studio.css + tour.js, vendored three r180"
+  }
+}

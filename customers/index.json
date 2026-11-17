@@ -24,6 +24,14 @@
       "route": "/ratesh/",
       "design": "customers/ratesh/design.json",
       "status": "customers/ratesh/STATUS.md"
+    },
+    {
+      "id": "pon-karthikeyan",
+      "name": "Mr. Pon Karthikeyan",
+      "project": "TV unit (Irugur)",
+      "route": "/pon-karthikeyan/",
+      "design": "customers/pon-karthikeyan/design.json",
+      "status": "customers/pon-karthikeyan/STATUS.md"
     }
   ]
 }
