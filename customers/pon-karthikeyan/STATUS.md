@@ -91,6 +91,14 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - The green mica wall panel now covers the wall behind and above the TV panel.
 - **Verified:** check passed (panel depth 3.1 in, 3 panel lights, reveal under the ledge). Local SwiftShader screenshots of the full view and the TV panel view show the light line on the top and the right side; the left side was hidden at those angles.
 
+## Revision 5 — 17 Nov 2026 (supersedes rev 4 lighting)
+
+- **TV panel lighting changed to a single vertical concealed strip on the niche side**, running from the console up to the louvers.
+  - The left and top strips were removed.
+  - The panel is now flush with the tall unit and the ledge, with a 1.5 in reveal on the niche side only.
+- **New concealed strip along the bottom of the louvers** at 84 in, running full width from the left glass cabinet to the right end. It has 2 point lights and a glow wash down the green panel.
+- **Verified:** check passed (1 panel light, panel x 24.1–118.5, full-width louver bottom strip). Local SwiftShader full-view screenshot shows the wash under the louvers and the vertical strip by the niche.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

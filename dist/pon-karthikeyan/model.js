@@ -79,23 +79,18 @@ export function buildModel(){
  const panel=unit('tv-panel','Green matte TV panel','panel',green,green);
  // Green mica wall panel stays on the wall behind and above the TV panel.
  B(panel.group,24.1,120,72.15,72.95,20,84,panel.front);
- // Rev 4: TV panel 3 in deep, set 1.5 in in from both sides and below the ledge so a
- // concealed warm-white strip on its sides and top glows onto the wall panel.
- const box=B(panel.group,25.6,118.5,69.05,72.15,20,66.5,panel.front);box.userData.role='tv-panel-box';
- panel.depthInches=3;panel.revealInches=1.5;
- led(panel,25.6,25.95,71.3,71.9,21,66,24.8,71.9,44,.35,.9);
- led(panel,118.15,118.5,71.3,71.9,21,66,119.3,71.9,44,.35,.9);
- led(panel,26,118.1,71.3,71.9,66.15,66.5,72,71.9,67.3,.35,1.1);
- panel.concealedLight='Warm white strip on both sides and top of the TV panel';
- // Visible wash in the reveal: warm gradient, brightest at the hidden strip.
+ // Rev 5: TV panel 3 in deep, flush with the tall unit and the ledge; a 1.5 in reveal on
+ // the niche side only, with one vertical concealed strip from the console up to the louvers.
+ const box=B(panel.group,24.1,118.5,69.05,72.15,20,68,panel.front);box.userData.role='tv-panel-box';
+ panel.depthInches=3;panel.revealInches=1.5;panel.revealSide='niche side (right)';
+ led(panel,118.85,119.25,71.5,71.95,20.2,83.8,119.6,71.6,44,.35,1.0);
+ panel.concealedLight='One vertical warm-white strip on the niche side, console to louvers';
  const glowTex=canvasTexture(256,8,(c,w,h)=>{const g=c.createLinearGradient(0,0,w,0);g.addColorStop(0,'rgba(255,214,150,0)');g.addColorStop(.55,'rgba(255,214,150,.55)');g.addColorStop(1,'rgba(255,236,200,1)');c.fillStyle=g;c.fillRect(0,0,w,h);});
- const glowMat=rot=>{const t=glowTex?.clone();if(t){t.center.set(.5,.5);t.rotation=rot;t.needsUpdate=true;}const m=new T.MeshBasicMaterial({color:'#ffe9cc',map:t||null,transparent:true,opacity:glowTex?1:.6,blending:T.AdditiveBlending,depthWrite:false,toneMapped:false});return m;};
- const glows=[];
- const glowPlane=(x0,x1,z0,z1,y,rot)=>{const m=new T.Mesh(new T.PlaneGeometry((x1-x0)*I,(z1-z0)*I),glowMat(rot));m.position.set((x0+x1)/2*I,(z0+z1)/2*I,-y*I);m.renderOrder=5;panel.group.add(m);glows.push(m);return m;};
- glowPlane(24.1,25.6,20,66.5,72.1,0);            // left reveal, bright toward the panel
- glowPlane(118.5,120,20,66.5,72.1,Math.PI);      // right reveal
- glowPlane(24.1,120,66.5,68,72.1,-Math.PI/2);    // top reveal under the ledge
- panel.glows=glows;
+ const glowMat=rot=>{const t=glowTex?.clone();if(t){t.center.set(.5,.5);t.rotation=rot;t.needsUpdate=true;}return new T.MeshBasicMaterial({color:'#ffe9cc',map:t||null,transparent:true,opacity:glowTex?1:.6,blending:T.AdditiveBlending,depthWrite:false,toneMapped:false});};
+ const glowPlane=(u,x0,x1,z0,z1,y,rot)=>{const m=new T.Mesh(new T.PlaneGeometry((x1-x0)*I,(z1-z0)*I),glowMat(rot));m.position.set((x0+x1)/2*I,(z0+z1)/2*I,-y*I);m.renderOrder=5;u.group.add(m);(u.glows??=[]).push(m);return m;};
+ glowPlane(panel,118.5,120,20,84,72.1,Math.PI);   // vertical wash beside the panel
+ panel.washFromLouver=glowPlane(panel,24.1,118.5,74,84,72.1,Math.PI/2); // wash below the louver strip, brightest at top
+
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();
  B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
  panel.tvNote='Illustrative 65-inch TV; actual TV size not specified.';
@@ -126,6 +121,11 @@ export function buildModel(){
  B(louver.group,.5,142.2,71.15,71.45,119.45,119.75,lightMaterial).castShadow=false;B(louver.group,142.2,142.5,1.5,71.15,119.45,119.75,lightMaterial).castShadow=false;
  for(const [x,y] of [[36,70.2],[108,70.2],[141,30]]){const l=new T.PointLight('#ffd9a0',.3,1.5,2);l.position.set(x*I,116*I,-y*I);louver.group.add(l);louver.lightNodes.push(l);lights.push(l);}
  louver.coveLight='Warm white, ceiling line';
+ // Rev 5: concealed strip along the bottom edge of the louvers, left glass cabinet to the right end,
+ // washing down the green panel.
+ B(louver.group,.5,143.2,70.9,71.4,84.05,84.45,lightMaterial).castShadow=false;
+ for(const x of [48,100]){const l=new T.PointLight('#ffd9a0',.3,1.2,2);l.position.set(x*I,83*I,-70.6*I);louver.group.add(l);louver.lightNodes.push(l);lights.push(l);}
+ louver.bottomStrip='Concealed warm-white strip, full width under the louvers';
 
  // ---- 4. Tall left unit: black tinted glass shutter, left hinge ----
  const tall=unit('tall-glass','Tall black-glass cabinet','glass',{name:'Black tinted glass',color:'#15181a'},wood,{finishable:false});

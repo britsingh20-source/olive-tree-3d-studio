@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk5",
+    "assetVersion": "pk6",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -271,6 +271,16 @@
       "date": "2026-11-17",
       "section": "Rev 4 · TV panel concealed light",
       "decision": "Concealed warm-white strip light on both sides and the top of the 3 in TV panel so the panel reads separately from the wall (customer: floral change alone did not separate it)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 5 · TV panel light (supersedes rev 4)",
+      "decision": "Only ONE vertical concealed strip, on the TV panel side next to the floral niche, running from the bottom up to the louvers. No light on the left side or top of the TV panel."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 5 · strip under louvers",
+      "decision": "Concealed strip light along the bottom edge of the louvers, between the louvers and the green panel, full width from the left glass cabinet to the right end."
     }
   ],
   "approximations": [
@@ -288,7 +298,7 @@
     "Louver slats: 1.4 in slat, 2 in pitch, 0.75 in deep over dark backing; walnut tone #8d5d42 from the PVC photo with procedural even grain.",
     "Floral mica pattern is a procedural tone-on-tone design, not a specific catalogue sheet.",
     "Pooja door images: board areas of the CNC reference replaced with the customer's wood mica photo (vertical grain); cut-outs, bells, lotus and handle kept from the reference.",
-    "To show the concealed light, the 3 in TV panel is drawn 1.5 in in from each side and 1.5 in below the ledge (about 93 x 46.5 in), on the green mica wall panel that covers the wall behind and above. Reveal size is a render choice; confirm actual panel size/reveal on site."
+    "TV panel drawn flush with the tall unit and the ledge; a 1.5 in reveal only on the niche side (panel about 94.4 x 48 in) to show the vertical strip. Confirm reveal on site."
   ],
   "openQuestions": [
     "Inside of the tall black-glass cabinet (shelves? lighting?)",
