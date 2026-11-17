@@ -77,9 +77,25 @@ export function buildModel(){
 
  // ---- 1. Green matte mica TV panels with the TV ----
  const panel=unit('tv-panel','Green matte TV panel','panel',green,green);
- B(panel.group,24.1,120,69.05,72.95,20,68,panel.front);      // behind TV (source orange): 3 in deep panel standing off the wall (rev 2)
- panel.depthInches=3;
- B(panel.group,24.1,120,72.05,72.95,70,84,panel.front);      // above ledge (source olive)
+ // Green mica wall panel stays on the wall behind and above the TV panel.
+ B(panel.group,24.1,120,72.15,72.95,20,84,panel.front);
+ // Rev 4: TV panel 3 in deep, set 1.5 in in from both sides and below the ledge so a
+ // concealed warm-white strip on its sides and top glows onto the wall panel.
+ const box=B(panel.group,25.6,118.5,69.05,72.15,20,66.5,panel.front);box.userData.role='tv-panel-box';
+ panel.depthInches=3;panel.revealInches=1.5;
+ led(panel,25.6,25.95,71.3,71.9,21,66,24.8,71.9,44,.35,.9);
+ led(panel,118.15,118.5,71.3,71.9,21,66,119.3,71.9,44,.35,.9);
+ led(panel,26,118.1,71.3,71.9,66.15,66.5,72,71.9,67.3,.35,1.1);
+ panel.concealedLight='Warm white strip on both sides and top of the TV panel';
+ // Visible wash in the reveal: warm gradient, brightest at the hidden strip.
+ const glowTex=canvasTexture(256,8,(c,w,h)=>{const g=c.createLinearGradient(0,0,w,0);g.addColorStop(0,'rgba(255,214,150,0)');g.addColorStop(.55,'rgba(255,214,150,.55)');g.addColorStop(1,'rgba(255,236,200,1)');c.fillStyle=g;c.fillRect(0,0,w,h);});
+ const glowMat=rot=>{const t=glowTex?.clone();if(t){t.center.set(.5,.5);t.rotation=rot;t.needsUpdate=true;}const m=new T.MeshBasicMaterial({color:'#ffe9cc',map:t||null,transparent:true,opacity:glowTex?1:.6,blending:T.AdditiveBlending,depthWrite:false,toneMapped:false});return m;};
+ const glows=[];
+ const glowPlane=(x0,x1,z0,z1,y,rot)=>{const m=new T.Mesh(new T.PlaneGeometry((x1-x0)*I,(z1-z0)*I),glowMat(rot));m.position.set((x0+x1)/2*I,(z0+z1)/2*I,-y*I);m.renderOrder=5;panel.group.add(m);glows.push(m);return m;};
+ glowPlane(24.1,25.6,20,66.5,72.1,0);            // left reveal, bright toward the panel
+ glowPlane(118.5,120,20,66.5,72.1,Math.PI);      // right reveal
+ glowPlane(24.1,120,66.5,68,72.1,-Math.PI/2);    // top reveal under the ledge
+ panel.glows=glows;
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();
  B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
  panel.tvNote='Illustrative 65-inch TV; actual TV size not specified.';
@@ -202,7 +218,7 @@ export function buildModel(){
  let reference=false;
  return {root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
  setReference(on){reference=on;referenceRoot.visible=on;for(const u of units)u.group.visible=!on;architecture.visible=!on;},
- setLights(on){for(const l of lights)l.visible=on;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
+ setLights(on){for(const l of lights)l.visible=on;for(const u of units)for(const g of u.glows||[])g.visible=on;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
  update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
  };
 }

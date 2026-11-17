@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk3",
+    "assetVersion": "pk5",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -266,6 +266,11 @@
       "date": "2026-11-17",
       "section": "Rev 3 · hollow left side of the tall left unit (white source face x=0.1, from end of rounded edge to wall, 8-84 in)",
       "decision": "Closed with a wooden mica panel (customer). Inner carcass side and console left end also closed in wood mica."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 4 · TV panel concealed light",
+      "decision": "Concealed warm-white strip light on both sides and the top of the 3 in TV panel so the panel reads separately from the wall (customer: floral change alone did not separate it)."
     }
   ],
   "approximations": [
@@ -282,7 +287,8 @@
     "Matte green preview #6b8559 (customer to give mica code if exact match needed); finish tray also offers sage and olive greens.",
     "Louver slats: 1.4 in slat, 2 in pitch, 0.75 in deep over dark backing; walnut tone #8d5d42 from the PVC photo with procedural even grain.",
     "Floral mica pattern is a procedural tone-on-tone design, not a specific catalogue sheet.",
-    "Pooja door images: board areas of the CNC reference replaced with the customer's wood mica photo (vertical grain); cut-outs, bells, lotus and handle kept from the reference."
+    "Pooja door images: board areas of the CNC reference replaced with the customer's wood mica photo (vertical grain); cut-outs, bells, lotus and handle kept from the reference.",
+    "To show the concealed light, the 3 in TV panel is drawn 1.5 in in from each side and 1.5 in below the ledge (about 93 x 46.5 in), on the green mica wall panel that covers the wall behind and above. Reveal size is a render choice; confirm actual panel size/reveal on site."
   ],
   "openQuestions": [
     "Inside of the tall black-glass cabinet (shelves? lighting?)",

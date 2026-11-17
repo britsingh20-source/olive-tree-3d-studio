@@ -84,6 +84,13 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **Lesson:** this source face was white. It wasn't one of the coloured faces, so it was never asked about. For future clients, also show the visible white/unassigned faces during colour intake.
 - **Verified:** check passed (asserts the left side panel). Local SwiftShader screenshot of the tall unit rotated to its left side shows a solid wood side with no gap.
 
+## Revision 4 — 17 Nov 2026
+
+- **Concealed warm-white strip added on both sides and the top of the 3 in TV panel.** It has 3 point lights plus an additive glow gradient in the reveal, and toggles with Lighting.
+  - The panel is drawn with a 1.5 in reveal so the light can show.
+  - The green mica wall panel now covers the wall behind and above the TV panel.
+- **Verified:** check passed (panel depth 3.1 in, 3 panel lights, reveal under the ledge). Local SwiftShader screenshots of the full view and the TV panel view show the light line on the top and the right side; the left side was hidden at those angles.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.
