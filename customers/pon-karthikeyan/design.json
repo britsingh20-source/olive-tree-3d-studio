@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk10",
+    "assetVersion": "pk11",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -321,6 +321,11 @@
       "date": "2026-11-17",
       "section": "Rev 9 · robot cleaner animation",
       "decision": "Customer asked: animate the robot mop automatically coming out, cleaning and going back in. Added a 'Robot cleaner' button: robot exits the open slot under the console, cleans the floor in front of the unit in four back-and-forth rows, returns and parks in its bay (about 40 s at 60 fps)."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 10 · robot cleaner behaviour (supersedes rev 9 button)",
+      "decision": "No play button — customers may not know the robot is there. Robot loops automatically: rests 3-4 s inside, comes out for a ~6 s trip, cleans a different spot each time (e.g. under the black glass shutter), goes back in."
     }
   ],
   "approximations": [
@@ -343,7 +348,7 @@
     "Light washes are drawn as additive gradients beside each strip (no real light sources), to look like LED strip light without hot-spots.",
     "Tall cabinet glass shelf count (4) and spacing assumed.",
     "Pebble box depth 8 in and wooden mica finish assumed; pebbles illustrative white/grey river pebbles.",
-    "Robot cleaning route (4 rows, x 18-100 in, 19-46 in in front of the wall line) and speed are illustrative."
+    "Robot trip spots (9 locations under/in front of the console, with random offsets) are illustrative."
   ],
   "openQuestions": [
     "Number of glass shelves in the tall cabinet (4 shown)",

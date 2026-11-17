@@ -140,6 +140,20 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **Verified:** check simulates the full run at 60 fps. The robot only passes x 120–144 under the console (y > 55 in); it reaches the far left (x < 20 in) and the front area, finishes, and ends exactly at the dock.
 - **Not visually verified:** the motion itself. The local software renderer runs at about 1 fps and the studio clamps frame steps to 0.05 s, so it can't show the animation meaningfully. It needs a real browser.
 
+## Revision 10 — 17 Nov 2026 (supersedes rev 9 button)
+
+- **The robot now runs by itself in a loop; the button is removed.**
+  - It starts 2 s after load.
+  - Each cycle it rests 3–4 s (random) in the bay, then makes a 6 s trip out through the slot to a new spot under or in front of the console (not the same as the previous trip), does a short zigzag clean, and returns.
+  - `paused` can stop it.
+- **Verified:** the check simulates 70 s at 60 fps:
+  - ≥6 trips, each 6 s ±0.1;
+  - every rest 3–4 s;
+  - ≥3 distinct spots;
+  - the robot is back at the dock after each trip;
+  - it never leaves the slot zone at x 120–144.
+- **Not visually verified:** the motion. It still needs a real browser.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

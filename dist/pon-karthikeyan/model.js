@@ -203,16 +203,24 @@ export function buildModel(){
  // Rev 9: cleaning animation. The robot leaves through the open slot under the console,
  // cleans the floor in front of the TV unit in back-and-forth rows, and returns to its dock.
  const brush=new T.Mesh(new T.CylinderGeometry(2.2*I,2.2*I,.15*I,6),std('#6b6f73',.6));brush.position.set(-5.5*I,.3*I,5.5*I);robot.add(brush);
- const dock=[131,64],route=[dock,[116,64],[100,64],[100,48]];
- const rows=[46,37,28,19];rows.forEach((y,k)=>{const xs=k%2?[18,100]:[100,18];route.push([xs[0],y],[xs[1],y]);});
- route.push([100,19],[100,48],[100,64],[116,64],dock);
- const pts=route.map(([x,y])=>new T.Vector3(x*I,0,-y*I)),lens=[];let total=0;for(let k=1;k<pts.length;k++){const l=pts[k].distanceTo(pts[k-1]);lens.push(l);total+=l;}
- const cleaner={active:false,distance:0,speed:.42,route,total,
-  start(){this.active=true;this.distance=0;},stop(){this.active=false;this.distance=0;robot.position.copy(pts[0]);robot.rotation.y=-Math.PI/2;},
-  update(dt){if(!this.active)return;this.distance=Math.min(total,this.distance+this.speed*dt);let d=this.distance,k=0;while(k<lens.length-1&&d>lens[k]){d-=lens[k];k++;}
-   const a=pts[k],b=pts[k+1],t=lens[k]?d/lens[k]:1;robot.position.lerpVectors(a,b,t);const target=Math.atan2(b.x-a.x,b.z-a.z);
-   let diff=((target-robot.rotation.y+Math.PI)%(Math.PI*2)+Math.PI*2)%(Math.PI*2)-Math.PI;robot.rotation.y+=diff*Math.min(1,dt*8);brush.rotation.y+=dt*18;
-   if(this.distance>=total){this.active=false;robot.position.copy(pts[0]);robot.rotation.y=-Math.PI/2;this.onDone?.();}}};
+ // Rev 10: runs by itself in a loop — rests in the bay 3-4 s, then a 6 s trip out and back.
+ // Each trip picks a new spot under or in front of the console (often under the black glass
+ // lift-up shutter at x 64.5-84.8 in), cleans it with a short zigzag, and returns.
+ const dockP=new T.Vector3(131*I,0,-64*I),P=(x,y)=>new T.Vector3(x*I,0,-y*I);
+ const spots=[[74,61],[70,50],[80,47],[40,60],[95,52],[55,46],[28,49],[88,62],[66,58]];
+ const cleaner={active:false,waiting:true,timer:2,trips:0,tripSeconds:6,distance:0,route:[],lens:[],total:0,lastSpot:-1,
+  plan(){let k;do{k=Math.floor(Math.random()*spots.length);}while(k===this.lastSpot);this.lastSpot=k;
+   const [x,y]=spots[k],jx=(Math.random()-.5)*6,jy=(Math.random()-.5)*3,tx=x+jx,ty=y+jy,side=Math.random()<.5?1:-1;
+   const out=[dockP,P(116,64),P(tx,64),P(tx,ty)],clean=[P(tx+5*side,ty-2),P(tx-5*side,ty-4),P(tx+5*side,ty-6),P(tx,ty-3)];
+   const pts=[...out,...clean,P(tx,64),P(116,64),dockP.clone()];this.route=pts;this.spot=[tx,ty];this.lens=[];this.total=0;
+   for(let n=1;n<pts.length;n++){const l=pts[n].distanceTo(pts[n-1]);this.lens.push(l);this.total+=l;}this.speed=this.total/this.tripSeconds;this.distance=0;},
+  update(dt){if(this.paused)return;
+   if(this.waiting){this.timer-=dt;if(this.timer<=0){this.waiting=false;this.active=true;this.plan();}return;}
+   this.distance=Math.min(this.total,this.distance+this.speed*dt);let d=this.distance,k=0;while(k<this.lens.length-1&&d>this.lens[k]){d-=this.lens[k];k++;}
+   const a=this.route[k],b=this.route[k+1],t=this.lens[k]?d/this.lens[k]:1;robot.position.lerpVectors(a,b,t);
+   if(this.lens[k]>1e-4){const target=Math.atan2(b.x-a.x,b.z-a.z);let diff=((target-robot.rotation.y+Math.PI)%(Math.PI*2)+Math.PI*2)%(Math.PI*2)-Math.PI;robot.rotation.y+=diff*Math.min(1,dt*10);}
+   brush.rotation.y+=dt*18;
+   if(this.distance>=this.total){this.active=false;this.waiting=true;this.trips++;this.timer=3+Math.random();robot.position.copy(dockP);robot.rotation.y=-Math.PI/2;this.onTrip?.(this.trips);}}};
  robot.rotation.y=-Math.PI/2;bay.cleaner=cleaner;bay.robot=robot;
  bay.robotDiameterInches=16;bay.exit='Open slot facing the TV area, under the floating console';bay.fixedShutter=true;
 

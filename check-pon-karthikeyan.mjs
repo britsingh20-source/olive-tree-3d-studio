@@ -7,7 +7,7 @@ const T=await import(vendor);
 // Node has no image loader; geometry and behaviour are checked, not texture appearance.
 T.TextureLoader.prototype.load=function(){return new T.Texture();};
 const {buildModel,exactLayout}=await import('./dist/pon-karthikeyan/model.js');
-const m=buildModel(),get=id=>m.units.find(u=>u.id===id),I=.0254;
+const m=buildModel(),get=id=>m.units.find(u=>u.id===id),I=.0254;m.robot.paused=true; // keep the robot docked until its own test
 // Every extracted source face is preserved exactly for Reference colours.
 assert.equal(exactLayout.sourceFaces.length,95);assert.equal(m.sourceMeshes.length,95);
 for(const mesh of m.sourceMeshes){const f=exactLayout.sourceFaces.find(f=>f.id===mesh.userData.sourceFace),p=mesh.geometry.attributes.position,pts=f.points.flat();assert.equal(p.count,pts.length);for(let i=0;i<p.count;i++)assert(new T.Vector3().fromBufferAttribute(p,i).distanceTo(new T.Vector3(...pts[i]))<1e-6);}
@@ -42,9 +42,13 @@ const robot=bay.group.children.find(o=>o.isGroup);const rb=new T.Box3().setFromO
 let pointLights=0;m.root.traverse(o=>{if(o.isLight)pointLights++;});assert.equal(pointLights,0);
 assert.equal(get('tall-glass').strips.length,2,'vertical strips inside tall glass cabinet');assert.equal(get('pooja').foyerFace,'Green grass mat');assert.equal(get('tall-glass').glassShelves.length,4);assert.equal(get('pooja').pebbleBox.heightInches,15);
 const glows=m.units.flatMap(u=>u.glows||[]);assert(glows.length>=10);m.setLights(false);assert(glows.every(g=>!g.visible));m.setLights(true);assert(glows.every(g=>g.visible));
-// Rev 9: robot cleaner leaves through the slot, cleans in front of the unit, returns to its dock.
-{const r=bay.robot,home=r.position.clone();m.robot.start();let minX=Infinity,maxZ=-Infinity,done=false;m.robot.onDone=()=>done=true;for(let i=0;i<60*120&&!done;i++){m.update(1/60);minX=Math.min(minX,r.position.x);maxZ=Math.max(maxZ,r.position.z);if(r.position.x>120*I-.01&&r.position.x<144*I)assert(r.position.z<-55*I,'robot only passes the slot zone under the console');}
- assert(done,'robot finished its run');assert(minX<20*I,'robot reached the left side');assert(maxZ>-20*I,'robot cleaned in front of the unit');assert(r.position.distanceTo(home)<1e-6,'robot back at dock');}
+// Rev 10: robot loops by itself — rests 3-4 s in the bay, 6 s trips, different spot each trip.
+{const r=bay.robot,home=new T.Vector3(131*I,0,-64*I),cl=m.robot;cl.paused=false;assert(r.position.distanceTo(home)<1e-6);const starts=[],ends=[],spots=new Set();let tm=0,wasActive=false;
+ for(let i=0;i<60*70;i++){m.update(1/60);tm+=1/60;if(cl.active&&!wasActive){starts.push(tm);spots.add(cl.spot.map(v=>Math.round(v)).join(','));}if(!cl.active&&wasActive){ends.push(tm);assert(r.position.distanceTo(home)<1e-6,'back in bay after each trip');}wasActive=cl.active;
+  if(r.position.x>120*I-.01&&r.position.x<144*I)assert(r.position.z<-55*I,'robot only uses the slot zone under the console');}
+ assert(starts.length>=6,'several trips in 70 s');for(let k=0;k<ends.length;k++)assert(Math.abs(ends[k]-starts[k]-6)<.1,'each trip ~6 s');
+ for(let k=1;k<starts.length;k++){const rest=starts[k]-ends[k-1];assert(rest>2.9&&rest<4.1,'rests 3-4 s');}
+ assert(spots.size>=3,'trips vary');}
 m.setReference(true);assert(m.units.every(u=>!u.group.visible));m.setReference(false);assert(m.units.every(u=>u.group.visible));
 // A stage resize updates projection only; it never calls fit or moves the camera.
 const code=fs.readFileSync('dist/pon-karthikeyan/studio.js','utf8'),resize=code.slice(code.indexOf('function resize()'),code.indexOf('async function start()'));let fitted=0,sized=0;const cam={fov:40,aspect:1,position:{x:1,y:2,z:3},updateProjectionMatrix(){}};const run=new Function('stage','renderer','camera','window','fit',"let lastStageSize='';"+resize+';return resize;')({clientWidth:1000,clientHeight:600},{capabilities:{maxTextureSize:8192},setPixelRatio(){},setSize(){sized++;}},cam,{devicePixelRatio:1},()=>fitted++);run();run();assert.equal(sized,1);assert.equal(fitted,0);assert.deepEqual(cam.position,{x:1,y:2,z:3});
