@@ -5,7 +5,7 @@ Updated 17 November 2026. Confirmed choices are in design.json.
 ## Current implementation
 
 - Viewer built in dist/pon-karthikeyan (route /pon-karthikeyan/), asset version `pk1`, storage key `pon-karthikeyan-tv-v1`.
-- **Not yet published.** This Claude session could not get write access to the repository (add_repo push was refused); files were prepared in a local clone for the user to commit.
+- **Live** at https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/ — commit cbb2fa9, GitHub Actions run 44081269882 succeeded (Claude GitHub App installed by the user 17 Nov 2026).
 - Built from the dist/ratesh template: shared rathesh studio.css and tour.js, vendored Three.js r180 + OrbitControls, compatibility fallback, finish tray with persistence, reference colours, guided tour (button only), no damping, resize never calls fit, drag-vs-tap detection.
 - Eight selectable units:
   1. Green matte TV panel (behind the TV and above the ledge) plus an illustrative 65-inch TV.
@@ -53,10 +53,9 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - **1280×900:** checked the full view, Open all, pooja closed and open, the niche, the robot bay, reference colours, and a drag to a side angle. No page errors; the only failed request was a 404 for favicon.ico.
   - **Tour and finishes:** started the tour and stopped it ("Tour stopped · you are in control"). Applied Green matte mica to the console, reloaded, and it was retained (localStorage).
   - **390×844 mobile viewport:** the page layout, the console product view with shutters opened, and the finish tray showing the wood sample swatch.
-- **Not yet done:** live deployment, a real phone (touch/pinch), a real GPU, and the full tour running to completion.
+- **Live check after deployment:** loaded the live URL in headless Chrome (SwiftShader WebGL) at 1280×900. studio.js, model.js, exact-layout.js and all four texture images returned 200. The closed view and Open all both rendered correctly; the only 404 was favicon.
+- **Not yet done:** a real phone (touch/pinch), a real GPU, and the full tour running to completion.
 
 ## Next action
 
-1. Commit `dist/pon-karthikeyan/`, `customers/pon-karthikeyan/`, `customers/index.json`, `scripts/prepare-pon-karthikeyan-layout.py` and `check-pon-karthikeyan.mjs` to main.
-2. Wait for the Pages deployment, then open https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/ and record the live check.
-3. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates.
+Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

@@ -7,12 +7,14 @@
   },
   "project": "TV unit (Irugur)",
   "viewer": {
-    "status": "Built locally and tested; not yet published (repository write access pending)",
+    "status": "Live",
     "route": "/pon-karthikeyan/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk1"
+    "assetVersion": "pk1",
+    "deployedCommit": "cbb2fa9",
+    "deployRun": "44081269882"
   },
   "source": {
     "files": [
