@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk2",
+    "assetVersion": "pk3",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -261,6 +261,11 @@
       "date": "2026-11-17",
       "section": "Rev 2 · wood mica grain",
       "decision": "Grain must not mismatch: continuous, consistent grain direction across adjacent panels."
+    },
+    {
+      "date": "2026-11-17",
+      "section": "Rev 3 · hollow left side of the tall left unit (white source face x=0.1, from end of rounded edge to wall, 8-84 in)",
+      "decision": "Closed with a wooden mica panel (customer). Inner carcass side and console left end also closed in wood mica."
     }
   ],
   "approximations": [

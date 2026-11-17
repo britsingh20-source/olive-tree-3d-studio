@@ -118,6 +118,11 @@ export function buildModel(){
  B(tg,3.8,23.35,71.25,72,20,84,tall.side);                 // back
  B(tg,3.8,23.35,55.6,71.25,20,20.75,tall.side);B(tg,3.8,23.35,55.6,71.25,83.25,84,tall.side);
  for(const id of [44951,44953,44955,44957]){const m=polygon(face(id),tall.side,0,'v');tg.add(m);} // exact rounded edge
+ // Rev 3: close the hollow left side (customer: wooden panel). Outer side from the end
+ // of the rounded edge back to the wall, full height 8-84 in, plus inner carcass sides.
+ B(tg,.1,.85,63.7,73,8,84,tall.side,'v');tall.leftSidePanel='Wooden mica, full height';
+ B(tg,3.8,4.55,55.6,71.25,20.75,83.25,tall.side,'v');
+ B(tg,.85,3.8,63.7,64.45,8,84,tall.side,'v');
  const cap=polygon(face(44039),tall.side);tg.add(cap);
  const bottomCap=polygon(face(44039),tall.side,-76*I);tg.add(bottomCap);   // same outline at 8 in
  const tallDoor=pivotAt(tg,3.8,55.5,52);B(tallDoor,3.85,24.05,54.8,55.5,20.1,83.9,blackGlass);
@@ -129,6 +134,7 @@ export function buildModel(){
  const cg=con.group;cg.userData.origin=new T.Vector3();
  B(cg,3.8,120,56,72,19.25,20,con.side);B(cg,3.8,120,56,72,8,8.75,con.side);B(cg,3.8,120,71.25,72,8.75,19.25,carcass);
  B(cg,119.25,120,56,72,8.75,19.25,con.side);
+ B(cg,3.8,4.55,56,71.25,8.75,19.25,con.side);   // rev 3: left end of console
  for(const x of [24.1,44.3,64.5,84.8,105])B(cg,x-.35,x+.35,56.2,71.25,8.75,19.25,carcass);
  const cells=[[3.8,24.1,'left'],[24.1,44.3,'left'],[44.3,64.5,'left'],[64.5,84.8,'lift'],[84.8,105,'right'],[105,120,'right']];
  con.hinges=[];

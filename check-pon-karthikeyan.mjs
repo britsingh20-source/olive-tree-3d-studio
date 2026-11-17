@@ -20,7 +20,7 @@ assert.equal(get('louver').fixed,true);assert(get('louver').slatCount>100,'louve
 // Rev 2: TV panel stands 3 in off the wall.
 {const panel=get('tv-panel');assert.equal(panel.depthInches,3);const back=panel.group.children[0],bx=new T.Box3().setFromObject(back);assert(Math.abs((bx.max.z-bx.min.z)/I-3.9)<.01);}
 assert.equal(get('awards-niche').background,'Green floral mica');assert.match(get('pooja').doorFinish,/Wooden mica/);assert.equal(get('louver').finishable,false);
-const tall=get('tall-glass');assert.equal(tall.actions.length,1);assert.equal(tall.hingeEdge,'left');
+const tall=get('tall-glass');assert.equal(tall.leftSidePanel,'Wooden mica, full height');assert.equal(tall.actions.length,1);assert.equal(tall.hingeEdge,'left');
 const con=get('console');assert.equal(con.woodShutterCount,5);assert.equal(con.actions.filter(a=>a.type==='hinge').length,5);assert.equal(con.actions.filter(a=>a.type==='lift').length,1);assert.equal(con.glassLift.type,'lift');assert.equal(con.floatHeightInches,8);
 const niche=get('awards-niche');assert.equal(niche.shelfCount,2);assert.equal(niche.shelfMaterial,'Wood mica');
 const bay=get('robot-bay');assert.equal(bay.robotDiameterInches,16);assert.equal(bay.fixedShutter,true);

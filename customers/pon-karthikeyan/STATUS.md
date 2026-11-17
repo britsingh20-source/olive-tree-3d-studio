@@ -78,6 +78,12 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - Real-phone frame rate has not been measured.
 - **Deployed:** commit b4ad201, Actions run 44083616525 succeeded. In headless Chrome the live URL loaded the pk2 modules and textures (all 200) and the full view rendered as in the local check.
 
+## Revision 3 — 17 Nov 2026
+
+- **Hollow left side of the tall left unit closed** with a full-height wooden mica panel (8–84 in, vertical grain), per the customer's screenshot. The inner carcass side and the console's left end were also closed.
+- **Lesson:** this source face was white. It wasn't one of the coloured faces, so it was never asked about. For future clients, also show the visible white/unassigned faces during colour intake.
+- **Verified:** check passed (asserts the left side panel). Local SwiftShader screenshot of the tall unit rotated to its left side shows a solid wood side with no gap.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.
