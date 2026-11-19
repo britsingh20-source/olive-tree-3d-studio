@@ -196,7 +196,10 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
     - Local SwiftShader: chose Option 4; the badge reads Option 4 of 4 and the tall-glass button is hidden.
     - Tour run for 60 s: it never visited the glass cabinet, with no page errors.
     - Side-by-side screenshot against the reference.
-- **Awaiting customer feedback:** which option; the layer tone; Option 4 build-out depth and niche layout. See `design.json` → `designPreviews`.
+- **Update (19 Nov, f):** removed Options 2 (curvy, louvers above) and 3 (curvy to ceiling) from the model, check and page. The former Option 4 is now Option 2 (id `curvyNiches`); option-4.jpg was renamed to option-2.jpg and option-3.jpg deleted.
+  - The chooser says "2 designs" and the badge reads "Option N of 2". Old saved values fall back to Option 1.
+  - **Verified:** check passed. Local SwiftShader: 2 cards; choosing Option 2 shows "Option 2 of 2: Curvy with open niches".
+- **Awaiting:** a new customer picture for another option; the customer's choice; Option 2 depth, niches and layer tone. See `design.json` → `designPreviews`.
 
 ## Next action
 

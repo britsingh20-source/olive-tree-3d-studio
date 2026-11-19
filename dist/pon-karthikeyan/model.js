@@ -100,12 +100,11 @@ export function buildModel(){
  // ---- Design preview (19 Nov): curvy double-layer panel, after the customer's reference ----
  // A 3 in second layer of the same matte green mica over the wall panel. Its left edge is a
  // flowing S-curve from the louvers (x 80 in) down to the console at the tall unit; a concealed
- // warm-white strip follows the curve and washes the base layer. Switch with setPanelDesign('current'|'curvyLouver'|'curvyCeiling').
+ // warm-white strip follows the curve and washes the base layer. Switch with setPanelDesign('current'|'curvyNiches').
  // Two curvy variants share the traced reference curve (IMG_0390), scaled so our TV sits where
  // the reference TV sits (ref TV px 515-900 x 405-690 → our x 43.45-100.55, z 28-60):
- //  · 'curvyLouver'  — layer stops at the louvers (84 in); louvers run full width above.
- //  · 'curvyCeiling' — louvers cut above the panel; base + layer run to the ceiling (120 in);
- //    above the reference TV top the photo's wall is stretched to our 60 in TV-top-to-ceiling.
+ //  (19 Nov: earlier curvy options 2 and 3 removed at the customer's request; the curve runs to the
+ //   ceiling; above the reference TV top the photo's wall is stretched to our 60 in TV-top-to-ceiling.)
  const mapX=X=>43.45+(X-515)*.1483,mapZLow=Y=>28+(690-Y)*.1123,mapZCeil=Y=>Y>=405?mapZLow(Y):60+(405-Y)*(60/390);
  const tracedAll=[[15,893],[50,850],[100,800],[150,748],[191,718],[200,712],[250,688],[285,665],[300,652],[315,638],[330,618],[345,566],[360,528],[375,510],[390,499],[405,491],[420,484],[450,477],[480,474],[510,471],[540,468],[570,463],[600,456],[630,444],[660,422],[690,399],[720,385],[745,380]];
  const cornerX=X=>mapX(X)+(118.5-mapX(985))*Math.max(0,(X-850)/135);
@@ -125,13 +124,11 @@ export function buildModel(){
   for(const pts of [curvePts,cornerPts]){ribbon(pts,.35,backY-.25,lightMaterial);const gl=ribbon(pts,7,backY-.1,glowSide());gl.userData.glow=true;panel.glows.push(gl);}
   g.userData.layer=layer;g.userData.curveXAt=z=>{let best=curvePts[0];for(const q of curvePts)if(Math.abs(q.y-z)<Math.abs(best.y-z))best=q;return best.x;};
   return g;}
- const curvyLouver=makeCurvy('Option 2 · Curvy panel with louvers above',84,mapZLow,tracedAll.filter(([Y])=>Y>=191));
- const curvyCeiling=makeCurvy('Option 3 · Curvy panel to the ceiling',120,mapZCeil,tracedAll);
- // Option 4 (19 Nov): customer asked to remove the tall glass display and run the green double-layer
+ // Option 2 (was Option 4, 19 Nov): customer asked to remove the tall glass display and run the green double-layer
  // paneling across the whole wall to the ceiling, with open rounded niches cut in like the reference.
  // Base panel is built out 8 in (front at y 64) so the niches have depth; curvy layer 3 in in front.
  const NB=64;
- const curvyNiches=makeCurvy('Option 4 · Curvy panel with open niches',120,mapZCeil,tracedAll,{backY:NB,minX:.1,ownBase:true});
+ const curvyNiches=makeCurvy('Option 2 · Curvy panel with open niches',120,mapZCeil,tracedAll,{backY:NB,minX:.1,ownBase:true});
  const roundRect=(path,x0,x1,z0,z1,r)=>{path.moveTo((x0+r)*I,z0*I);path.lineTo((x1-r)*I,z0*I);path.quadraticCurveTo(x1*I,z0*I,x1*I,(z0+r)*I);path.lineTo(x1*I,(z1-r)*I);path.quadraticCurveTo(x1*I,z1*I,(x1-r)*I,z1*I);path.lineTo((x0+r)*I,z1*I);path.quadraticCurveTo(x0*I,z1*I,x0*I,(z1-r)*I);path.lineTo(x0*I,(z0+r)*I);path.quadraticCurveTo(x0*I,z0*I,(x0+r)*I,z0*I);};
  // Niche sizes/positions follow the reference's four stacked niches, kept left of the curve.
  const niches=[[4,35,67.5,86,5],[4,29.5,50.5,64.5,4.5],[4,28.5,36.5,48.5,4.5],[4,21,22,34.5,4]];
@@ -150,8 +147,8 @@ export function buildModel(){
  curvyNiches.userData.nicheCount=niches.length;curvyNiches.userData.baseDepthInches=72.15-NB;
  rectDesign.name='Option 1 · Classic panel with ledge';
  panel.curveSource='Traced from customer reference IMG_0390';
- panel.designs={current:rectDesign,curvyLouver,curvyCeiling,curvyNiches};panel.design='current';
- panel.designOptions=[{id:'current',label:'Option 1 · Classic',note:'Rectangular 3 in panel, wooden ledge, louvers full width'},{id:'curvyLouver',label:'Option 2 · Curvy, louvers above',note:'Curvy double-layer panel up to the louvers; no ledge'},{id:'curvyCeiling',label:'Option 3 · Curvy to ceiling',note:'Curvy double-layer panel up to the ceiling; louvers on both sides; no ledge'},{id:'curvyNiches',label:'Option 4 · Curvy with open niches',note:'Glass display removed; green double-layer paneling across the wall to the ceiling with lit rounded open niches; no ledge'}];
+ panel.designs={current:rectDesign,curvyNiches};panel.design='current';
+ panel.designOptions=[{id:'current',label:'Option 1 · Classic',note:'Rectangular 3 in panel, wooden ledge, louvers full width'},{id:'curvyNiches',label:'Option 2 · Curvy with open niches',note:'Glass display removed; green double-layer paneling across the wall to the ceiling with lit rounded open niches; no ledge'}];
 
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();panel.tv=tv;
  B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
@@ -337,7 +334,7 @@ export function buildModel(){
  let reference=false,lightsOn=true;
  return {robot:bay.cleaner,root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
  setReference(on){reference=on;referenceRoot.visible=on;for(const u of units)u.group.visible=!on;architecture.visible=!on;},
- setPanelDesign(name){const p=units.find(u=>u.id==='tv-panel');if(!p.designs[name])return;p.design=name;for(const [k,g] of Object.entries(p.designs))g.visible=k===name;const ledgeWash=units.find(u=>u.id==='ledge').glows[0];ledgeWash.userData.hiddenByDesign=name!=='current';ledgeWash.visible=name==='current'&&lightsOn;units.find(u=>u.id==='ledge').group.visible=name==='current';const lv=units.find(u=>u.id==='louver');lv.middle.visible=name==='current'||name==='curvyLouver';lv.left.visible=name!=='curvyNiches';units.find(u=>u.id==='tall-glass').group.visible=name!=='curvyNiches';p.tv.position.z=name==='curvyNiches'?(72.15-64)*I:0;},
+ setPanelDesign(name){const p=units.find(u=>u.id==='tv-panel');if(!p.designs[name])return;p.design=name;for(const [k,g] of Object.entries(p.designs))g.visible=k===name;const ledgeWash=units.find(u=>u.id==='ledge').glows[0];ledgeWash.userData.hiddenByDesign=name!=='current';ledgeWash.visible=name==='current'&&lightsOn;units.find(u=>u.id==='ledge').group.visible=name==='current';const lv=units.find(u=>u.id==='louver');lv.middle.visible=name==='current';lv.left.visible=name!=='curvyNiches';units.find(u=>u.id==='tall-glass').group.visible=name!=='curvyNiches';p.tv.position.z=name==='curvyNiches'?(72.15-64)*I:0;},
  setLights(on){lightsOn=on;for(const u of units)for(const g of u.glows||[])g.visible=on&&!g.userData.hiddenByDesign;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
  update(dt){bay.cleaner.update(dt);for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
  };
