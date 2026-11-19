@@ -32,7 +32,8 @@
     "interior": "19 Nov (later): earlier interior looked cartoonish; Bright wants it to feel like sitting inside a real SUV — seats, dashboard, banner",
     "referencePhotos": "19 Nov: Bright sent 3 reference photos of a premium Indian-market SUV (dashboard, seats, black front exterior) as the look to follow. Not stored in the public repo; used for colours/materials/layout only. No logos, model name or exact grille/lamp design copied",
     "insideOnly": "19 Nov 09:51: customers see ONLY the inside-the-cab experience (no outside view). Goal: feel real; Bright and Claude check realism together before the link goes to customers. Bright sent 13 reference photos (front windscreen views, passenger window, rear-seat views) and will supply/generate more on request",
-    "photoCockpit": "Rev uh5: default view is Bright's front reference photo (passenger/centre view of a premium SUV cabin) with the windscreen cut out; road rendered behind, live route drawn on the photo's touchscreen"
+    "photoCockpit": "Rev uh5: default view is Bright's front reference photo (passenger/centre view of a premium SUV cabin) with the windscreen cut out; road rendered behind, live route drawn on the photo's touchscreen",
+    "seat360": "19 Nov 10:04: customer sits in the BACK seat and can rotate the view a full 360°; Olivetree Builders branding inside the car"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
@@ -42,9 +43,12 @@
     "mettupalayamStops": "Only Karamadai shown between Mettupalayam and Santhaimedu — stop list not yet given",
     "scenery": "Road, trees, buildings, KNM Mills sheds, gate arch, hills and plot kerbs are illustrative, not survey data",
     "car": "Original SUV (suv.js), gloss black: own trapezoid grille with chrome frame, three chrome bars and rectangular dark mesh; slim LED headlamps with twin chrome projectors and DRL strip; fog lamps in black recesses; silver skid plate; roof rails; yellow PROPERTY MANAGER door decals and roof sign; yellow URBAN HEAVEN plates",
-    "interior": "Procedural cabin (interior.js) styled after Bright's references: dark chocolate leather with light contrast stitching (seats, door inserts, dash band, armrests), perforated seat inserts, black soft-touch dash top, chrome-bezel vents and centre clock, piano-black centre stack framed by stitched leather pillars with screen (live route), blue climate LCD and chrome knobs, dark wood console with chrome gear gate, black wheel with silver lower spokes and button pads (plain hub, no logo), blue-ring dials, beige roof lining with grab handles and dome lights, black carpet, split 2nd row with armrest, PROPERTY MANAGER windscreen sun strip. No driver figure"
+    "interior": "Procedural cabin (interior.js) styled after Bright's references: dark chocolate leather with light contrast stitching (seats, door inserts, dash band, armrests), perforated seat inserts, black soft-touch dash top, chrome-bezel vents and centre clock, piano-black centre stack framed by stitched leather pillars with screen (live route), blue climate LCD and chrome knobs, dark wood console with chrome gear gate, black wheel with silver lower spokes and button pads (plain hub, no logo), blue-ring dials, beige roof lining with grab handles and dome lights, black carpet, split 2nd row with armrest, PROPERTY MANAGER windscreen sun strip. No driver figure",
+    "branding": "Olivetree Builders text wordmark with a simple leaf mark drawn by us (not an official logo): front seatbacks + headrests, rear floor mats, windscreen sun strip, touchscreen header, cluster, page header. Replace with the official logo file when Bright supplies it"
   },
   "openQuestions": [
+    "Official Olivetree Builders logo file (PNG/SVG) for the in-car branding",
+    "Real 360° photo from the rear-left seat (with windows) would replace the 3D cabin for full realism",
     "Outside realism: real phone/dashcam video of each route (Thudiyalur→site, Mettupalayam→site) needed — procedural road cannot match the photo cabin",
     "Reference photos of road/buildings per stretch (awaiting from Bright)",
     "Is 'Sandimad' = Santhaimedu? Exact km from Thudiyalur to KNM Mills?",

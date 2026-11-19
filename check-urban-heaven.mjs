@@ -30,5 +30,5 @@ assert(t > 10.4 && t < 11, 'Thudiyalur ≈ 10.7 km'); assert(m > 18.4 && m < 19,
 // page wiring
 const html = fs.readFileSync('dist/urban-heaven/index.html', 'utf8'), js = fs.readFileSync('dist/urban-heaven/tour.js', 'utf8');
 assert(html.includes('PROPERTY MANAGER') && html.includes('data-pickup="thudiyalur"') && html.includes('data-pickup="mettupalayam"'));
-assert(html.includes('tour.js?v=uh6') && js.includes("route.js?v=uh6"));
+assert(html.includes('tour.js?v=uh7') && js.includes("route.js?v=uh7"));
 console.log('urban-heaven route checks passed', t.toFixed(2), m.toFixed(2));

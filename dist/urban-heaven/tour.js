@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
-import { buildSUV } from './suv.js?v=uh6';
-import { buildCabin } from './interior.js?v=uh6';
-import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh6';
+import { buildSUV } from './suv.js?v=uh7';
+import { buildCabin } from './interior.js?v=uh7';
+import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh7';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage');
@@ -309,7 +309,7 @@ const PHOTOS = [
   { id: 'right', label: "Driver's side", src: 'cabin-right.webp', vx: -300, vy: 440, eye: [0.35, 1.45, 0.25] },
 ];
 const PHOTO = { w: 1672, h: 941, hfov: 100 };
-let photoIdx = 1, photoYaw = 0;
+let photoIdx = 1, photoYaw = 0, lookYawTarget = 0;
 const photoF = () => (PHOTO.w / 2) / Math.tan(PHOTO.hfov * Math.PI / 360);
 const yawFor = ph => Math.atan((ph.vx - PHOTO.w / 2) / photoF());
 function showPhoto(i, instant = false) {
@@ -323,15 +323,16 @@ function showPhoto(i, instant = false) {
 }
 function setView(v) {
   view = v; $('viewBtn').textContent = v === 'inside' ? 'Outside view' : 'Inside the cab';
-  cabin.visible = v === 'inside'; ext.visible = v === 'outside';
-  $('cockpits').hidden = $('lookNav').hidden = v !== 'photo';
+  cabin.visible = v === 'inside' || v === 'rear'; ext.visible = v === 'outside';
+  $('cockpits').hidden = v !== 'photo'; $('lookNav').hidden = v !== 'photo' && v !== 'rear';
+  if (v === 'rear') { cabin.visible = true; eye.position.set(-0.38, 1.42, 1.2); lookYaw = lookYawTarget = 0; lookPitch = -0.06; $('lookLabel').textContent = 'Drag to look around · 360°'; $('lookL').disabled = $('lookR').disabled = false; }
   if (v === 'photo') { lookYaw = lookPitch = 0; showPhoto(1, true); }
   else if (v === 'inside') { eye.position.set(-0.4, 1.52, 0.4); }
-  else { eye.position.set(-3.6, 2.3, 7.2); }
+  else if (v === 'outside') { eye.position.set(-3.6, 2.3, 7.2); }
   applyLook(); resize();
 }
 function applyLook() {
-  eye.rotation.set(0, view === 'photo' ? photoYaw : lookYaw + (view === 'outside' ? -0.46 : 0), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.14 : view === 'photo' ? 0 : -0.17), 0, 0);
+  eye.rotation.set(0, view === 'photo' ? photoYaw : lookYaw + (view === 'outside' ? -0.46 : 0), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.14 : view === 'photo' || view === 'rear' ? 0 : -0.17), 0, 0);
 }
 function speedFor(sv) {
   const p = pointAt(sv); let v = BASE[p.type] || 10;
@@ -386,7 +387,7 @@ function updateHud(p) {
 // ---------- controls ----------
 function startTour(id) {
   path = buildCarPath(id); s = 0; s0 = 0; cabinKit.setRoute(path); firedEvents = new Set(); finished = false; lookYaw = lookPitch = 0;
-  laneNow = 2.6; setView('photo');
+  laneNow = 2.6; setView('rear');
   try { localStorage.setItem('urban-heaven-pickup', id); } catch (e) {}
   $('pickup').hidden = true; $('arrived').hidden = true; $('hud').hidden = false;
   $('routeName').textContent = `${path.pickup.label} → Urban Heaven · ≈ ${path.totalKm.toFixed(1)} km`;
@@ -412,13 +413,13 @@ let drag = null;
 let swipe = null;
 $('cockpits').addEventListener('pointerdown', e => { swipe = { x: e.clientX }; });
 window.addEventListener('pointerup', e => { if (!swipe) return; const dx = e.clientX - swipe.x; swipe = null; if (Math.abs(dx) > 40) showPhoto(photoIdx + (dx > 0 ? -1 : 1)); });
-$('lookL').onclick = () => showPhoto(photoIdx - 1); $('lookR').onclick = () => showPhoto(photoIdx + 1);
-window.addEventListener('keydown', e => { if (view !== 'photo') return; if (e.key === 'ArrowLeft') showPhoto(photoIdx - 1); if (e.key === 'ArrowRight') showPhoto(photoIdx + 1); });
+$('lookL').onclick = () => view === 'rear' ? (lookYawTarget += Math.PI / 2) : showPhoto(photoIdx - 1); $('lookR').onclick = () => view === 'rear' ? (lookYawTarget -= Math.PI / 2) : showPhoto(photoIdx + 1);
+window.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') $('lookL').click(); if (e.key === 'ArrowRight') $('lookR').click(); });
 renderer.domElement.addEventListener('pointerdown', e => { if (view === 'photo') return; drag = { x: e.clientX, y: e.clientY, yaw: lookYaw, pitch: lookPitch }; renderer.domElement.setPointerCapture(e.pointerId); });
 renderer.domElement.addEventListener('pointermove', e => {
   if (!drag) return; const k = 3.2 / stage.clientWidth;
-  lookYaw = Math.max(-2.6, Math.min(2.6, drag.yaw + (e.clientX - drag.x) * k));
-  lookPitch = Math.max(-0.6, Math.min(0.5, drag.pitch + (e.clientY - drag.y) * k));
+  lookYaw = view === 'rear' ? drag.yaw + (e.clientX - drag.x) * k : Math.max(-2.6, Math.min(2.6, drag.yaw + (e.clientX - drag.x) * k)); lookYawTarget = lookYaw;
+  lookPitch = Math.max(-0.9, Math.min(0.6, drag.pitch + (e.clientY - drag.y) * k));
   applyLook();
 });
 const endDrag = () => { drag = null; };
@@ -436,7 +437,7 @@ function resize() {
     camera.setViewOffset(w, h, w / 2 - (ox + PHOTO.w / 2 * sc), h / 2 - (oy + ph.vy * sc), w, h);
     if (ph.screen) { const [x0, y0, x1, y1] = ph.screen, cs = $('cockpitScreen');
       Object.assign(cs.style, { left: ox + x0 * sc + 'px', top: oy + y0 * sc + 'px', width: (x1 - x0) * sc + 'px', height: (y1 - y0) * sc + 'px' }); }
-  } else camera.fov = view === 'inside' ? (w < h ? 84 : 70) : (w < h ? 74 : 62);
+  } else camera.fov = view === 'inside' || view === 'rear' ? (w < h ? 86 : 72) : (w < h ? 74 : 62);
   camera.updateProjectionMatrix();
 }
 new ResizeObserver(resize).observe(stage); resize();
@@ -457,6 +458,8 @@ function frame(now) {
     if (view !== 'outside') cabinKit.update(dt, { speedKmh: v > 0.3 ? 18 + v * 0.95 : 0, km: p.km, steer: Math.atan2(Math.sin(steer), Math.cos(steer)), s, pos: p, ...hudState });
     if (view === 'photo' && PHOTOS[photoIdx].screen) { const sc = cabinKit.screenCanvas, cs = $('cockpitScreen'); if (cs.width !== sc.width) { cs.width = sc.width; cs.height = sc.height; } cs.getContext('2d').drawImage(sc, 0, 0); }
   }
+  { const back = view === 'rear' && Math.cos(lookYaw) < -0.25; for (const o of cabinKit.ownSeat) o.visible = !back; }
+  if (view === 'rear' && !drag && Math.abs(lookYawTarget - lookYaw) > 1e-3) { lookYaw += (lookYawTarget - lookYaw) * Math.min(1, dt * 6); applyLook(); }
   if (view === 'photo') { const t = yawFor(PHOTOS[photoIdx]); photoYaw += (t - photoYaw) * Math.min(1, dt * 7); applyLook(); }
   if (bannerTimer > 0) { bannerTimer -= dt; if (bannerTimer <= 0) $('stopBanner').hidden = true; }
   renderer.render(scene, camera);

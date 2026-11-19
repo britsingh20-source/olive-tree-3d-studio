@@ -51,7 +51,7 @@ const M = {
   rubber: std({ color: '#121212', roughness: 0.9 }),
   plastic: std({ color: '#1b1c1e', roughness: 0.65 }),
   lcd: std({ color: '#1a6cff', emissive: '#2d7bff', emissiveIntensity: 1.2, roughness: 0.3 }),
-  dome: std({ color: '#f3efe6', emissive: '#fff4dc', emissiveIntensity: 0.35, roughness: 0.4 }),
+  dome: std({ color: '#d9d3c7', emissive: '#fff4dc', emissiveIntensity: 0.12, roughness: 0.5 }),
 };
 
 const rbox = (w, h, d, r, mat, seg = 3) => new THREE.Mesh(new RoundedBoxGeometry(w, h, d, seg, Math.min(r, w / 2, h / 2, d / 2) - 1e-4), mat);
@@ -68,8 +68,35 @@ function stitchLine(parent, len, x, y, z, ry = 0, rx = 0) { // a visible contras
   return put(parent, new THREE.Mesh(new THREE.PlaneGeometry(len, 0.006), new THREE.MeshBasicMaterial({ map: t, transparent: true })), x, y, z, rx, ry);
 }
 
+// ---------- Olivetree Builders branding (text wordmark + simple leaf mark; swap for the official logo when supplied) ----------
+function leafMark(g, x, y, r, col) {
+  g.save(); g.translate(x, y); g.fillStyle = col; g.strokeStyle = col; g.lineWidth = r * 0.08;
+  g.beginPath(); g.moveTo(0, r); g.quadraticCurveTo(r * 0.1, 0, 0, -r); g.stroke();
+  for (const [a, s] of [[-0.9, 1], [-0.35, -1], [0.2, 1], [0.6, -1]]) {
+    g.save(); g.translate(0, a * r * 0.9); g.rotate(s * 0.9); g.beginPath(); g.ellipse(s * r * 0.3, 0, r * 0.32, r * 0.12, 0, 0, 7); g.fill(); g.restore();
+  }
+  g.restore();
+}
+function brandTex(w, h, { bg = null, fg = '#d6c4aa', sub = 'Property Manager · Site Tour', big = 0.34, embossed = false } = {}) {
+  return canvasTex(w, h, (g) => {
+    if (bg) { g.fillStyle = bg; g.fillRect(0, 0, w, h); } else g.clearRect(0, 0, w, h);
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    const cy = sub ? h * 0.42 : h * 0.5;
+    if (embossed) { g.shadowColor = 'rgba(0,0,0,0.6)'; g.shadowOffsetY = 2; g.shadowBlur = 2; }
+    leafMark(g, w / 2, cy - h * big * 0.95, h * big * 0.45, fg);
+    g.fillStyle = fg; let fs = h * big * 0.62; g.font = `700 ${fs}px Georgia, serif`; while (g.measureText('OLIVETREE').width > w * 0.86) { fs -= 2; g.font = `700 ${fs}px Georgia, serif`; } g.fillText('OLIVETREE', w / 2, cy + h * big * 0.12);
+    g.font = `600 ${h * big * 0.3}px "DM Sans", sans-serif`; g.fillText('B U I L D E R S', w / 2, cy + h * big * 0.62);
+    if (sub) { g.font = `500 ${h * big * 0.22}px "DM Sans", sans-serif`; g.globalAlpha = 0.8; g.fillText(sub, w / 2, cy + h * big * 1.02); }
+  });
+}
+const BRAND = {
+  headrest: new THREE.MeshBasicMaterial({ map: brandTex(512, 512, { sub: '', big: 0.42, embossed: true, fg: '#cdb894' }), transparent: true }),
+  seatback: new THREE.MeshBasicMaterial({ map: brandTex(512, 512, { sub: 'Property Manager', big: 0.3, fg: '#d9c7a6' }), transparent: true }),
+  mat: new THREE.MeshBasicMaterial({ map: brandTex(512, 256, { sub: '', big: 0.42, fg: '#8a8a8a' }), transparent: true, opacity: 0.85 }),
+};
+
 // ---------- seat (brown leather, perforated stitched inserts, black side trim) ----------
-function seat(width = 0.54, outer = -1) {
+function seat(width = 0.54, outer = -1, opts = {}) {
   const g = new THREE.Group();
   put(g, rbox(width, 0.13, 0.52, 0.05, M.stitch), 0, 0.86, 0.12);
   put(g, rbox(width * 0.6, 0.035, 0.42, 0.015, M.stitchPerf), 0, 0.935, 0.11);
@@ -81,6 +108,12 @@ function seat(width = 0.54, outer = -1) {
   put(b, rbox(width * 0.7, 0.1, 0.12, 0.04, M.stitch), 0, 0.68, -0.03);
   for (const sx of [-0.07, 0.07]) put(b, new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.08, 8), M.satin), sx, 0.78, 0);
   put(b, rbox(0.28, 0.2, 0.11, 0.05, M.stitch), 0, 0.9, 0);
+  if (opts.brandBack) {
+    put(b, rbox(width * 0.84, 0.5, 0.02, 0.012, M.plastic), 0, 0.28, 0.085);                   // hard seatback with map pocket
+    put(b, rbox(width * 0.8, 0.16, 0.025, 0.01, M.plastic), 0, 0.09, 0.095);
+    put(b, new THREE.Mesh(new THREE.PlaneGeometry(0.32, 0.32), BRAND.seatback), 0, 0.34, 0.097);
+    put(b, new THREE.Mesh(new THREE.PlaneGeometry(0.16, 0.16), BRAND.headrest), 0, 0.9, 0.0565);
+  }
   put(g, rbox(width * 0.92, 0.18, 0.46, 0.03, M.plastic), 0, 0.71, 0.12);        // base
   put(g, rbox(0.03, 0.12, 0.42, 0.02, M.plastic), outer * (width / 2 + 0.01), 0.8, 0.12); // side trim
   for (const z of [0.02, 0.2]) put(g, rbox(0.012, 0.025, 0.06, 0.008, M.satin), outer * (width / 2 + 0.03), 0.8, z);
@@ -114,7 +147,7 @@ function makeGauges() {
     g.fillStyle = '#8b939c'; g.font = '500 14px "DM Sans", sans-serif'; g.textAlign = 'center'; g.fillText('TRIP', 384, 70);
     g.fillStyle = '#fff'; g.font = '700 30px "DM Sans", sans-serif'; g.fillText(kmDone.toFixed(1) + ' km', 384, 104);
     g.fillStyle = '#5be37d'; g.font = '700 40px "DM Sans", sans-serif'; g.fillText('D', 384, 160);
-    g.fillStyle = '#8b939c'; g.font = '500 13px "DM Sans", sans-serif'; g.fillText('PROPERTY MANAGER', 384, 198);
+    g.fillStyle = '#8b939c'; g.font = '500 13px "DM Sans", sans-serif'; g.fillText('OLIVETREE BUILDERS', 384, 198);
     tex.needsUpdate = true;
   }
   return { tex, draw };
@@ -131,7 +164,7 @@ function makeScreen() {
   function draw(info) {
     g.fillStyle = '#0d1116'; g.fillRect(0, 0, 800, 480);
     g.fillStyle = '#151b22'; g.fillRect(0, 0, 800, 56);
-    g.fillStyle = '#f6c519'; g.font = '700 26px "DM Sans", sans-serif'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText('PROPERTY MANAGER', 24, 29);
+    g.fillStyle = '#f6c519'; g.font = '700 26px "DM Sans", sans-serif'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText('OLIVETREE BUILDERS · Property Manager', 24, 29);
     g.fillStyle = '#c8d0d8'; g.font = '500 22px "DM Sans", sans-serif'; g.textAlign = 'right'; g.fillText(info.title || 'Urban Heaven site tour', 776, 29);
     // map panel
     g.fillStyle = '#18222b'; g.fillRect(24, 74, 470, 382);
@@ -169,7 +202,7 @@ export function buildCabin({ body = '#0c0d0f' } = {}) {
 
   // bonnet seen through the windscreen
   cab.add(profile([[1.36, 1.15], [2.28, 1.04], [2.4, 0.98, 2.42, 0.85], [2.42, 0.7], [1.36, 0.7]], -0.93, 0.93, paint, 0.06));
-  put(cab, new THREE.Mesh(new THREE.BoxGeometry(1.62, 0.04, 2.6), M.carpet), 0, 0.53, 0.05);
+  put(cab, new THREE.Mesh(new THREE.BoxGeometry(1.62, 0.04, 3.9), M.carpet), 0, 0.53, 0.65);
   put(cab, new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.4, 0.05), M.carpet), 0, 0.72, -1.02, -0.8);
   put(cab, rbox(0.5, 0.012, 0.42, 0.01, M.rubber), -0.4, 0.556, -0.6);
 
@@ -236,16 +269,17 @@ export function buildCabin({ body = '#0c0d0f' } = {}) {
   put(cab, new THREE.Mesh(new THREE.TorusGeometry(0.02, 0.004, 8, 24), M.chrome), 0.66, 0.98, -0.82);
 
   // ---- seats: driver (right), ours (left), split second row with fold-down armrest ----
-  put(cab, seat(0.54, 1), 0.4, -0.1, 0.0);
-  put(cab, seat(0.54, -1), -0.4, -0.1, 0.0);
+  put(cab, seat(0.54, 1, { brandBack: true }), 0.4, -0.1, 0.0);
+  put(cab, seat(0.54, -1, { brandBack: true }), -0.4, -0.1, 0.0);
   const bench = new THREE.Group(); put(cab, bench, 0, -0.02, 1.05);
+  const ownSeat = []; // the customer's own backrest/headrest: hidden while they look backwards
   for (const [x, w] of [[-0.42, 0.62], [0.3, 0.86]]) {
     put(bench, rbox(w, 0.14, 0.5, 0.05, M.stitch), x, 0.84, 0.1);
-    const bb = new THREE.Group(); bb.position.set(x, 0.9, 0.36); bb.rotation.x = 0.2; bench.add(bb);
+    const bb = new THREE.Group(); bb.position.set(x, 0.9, 0.36); bb.rotation.x = 0.2; bench.add(bb); if (x < 0) ownSeat.push(bb);
     put(bb, rbox(w, 0.66, 0.15, 0.06, M.stitch), 0, 0.33, 0);
     put(bb, rbox(w * 0.6, 0.48, 0.03, 0.015, M.stitchPerf), 0, 0.3, -0.075);
   }
-  for (const x of [-0.42, 0.12, 0.5]) { const hb = new THREE.Group(); hb.position.set(x, 0.9, 0.36); hb.rotation.x = 0.2; bench.add(hb); put(hb, rbox(0.26, 0.18, 0.1, 0.05, M.stitch), 0, 0.78, 0); }
+  for (const x of [-0.42, 0.12, 0.5]) { const hb = new THREE.Group(); hb.position.set(x, 0.9, 0.36); hb.rotation.x = 0.2; bench.add(hb); if (x < 0) ownSeat.push(hb); put(hb, rbox(0.26, 0.18, 0.1, 0.05, M.stitch), 0, 0.78, 0); }
   put(bench, rbox(0.2, 0.08, 0.36, 0.03, M.stitch), -0.02, 1.02, 0.2);
 
   // ---- doors, pillars, roof ----
@@ -271,7 +305,33 @@ export function buildCabin({ body = '#0c0d0f' } = {}) {
       put(gh, rbox(0.025, 0.025, 0.2, 0.012, M.liner), 0, -0.03, 0); for (const dz of [-0.09, 0.09]) put(gh, rbox(0.025, 0.05, 0.025, 0.01, M.liner), 0, 0, dz);
     }
   }
-  put(cab, new THREE.Mesh(new THREE.PlaneGeometry(1.62, 2.6), M.liner), 0, 1.8, 0.5, Math.PI / 2);
+  put(cab, new THREE.Mesh(new THREE.PlaneGeometry(1.62, 3.4), M.liner), 0, 1.8, 0.85, Math.PI / 2);
+  // ---- rear cabin: rear doors, C/D pillars, third row, tailgate frame, roof vents, branded mats ----
+  for (const side of [-1, 1]) {
+    const d = new THREE.Group(); put(cab, d, side * (HW + 0.03), 0, 1.05);
+    put(d, rbox(0.06, 0.42, 1.0, 0.03, M.plastic), 0, 0.77, 0);
+    put(d, rbox(0.07, 0.2, 0.86, 0.04, M.stitch), -side * 0.012, 1.02, 0);
+    put(d, rbox(0.07, 0.09, 1.0, 0.03, M.dash), -side * 0.005, 1.19, 0);
+    put(d, new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.012, 0.8), M.chrome), -side * 0.048, 1.13, 0);
+    put(d, rbox(0.11, 0.05, 0.34, 0.02, M.stitch), -side * 0.07, 0.93, 0.15);
+    put(d, rbox(0.02, 0.04, 0.12, 0.01, M.chrome), -side * 0.04, 1.1, -0.3);
+    put(d, new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.03, 0.95), M.plastic), 0, 1.76, 0);
+    put(cab, rbox(0.08, 0.6, 0.22, 0.03, M.liner), side * (HW - 0.01), 1.5, 1.62);            // C-pillar
+    put(cab, rbox(0.08, 0.95, 0.12, 0.03, M.liner), side * (HW - 0.03), 1.32, 2.32);          // D-pillar
+    put(cab, rbox(0.06, 0.5, 0.6, 0.03, M.plastic), side * (HW + 0.02), 0.8, 2.0);           // rear quarter trim
+    put(cab, new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.03, 0.55), M.plastic), side * (HW + 0.02), 1.76, 2.0);
+    put(cab, rbox(0.12, 0.03, 0.06, 0.012, M.dome), side * 0.5, 1.785, 1.3);                  // roof AC vents
+    for (const dz of [-0.025, 0, 0.025]) put(cab, new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.006, 0.006), M.plastic), side * 0.5, 1.768, 1.3 + dz);
+  }
+  const third = new THREE.Group(); put(cab, third, 0, -0.04, 1.95);
+  put(third, rbox(1.3, 0.12, 0.42, 0.05, M.stitch), 0, 0.82, 0.05);
+  const tb = new THREE.Group(); tb.position.set(0, 0.86, 0.26); tb.rotation.x = 0.15; third.add(tb);
+  put(tb, rbox(1.3, 0.5, 0.13, 0.05, M.stitch), 0, 0.25, 0);
+  for (const x of [-0.4, 0.4]) put(tb, rbox(0.24, 0.15, 0.09, 0.04, M.stitch), x, 0.6, 0);
+  put(cab, rbox(1.5, 0.06, 0.06, 0.02, M.plastic), 0, 0.8, 2.42);                            // tailgate lower edge
+  put(cab, rbox(1.5, 0.08, 0.06, 0.02, M.liner), 0, 1.74, 2.38);                             // tailgate header
+  put(cab, new THREE.Mesh(new THREE.PlaneGeometry(0.62, 0.31), BRAND.mat), -0.42, 0.553, 1.0, -Math.PI / 2);   // branded rear floor mats
+  put(cab, new THREE.Mesh(new THREE.PlaneGeometry(0.62, 0.31), BRAND.mat), 0.42, 0.553, 1.0, -Math.PI / 2);
   put(cab, rbox(1.62, 0.05, 0.12, 0.02, M.liner), 0, 1.78, -0.76);
   put(cab, rbox(0.3, 0.035, 0.16, 0.015, M.liner), 0, 1.775, -0.6);
   for (const sx of [-1, 1]) put(cab, rbox(0.08, 0.01, 0.06, 0.005, M.dome), sx * 0.07, 1.757, -0.6);
@@ -289,7 +349,7 @@ export function buildCabin({ body = '#0c0d0f' } = {}) {
     const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(18,60,44,0.96)'); gr.addColorStop(1, 'rgba(18,60,44,0.55)');
     g.fillStyle = gr; g.fillRect(0, 0, w, h);
     g.fillStyle = '#ffffff'; g.font = '700 74px "DM Sans", sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillText('PROPERTY MANAGER   ·   URBAN HEAVEN SITE TOUR', w / 2, h / 2 - 4);
+    g.fillText('OLIVETREE BUILDERS   ·   PROPERTY MANAGER   ·   URBAN HEAVEN', w / 2, h / 2 - 4);
     g.fillStyle = '#d9b96a'; g.fillRect(0, h - 8, w, 4);
   });
   const strip = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.11), new THREE.MeshBasicMaterial({ map: stripTex, transparent: true, toneMapped: false }));
@@ -305,6 +365,7 @@ export function buildCabin({ body = '#0c0d0f' } = {}) {
   let tScreen = 0;
   return {
     group: cab,
+    ownSeat,
     screenCanvas: screen.tex.image,
     setRoute: path => screen.setRoute(path),
     update(dt, info) {

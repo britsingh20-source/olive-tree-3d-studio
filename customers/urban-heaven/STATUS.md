@@ -11,6 +11,13 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev uh7 (19 Nov 2026) — back seat, 360°, Olivetree Builders
+
+- Default view `rear`: customer in the rear-left seat (eye −0.38, 1.42, 1.2 m), free 360° drag (pitch −0.9…0.6), ‹ › turn 90°, arrow keys. Own backrest/headrest hidden while looking backwards so the third row and road behind show.
+- 3D cabin extended: rear doors, C/D pillars, third row, tailgate frame, roof AC vents, branded rear mats; front seatbacks get hard backs with map pocket + Olivetree Builders branding, embroidered headrests. Sun strip, screen header and cluster rebranded.
+- Photo views (uh6) remain in code but are not shown (they are front-seat photos).
+- Checked headless Chrome/SwiftShader 1280×760 forward/left/back, 390×780 forward. No page errors.
+
 ## Rev uh6 (19 Nov 2026) — look around
 
 - Bright: view could not rotate. Now three photo views, switched by swipe, ‹ › buttons or arrow keys, with a crossfade and the road camera turning to match:
