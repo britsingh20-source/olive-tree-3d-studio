@@ -15,7 +15,8 @@ Updated 19 November 2026. Decisions and approximations are in design.json.
 
 - `node check-urban-heaven.mjs` — passed (stop order, turn sequences, leg lengths, path continuity, totals, page wiring). Source test only.
 - Headless Google Chrome via Playwright with SwiftShader (software WebGL), 1280×760: pickup screen, Thudiyalur start, before Narasimhanaickenpalayam, before KNM (inside + outside), before turn 2, approaching gate, inside site (outside view), arrival card; Mettupalayam route before Karamadai and before KNM. 390×780: pickup screen and Mettupalayam drive start. No page errors (one 404 = missing favicon).
-- Not yet checked on a real phone GPU or after Pages deployment.
+- **Live** at https://britsingh20-source.github.io/olive-tree-3d-studio/urban-heaven/ — commit 271baa9, Pages run 44450011200 succeeded. Live route re-checked in headless Chrome (SwiftShader, 1280×760) with `?from=thudiyalur`: drive, KNM turn, gate and arrival all render; `?from=` auto-start confirmed.
+- Not yet checked on a real phone GPU.
 
 ## Next action
 
