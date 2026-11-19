@@ -11,6 +11,15 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev uh6 (19 Nov 2026) — look around
+
+- Bright: view could not rotate. Now three photo views, switched by swipe, ‹ › buttons or arrow keys, with a crossfade and the road camera turning to match:
+  - left window `cabin-left.webp` ← reference `52F52B7C…`/`793C1EDD…` set (file 21307b66), road vanishing (1560, 360)
+  - windscreen `cabin-front.webp` (file db210f90), vanishing (930, 424), live route on the touchscreen
+  - driver's side `cabin-right.webp` (file 63904f9c), vanishing (−300, 440)
+- Checked headless Chrome/SwiftShader 1280×760 and 390×780: all three views, buttons, desktop swipe. No page errors.
+- Gaps: no rear/back view photo; photos come from different cars/seats/times (front has no driver, right view has the driver's arm and a different shirt); road/buildings still procedural.
+
 ## Rev uh5 (19 Nov 2026) — photo cockpit
 
 - Inside-only experience. `cabin-front.webp` = Bright's reference photo `3217F66C…png` (1672×941) with windscreen made transparent (mirror, dashcam, stem kept; rosary removed). Camera matched to the photo: hfov 100°, vanishing point (930, 424), object-fit cover; live route screen overlaid on the photo's touchscreen at (748,627)-(964,742).
