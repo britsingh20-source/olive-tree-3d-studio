@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk15",
+    "assetVersion": "pk16",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -415,13 +415,14 @@
   "designPreviews": [
     {
       "date": "2026-11-19",
-      "name": "TV panel design options (3)",
-      "status": "THREE OPTIONS offered to the customer on the page; Option 1 Classic is the default until the customer chooses",
+      "name": "TV panel design options (4)",
+      "status": "FOUR OPTIONS offered on the page; Option 1 Classic is the default until the customer chooses",
       "request": "Customer asked for a curvy double-layer panel like the reference image (green panel with a raised curved layer and LED along the curve).",
       "implementation": "Toggle button 'TV panel: Current / Curvy (preview)' (saved per browser). Raised layer 3 in deep, same matte green mica, from x 24.1-118.5 in and 20-84 in high, left edge an S-curve from the louvers at x 80 in down to the console at the tall unit; concealed warm-white strip follows the curve and washes the base panel. Under-ledge wash hidden in this mode. TV stays fully on the raised layer.",
       "openQuestions": [
-        "Which of the 3 TV panel options does the customer choose?",
-        "Same green for both layers or a different tone for the raised layer (Options 2/3)?"
+        "Which of the 4 TV panel options does the customer choose?",
+        "Option 4: base build-out depth (8 in shown), niche sizes/count (4 shown, from reference), niche finish (green shown)",
+        "Same green for both layers or a different tone for the raised layer (Options 2-4)?"
       ],
       "updates": [
         {
@@ -435,6 +436,10 @@
         {
           "date": "2026-11-19",
           "change": "User: the single toggle button was not noticeable and lost the 'curvy with louvers above' version. Replaced with a prominent 'Choose your TV panel design · 3 options' section (thumbnails, Option 1/2/3, Selected ✓) above the 3D view, plus a badge on the 3D view naming the shown option. Choice saved in the browser."
+        },
+        {
+          "date": "2026-11-19",
+          "change": "Added Option 4 (glass display removed, curvy paneling across the wall with open niches like the reference). Chooser now says 4 designs; tall-glass unit button hidden and tour rebuilt without it in Option 4."
         }
       ],
       "options": [
@@ -452,6 +457,11 @@
           "id": "curvyCeiling",
           "label": "Option 3 · Curvy to the ceiling",
           "detail": "Curvy double-layer panel up to the ceiling; louvers cut above the panel, kept on both sides; no ledge"
+        },
+        {
+          "id": "curvyNiches",
+          "label": "Option 4 · Curvy with open niches",
+          "detail": "Customer request: remove the tall glass display box; green double-layer paneling across the whole wall (x 0.1-120) to the ceiling; base panel built out 8 in (front at 64 in from wall line... y64) with 4 rounded open niches cut in following the reference, each with a concealed strip under its top; curvy 3 in layer in front; TV moved forward 8.15 in onto the layer; louvers above the old cabinet and above the panel removed (kept above niche/pooja and side return); console keeps a rounded left end; no ledge."
         }
       ]
     }

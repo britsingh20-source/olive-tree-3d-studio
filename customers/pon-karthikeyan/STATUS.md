@@ -183,7 +183,20 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
     - Check passed: each option shows exactly its group; TV clearance and layer top (84/120); no ledge on 2 and 3; middle louvers visible on 1 and 2 and hidden on 3; lights toggle; return to 1 restores everything.
     - Local SwiftShader: clicked all three cards; badge and localStorage updated (curvyCeiling); thumbnails rendered from each option.
     - Desktop and 390 px mobile screenshots of the chooser.
-- **Awaiting customer feedback:** which option, and the layer tone. See `design.json` → `designPreviews`.
+- **Update (19 Nov, e): Option 4, "Curvy with open niches"** (customer: remove the glass display box and show the paneling fully to the ceiling with open storage cut-outs like the reference).
+  - **Removed in Option 4:** the tall-glass group and the left louver run (`louver.left`).
+  - **Base panel:** an extruded green base 8.15 in deep across x 0.1–120, z 20–120, with 4 rounded niche holes laid out from the reference.
+  - **Lighting:** a niche strip plus a back wash in each niche.
+  - **Curvy layer and TV:** the curvy layer (`makeCurvy` with backY 64, minX 0.1) sits in front, and the TV is moved +8.15 in onto it.
+  - **Console:** keeps a rounded left end (an ellipse approximation of the old rounded edge).
+  - **Props:** books and vases in the niches are illustrative.
+  - **UI:** cards now say "4 designs" (2-column grid under 980 px). The tall-glass unit button is hidden in Option 4, and the tour is rebuilt from the visible units whenever the design changes.
+  - **Verified:**
+    - Check passed: Option 4 hides the tall glass and the left and middle louvers, has 4 niches, the TV sits on the layer, the layer tops at 120, and everything restores on Option 1.
+    - Local SwiftShader: chose Option 4; the badge reads Option 4 of 4 and the tall-glass button is hidden.
+    - Tour run for 60 s: it never visited the glass cabinet, with no page errors.
+    - Side-by-side screenshot against the reference.
+- **Awaiting customer feedback:** which option; the layer tone; Option 4 build-out depth and niche layout. See `design.json` → `designPreviews`.
 
 ## Next action
 
