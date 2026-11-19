@@ -11,6 +11,13 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m1 (19 Nov 2026) — top-view map tour (current)
+
+- Bright dropped the in-car 3D. `/urban-heaven/` is now a Leaflet map (vendored `dist/vendor/leaflet` 1.9.4) with Esri satellite + labels, toggle to OpenStreetMap. Files: `index.html`, `map.js`, `map-data.js`. Old 3D cab kept at `cab3d.html` (unlinked).
+- Flow: pickup chooser → whole-route overview → fly down to pickup → cab icon drives real road geometry, rotates with heading, yellow travelled line, bilingual green stop signs (km to site), blue turn signs, banners at stops (1.2 s pause) and turns, HUD km/next/strip, 1×/2×/4×, follow-cab/recenter, drag to pan → enters gate → map zooms to the site outline → arrival card.
+- Totals: Thudiyalur ≈ 12.3 km, Mettupalayam ≈ 21 km (including the ~1.6 km side road).
+- Checked headless Chrome 1280×760 and 390×780: chooser, start, Periyanaickenpalayam, after KNM turn, arrival zoom. No page errors (favicon 404 only).
+
 ## Rev uh8 (19 Nov 2026) — front passenger seat
 
 - Bright: back seat blocked the front view → customer now sits in the front-left passenger seat (eye −0.4, 1.52, 0.4 m; pitch −0.12), still free 360° drag. Own passenger backrest hides when looking back. Rear bench split into three equal seats with three headrests (centre armrest removed).

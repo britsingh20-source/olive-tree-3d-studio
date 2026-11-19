@@ -2,7 +2,7 @@
   "id": "urban-heaven",
   "title": "Property Manager — Urban Heaven site tour",
   "kind": "property-tour",
-  "route": "/urban-heaven/",
+  "route": "/urban-heaven/ (map tour); old 3D cab at /urban-heaven/cab3d.html",
   "site": {
     "name": "Urban Heaven",
     "locality": "Veerapandi, Mettupalayam Road, Coimbatore",
@@ -33,7 +33,8 @@
     "referencePhotos": "19 Nov: Bright sent 3 reference photos of a premium Indian-market SUV (dashboard, seats, black front exterior) as the look to follow. Not stored in the public repo; used for colours/materials/layout only. No logos, model name or exact grille/lamp design copied",
     "insideOnly": "19 Nov 09:51: customers see ONLY the inside-the-cab experience (no outside view). Goal: feel real; Bright and Claude check realism together before the link goes to customers. Bright sent 13 reference photos (front windscreen views, passenger window, rear-seat views) and will supply/generate more on request",
     "photoCockpit": "Rev uh5: default view is Bright's front reference photo (passenger/centre view of a premium SUV cabin) with the windscreen cut out; road rendered behind, live route drawn on the photo's touchscreen",
-    "seat360": "19 Nov 10:20 (supersedes 10:04 back-seat request): customer sits in the FRONT passenger seat; front view is the main view; 360° look-around kept; Olivetree Builders branding inside the car"
+    "seat360": "19 Nov 10:20 (supersedes 10:04 back-seat request): customer sits in the FRONT passenger seat; front view is the main view; 360° look-around kept; Olivetree Builders branding inside the car",
+    "mapTour": "19 Nov 11:21: drop the 3D in-car experience. Top-view map: customer picks Thudiyalur or Mettupalayam, a cab travels on the map through each stop, enters the site, then the map zooms into the site"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
@@ -44,11 +45,13 @@
     "scenery": "Road, trees, buildings, KNM Mills sheds, gate arch, hills and plot kerbs are illustrative, not survey data",
     "car": "Original SUV (suv.js), gloss black: own trapezoid grille with chrome frame, three chrome bars and rectangular dark mesh; slim LED headlamps with twin chrome projectors and DRL strip; fog lamps in black recesses; silver skid plate; roof rails; yellow PROPERTY MANAGER door decals and roof sign; yellow URBAN HEAVEN plates",
     "interior": "Procedural cabin (interior.js) styled after Bright's references: dark chocolate leather with light contrast stitching (seats, door inserts, dash band, armrests), perforated seat inserts, black soft-touch dash top, chrome-bezel vents and centre clock, piano-black centre stack framed by stitched leather pillars with screen (live route), blue climate LCD and chrome knobs, dark wood console with chrome gear gate, black wheel with silver lower spokes and button pads (plain hub, no logo), blue-ring dials, beige roof lining with grab handles and dome lights, black carpet, split 2nd row with armrest, PROPERTY MANAGER windscreen sun strip. No driver figure",
-    "branding": "Olivetree Builders text wordmark with a simple leaf mark drawn by us (not an official logo): front seatbacks + headrests, rear floor mats, windscreen sun strip, touchscreen header, cluster, page header. Replace with the official logo file when Bright supplies it"
+    "branding": "Olivetree Builders text wordmark with a simple leaf mark drawn by us (not an official logo): front seatbacks + headrests, rear floor mats, windscreen sun strip, touchscreen header, cluster, page header. Replace with the official logo file when Bright supplies it",
+    "mapTour": "Road geometry from OSRM/OpenStreetMap (Thudiyalur→KNM turn 10.7 km, Mettupalayam→KNM turn 19.4 km; via Karamadai). KNM Mills turn placed at Veerapandi Pirivu (11.1693, 76.9520) — needs Bright's pin. Side road drawn as straight legs west of the highway (750 m, right 500 m, left 300 m) — not the real lanes. Site outline is a placeholder rectangle. Stop pins for NGGO Colony / Narasimhanaickenpalayam / Karamadai approximate"
   },
   "openQuestions": [
-    "Official Olivetree Builders logo file (PNG/SVG) for the in-car branding",
-    "Real 360° photo from the rear-left seat (with windows) would replace the 3D cabin for full realism",
+    "Google Maps pin (or lat/long) of the Urban Heaven gate and of the KNM Mills turn",
+    "Site plot layout image/PDF for the zoom-in",
+    "Official Olivetree Builders logo file",
     "Outside realism: real phone/dashcam video of each route (Thudiyalur→site, Mettupalayam→site) needed — procedural road cannot match the photo cabin",
     "Reference photos of road/buildings per stretch (awaiting from Bright)",
     "Is 'Sandimad' = Santhaimedu? Exact km from Thudiyalur to KNM Mills?",

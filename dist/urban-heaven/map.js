@@ -1,0 +1,184 @@
+// Property Manager · Urban Heaven — top-view map tour. A cab drives the real road from the chosen
+// pickup, through each stop, takes the three turns to the site, enters it, then the map zooms in.
+import { JUNCTION, ROUTES, STOPS, SIDE } from './map-data.js?v=m1';
+const L = window.L, $ = id => document.getElementById(id);
+
+// ---------- geometry helpers ----------
+const R = 6371000, rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+function dist(a, b) {
+  const p1 = rad(a[0]), p2 = rad(b[0]), dp = p2 - p1, dl = rad(b[1] - a[1]);
+  const h = Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h));
+}
+function bearing(a, b) {
+  const p1 = rad(a[0]), p2 = rad(b[0]), dl = rad(b[1] - a[1]);
+  return (deg(Math.atan2(Math.sin(dl) * Math.cos(p2), Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl))) + 360) % 360;
+}
+function dest(a, brg, m) {
+  const d = m / R, b = rad(brg), p1 = rad(a[0]), l1 = rad(a[1]);
+  const p2 = Math.asin(Math.sin(p1) * Math.cos(d) + Math.cos(p1) * Math.sin(d) * Math.cos(b));
+  const l2 = l1 + Math.atan2(Math.sin(b) * Math.sin(d) * Math.cos(p1), Math.cos(d) - Math.sin(p1) * Math.sin(p2));
+  return [deg(p2), deg(l2)];
+}
+// side road from the KNM turn, per Bright's directions (west side of the highway)
+const hb = SIDE.highwayBearing, left = (hb + 270) % 360;
+const T1 = dest(JUNCTION, left, SIDE.first), T2 = dest(T1, hb, SIDE.second), GATE = dest(T2, left, SIDE.final), END = dest(GATE, left, SIDE.inside);
+const SIDE_PATH = [T1, T2, GATE, END];
+
+function buildPath(id) {
+  const pts = ROUTES[id].map(p => [p[0], p[1]]).concat(SIDE_PATH);
+  const cum = [0]; for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + dist(pts[i - 1], pts[i]));
+  const hwLen = cum[ROUTES[id].length - 1];
+  const nearest = at => { let bi = 0, bd = 1e9; for (let i = 0; i < ROUTES[id].length; i++) { const d = dist(pts[i], at); if (d < bd) { bd = d; bi = i; } } return cum[bi]; };
+  const events = STOPS[id].map(st => ({ kind: st.pickup ? 'pickup' : 'stop', ...st, m: st.id === 'knm' ? hwLen : nearest(st.at) }));
+  const knm = events.find(e => e.id === 'knm');
+  events.push({ kind: 'turn', id: 'turn2', en: 'Turn right', m: hwLen + dist(JUNCTION, T1), turn: 'right' });
+  events.push({ kind: 'turn', id: 'turn3', en: 'Turn left · straight road to the site', m: hwLen + dist(JUNCTION, T1) + SIDE.second, turn: 'left' });
+  events.push({ kind: 'arrive', id: 'gate', en: 'Urban Heaven', m: cum[cum.length - 2] });
+  knm.kind = 'turn'; knm.en = `Turn ${knm.turn} at KNM Mills`; knm.stopName = 'Santhaimedu · KNM Mills';
+  events.sort((a, b) => a.m - b.m);
+  return { id, pts, cum, total: cum[cum.length - 1], hwLen, events };
+}
+function pointAt(path, m) {
+  const { pts, cum } = path; m = Math.max(0, Math.min(path.total, m));
+  let i = 1; while (i < cum.length - 1 && cum[i] < m) i++;
+  const t = (m - cum[i - 1]) / ((cum[i] - cum[i - 1]) || 1), a = pts[i - 1], b = pts[i];
+  return { ll: [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t], brg: bearing(a, b), i };
+}
+
+// ---------- map ----------
+const map = L.map('map', { zoomControl: false, attributionControl: true, zoomSnap: 0.25 }).setView([11.19, 76.945], 12);
+L.control.zoom({ position: 'topright' }).addTo(map);
+const sat = L.layerGroup([
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }),
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, opacity: 0.85 }),
+]);
+const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap contributors' });
+let baseIsSat = true; sat.addTo(map);
+$('layerBtn').onclick = () => { baseIsSat = !baseIsSat; if (baseIsSat) { map.removeLayer(street); sat.addTo(map); } else { map.removeLayer(sat); street.addTo(map); } $('layerBtn').textContent = baseIsSat ? 'Map view' : 'Satellite view'; };
+
+const routeLayer = L.layerGroup().addTo(map), signLayer = L.layerGroup().addTo(map);
+const carIcon = L.divIcon({ className: 'car-icon', iconSize: [34, 34], iconAnchor: [17, 17], html: `<div class="car-rot"><svg viewBox="0 0 40 72" width="20" height="36" aria-hidden="true">
+  <rect x="3" y="3" width="34" height="66" rx="11" fill="#111418" stroke="#f6c519" stroke-width="2.5"/>
+  <rect x="7" y="14" width="26" height="12" rx="4" fill="#5b6f7d"/><rect x="8" y="50" width="24" height="9" rx="3" fill="#5b6f7d"/>
+  <rect x="12" y="31" width="16" height="9" rx="2" fill="#f6c519"/><circle cx="9" cy="6" r="2.4" fill="#fff8d8"/><circle cx="31" cy="6" r="2.4" fill="#fff8d8"/>
+  <rect x="6" y="66" width="7" height="2.5" fill="#e0303a"/><rect x="27" y="66" width="7" height="2.5" fill="#e0303a"/></svg></div>` });
+const car = L.marker(JUNCTION, { icon: carIcon, interactive: false, zIndexOffset: 1000 });
+let doneLine, todoLine, siteBox;
+
+function signHtml(e, kmLeft) {
+  if (e.kind === 'turn' && e.id !== 'knm') return `<div class="sign turn"><b>${e.turn === 'left' ? '↰' : '↱'}</b><span>${e.turn === 'left' ? 'Left' : 'Right'}</span></div>`;
+  const name = e.stopName || e.en;
+  const extra = e.id === 'knm' ? `<i>${e.turn === 'left' ? '↰' : '↱'} Urban Heaven</i>` : `<i>Urban Heaven ${kmLeft} km</i>`;
+  return `<div class="sign${e.pickup ? ' pickup' : ''}"><small>${e.ta}</small><strong>${name.toUpperCase()}</strong>${e.pickup ? '<i>PICKUP POINT</i>' : extra}</div>`;
+}
+function drawRoute(path) {
+  routeLayer.clearLayers(); signLayer.clearLayers();
+  const all = path.pts;
+  L.polyline(all, { color: '#0d1b14', weight: 11, opacity: 0.55 }).addTo(routeLayer);
+  todoLine = L.polyline(all, { color: '#ffffff', weight: 5, opacity: 0.95, dashArray: '10 10' }).addTo(routeLayer);
+  doneLine = L.polyline([all[0]], { color: '#f6c519', weight: 7, opacity: 1 }).addTo(routeLayer);
+  for (const e of path.events) {
+    if (e.kind === 'arrive') continue;
+    const at = pointAt(path, e.m).ll, kmLeft = ((path.total - e.m) / 1000).toFixed(1);
+    L.marker(at, { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: signHtml(e, kmLeft) }) }).addTo(signLayer);
+    L.circleMarker(at, { radius: 6, color: '#0d1b14', weight: 2, fillColor: e.kind === 'turn' ? '#4f8dff' : '#ffffff', fillOpacity: 1 }).addTo(signLayer);
+  }
+  // site: placeholder plot area beyond the gate (replace with the real layout when supplied)
+  const g = GATE, c1 = dest(dest(g, hb, 70), left, 5), c2 = dest(dest(g, hb + 180, 70), left, 5), c3 = dest(c2, left, 160), c4 = dest(c1, left, 160);
+  siteBox = L.polygon([c1, c2, c3, c4], { color: '#d9b96a', weight: 3, fillColor: '#2e6b4f', fillOpacity: 0.18, dashArray: '6 6' }).addTo(signLayer);
+  L.marker(dest(g, left, 80), { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: '<div class="sign site"><small>OLIVETREE BUILDERS</small><strong>URBAN HEAVEN</strong><i>Veerapandi · Mettupalayam Road</i></div>' }) }).addTo(signLayer);
+  car.addTo(map);
+}
+
+// ---------- tour ----------
+let path = null, m = 0, playing = false, speedMul = 1, fired = new Set(), finished = false, follow = true, intro = 0, hold = 0;
+function speedAt(mm) { // metres per second of animation
+  let v = mm < path.hwLen ? 220 : 45;
+  for (const e of path.events) {
+    const d = e.m - mm;
+    if ((e.kind === 'turn' || e.kind === 'stop') && d > -30 && d < 400) v = Math.min(v, 30 + Math.max(0, d) * 0.45);
+    if (e.kind === 'arrive' && d > -60 && d < 200) v = Math.min(v, 14 + Math.max(0, d) * 0.15);
+  }
+  v = Math.min(v, 10 + (path.total - mm) * 0.4, 25 + mm * 0.8);
+  return v;
+}
+function banner(t, s) { $('bannerTitle').textContent = t; $('bannerSub').textContent = s || ''; $('stopBanner').hidden = false; clearTimeout(banner.t); banner.t = setTimeout(() => $('stopBanner').hidden = true, 2800); }
+function buildStrip() {
+  const strip = $('strip'); strip.innerHTML = '<div class="strip-line"></div><div id="stripFill" class="strip-fill"></div><div id="stripCar" class="strip-car" aria-hidden="true">🚕</div>';
+  const last = path.events[path.events.length - 1];
+  for (const e of path.events) {
+    if (e.kind === 'turn' && e.id !== 'knm') continue;
+    const d = document.createElement('div'); d.className = 'tick ' + e.kind + (e === last ? ' last' : '');
+    d.style.left = (e.m / path.total * 100) + '%';
+    d.innerHTML = `<i></i><span>${e.kind === 'arrive' ? 'Urban Heaven' : e.id === 'knm' ? 'KNM Mills' : e.en}</span>`; strip.appendChild(d);
+  }
+}
+function updateHud() {
+  $('kmDone').textContent = (m / 1000).toFixed(1); $('kmLeft').textContent = Math.max(0, (path.total - m) / 1000).toFixed(1);
+  const pct = (m / path.total * 100) + '%'; $('stripFill').style.width = pct; $('stripCar').style.left = pct;
+  const next = path.events.find(e => e.m > m + 1 && e.kind !== 'pickup');
+  if (next) {
+    const d = next.m - m, txt = d >= 1000 ? (d / 1000).toFixed(1) + ' km' : Math.round(d / 10) * 10 + ' m';
+    $('nextIcon').textContent = next.kind === 'turn' ? (next.turn === 'left' ? '↰' : '↱') : next.kind === 'arrive' ? '🏁' : '⦿';
+    $('nextText').textContent = next.kind === 'stop' ? `Next stop · ${next.en}` : next.kind === 'arrive' ? 'Urban Heaven site entrance' : next.en;
+    $('nextDist').textContent = 'in ' + txt;
+  } else { $('nextIcon').textContent = '🏁'; $('nextText').textContent = 'You have arrived at Urban Heaven'; $('nextDist').textContent = ''; }
+  for (const e of path.events) {
+    if (fired.has(e.id) || m < e.m) continue; fired.add(e.id);
+    if (e.kind === 'stop') { banner(e.en, `${e.ta} · ${(e.m / 1000).toFixed(1)} km from ${STOPS[path.id][0].en}`); hold = 1.2; }
+    if (e.kind === 'turn') banner(e.en, e.id === 'knm' ? 'Leaving Mettupalayam Road · about 1.5 km to the site' : '');
+    if (e.kind === 'arrive') banner('Welcome to Urban Heaven', 'Entering the site');
+  }
+}
+function placeCar() {
+  const p = pointAt(path, m), ahead = pointAt(path, m + 25);
+  car.setLatLng(p.ll);
+  const el = car.getElement(); if (el) el.firstElementChild.style.transform = `rotate(${bearing(p.ll, ahead.ll) || p.brg}deg)`;
+  doneLine.setLatLngs(path.pts.slice(0, p.i).concat([p.ll]));
+  if (follow && !intro) map.panTo(p.ll, { animate: false });
+}
+function startTour(id) {
+  path = buildPath(id); m = 0; fired = new Set(); finished = false; follow = true; hold = 0;
+  drawRoute(path); buildStrip(); placeCar(); updateHud();
+  $('pickup').hidden = true; $('arrived').hidden = true; $('hud').hidden = false;
+  $('routeName').textContent = `${STOPS[id][0].en} → Urban Heaven · ≈ ${(path.total / 1000).toFixed(1)} km`;
+  try { localStorage.setItem('urban-heaven-pickup', id); } catch (e) {}
+  // overview of the whole route first, then drop down to the cab
+  intro = 1; setPlaying(false);
+  map.fitBounds(L.latLngBounds(path.pts), { padding: [60, 60], animate: true, duration: 1 });
+  banner(`Pickup · ${STOPS[id][0].en}`, 'Your Property Manager cab is on its way');
+  setTimeout(() => { map.flyTo(path.pts[0], 16, { duration: 1.8 }); setTimeout(() => { intro = 0; setPlaying(true); }, 1900); }, 1800);
+}
+function finish() {
+  finished = true; setPlaying(false); $('playBtn').textContent = 'Ride again';
+  if (!baseIsSat) $('layerBtn').click();
+  map.flyToBounds(siteBox.getBounds(), { padding: [40, 40], maxZoom: 18.5, duration: 2.2 });
+  setTimeout(() => { if (finished) $('arrived').hidden = false; }, 2600);
+}
+function setPlaying(v) { playing = v; $('playBtn').textContent = v ? 'Pause' : 'Play'; }
+$('playBtn').onclick = () => { if (finished) return startTour(path.id); follow = true; setPlaying(!playing); };
+for (const b of document.querySelectorAll('[data-speed]')) b.onclick = () => { speedMul = +b.dataset.speed; for (const o of document.querySelectorAll('[data-speed]')) o.setAttribute('aria-pressed', String(o === b)); };
+const showPicker = () => { setPlaying(false); $('pickup').hidden = false; $('arrived').hidden = true; };
+$('changeBtn').onclick = showPicker; $('againPick').onclick = showPicker; $('again').onclick = () => startTour(path.id);
+$('recenter').onclick = () => { follow = true; if (path) map.setView(pointAt(path, m).ll, 16); };
+map.on('dragstart', () => { follow = false; });
+for (const b of document.querySelectorAll('[data-pickup]')) b.onclick = () => startTour(b.dataset.pickup);
+for (const id of Object.keys(ROUTES)) { const el = document.querySelector(`[data-km="${id}"]`); if (el) el.textContent = `≈ ${(buildPath(id).total / 1000).toFixed(1)} km`; }
+
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now;
+  if (path && playing && !finished) {
+    if (hold > 0) hold -= dt; else m = Math.min(path.total, m + speedAt(m) * speedMul * dt);
+    placeCar(); updateHud();
+    if (m >= path.total - 0.5) finish();
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+// overview behind the chooser: both routes
+for (const id of Object.keys(ROUTES)) L.polyline(buildPath(id).pts, { color: '#f6c519', weight: 4, opacity: 0.8 }).addTo(routeLayer);
+map.fitBounds(L.latLngBounds(ROUTES.thudiyalur.concat(ROUTES.mettupalayam)), { padding: [40, 40] });
+$('loading').hidden = true;
+const want = new URLSearchParams(location.search).get('from'); if (want && ROUTES[want]) startTour(want);
+window.__map = { map, get m() { return m; }, set m(v) { m = v; }, get path() { return path; }, startTour, finish };

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1d2b26">
+<title>Property Manager · Urban Heaven site tour</title>
+<meta name="description" content="Ride the Property Manager cab from Thudiyalur or Mettupalayam along Mettupalayam Road to Urban Heaven, Veerapandi.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"../vendor/three.module.js"}}</script>
+<style>
+:root{--ink:#14211c;--green:#2e6b4f;--gold:#d9b96a;--cab:#f6c519;font-family:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{margin:0;height:100%;background:#1d2b26;color:#fff;overflow:hidden}
+button{font:inherit;cursor:pointer;border:1px solid rgba(255,255,255,.25);background:rgba(20,33,28,.72);color:#fff;border-radius:10px;padding:9px 13px;backdrop-filter:blur(6px)}
+button[aria-pressed=true]{background:var(--cab);color:var(--ink);border-color:var(--cab)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+#stage{position:fixed;inset:0;touch-action:none}#cockpits{position:fixed;inset:0;touch-action:pan-y}.cockpit{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:0;transition:opacity .35s ease;-webkit-user-drag:none;user-select:none}.cockpit.on{opacity:1}.look-nav{position:fixed;left:0;right:0;top:46%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none}.look-nav button{pointer-events:auto;width:46px;height:46px;border-radius:50%;font-size:22px;padding:0}.look-nav button:disabled{opacity:.25}.look-label{position:fixed;left:50%;transform:translateX(-50%);bottom:150px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:rgba(20,33,28,.7);padding:5px 10px;border-radius:20px;pointer-events:none}.cockpit-screen{position:fixed;pointer-events:none;border-radius:4px}#stage canvas{display:block;width:100%;height:100%}
+.loading{position:fixed;inset:0;display:grid;place-items:center;padding:30px;text-align:center;font-size:15px}
+.topbar{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));background:linear-gradient(#14211cdd,#14211c00);pointer-events:none}
+.title{display:flex;align-items:center;gap:10px}.title b{background:var(--cab);color:var(--ink);font-weight:700;padding:5px 9px;border-radius:7px;letter-spacing:.06em;font-size:13px}.title span{font-size:13px;opacity:.9}
+.km{pointer-events:none;display:flex;gap:14px;font-size:12px;opacity:.95}.km strong{font-size:20px;display:block;line-height:1}
+.next{position:fixed;top:64px;left:16px;display:flex;align-items:center;gap:12px;background:rgba(20,33,28,.82);border-radius:14px;padding:10px 14px;max-width:min(440px,calc(100% - 32px));backdrop-filter:blur(6px)}
+.next i{font-style:normal;font-size:30px;line-height:1;width:38px;text-align:center;color:var(--cab)}.next p{margin:0;font-weight:700;font-size:15px}.next small{opacity:.8;font-size:13px}
+.stop-banner{position:fixed;left:50%;top:30%;transform:translateX(-50%);text-align:center;background:rgba(20,33,28,.86);border:1px solid var(--gold);border-radius:16px;padding:14px 22px;max-width:90%;animation:pop .35s ease}
+.stop-banner h2{margin:0;font-size:24px}.stop-banner p{margin:5px 0 0;opacity:.9;font-family:'Noto Sans Tamil','DM Sans',sans-serif;font-size:14px}
+@keyframes pop{from{opacity:0;transform:translate(-50%,10px)}}
+.bottom{position:fixed;left:0;right:0;bottom:0;padding:12px 16px;padding-bottom:max(12px,env(safe-area-inset-bottom));background:linear-gradient(#14211c00,#14211cee 40%)}
+.strip{position:relative;height:46px;margin:0 18px 8px}.strip-line{position:absolute;left:0;right:0;top:12px;height:4px;background:rgba(255,255,255,.25);border-radius:4px}.strip-fill{position:absolute;left:0;top:12px;height:4px;background:var(--cab);border-radius:4px;width:0}
+.strip-car{position:absolute;top:-2px;transform:translateX(-50%);font-size:20px}
+.tick{position:absolute;top:8px;transform:translateX(-50%);text-align:center;width:0}.tick i{display:block;width:12px;height:12px;margin:0 auto;border-radius:50%;background:#fff;border:2px solid var(--ink)}
+.tick.turn i{background:#5aa0ff}.tick.arrive i{background:var(--gold);width:14px;height:14px}
+.tick.last span{left:auto;right:-6px;transform:none}.tick span{display:block;position:relative;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;margin-top:6px;opacity:.85}
+.controls{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}.controls .group{display:flex;gap:4px}
+.route-name{text-align:center;font-size:12px;opacity:.8;margin:0 0 8px}
+.hint{position:fixed;right:16px;top:70px;font-size:12px;opacity:.75;max-width:180px;text-align:right}
+.overlay{position:fixed;inset:0;display:grid;place-items:center;padding:18px;background:radial-gradient(circle at 50% 40%,#14211c99,#14211cee)}
+.card{width:min(760px,100%);background:#f6f4ee;color:var(--ink);border-radius:20px;padding:26px;box-shadow:0 30px 80px #0008}
+.card .eyebrow{letter-spacing:.18em;font-size:11px;font-weight:700;color:var(--green);margin:0}
+.card h1{font:600 32px Georgia,serif;margin:6px 0 4px}.card .lede{margin:0 0 18px;color:#4c5d55}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pick{text-align:left;background:#fff;color:var(--ink);border:1.5px solid #d9dfd5;border-radius:16px;padding:16px;backdrop-filter:none}
+.pick:hover{border-color:var(--green);background:#eef4ee}.pick strong{font-size:20px;display:block}.pick em{font-style:normal;color:var(--green);font-weight:700}
+.pick ol{margin:10px 0 0;padding-left:18px;font-size:13px;color:#4c5d55;line-height:1.55}
+.note{font-size:12px;color:#71827a;margin:14px 0 0}
+.card .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.card .actions button{background:var(--green);border-color:var(--green)}.card .actions button.ghost{background:#fff;color:var(--ink);border-color:#d9dfd5}
+@media(max-width:640px){.picks{grid-template-columns:1fr}.card{padding:18px}.card h1{font-size:25px}.title span{display:none}.hint{display:none}.next{top:58px;left:10px}.next p{font-size:14px}.stop-banner h2{font-size:19px}.strip{margin:0 26px 8px}.tick span{font-size:9px}.tick:not(.arrive):not(.pickup) span{display:none}.controls button{padding:8px 10px;font-size:13px}}
+</style></head>
+<body>
+<div id="stage" aria-label="Cab ride along Mettupalayam Road to Urban Heaven"></div>
+<div id="cockpits" hidden><img class="cockpit" src="cabin-left.webp?v=uh6" alt=""><img class="cockpit on" src="cabin-front.webp?v=uh6" alt=""><img class="cockpit" src="cabin-right.webp?v=uh6" alt=""></div><canvas id="cockpitScreen" class="cockpit-screen" hidden></canvas>
+<div id="loading" class="loading">Preparing the road…</div>
+
+<div class="topbar"><div class="title"><b>PROPERTY MANAGER</b><span>by Olivetree Builders · Urban Heaven, Veerapandi</span></div>
+<div class="km" id="kmBox"><div><strong id="kmDone">0.0</strong>km travelled</div><div><strong id="kmLeft">–</strong>km to site</div></div></div>
+
+<section id="hud" hidden>
+  <div id="lookNav" hidden><div class="look-nav"><button id="lookL" aria-label="Look left">‹</button><button id="lookR" aria-label="Look right">›</button></div><span class="look-label" id="lookLabel">Windscreen</span></div>
+  <div class="next" aria-live="polite"><i id="nextIcon">⦿</i><div><p id="nextText">Starting</p><small id="nextDist"></small></div></div>
+  
+  <div id="stopBanner" class="stop-banner" hidden role="status"><h2 id="bannerTitle"></h2><p id="bannerSub"></p></div>
+  <div class="bottom"><p class="route-name" id="routeName"></p><div class="strip" id="strip"></div>
+    <div class="controls"><button id="playBtn" aria-pressed="false">Pause</button>
+      <div class="group" role="group" aria-label="Speed"><button data-speed="1" aria-pressed="true">1×</button><button data-speed="2" aria-pressed="false">2×</button><button data-speed="4" aria-pressed="false">4×</button></div>
+      <button id="viewBtn" hidden>Outside view</button><button id="lookBtn" hidden>Look ahead</button><button id="changeBtn">Change pickup</button></div></div>
+</section>
+
+<section id="pickup" class="overlay" aria-labelledby="pickTitle"><div class="card">
+  <p class="eyebrow">OLIVETREE BUILDERS · PROPERTY MANAGER</p>
+  <h1 id="pickTitle">Where should the cab pick you up?</h1>
+  <p class="lede">Choose your pickup point on Mettupalayam Road and ride with us to Urban Heaven, Veerapandi. You sit in the back seat — drag to look around 360°.</p>
+  <div class="picks">
+    <button class="pick" data-pickup="thudiyalur"><strong>Thudiyalur</strong><em data-km="thudiyalur">≈ 10.7 km</em>
+      <ol><li>NGGO Colony</li><li>Narasimhanaickenpalayam</li><li>Periyanaickenpalayam</li><li>Santhaimedu · left at KNM Mills</li><li>~750 m, right · ~500 m, left</li><li>Straight road → Urban Heaven</li></ol></button>
+    <button class="pick" data-pickup="mettupalayam"><strong>Mettupalayam</strong><em data-km="mettupalayam">≈ 18.7 km</em>
+      <ol><li>Karamadai</li><li>Santhaimedu · right at KNM Mills</li><li>~750 m, right · ~500 m, left</li><li>Straight road → Urban Heaven</li></ol></button>
+  </div>
+  <p class="note">Distances are approximate. The site map will be added after arrival.</p>
+</div></section>
+
+<section id="arrived" class="overlay" hidden><div class="card">
+  <p class="eyebrow">YOU HAVE ARRIVED</p><h1>Welcome to Urban Heaven</h1>
+  <p class="lede">The cab is inside the site. The interactive site map with plots is coming next.</p>
+  <div class="actions"><button id="again">Ride again</button><button id="againPick" class="ghost">Change pickup</button></div>
+</div></section>
+<noscript>Please enable JavaScript to take the site tour.</noscript>
+<script type="module" src="./tour.js?v=uh8"></script>
+</body></html>
