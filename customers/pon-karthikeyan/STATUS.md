@@ -163,6 +163,7 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **Verified:**
   - Check: default is current; the switch shows and hides each design; the TV stays on the raised layer between 28 and 60 in high; the layer is 3 in; the Lighting toggle covers the curve glow; switching back restores everything.
   - Local SwiftShader screenshots of the full view and the TV-panel view in curvy mode.
+- **Deployed:** commit 69b579d. The first Pages run failed with a transient GitHub error ('No artifacts named github-pages'); the re-run of run 44426976781 succeeded and the live page serves pk12.
 - **Awaiting customer feedback:** the curve shape, the ledge, and the layer tone. See `design.json` → `designPreviews`.
 
 ## Next action
