@@ -154,6 +154,17 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - it never leaves the slot zone at x 120–144.
 - **Not visually verified:** the motion. It still needs a real browser.
 
+## Design preview — 19 Nov 2026: curvy double-layer TV panel (not confirmed)
+
+- **Request:** the customer asked for a curvy double-layer panel like the reference image.
+- **What was added:** a switchable preview next to the existing design. The current panel is unchanged and stays the default.
+  - Button: "TV panel: Current / Curvy (preview)", saved in localStorage.
+  - Curvy mode: a 3 in raised green mica layer with an S-curve left edge and a warm strip and wash following the curve. The rectangular box and its vertical strip are hidden, and so is the under-ledge wash.
+- **Verified:**
+  - Check: default is current; the switch shows and hides each design; the TV stays on the raised layer between 28 and 60 in high; the layer is 3 in; the Lighting toggle covers the curve glow; switching back restores everything.
+  - Local SwiftShader screenshots of the full view and the TV-panel view in curvy mode.
+- **Awaiting customer feedback:** the curve shape, the ledge, and the layer tone. See `design.json` → `designPreviews`.
+
 ## Next action
 
 Share the live URL. Ask the open questions in design.json only as needed: the glass cabinet interior, niche lighting and quotation rates. Then check on a real phone.

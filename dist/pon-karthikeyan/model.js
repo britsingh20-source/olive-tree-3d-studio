@@ -89,11 +89,32 @@ export function buildModel(){
  B(panel.group,24.1,120,72.15,72.95,20,84,panel.front);
  // Rev 5: TV panel 3 in deep, flush with the tall unit and the ledge; a 1.5 in reveal on
  // the niche side only, with one vertical concealed strip from the console up to the louvers.
+ const rectStart=panel.group.children.length;
  const box=B(panel.group,24.1,118.5,69.05,72.15,20,68,panel.front);box.userData.role='tv-panel-box';
  panel.depthInches=3;panel.revealInches=1.5;panel.revealSide='niche side (right)';
  led(panel,118.85,119.25,71.5,71.95,20.2,83.8);
  panel.concealedLight='One vertical warm-white strip on the niche side, console to louvers';
  glowF(panel,118.5,120,20,84,72.1,Math.PI);      // vertical wash beside the panel
+ const rectDesign=new T.Group();rectDesign.name='Current panel';for(const o of panel.group.children.slice(rectStart))rectDesign.add(o);panel.group.add(rectDesign);
+
+ // ---- Design preview (19 Nov): curvy double-layer panel, after the customer's reference ----
+ // A 3 in second layer of the same matte green mica over the wall panel. Its left edge is a
+ // flowing S-curve from the louvers (x 80 in) down to the console at the tall unit; a concealed
+ // warm-white strip follows the curve and washes the base layer. Switch with setPanelDesign().
+ const curvy=new T.Group();curvy.name='Curvy double-layer panel (preview)';curvy.visible=false;panel.group.add(curvy);
+ const curveCtl=[[80,84],[66,78],[48,69],[40,58],[36,47],[32,35],[27,25],[24.1,20]].map(([x,z])=>new T.Vector2(x,z));
+ const curvePts=new T.SplineCurve(curveCtl).getSpacedPoints(80);   // top → bottom, inches (x, height)
+ const shape=new T.Shape();shape.moveTo(24.1*I,20*I);shape.lineTo(118.5*I,20*I);shape.lineTo(118.5*I,84*I);
+ for(const q of curvePts)shape.lineTo(q.x*I,q.y*I);
+ const layerGeo=new T.ExtrudeGeometry(shape,{depth:3*I,bevelEnabled:false,curveSegments:4});
+ const layer=new T.Mesh(layerGeo,panel.front);layer.position.z=-72.15*I;layer.castShadow=layer.receiveShadow=true;layer.userData.role='curvy-layer';curvy.add(layer);
+ const ribbon=(width,y,outward,mat)=>{const pos=[],uv=[],idx=[];curvePts.forEach((q,k)=>{const a=curvePts[Math.max(0,k-1)],b=curvePts[Math.min(curvePts.length-1,k+1)],t=new T.Vector2(b.x-a.x,b.y-a.y).normalize(),n=new T.Vector2(t.y,-t.x);
+   const o=q.clone().addScaledVector(n,outward*width);pos.push(q.x*I,q.y*I,-y*I,o.x*I,o.y*I,-y*I);uv.push(1,k/80,0,k/80);if(k)idx.push(2*k-2,2*k-1,2*k,2*k-1,2*k+1,2*k);});
+  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();const m=new T.Mesh(g,mat);m.renderOrder=5;curvy.add(m);return m;};
+ const curveStrip=ribbon(.35,71.9,1,new T.MeshBasicMaterial({color:lightMaterial.color,side:T.DoubleSide}));curveStrip.material=lightMaterial;
+ const curveGlow=ribbon(7,72.05,1,(()=>{const m=glowMat(0,.95);m.side=T.DoubleSide;return m;})());curveGlow.userData.glow=true;panel.glows.push(curveGlow);
+ panel.designs={current:rectDesign,curvy};panel.design='current';
+ panel.curveXAt=z=>{let best=curvePts[0];for(const q of curvePts)if(Math.abs(q.y-z)<Math.abs(best.y-z))best=q;return best.x;};
 
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();
  B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
@@ -272,10 +293,11 @@ export function buildModel(){
  // ---- Reference colours: every extracted source face ----
  for(const f of exactLayout.sourceFaces){const m=polygon(f,new T.MeshStandardMaterial({color:f.color,side:T.DoubleSide,roughness:1}));m.castShadow=false;m.userData.sourceFace=f.id;referenceRoot.add(m);sourceMeshes.push(m);}
  for(const u of units)u.group.traverse(o=>{if(o.isMesh)o.userData.unit=u;});
- let reference=false;
+ let reference=false,lightsOn=true;
  return {robot:bay.cleaner,root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
  setReference(on){reference=on;referenceRoot.visible=on;for(const u of units)u.group.visible=!on;architecture.visible=!on;},
- setLights(on){for(const u of units)for(const g of u.glows||[])g.visible=on;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
+ setPanelDesign(name){const p=units.find(u=>u.id==='tv-panel');if(!p.designs[name])return;p.design=name;for(const [k,g] of Object.entries(p.designs))g.visible=k===name;const ledgeWash=units.find(u=>u.id==='ledge').glows[0];ledgeWash.userData.hiddenByDesign=name!=='current';ledgeWash.visible=name==='current'&&lightsOn;},
+ setLights(on){lightsOn=on;for(const u of units)for(const g of u.glows||[])g.visible=on&&!g.userData.hiddenByDesign;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
  update(dt){bay.cleaner.update(dt);for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
  };
 }

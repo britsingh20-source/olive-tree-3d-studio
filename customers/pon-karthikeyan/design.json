@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk11",
+    "assetVersion": "pk12",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -411,5 +411,19 @@
     "layoutScript": "scripts/prepare-pon-karthikeyan-layout.py",
     "check": "check-pon-karthikeyan.mjs",
     "template": "dist/ratesh (studio.js/index.html), shared rathesh studio.css + tour.js, vendored three r180"
-  }
+  },
+  "designPreviews": [
+    {
+      "date": "2026-11-19",
+      "name": "Curvy double-layer TV panel",
+      "status": "PREVIEW ONLY — not confirmed; current rectangular 3 in panel remains the default",
+      "request": "Customer asked for a curvy double-layer panel like the reference image (green panel with a raised curved layer and LED along the curve).",
+      "implementation": "Toggle button 'TV panel: Current / Curvy (preview)' (saved per browser). Raised layer 3 in deep, same matte green mica, from x 24.1-118.5 in and 20-84 in high, left edge an S-curve from the louvers at x 80 in down to the console at the tall unit; concealed warm-white strip follows the curve and washes the base panel. Under-ledge wash hidden in this mode. TV stays fully on the raised layer.",
+      "openQuestions": [
+        "Curve shape/position acceptable?",
+        "Keep the ledge crossing the panel, or remove/shorten it with the curvy design?",
+        "Same green for both layers or a different tone for the raised layer?"
+      ]
+    }
+  ]
 }
