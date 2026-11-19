@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
-import { buildSUV } from './suv.js?v=uh3';
-import { buildCabin } from './interior.js?v=uh3';
-import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh3';
+import { buildSUV } from './suv.js?v=uh4';
+import { buildCabin } from './interior.js?v=uh4';
+import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh4';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage');
@@ -307,7 +307,7 @@ function setView(v) {
   applyLook(); resize();
 }
 function applyLook() {
-  eye.rotation.set(0, lookYaw + (view === 'inside' ? 0 : -0.46), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.01 : -0.17), 0, 0);
+  eye.rotation.set(0, lookYaw + (view === 'inside' ? 0 : -0.46), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.14 : -0.17), 0, 0);
 }
 function speedFor(sv) {
   const p = pointAt(sv); let v = BASE[p.type] || 10;

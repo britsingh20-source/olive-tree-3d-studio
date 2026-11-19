@@ -22,9 +22,9 @@ function profileMesh(shape, depth, material, bevel = 0.06) {
   return m;
 }
 
-export function buildSUV({ body = '#eef0ee', roof = '#1b1d20' } = {}) {
+export function buildSUV({ body = '#0c0d0f', roof = '#0c0d0f' } = {}) {
   const car = new THREE.Group();
-  const paint = std(body, { roughness: 0.28, metalness: 0.35 }), dark = std('#17191c', { roughness: 0.7 }), chrome = std('#c9ced3', { roughness: 0.2, metalness: 0.9 });
+  const paint = std(body, { roughness: 0.14, metalness: 0.6 }), dark = std('#17191c', { roughness: 0.7 }), chrome = std('#c9ced3', { roughness: 0.2, metalness: 0.9 });
   const glass = std('#1d2a33', { roughness: 0.08, metalness: 0.6, transparent: true, opacity: 0.88 });
   const R = 0.4, frontAxle = 1.45, rearAxle = -1.4, arch = 0.5;
 
@@ -64,7 +64,7 @@ export function buildSUV({ body = '#eef0ee', roof = '#1b1d20' } = {}) {
     for (const z of [-0.45, 0.55]) { const h = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.035, 0.2), chrome); h.position.set(side * (W / 2 + 0.01), 1.07, z); car.add(h); }
     const mirror = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.14, 0.12), paint); mirror.position.set(side * (W / 2 + 0.12), 1.3, -1.22); car.add(mirror);
     // door decal
-    const dec = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.28), new THREE.MeshBasicMaterial({ map: textTex([{ t: 'PROPERTY MANAGER', size: 92, bold: true }, { t: 'Urban Heaven site tour', size: 58 }], null, '#2e6b4f', 1024, 300), transparent: true }));
+    const dec = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.28), new THREE.MeshBasicMaterial({ map: textTex([{ t: 'PROPERTY MANAGER', size: 92, bold: true }, { t: 'Urban Heaven site tour', size: 58 }], null, '#f6c519', 1024, 300), transparent: true }));
     dec.position.set(side * (W / 2 + 0.012), 0.82, 0.05); dec.rotation.y = side * Math.PI / 2; car.add(dec);
     // wheel-arch cladding
     for (const z of [-frontAxle, -rearAxle]) {
@@ -74,20 +74,35 @@ export function buildSUV({ body = '#eef0ee', roof = '#1b1d20' } = {}) {
 
   // ---- front: our own grille (horizontal chrome bars on a gloss-black frame), thin LED lamps ----
   const zF = -L / 2 - 0.09, zR = L / 2 + 0.1;
-  const grille = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.34, 0.05), std('#0d0e10', { roughness: 0.15 })); grille.position.set(0, 0.86, zF); car.add(grille);
-  for (let i = 0; i < 4; i++) { const b = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.025, 0.03), chrome); b.position.set(0, 0.74 + i * 0.08, zF - 0.03); car.add(b); }
-  const lamp = std('#e9f4ff', { emissive: '#cfe6ff', emissiveIntensity: 0.9, roughness: 0.1 });
+  // our own front: wide trapezoid grille (chrome frame, horizontal chrome bars over a dark
+  // rectangular mesh), slim LED headlamps, fog lamps in black recesses, silver skid plate.
+  const meshTex = textTex([], '#050506', '#000', 512, 256); {
+    const c = meshTex.image, g = c.getContext('2d'); g.strokeStyle = '#2a2c30'; g.lineWidth = 3;
+    for (let y = 0; y < 256; y += 18) for (let x = (y / 18) % 2 ? 0 : 14; x < 512; x += 28) g.strokeRect(x, y, 24, 14);
+    meshTex.needsUpdate = true; }
+  const gs = new THREE.Shape(); gs.moveTo(-0.62, 1.04); gs.lineTo(0.62, 1.04); gs.lineTo(0.5, 0.66); gs.lineTo(-0.5, 0.66); gs.lineTo(-0.62, 1.04);
+  const gGeo = new THREE.ShapeGeometry(gs); gGeo.translate(0, 0, 0);
+  const gBack = new THREE.Mesh(gGeo, new THREE.MeshStandardMaterial({ map: meshTex, roughness: 0.4 }));
+  gBack.position.z = zF - 0.005; gBack.rotation.y = Math.PI; car.add(gBack);
+  { const uv = gGeo.attributes.uv, p = gGeo.attributes.position; for (let i = 0; i < uv.count; i++) uv.setXY(i, (p.getX(i) + 0.62) / 1.24 * 2, (p.getY(i) - 0.66) / 0.38); uv.needsUpdate = true; }
+  const frame = [[-0.62, 1.04, 0.62, 1.04], [0.62, 1.04, 0.5, 0.66], [0.5, 0.66, -0.5, 0.66], [-0.5, 0.66, -0.62, 1.04]];
+  for (const [x1, y1, x2, y2] of frame) { const len = Math.hypot(x2 - x1, y2 - y1); const b = new THREE.Mesh(new THREE.BoxGeometry(len, 0.03, 0.04), chrome); b.position.set((x1 + x2) / 2, (y1 + y2) / 2, zF - 0.02); b.rotation.z = Math.atan2(y2 - y1, x2 - x1); car.add(b); }
+  for (const [y, w] of [[0.95, 1.12], [0.85, 1.06], [0.75, 1.0]]) { const b = new THREE.Mesh(new THREE.BoxGeometry(w, 0.022, 0.03), chrome); b.position.set(0, y, zF - 0.025); car.add(b); }
+  const lamp = std('#e9f4ff', { emissive: '#cfe6ff', emissiveIntensity: 1.2, roughness: 0.1 });
+  const lampHouse = std('#1a1c20', { roughness: 0.1, metalness: 0.8 });
   for (const sx of [-1, 1]) {
-    const hl = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.09, 0.05), lamp); hl.position.set(sx * 0.67, 0.97, zF + 0.01); hl.rotation.z = sx * 0.08; car.add(hl);
-    const drl = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.02, 0.04), lamp); drl.position.set(sx * 0.68, 0.9, zF + 0.0); car.add(drl);
-    const fog = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.03, 12), lamp); fog.rotation.x = Math.PI / 2; fog.position.set(sx * 0.72, 0.58, zF + 0.03); car.add(fog);
+    const hh = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.11, 0.06), lampHouse); hh.position.set(sx * 0.78, 1.0, zF + 0.01); hh.rotation.z = sx * -0.12; car.add(hh);
+    for (const dx of [-0.06, 0.06]) { const pr = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.02, 18), chrome); pr.rotation.x = Math.PI / 2; pr.position.set(sx * 0.78 + dx, 1.0, zF - 0.025); car.add(pr); }
+    const drl = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.018, 0.02), lamp); drl.position.set(sx * 0.78, 0.94, zF - 0.025); drl.rotation.z = sx * -0.12; car.add(drl);
+    const rec = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.16, 0.04), std('#050506', { roughness: 0.5 })); rec.position.set(sx * 0.7, 0.62, zF); car.add(rec);
+    const fog = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.03, 16), lamp); fog.rotation.x = Math.PI / 2; fog.position.set(sx * 0.7, 0.62, zF - 0.02); car.add(fog);
     const tl = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.1, 0.04), std('#b3121b', { emissive: '#7a0a10', emissiveIntensity: 0.8 })); tl.position.set(sx * 0.7, 1.05, zR); car.add(tl);
   }
-  const skid = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.12, 0.06), chrome); skid.position.set(0, 0.52, zF + 0.04); car.add(skid);
-  const intake = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.12, 0.05), dark); intake.position.set(0, 0.65, zF + 0.02); car.add(intake);
+  const skid = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.09, 0.07), std('#b9bec4', { roughness: 0.35, metalness: 0.8 })); skid.position.set(0, 0.5, zF + 0.02); car.add(skid);
+  const intake = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.1, 0.05), new THREE.MeshStandardMaterial({ map: meshTex, roughness: 0.4 })); intake.position.set(0, 0.6, zF - 0.005); car.add(intake);
   const rearBar = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.16, 0.08), dark); rearBar.position.set(0, 0.56, zR); car.add(rearBar);
   const plateTex = textTex([{ t: 'URBAN HEAVEN', size: 120, bold: true }], '#f6c519', '#111', 1024, 220);
-  for (const [z, ry] of [[zF - 0.04, Math.PI], [zR + 0.03, 0]]) { const p = new THREE.Mesh(new THREE.PlaneGeometry(0.52, 0.12), new THREE.MeshBasicMaterial({ map: plateTex })); p.position.set(0, z < 0 ? 0.66 : 0.76, z); p.rotation.y = ry; car.add(p); }
+  for (const [z, ry] of [[zF - 0.04, Math.PI], [zR + 0.03, 0]]) { const p = new THREE.Mesh(new THREE.PlaneGeometry(0.52, 0.12), new THREE.MeshBasicMaterial({ map: plateTex })); p.position.set(0, z < 0 ? 0.585 : 0.76, z - (z < 0 ? 0.02 : 0)); p.rotation.y = ry; car.add(p); }
   // roof sign
   const sign = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.2, 0.26), std('#f6c519')); sign.position.set(0, 2.02, -0.2); car.add(sign);
   const signTex = textTex([{ t: 'PROPERTY MANAGER', size: 118, bold: true }], '#f6c519', '#1d1f22', 1024, 230);

@@ -11,6 +11,12 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev uh4 (19 Nov 2026)
+
+- Interior and exterior restyled from Bright's three reference photos (details in design.json). Inside view now looks slightly down (pitch −0.14) so the dashboard and road are both in frame.
+- Fixed: centre stack, screen, vents and passenger panel were buried inside the dash geometry.
+- Checked headless Chrome/SwiftShader: 1280×760 forward/right/down/back + exterior front 3/4/side; 390×780 forward. No page errors from the tour.
+
 ## Rev uh3 (19 Nov 2026)
 
 - New realistic cabin `dist/urban-heaven/interior.js` replaces the simple interior (details in design.json). Live canvases: speedometer/trip cluster and the touchscreen route map update while driving; steering wheel follows road curvature.
