@@ -80,7 +80,7 @@ function drawRoute(path) {
   for (const e of path.events) {
     if (e.kind === 'arrive') continue;
     const at = pointAt(path, e.m).ll, kmLeft = ((path.total - e.m) / 1000).toFixed(1);
-    L.marker(at, { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: signHtml(e, kmLeft) }) }).addTo(signLayer);
+    e.marker = L.marker(at, { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: signHtml(e, kmLeft) }) }).addTo(signLayer);
     L.circleMarker(at, { radius: 6, color: '#0d1b14', weight: 2, fillColor: e.kind === 'turn' ? '#4f8dff' : '#ffffff', fillOpacity: 1 }).addTo(signLayer);
   }
   // site: placeholder plot area beyond the gate (replace with the real layout when supplied)
@@ -92,20 +92,16 @@ function drawRoute(path) {
 
 // ---------- tour ----------
 let path = null, m = 0, playing = false, speedMul = 1, fired = new Set(), finished = false, follow = true, intro = 0, hold = 0;
-// Displayed road speed in km/h (Bright, 19 Nov): cruise 80–90 between stops, ease down to ~40 while
-// passing a stop (no stopping), back up to cruise after it. Side road to the site is slower.
+// Displayed road speed in km/h (Bright, 19 Nov 11:45): steady 90 on the highway, no slowing at stops —
+// the stop's board is highlighted as the cab passes instead. Side road to the site is slower.
 // The ride is shown TIME_SCALE× faster than real time so a whole trip takes about a minute.
 const TIME_SCALE = 10;
 const ease = t => t * t * (3 - 2 * t);
 function kmhAt(mm) {
   const onHighway = mm < path.hwLen;
-  let v = onHighway ? 85 + 5 * Math.sin(mm / 900) : 35;
+  let v = onHighway ? 90 : 35;
   for (const e of path.events) {
     const d = e.m - mm; // >0 before the event
-    if (e.kind === 'stop') { // 400 m slow-down before, 200 m pick-up after
-      const t = d >= 0 ? Math.min(1, d / 400) : Math.min(1, -d / 200);
-      if (t < 1) v = Math.min(v, 40 + (v - 40) * ease(t));
-    }
     if (e.kind === 'turn') { const t = d >= 0 ? Math.min(1, d / 300) : Math.min(1, -d / 120); if (t < 1) v = Math.min(v, 25 + (v - 25) * ease(t)); }
     if (e.kind === 'arrive' && d > -100) v = Math.min(v, 12 + Math.max(0, d) * 0.12);
   }
@@ -124,7 +120,16 @@ function buildStrip() {
     d.innerHTML = `<i></i><span>${e.kind === 'arrive' ? 'Urban Heaven' : e.id === 'knm' ? 'KNM Mills' : e.en}</span>`; strip.appendChild(d);
   }
 }
+// highlight the board of the area the cab is passing (from 600 m before to 400 m after)
+function highlightBoards() {
+  for (const e of path.events) {
+    if (!e.marker) continue; const el = e.marker.getElement(); if (!el) continue;
+    const d = e.m - m, on = d < 600 && d > -400;
+    const sign = el.querySelector('.sign'); if (sign && sign.classList.contains('hot') !== on) { sign.classList.toggle('hot', on); e.marker.setZIndexOffset(on ? 900 : 0); }
+  }
+}
 function updateHud() {
+  highlightBoards();
   $('kmDone').textContent = (m / 1000).toFixed(1); $('kmLeft').textContent = Math.max(0, (path.total - m) / 1000).toFixed(1);
   const pct = (m / path.total * 100) + '%'; $('stripFill').style.width = pct; $('stripCar').style.left = pct;
   const next = path.events.find(e => e.m > m + 1 && e.kind !== 'pickup');
