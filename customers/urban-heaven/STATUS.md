@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev uh8 (19 Nov 2026) — front passenger seat
+
+- Bright: back seat blocked the front view → customer now sits in the front-left passenger seat (eye −0.4, 1.52, 0.4 m; pitch −0.12), still free 360° drag. Own passenger backrest hides when looking back. Rear bench split into three equal seats with three headrests (centre armrest removed).
+- Checked headless Chrome/SwiftShader 1280×760 forward/left/back, 390×780 forward. No page errors.
+
 ## Rev uh7 (19 Nov 2026) — back seat, 360°, Olivetree Builders
 
 - Default view `rear`: customer in the rear-left seat (eye −0.38, 1.42, 1.2 m), free 360° drag (pitch −0.9…0.6), ‹ › turn 90°, arrow keys. Own backrest/headrest hidden while looking backwards so the third row and road behind show.

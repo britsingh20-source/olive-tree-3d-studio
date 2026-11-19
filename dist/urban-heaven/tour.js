@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
-import { buildSUV } from './suv.js?v=uh7';
-import { buildCabin } from './interior.js?v=uh7';
-import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh7';
+import { buildSUV } from './suv.js?v=uh8';
+import { buildCabin } from './interior.js?v=uh8';
+import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh8';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage');
@@ -325,7 +325,7 @@ function setView(v) {
   view = v; $('viewBtn').textContent = v === 'inside' ? 'Outside view' : 'Inside the cab';
   cabin.visible = v === 'inside' || v === 'rear'; ext.visible = v === 'outside';
   $('cockpits').hidden = v !== 'photo'; $('lookNav').hidden = v !== 'photo' && v !== 'rear';
-  if (v === 'rear') { cabin.visible = true; eye.position.set(-0.38, 1.42, 1.2); lookYaw = lookYawTarget = 0; lookPitch = -0.06; $('lookLabel').textContent = 'Drag to look around · 360°'; $('lookL').disabled = $('lookR').disabled = false; }
+  if (v === 'rear') { cabin.visible = true; eye.position.set(-0.4, 1.52, 0.4); lookYaw = lookYawTarget = 0; lookPitch = -0.12; $('lookLabel').textContent = 'Drag to look around · 360°'; $('lookL').disabled = $('lookR').disabled = false; }
   if (v === 'photo') { lookYaw = lookPitch = 0; showPhoto(1, true); }
   else if (v === 'inside') { eye.position.set(-0.4, 1.52, 0.4); }
   else if (v === 'outside') { eye.position.set(-3.6, 2.3, 7.2); }

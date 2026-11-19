@@ -101,7 +101,7 @@ function seat(width = 0.54, outer = -1, opts = {}) {
   put(g, rbox(width, 0.13, 0.52, 0.05, M.stitch), 0, 0.86, 0.12);
   put(g, rbox(width * 0.6, 0.035, 0.42, 0.015, M.stitchPerf), 0, 0.935, 0.11);
   for (const sx of [-1, 1]) put(g, rbox(0.1, 0.1, 0.5, 0.045, M.stitch), sx * (width / 2 - 0.05), 0.95, 0.12);
-  const b = new THREE.Group(); b.position.set(0, 0.92, 0.38); b.rotation.x = 0.22; g.add(b);
+  const b = new THREE.Group(); b.position.set(0, 0.92, 0.38); b.rotation.x = 0.22; g.add(b); g.userData.back = b;
   put(b, rbox(width, 0.74, 0.16, 0.06, M.stitch), 0, 0.37, 0);
   put(b, rbox(width * 0.56, 0.56, 0.03, 0.015, M.stitchPerf), 0, 0.33, -0.08);
   for (const sx of [-1, 1]) put(b, rbox(0.11, 0.64, 0.13, 0.05, M.stitch), sx * (width / 2 - 0.06), 0.34, -0.05);
@@ -270,17 +270,16 @@ export function buildCabin({ body = '#0c0d0f' } = {}) {
 
   // ---- seats: driver (right), ours (left), split second row with fold-down armrest ----
   put(cab, seat(0.54, 1, { brandBack: true }), 0.4, -0.1, 0.0);
-  put(cab, seat(0.54, -1, { brandBack: true }), -0.4, -0.1, 0.0);
+  const passengerSeat = put(cab, seat(0.54, -1, { brandBack: true }), -0.4, -0.1, 0.0);
   const bench = new THREE.Group(); put(cab, bench, 0, -0.02, 1.05);
-  const ownSeat = []; // the customer's own backrest/headrest: hidden while they look backwards
-  for (const [x, w] of [[-0.42, 0.62], [0.3, 0.86]]) {
+  const ownSeat = [passengerSeat.userData.back]; // the customer's own backrest/headrest: hidden while they look backwards
+  for (const [x, w] of [[-0.5, 0.48], [0, 0.48], [0.5, 0.48]]) {
     put(bench, rbox(w, 0.14, 0.5, 0.05, M.stitch), x, 0.84, 0.1);
-    const bb = new THREE.Group(); bb.position.set(x, 0.9, 0.36); bb.rotation.x = 0.2; bench.add(bb); if (x < 0) ownSeat.push(bb);
+    const bb = new THREE.Group(); bb.position.set(x, 0.9, 0.36); bb.rotation.x = 0.2; bench.add(bb);
     put(bb, rbox(w, 0.66, 0.15, 0.06, M.stitch), 0, 0.33, 0);
-    put(bb, rbox(w * 0.6, 0.48, 0.03, 0.015, M.stitchPerf), 0, 0.3, -0.075);
+    put(bb, rbox(w * 0.62, 0.48, 0.03, 0.015, M.stitchPerf), 0, 0.3, -0.075);
   }
-  for (const x of [-0.42, 0.12, 0.5]) { const hb = new THREE.Group(); hb.position.set(x, 0.9, 0.36); hb.rotation.x = 0.2; bench.add(hb); if (x < 0) ownSeat.push(hb); put(hb, rbox(0.26, 0.18, 0.1, 0.05, M.stitch), 0, 0.78, 0); }
-  put(bench, rbox(0.2, 0.08, 0.36, 0.03, M.stitch), -0.02, 1.02, 0.2);
+  for (const x of [-0.5, 0, 0.5]) { const hb = new THREE.Group(); hb.position.set(x, 0.9, 0.36); hb.rotation.x = 0.2; bench.add(hb); put(hb, rbox(0.26, 0.18, 0.1, 0.05, M.stitch), 0, 0.78, 0); }
 
   // ---- doors, pillars, roof ----
   for (const side of [-1, 1]) {

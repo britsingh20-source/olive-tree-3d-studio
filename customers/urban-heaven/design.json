@@ -33,7 +33,7 @@
     "referencePhotos": "19 Nov: Bright sent 3 reference photos of a premium Indian-market SUV (dashboard, seats, black front exterior) as the look to follow. Not stored in the public repo; used for colours/materials/layout only. No logos, model name or exact grille/lamp design copied",
     "insideOnly": "19 Nov 09:51: customers see ONLY the inside-the-cab experience (no outside view). Goal: feel real; Bright and Claude check realism together before the link goes to customers. Bright sent 13 reference photos (front windscreen views, passenger window, rear-seat views) and will supply/generate more on request",
     "photoCockpit": "Rev uh5: default view is Bright's front reference photo (passenger/centre view of a premium SUV cabin) with the windscreen cut out; road rendered behind, live route drawn on the photo's touchscreen",
-    "seat360": "19 Nov 10:04: customer sits in the BACK seat and can rotate the view a full 360°; Olivetree Builders branding inside the car"
+    "seat360": "19 Nov 10:20 (supersedes 10:04 back-seat request): customer sits in the FRONT passenger seat; front view is the main view; 360° look-around kept; Olivetree Builders branding inside the car"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
