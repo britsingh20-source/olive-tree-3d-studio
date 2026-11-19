@@ -11,13 +11,24 @@
   "confirmed": {
     "source": "Bright, chat 19 Nov 2026",
     "title": "Whole experience sits under the title 'Property Manager'; a cab picks the client up",
-    "pickups": ["Thudiyalur", "Mettupalayam"],
+    "pickups": [
+      "Thudiyalur",
+      "Mettupalayam"
+    ],
     "customerChoosesPickup": true,
     "customerSeesTheRoad": true,
-    "thudiyalurStops": ["Thudiyalur", "NGGO Colony ('Enjo Colony')", "Narasimhanaickenpalayam", "Periyanaickenpalayam", "'Sandimad' (KNM Mills there)"],
+    "thudiyalurStops": [
+      "Thudiyalur",
+      "NGGO Colony ('Enjo Colony')",
+      "Narasimhanaickenpalayam",
+      "Periyanaickenpalayam",
+      "'Sandimad' (KNM Mills there)"
+    ],
     "afterKnmMills": "From Thudiyalur: turn left at KNM Mills; within ~700–800 m turn right; within ~500 m turn left; straight road; Urban Heaven appears; the car enters the site",
     "mettupalayamSide": "Same structure from the Mettupalayam end",
-    "next": "Site map will be added after arrival (Bright to supply)"
+    "next": "Site map will be added after arrival (Bright to supply)",
+    "car": "19 Nov: outside view = an SUV similar in class to a Fortuner, our own design (no purchased model, no copy of Toyota styling); inside view as built is OK",
+    "realism": "19 Nov: Bright will send reference photos of the road layout and roadside buildings; target ~50–60% real look using them. Real dashcam footage / Google imagery not being used for now"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
@@ -25,9 +36,11 @@
     "spelling": "'Sandimad' is shown as 'Santhaimedu' (சந்தைமேடு) — assumed, needs confirmation",
     "mettupalayamTurn": "From the Mettupalayam side the turn at KNM Mills is modelled as RIGHT (same side road approached from the north) — derived, needs confirmation",
     "mettupalayamStops": "Only Karamadai shown between Mettupalayam and Santhaimedu — stop list not yet given",
-    "scenery": "Road, trees, buildings, KNM Mills sheds, gate arch, hills and plot kerbs are illustrative, not survey data"
+    "scenery": "Road, trees, buildings, KNM Mills sheds, gate arch, hills and plot kerbs are illustrative, not survey data",
+    "car": "Original 7-seater SUV (suv.js): ~4.8 x 1.86 x 1.83 m, pearl white with black roof, own horizontal-bar grille, LED lamps, roof rails, side steps, alloy wheels, PROPERTY MANAGER door decals and roof sign, yellow 'URBAN HEAVEN' plates"
   },
   "openQuestions": [
+    "Reference photos of road/buildings per stretch (awaiting from Bright)",
     "Is 'Sandimad' = Santhaimedu? Exact km from Thudiyalur to KNM Mills?",
     "Stops between Mettupalayam and KNM Mills, and is the turn there a right?",
     "Length of the final straight road to the gate",

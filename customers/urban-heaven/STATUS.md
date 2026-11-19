@@ -1,6 +1,6 @@
 # Property Manager — Urban Heaven site tour · checkpoint
 
-Updated 19 November 2026. Decisions and approximations are in design.json.
+Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.json.
 
 ## Current implementation (asset version `uh1`)
 
@@ -11,7 +11,14 @@ Updated 19 November 2026. Decisions and approximations are in design.json.
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
-## Tests actually run (19 Nov 2026)
+## Rev uh2 (19 Nov 2026)
+
+- Box car replaced by an original full-size SUV (`dist/urban-heaven/suv.js`), wheels turn with distance, RoomEnvironment reflections. Inside view: higher SUV seat, two-tone dash, centre screen, long bonnet.
+- Outside camera now a 3/4 rear chase view.
+- Bug fixed: the single huge ground plane overdrew the road at low camera angles (road vanished in side/low views). Ground now subdivided and 12 cm lower; camera near plane 0.1; road polygon offset uses units only.
+- Checked in headless Chrome/SwiftShader 1280×760: front 3/4, side, rear chase and inside views; road visible in all; no page errors.
+
+## Tests actually run (19 Nov 2026, rev uh1)
 
 - `node check-urban-heaven.mjs` — passed (stop order, turn sequences, leg lengths, path continuity, totals, page wiring). Source test only.
 - Headless Google Chrome via Playwright with SwiftShader (software WebGL), 1280×760: pickup screen, Thudiyalur start, before Narasimhanaickenpalayam, before KNM (inside + outside), before turn 2, approaching gate, inside site (outside view), arrival card; Mettupalayam route before Karamadai and before KNM. 390×780: pickup screen and Mettupalayam drive start. No page errors (one 404 = missing favicon).
@@ -19,5 +26,9 @@ Updated 19 November 2026. Decisions and approximations are in design.json.
 - Not yet checked on a real phone GPU.
 
 ## Next action
+
+Bright is sending reference photos of the road and buildings. Use them for road width/markings, verge, shop-front styles, textures and landmark boards per stretch (target ~50–60% real look). Then continue with the open questions below.
+
+### Earlier next action
 
 Ask Bright the open questions in design.json one at a time (first: confirm 'Sandimad' and the KNM Mills km), then add the site map after arrival.

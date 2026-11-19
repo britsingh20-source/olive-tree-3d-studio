@@ -1,5 +1,7 @@
 import * as THREE from 'three';
-import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh1';
+import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
+import { buildSUV, buildSUVInterior } from './suv.js?v=uh2';
+import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh2';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage');
@@ -21,8 +23,10 @@ const scene = new THREE.Scene();
 const SKY = new THREE.Color('#cfe3ee');
 scene.background = SKY;
 scene.fog = new THREE.Fog(SKY, 160, 1300);
-const camera = new THREE.PerspectiveCamera(62, 1, 0.05, 6000);
+const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 6000);
 
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.6;
 scene.add(new THREE.HemisphereLight('#eaf4ff', '#6b6a4a', 1.25));
 const sun = new THREE.DirectionalLight('#fff3dc', 2.2);
 sun.position.set(-300, 500, 200);
@@ -68,8 +72,8 @@ function signboard(tex, w, h, poleH) {
 function placeFacing(obj, x, z, travelDir) { obj.position.set(x, 0, z); obj.rotation.y = Math.atan2(-travelDir.x, -travelDir.z); scene.add(obj); }
 
 // ---------- ground & hills ----------
-const ground = new THREE.Mesh(new THREE.PlaneGeometry(9000, 12000), mat('#8fa65e'));
-ground.rotation.x = -Math.PI / 2; ground.position.set(-600, 0, -3900); scene.add(ground);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(9000, 12000, 90, 120), mat('#8fa65e'));
+ground.rotation.x = -Math.PI / 2; ground.position.set(-600, -0.12, -3900); scene.add(ground);
 { // Western Ghats / Nilgiri foothills on the west and north
   const hillMat = new THREE.MeshBasicMaterial({ color: '#8fa8b8', fog: false });
   const farMat = new THREE.MeshBasicMaterial({ color: '#a9bfcc', fog: false });
@@ -113,7 +117,7 @@ function ribbon(points, width, tex, y) {
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
   g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals();
-  const m = new THREE.Mesh(g, new THREE.MeshLambertMaterial({ map: tex, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -1 - y * 10, polygonOffsetUnits: -1 }));
+  const m = new THREE.Mesh(g, new THREE.MeshLambertMaterial({ map: tex, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: 0, polygonOffsetUnits: -2 - y * 40 }));
   scene.add(m); return m;
 }
 const HW_W = 11, SIDE_W = 6.5;
@@ -272,29 +276,7 @@ function arrowBoard(arrow, text) {
 
 // ---------- the cab ----------
 const car = new THREE.Group(); scene.add(car);
-const ext = new THREE.Group(), cabin = new THREE.Group(); car.add(ext, cabin);
-{
-  const white = mat('#f4f4f1'), glass = mat('#2c3b45'), black = mat('#1d1f22');
-  const body = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.75, 4.3), white); body.position.y = 0.7; ext.add(body);
-  const top = new THREE.Mesh(new THREE.BoxGeometry(1.62, 0.62, 2.3), glass); top.position.set(0, 1.38, 0.2); ext.add(top);
-  const roof = new THREE.Mesh(new THREE.BoxGeometry(1.64, 0.06, 2.1), white); roof.position.set(0, 1.71, 0.25); ext.add(roof);
-  const tag = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.32, 0.3), mat('#f6c519')); tag.position.set(0, 1.9, 0.3); ext.add(tag);
-  const tagTex = board({ lines: [{ t: 'PROPERTY MANAGER', bold: true, size: 120, color: '#1d1f22' }], bg: '#f6c519', border: '#1d1f22', w: 1024, h: 260 });
-  for (const f of [1, -1]) { const p = new THREE.Mesh(new THREE.PlaneGeometry(0.88, 0.22), new THREE.MeshBasicMaterial({ map: tagTex })); p.position.set(0, 1.9, 0.3 + f * 0.16); if (f < 0) p.rotation.y = Math.PI; ext.add(p); }
-  for (const [x, z] of [[-.85, -1.35], [.85, -1.35], [-.85, 1.35], [.85, 1.35]]) {
-    const w = new THREE.Mesh(new THREE.CylinderGeometry(.34, .34, .25, 14), black); w.rotation.z = Math.PI / 2; w.position.set(x, .34, z); ext.add(w);
-  }
-  // interior seen by the passenger (front-left seat, right-hand drive)
-  const dash = new THREE.Mesh(new THREE.BoxGeometry(1.75, 0.16, 0.6), mat('#3a3d42')); dash.position.set(0, 0.8, -1.05); cabin.add(dash);
-  const hood = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.2, 1.6), white); hood.position.set(0, 0.7, -2.1); cabin.add(hood);
-  for (const sx of [-.82, .82]) {
-    const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.8, 0.045), mat('#2b2e33')); pillar.position.set(sx * 1.05, 1.22, -0.92); pillar.rotation.x = -0.6; cabin.add(pillar);
-  }
-  const wheel = new THREE.Mesh(new THREE.TorusGeometry(0.19, 0.025, 8, 28), black); wheel.position.set(0.42, 0.95, -0.7); wheel.rotation.x = -0.35; cabin.add(wheel);
-  const mirror = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.05, 0.02), black); mirror.position.set(0, 1.5, -0.8); cabin.add(mirror);
-  const screenTex = board({ lines: [{ t: 'PROPERTY MANAGER', bold: true, size: 110, color: '#f6c519' }, { t: 'Urban Heaven site tour', size: 70, color: '#ffffff' }], bg: '#111418', border: '#f6c519', h: 300 });
-  const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.32, 0.095), new THREE.MeshBasicMaterial({ map: screenTex })); screen.position.set(-0.05, 0.92, -0.78); screen.rotation.x = -0.35; cabin.add(screen);
-}
+const ext = buildSUV(), cabin = buildSUVInterior(); car.add(ext, cabin);
 const eye = new THREE.Group(); car.add(eye); eye.add(camera);
 
 // ---------- tour state ----------
@@ -310,19 +292,21 @@ function placeCar(dt = 0) {
   const p = pointAt(s), ahead = pointAt(s + 7), back = pointAt(s - 1);
   let dx = ahead.x - back.x, dz = ahead.z - back.z; const L = Math.hypot(dx, dz) || 1; dx /= L; dz /= L;
   const target = LANE[p.type]; laneNow += (target - laneNow) * Math.min(1, dt * 1.5 || 1);
-  car.position.set(p.x + dz * laneNow, 0, p.z - dx * laneNow); // drive on the left
+  const nx = p.x + dz * laneNow, nz = p.z - dx * laneNow, moved = Math.hypot(nx - car.position.x, nz - car.position.z);
+  if (moved < 5) for (const w of ext.userData.wheels) w.rotation.x -= moved / ext.userData.wheelRadius;
+  car.position.set(nx, 0, nz); // drive on the left
   car.rotation.y = Math.atan2(-dx, -dz);
   return p;
 }
 function setView(v) {
   view = v; $('viewBtn').textContent = v === 'inside' ? 'Outside view' : 'Inside the cab';
   cabin.visible = v === 'inside'; ext.visible = v !== 'inside';
-  if (v === 'inside') { eye.position.set(-0.4, 1.26, 0.05); }
-  else { eye.position.set(0, 4.6, 10.5); }
+  if (v === 'inside') { eye.position.set(-0.4, 1.62, -0.1); }
+  else { eye.position.set(-3.6, 2.3, 7.2); }
   applyLook();
 }
 function applyLook() {
-  eye.rotation.set(0, lookYaw, 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.01 : -0.24), 0, 0);
+  eye.rotation.set(0, lookYaw + (view === 'inside' ? 0 : -0.46), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.01 : -0.17), 0, 0);
 }
 function speedFor(sv) {
   const p = pointAt(sv); let v = BASE[p.type] || 10;
@@ -432,4 +416,4 @@ $('loading').hidden = true;
 const want = new URLSearchParams(location.search).get('from');
 if (want && PICKUPS[want]) startTour(want);
 requestAnimationFrame(frame);
-window.__tour = { get s() { return s; }, get path() { return path; }, startTour, setView, get finished() { return finished; }, jump: v => { s = v; } };
+window.__tour = { eye, car, scene, camera, get s() { return s; }, get path() { return path; }, startTour, setView, get finished() { return finished; }, jump: v => { s = v; } };
