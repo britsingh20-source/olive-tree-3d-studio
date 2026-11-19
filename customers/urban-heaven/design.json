@@ -35,7 +35,7 @@
     "photoCockpit": "Rev uh5: default view is Bright's front reference photo (passenger/centre view of a premium SUV cabin) with the windscreen cut out; road rendered behind, live route drawn on the photo's touchscreen",
     "seat360": "19 Nov 10:20 (supersedes 10:04 back-seat request): customer sits in the FRONT passenger seat; front view is the main view; 360° look-around kept; Olivetree Builders branding inside the car",
     "mapTour": "19 Nov 11:21: drop the 3D in-car experience. Top-view map: customer picks Thudiyalur or Mettupalayam, a cab travels on the map through each stop, enters the site, then the map zooms into the site",
-    "speed": "19 Nov 11:45 (supersedes 11:34): steady 90 km/h on the highway, NO slowing at stops; instead highlight each area's board as the cab crosses it"
+    "speed": "19 Nov 11:52 (supersedes 11:45): 150–160 km/h on the highway, no slowing at stops (boards highlighted instead); speed limit 80 km/h from the KNM Mills turn to the site"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
@@ -48,7 +48,7 @@
     "interior": "Procedural cabin (interior.js) styled after Bright's references: dark chocolate leather with light contrast stitching (seats, door inserts, dash band, armrests), perforated seat inserts, black soft-touch dash top, chrome-bezel vents and centre clock, piano-black centre stack framed by stitched leather pillars with screen (live route), blue climate LCD and chrome knobs, dark wood console with chrome gear gate, black wheel with silver lower spokes and button pads (plain hub, no logo), blue-ring dials, beige roof lining with grab handles and dome lights, black carpet, split 2nd row with armrest, PROPERTY MANAGER windscreen sun strip. No driver figure",
     "branding": "Olivetree Builders text wordmark with a simple leaf mark drawn by us (not an official logo): front seatbacks + headrests, rear floor mats, windscreen sun strip, touchscreen header, cluster, page header. Replace with the official logo file when Bright supplies it",
     "mapTour": "Road geometry from OSRM/OpenStreetMap (Thudiyalur→KNM turn 10.7 km, Mettupalayam→KNM turn 19.4 km; via Karamadai). KNM Mills turn placed at Veerapandi Pirivu (11.1693, 76.9520) — needs Bright's pin. Side road drawn as straight legs west of the highway (750 m, right 500 m, left 300 m) — not the real lanes. Site outline is a placeholder rectangle. Stop pins for NGGO Colony / Narasimhanaickenpalayam / Karamadai approximate",
-    "speed": "Displayed km/h; playback 10× real time (Thudiyalur ride ≈ 66 s, Mettupalayam ≈ 101 s). Side road after KNM ~35 km/h, 25 km/h at turns, rolls in at the gate. Board highlight: enlarged + glowing yellow from 600 m before to 400 m after the stop"
+    "speed": "Displayed km/h; playback 10× real time (Thudiyalur ride ≈ 34 s, Mettupalayam ≈ 54 s). Eases 155→80 over the 600 m before the KNM turn; rolls in to the gate from 80. Board highlight: 600 m before to 400 m after each stop (~2 s on screen)"
   },
   "openQuestions": [
     "Google Maps pin (or lat/long) of the Urban Heaven gate and of the KNM Mills turn",

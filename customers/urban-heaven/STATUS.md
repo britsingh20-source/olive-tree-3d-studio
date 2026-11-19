@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m4 (19 Nov 2026) — 150–160 km/h, 80 after KNM
+
+- Highway 150–160 km/h; 80 km/h limit from the KNM Mills turn through the side road; slows only at the gate.
+- Measured headless Chrome (300 ms sampling): Thudiyalur 34 s (stops passed at 152–159, KNM/turns 80, gate 20); Mettupalayam 54 s (Karamadai 160, KNM/turns 80). No page errors.
+
 ## Rev m3 (19 Nov 2026) — steady 90 km/h, highlighted boards
 
 - Highway speed fixed at 90 km/h (no slowing at stops). The stop's green board scales up (1.45× desktop; centred and enlarged on phones ≤640 px) with a pulsing yellow glow from 600 m before to 400 m after.

@@ -92,20 +92,20 @@ function drawRoute(path) {
 
 // ---------- tour ----------
 let path = null, m = 0, playing = false, speedMul = 1, fired = new Set(), finished = false, follow = true, intro = 0, hold = 0;
-// Displayed road speed in km/h (Bright, 19 Nov 11:45): steady 90 on the highway, no slowing at stops —
-// the stop's board is highlighted as the cab passes instead. Side road to the site is slower.
+// Displayed road speed in km/h (Bright, 19 Nov 11:52): 150–160 on the highway, no slowing at stops (the
+// stop's board is highlighted instead); speed limit 80 from the KNM Mills turn to the site.
 // The ride is shown TIME_SCALE× faster than real time so a whole trip takes about a minute.
 const TIME_SCALE = 10;
 const ease = t => t * t * (3 - 2 * t);
 function kmhAt(mm) {
   const onHighway = mm < path.hwLen;
-  let v = onHighway ? 90 : 35;
+  let v = onHighway ? 155 + 5 * Math.sin(mm / 1500) : 80; // 150–160 on the highway, 80 after the KNM Mills turn
   for (const e of path.events) {
     const d = e.m - mm; // >0 before the event
-    if (e.kind === 'turn') { const t = d >= 0 ? Math.min(1, d / 300) : Math.min(1, -d / 120); if (t < 1) v = Math.min(v, 25 + (v - 25) * ease(t)); }
-    if (e.kind === 'arrive' && d > -100) v = Math.min(v, 12 + Math.max(0, d) * 0.12);
+    if (e.kind === 'turn' && e.id === 'knm') { const t = d >= 0 ? Math.min(1, d / 600) : 0; if (d >= 0 && t < 1) v = Math.min(v, 80 + (v - 80) * ease(t)); } // ease 155→80 into the KNM turn
+    if (e.kind === 'arrive' && d > -100) v = Math.min(v, 20 + Math.max(0, d) * 0.4);
   }
-  v = Math.min(v, 12 + mm * 0.25, 6 + (path.total - mm) * 0.35); // pull away / roll in
+  v = Math.min(v, 20 + mm * 0.5, 8 + (path.total - mm) * 0.5); // pull away / roll in
   return v;
 }
 const speedAt = mm => kmhAt(mm) / 3.6 * TIME_SCALE;
