@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
-import { buildSUV, buildSUVInterior } from './suv.js?v=uh2';
-import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh2';
+import { buildSUV } from './suv.js?v=uh3';
+import { buildCabin } from './interior.js?v=uh3';
+import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh3';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage');
@@ -276,7 +277,7 @@ function arrowBoard(arrow, text) {
 
 // ---------- the cab ----------
 const car = new THREE.Group(); scene.add(car);
-const ext = buildSUV(), cabin = buildSUVInterior(); car.add(ext, cabin);
+const ext = buildSUV(), cabinKit = buildCabin(), cabin = cabinKit.group; car.add(ext, cabin);
 const eye = new THREE.Group(); car.add(eye); eye.add(camera);
 
 // ---------- tour state ----------
@@ -301,9 +302,9 @@ function placeCar(dt = 0) {
 function setView(v) {
   view = v; $('viewBtn').textContent = v === 'inside' ? 'Outside view' : 'Inside the cab';
   cabin.visible = v === 'inside'; ext.visible = v !== 'inside';
-  if (v === 'inside') { eye.position.set(-0.4, 1.62, -0.1); }
+  if (v === 'inside') { eye.position.set(-0.4, 1.52, 0.4); }
   else { eye.position.set(-3.6, 2.3, 7.2); }
-  applyLook();
+  applyLook(); resize();
 }
 function applyLook() {
   eye.rotation.set(0, lookYaw + (view === 'inside' ? 0 : -0.46), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.01 : -0.17), 0, 0);
@@ -334,7 +335,9 @@ function buildStrip() {
 const ARROWS = { left: '↰', right: '↱' };
 let bannerTimer = 0;
 function banner(title, sub) { $('bannerTitle').textContent = title; $('bannerSub').textContent = sub || ''; $('stopBanner').hidden = false; bannerTimer = 3.2; }
+const hudState = {};
 function updateHud(p) {
+  hudState.left = Math.max(0, path.totalKm - p.km).toFixed(1) + ' km'; hudState.title = path.pickup.label + ' → Urban Heaven';
   $('kmDone').textContent = p.km.toFixed(1);
   $('kmLeft').textContent = Math.max(0, path.totalKm - p.km).toFixed(1);
   $('stripFill').style.width = $('stripCar').style.left = (p.km / path.totalKm * 100) + '%';
@@ -345,7 +348,8 @@ function updateHud(p) {
     $('nextIcon').textContent = next.kind === 'turn' ? ARROWS[next.turn] : next.kind === 'arrive' ? '🏁' : '⦿';
     $('nextText').textContent = next.kind === 'stop' ? `Next stop · ${next.en}` : next.kind === 'arrive' ? 'Urban Heaven site entrance' : next.en;
     $('nextDist').textContent = 'in ' + dist;
-  } else { $('nextIcon').textContent = '🏁'; $('nextText').textContent = 'You have arrived at Urban Heaven'; $('nextDist').textContent = ''; }
+    hudState.next = $('nextText').textContent; hudState.icon = $('nextIcon').textContent; hudState.dist = 'in ' + dist;
+  } else { hudState.next = 'You have arrived'; hudState.icon = '🏁'; hudState.dist = ''; $('nextIcon').textContent = '🏁'; $('nextText').textContent = 'You have arrived at Urban Heaven'; $('nextDist').textContent = ''; }
   for (const e of path.events) {
     if (firedEvents.has(e.id) || s < e.s) continue;
     firedEvents.add(e.id);
@@ -357,7 +361,7 @@ function updateHud(p) {
 
 // ---------- controls ----------
 function startTour(id) {
-  path = buildCarPath(id); s = 0; firedEvents = new Set(); finished = false; lookYaw = lookPitch = 0;
+  path = buildCarPath(id); s = 0; s0 = 0; cabinKit.setRoute(path); firedEvents = new Set(); finished = false; lookYaw = lookPitch = 0;
   laneNow = 2.6; setView('inside');
   try { localStorage.setItem('urban-heaven-pickup', id); } catch (e) {}
   $('pickup').hidden = true; $('arrived').hidden = true; $('hud').hidden = false;
@@ -393,19 +397,25 @@ renderer.domElement.addEventListener('pointerup', endDrag); renderer.domElement.
 
 function resize() {
   const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false);
-  camera.aspect = w / h; camera.fov = w < h ? 74 : 62; camera.updateProjectionMatrix();
+  camera.aspect = w / h; camera.fov = view === 'inside' ? (w < h ? 84 : 70) : (w < h ? 74 : 62); camera.updateProjectionMatrix();
 }
 new ResizeObserver(resize).observe(stage); resize();
 
 // ---------- loop ----------
-let last = performance.now();
+let last = performance.now(), s0 = 0;
 function frame(now) {
   const dt = Math.min(0.1, (now - last) / 1000); last = now;
   if (path && playing && !finished) {
     s = Math.min(path.totalS, s + speedFor(s) * speedMul * dt);
     if (s >= path.totalS - 0.01) { finished = true; setPlaying(false); $('playBtn').textContent = 'Ride again'; setTimeout(() => { if (finished) $('arrived').hidden = false; }, 900); }
   }
-  if (path) { const p = placeCar(dt); updateHud(p); }
+  if (path) {
+    const prevS = s0; s0 = s; const p = placeCar(dt); updateHud(p);
+    const v = dt > 0 ? (s - prevS) / dt / Math.max(1, speedMul) : 0;
+    const h1 = pointAt(s + 2), h2 = pointAt(s + 14), h0 = pointAt(s - 10);
+    const steer = Math.atan2(h2.x - h1.x, h2.z - h1.z) - Math.atan2(h1.x - h0.x, h1.z - h0.z);
+    if (view === 'inside') cabinKit.update(dt, { speedKmh: v > 0.3 ? 18 + v * 0.95 : 0, km: p.km, steer: Math.atan2(Math.sin(steer), Math.cos(steer)), s, pos: p, ...hudState });
+  }
   if (bannerTimer > 0) { bannerTimer -= dt; if (bannerTimer <= 0) $('stopBanner').hidden = true; }
   renderer.render(scene, camera);
   requestAnimationFrame(frame);

@@ -28,7 +28,8 @@
     "mettupalayamSide": "Same structure from the Mettupalayam end",
     "next": "Site map will be added after arrival (Bright to supply)",
     "car": "19 Nov: outside view = an SUV similar in class to a Fortuner, our own design (no purchased model, no copy of Toyota styling); inside view as built is OK",
-    "realism": "19 Nov: Bright will send reference photos of the road layout and roadside buildings; target ~50–60% real look using them. Real dashcam footage / Google imagery not being used for now"
+    "realism": "19 Nov: Bright will send reference photos of the road layout and roadside buildings; target ~50–60% real look using them. Real dashcam footage / Google imagery not being used for now",
+    "interior": "19 Nov (later): earlier interior looked cartoonish; Bright wants it to feel like sitting inside a real SUV — seats, dashboard, banner"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
@@ -37,7 +38,8 @@
     "mettupalayamTurn": "From the Mettupalayam side the turn at KNM Mills is modelled as RIGHT (same side road approached from the north) — derived, needs confirmation",
     "mettupalayamStops": "Only Karamadai shown between Mettupalayam and Santhaimedu — stop list not yet given",
     "scenery": "Road, trees, buildings, KNM Mills sheds, gate arch, hills and plot kerbs are illustrative, not survey data",
-    "car": "Original 7-seater SUV (suv.js): ~4.8 x 1.86 x 1.83 m, pearl white with black roof, own horizontal-bar grille, LED lamps, roof rails, side steps, alloy wheels, PROPERTY MANAGER door decals and roof sign, yellow 'URBAN HEAVEN' plates"
+    "car": "Original 7-seater SUV (suv.js): ~4.8 x 1.86 x 1.83 m, pearl white with black roof, own horizontal-bar grille, LED lamps, roof rails, side steps, alloy wheels, PROPERTY MANAGER door decals and roof sign, yellow 'URBAN HEAVEN' plates",
+    "interior": "Procedural SUV cabin (interior.js): passenger front-left seat view; tan perforated leather seats (driver seat + 2nd-row bench), soft-touch dash with wood strip and tan lower, vents, floating touchscreen showing live route map/next turn/km, working speedometer & trip cluster, 3-spoke wheel that turns with the road, gear shifter, console/armrest, door panels with armrests, A/B pillars, roof lining, visors, rear-view mirror, green PROPERTY MANAGER windscreen sun-strip banner. Not modelled on any specific manufacturer's interior; no driver figure"
   },
   "openQuestions": [
     "Reference photos of road/buildings per stretch (awaiting from Bright)",
