@@ -11,6 +11,12 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m6 (19 Nov 2026) — Mettupalayam-side areas
+
+- Mettupalayam route re-fetched via Teachers Colony on the old Mettupalayam–Coimbatore Road (previous OSRM route went east via Jadayampalayam). Boards: Mettupalayam → Teachers Colony 5.6 km → Karamadai 8.3 → Kalattiyur 10.7 → KNM 17.5 → gate 19.1 km.
+- Stop banner removed (it covered the board); highlighted board is the announcement. Turn/arrival banners kept.
+- Measured headless Chrome: Mettupalayam ride 50 s, all boards passed at 150–160, KNM/turns 80. Highlight verified at Teachers Colony 1280×760 and 390×780.
+
 ## Rev m4 (19 Nov 2026) — 150–160 km/h, 80 after KNM
 
 - Highway 150–160 km/h; 80 km/h limit from the KNM Mills turn through the side road; slows only at the gate.

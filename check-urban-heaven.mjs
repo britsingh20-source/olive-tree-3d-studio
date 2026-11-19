@@ -37,12 +37,12 @@ console.log('urban-heaven route checks passed', t.toFixed(2), m.toFixed(2));
   const D = await import('./dist/urban-heaven/map-data.js');
   const len = r => r.reduce((s, p, i) => i ? s + Math.hypot((p[0] - r[i - 1][0]) * 111320, (p[1] - r[i - 1][1]) * 111320 * Math.cos(p[0] * Math.PI / 180)) : 0, 0);
   const t = len(D.ROUTES.thudiyalur) / 1000, m = len(D.ROUTES.mettupalayam) / 1000;
-  assert(t > 10.4 && t < 11.1, 'Thudiyalur road leg ' + t); assert(m > 19 && m < 19.8, 'Mettupalayam road leg ' + m);
+  assert(t > 10.4 && t < 11.1, 'Thudiyalur road leg ' + t); assert(m > 17.2 && m < 17.9, 'Mettupalayam road leg ' + m);
   for (const r of Object.values(D.ROUTES)) assert(Math.hypot(r.at(-1)[0] - D.JUNCTION[0], r.at(-1)[1] - D.JUNCTION[1]) < 0.001, 'route ends at KNM turn');
   assert.deepEqual(D.STOPS.thudiyalur.map(s => s.id), ['thudiyalur', 'nggo', 'nnpalayam', 'pnpalayam', 'knm']);
-  assert.deepEqual(D.STOPS.mettupalayam.map(s => s.id), ['mettupalayam', 'karamadai', 'knm']);
+  assert.deepEqual(D.STOPS.mettupalayam.map(s => s.id), ['mettupalayam', 'teachers', 'karamadai', 'kalattiyur', 'knm']);
   assert.equal(D.STOPS.thudiyalur.at(-1).turn, 'left'); assert.equal(D.STOPS.mettupalayam.at(-1).turn, 'right');
   const html = fs.readFileSync('dist/urban-heaven/index.html', 'utf8');
-  assert(html.includes('map.js?v=m4') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
+  assert(html.includes('map.js?v=m6') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
   console.log('map tour checks passed', t.toFixed(2), m.toFixed(2));
 }

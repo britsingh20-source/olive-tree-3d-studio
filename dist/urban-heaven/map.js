@@ -1,6 +1,6 @@
 // Property Manager · Urban Heaven — top-view map tour. A cab drives the real road from the chosen
 // pickup, through each stop, takes the three turns to the site, enters it, then the map zooms in.
-import { JUNCTION, ROUTES, STOPS, SIDE } from './map-data.js?v=m2';
+import { JUNCTION, ROUTES, STOPS, SIDE } from './map-data.js?v=m5';
 const L = window.L, $ = id => document.getElementById(id);
 
 // ---------- geometry helpers ----------
@@ -69,7 +69,7 @@ function signHtml(e, kmLeft) {
   if (e.kind === 'turn' && e.id !== 'knm') return `<div class="sign turn"><b>${e.turn === 'left' ? '↰' : '↱'}</b><span>${e.turn === 'left' ? 'Left' : 'Right'}</span></div>`;
   const name = e.stopName || e.en;
   const extra = e.id === 'knm' ? `<i>${e.turn === 'left' ? '↰' : '↱'} Urban Heaven</i>` : `<i>Urban Heaven ${kmLeft} km</i>`;
-  return `<div class="sign${e.pickup ? ' pickup' : ''}"><small>${e.ta}</small><strong>${name.toUpperCase()}</strong>${e.pickup ? '<i>PICKUP POINT</i>' : extra}</div>`;
+  return `<div class="sign${e.pickup ? ' pickup' : ''}">${e.ta ? `<small>${e.ta}</small>` : ''}<strong>${name.toUpperCase()}</strong>${e.pickup ? '<i>PICKUP POINT</i>' : extra}</div>`;
 }
 function drawRoute(path) {
   routeLayer.clearLayers(); signLayer.clearLayers();
@@ -141,7 +141,7 @@ function updateHud() {
   } else { $('nextIcon').textContent = '🏁'; $('nextText').textContent = 'You have arrived at Urban Heaven'; $('nextDist').textContent = ''; }
   for (const e of path.events) {
     if (fired.has(e.id) || m < e.m) continue; fired.add(e.id);
-    if (e.kind === 'stop') banner(e.en, `${e.ta} · ${(e.m / 1000).toFixed(1)} km from ${STOPS[path.id][0].en}`);
+    // stops: the highlighted board on the map is the announcement (no banner covering it)
     if (e.kind === 'turn') banner(e.en, e.id === 'knm' ? 'Leaving Mettupalayam Road · about 1.5 km to the site' : '');
     if (e.kind === 'arrive') banner('Welcome to Urban Heaven', 'Entering the site');
   }
