@@ -168,6 +168,11 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - **Curve:** re-traced from the reference photo by detecting its glowing edge plus grid reading, and scaled so the TV matches the reference TV position.
   - **Added:** a rounded bottom-right corner, with the strip and wash following both edges. The glow is clipped to the panel area.
   - **Verified:** check passed (ledge hidden in curvy, restored in current). Local SwiftShader side-by-side screenshot against the reference.
+- **Update (19 Nov, c):** in curvy mode, the louver run above the TV panel (x 24.1–120) is hidden: slats, backing, cove strip and wash.
+  - Louvers are now built as three runs.
+  - The base green and the curvy layer go up to the ceiling (120 in).
+  - The curve is extended with the photo's upper sweep, using a piecewise vertical scale above the TV top.
+  - **Verified:** check passed (middle louvers hidden only in curvy; layer top at 120 in). Local SwiftShader side-by-side screenshot against the reference.
 - **Awaiting customer feedback:** approval of the curvy design and the layer tone. See `design.json` → `designPreviews`.
 
 ## Next action

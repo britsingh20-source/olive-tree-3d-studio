@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk13",
+    "assetVersion": "pk14",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -427,6 +427,10 @@
         {
           "date": "2026-11-19",
           "change": "Customer: remove the top ledge and follow the reference curves exactly. Ledge (with its LED and decor) is hidden in the curvy design. Curve re-traced from the reference photo IMG_0390 (S-sweep from the top, near-vertical run beside the TV, rounded bottom-right corner), scaled so the TV sits where the reference TV sits; above 84 in the sweep continues behind the louvers. Concealed strip + wash follow the left curve and the bottom-right corner."
+        },
+        {
+          "date": "2026-11-19",
+          "change": "Customer: in the curvy design cut the louvers only above the TV panel (x 24.1-120 in) so the base green panel and the curvy layer go up to the ceiling like the reference; louvers stay above the tall glass cabinet, above the niche/pooja and on the side return. Ceiling cove strip and wash cut to match. Upper part of the traced curve stretched (above the TV top) so the sweep meets the ceiling at the top-right as in the reference; TV relation unchanged."
         }
       ]
     }
