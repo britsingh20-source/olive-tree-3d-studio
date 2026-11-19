@@ -199,7 +199,17 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
 - **Update (19 Nov, f):** removed Options 2 (curvy, louvers above) and 3 (curvy to ceiling) from the model, check and page. The former Option 4 is now Option 2 (id `curvyNiches`); option-4.jpg was renamed to option-2.jpg and option-3.jpg deleted.
   - The chooser says "2 designs" and the badge reads "Option N of 2". Old saved values fall back to Option 1.
   - **Verified:** check passed. Local SwiftShader: 2 cards; choosing Option 2 shows "Option 2 of 2: Curvy with open niches".
-- **Awaiting:** a new customer picture for another option; the customer's choice; Option 2 depth, niches and layer tone. See `design.json` → `designPreviews`.
+- **Update (19 Nov, g): added Option 3, "Green fluted panel with arch"** (`archFluted`), from the customer's second reference picture. It has no left storage.
+  - **Frame:** a 3 in green frame (extruded L-shape around the arch), with merged vertical flutes on the left up to x 62 and a light-sage band above the arch.
+  - **Arch:** a recessed cream back panel, with an edge strip and inward wash.
+  - **Shelf:** a green floating shelf with a strip underneath. The props are illustrative.
+  - **TV and console:** the TV is moved back onto the cream panel. The rounded console end (shared `makeConsoleEnd`) is kept.
+  - In every non-classic option, the glass cabinet, the left and middle louvers and the ledge are hidden.
+  - **Proportions:** estimated from the photo and scaled so the TV fits inside the arch under the shelf.
+  - **Verified:**
+    - Check passed: only `archFluted` visible; TV on the cream back, inside the arch and below the shelf; more than 20 flutes; everything restores on Option 1.
+    - Local SwiftShader: chose Option 3, badge "Option 3 of 3"; side-by-side screenshot against the reference. Cream colour and glow were tuned after the first screenshot.
+- **Next:** an Option 3 variant with the left glass-shutter storage box (customer request). Awaiting the customer's choice. See `design.json` → `designPreviews`.
 
 ## Next action
 

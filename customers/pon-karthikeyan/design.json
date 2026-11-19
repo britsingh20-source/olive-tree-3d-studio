@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk17",
+    "assetVersion": "pk18",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -416,14 +416,14 @@
     {
       "date": "2026-11-19",
       "name": "TV panel design options",
-      "status": "TWO OPTIONS on the page (Option 1 Classic default, Option 2 Curvy with open niches); a further option from a new customer picture is coming",
+      "status": "THREE OPTIONS on the page (1 Classic default, 2 Curvy with open niches, 3 Green fluted panel with arch); an Option 3 variant WITH the left glass storage box is the next request",
       "request": "Customer asked for a curvy double-layer panel like the reference image (green panel with a raised curved layer and LED along the curve).",
       "implementation": "Toggle button 'TV panel: Current / Curvy (preview)' (saved per browser). Raised layer 3 in deep, same matte green mica, from x 24.1-118.5 in and 20-84 in high, left edge an S-curve from the louvers at x 80 in down to the console at the tall unit; concealed warm-white strip follows the curve and washes the base panel. Under-ledge wash hidden in this mode. TV stays fully on the raised layer.",
       "openQuestions": [
         "Which TV panel option does the customer choose?",
-        "New picture for an additional option (awaiting)",
-        "Option 2: base build-out depth (8 in shown), niche sizes/count (4 shown), niche finish (green shown)",
-        "Same green for both layers or a different tone for the raised layer (Option 2)?"
+        "Next option: Option 3 panel WITH the left glass shutter storage box",
+        "Option 2: base build-out depth, niches, layer tone",
+        "Option 3: arch size/height, shelf height, fluting colour and extent (estimated from the photo)"
       ],
       "updates": [
         {
@@ -445,6 +445,10 @@
         {
           "date": "2026-11-19",
           "change": "User: removed Options 2 (curvy, louvers above) and 3 (curvy to ceiling); former Option 4 renumbered as Option 2. Another option from a new picture to be added next."
+        },
+        {
+          "date": "2026-11-19",
+          "change": "Added Option 3 from the customer's second reference picture (no left storage). Next: another option with the left glass-shutter storage box."
         }
       ],
       "options": [
@@ -457,6 +461,11 @@
           "id": "curvyNiches",
           "label": "Option 2 · Curvy with open niches (was Option 4)",
           "detail": "Customer request: remove the tall glass display box; green double-layer paneling across the whole wall (x 0.1-120) to the ceiling; base panel built out 8 in (front at 64 in from wall line... y64) with 4 rounded open niches cut in following the reference, each with a concealed strip under its top; curvy 3 in layer in front; TV moved forward 8.15 in onto the layer; louvers above the old cabinet and above the panel removed (kept above niche/pooja and side return); console keeps a rounded left end; no ledge."
+        },
+        {
+          "id": "archFluted",
+          "label": "Option 3 · Green fluted panel with arch",
+          "detail": "Customer's second reference (green fluted panel with cream arch). Whole panel area x 0.1-120, z 20-120 replaced; no storage on the left (glass cabinet removed). 3 in green frame off the wall: vertical green fluting on the left to x 62, plain light-sage band above the arch; arch x 26-120 with top at 96 in and rounded top-left corner (rx 30, rz 24) recessed to a cream back; concealed strip on the arch edge washing the cream; green floating shelf (z 74-75.5, 8 in deep) across the arch with a strip underneath; TV on the cream back; console keeps rounded left end; no ledge; louvers above the panel and old cabinet removed."
         }
       ]
     }
