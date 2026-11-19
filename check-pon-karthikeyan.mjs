@@ -21,8 +21,8 @@ assert.equal(get('louver').fixed,true);assert(get('louver').slatCount>100,'louve
 {const panel=get('tv-panel');assert.equal(panel.depthInches,3);let back;panel.group.traverse(o=>{if(o.userData.role==='tv-panel-box')back=o;});const bx=new T.Box3().setFromObject(back);assert(Math.abs((bx.max.z-bx.min.z)/I-3.1)<.01);assert.equal(panel.strips.filter(st=>st.parent===panel.designs.current).length,1);assert(Math.abs(bx.max.x/I-118.5)<.01&&Math.abs(bx.min.x/I-24.1)<.01,'reveal on niche side only');assert.equal(get('louver').bottomStrip,undefined,'no strip under louvers (rev 6)');}
 assert.equal(get('awards-niche').background,'Green floral mica');
 // 19 Nov: TV panel designs — 1 classic (default), 2 curvy with open niches (glass display removed).
-{const panel=get('tv-panel'),D=panel.designs,ledge=get('ledge'),lv=get('louver');assert.equal(panel.design,'current');assert.deepEqual(panel.designOptions.map(o=>o.id),['current','curvyNiches','archFluted']);
- assert(D.current.visible&&!D.curvyNiches.visible&&!D.archFluted.visible&&Object.keys(D).length===3);
+{const panel=get('tv-panel'),D=panel.designs,ledge=get('ledge'),lv=get('louver');assert.equal(panel.design,'current');assert.deepEqual(panel.designOptions.map(o=>o.id),['current','curvyNiches','archFluted','archCabinet']);
+ assert(D.current.visible&&!D.curvyNiches.visible&&!D.archFluted.visible&&!D.archCabinet.visible&&Object.keys(D).length===4);
  for(const [name,top,mid] of [['curvyNiches',120,false]]){m.setPanelDesign(name);for(const [k,g] of Object.entries(D))assert.equal(g.visible,k===name);
   for(let z=28;z<=60;z+=2)assert(D[name].userData.curveXAt(z)<43.4,name+': TV stays on the raised layer at '+z);
   m.root.updateMatrixWorld(true);const lb=new T.Box3().setFromObject(D[name].userData.layer);assert(Math.abs((lb.max.z-lb.min.z)/I-3)<.01);assert(Math.abs(lb.max.y/I-top)<.05,name+' top');
@@ -33,7 +33,11 @@ assert.equal(get('awards-niche').background,'Green floral mica');
   // Option 3: green fluted panel with arch — no storage on the left, TV on the cream back, shelf above it.
  m.setPanelDesign('archFluted');for(const [k,g] of Object.entries(D))assert.equal(g.visible,k==='archFluted');assert(!get('tall-glass').group.visible&&!lv.left.visible&&!lv.middle.visible&&!ledge.group.visible);
  m.root.updateMatrixWorld(true);{const tvb=new T.Box3().setFromObject(panel.tv);assert(tvb.min.z>-71.9*I-1e-4&&tvb.min.z<-71.4*I,'TV on the cream arch back');assert(tvb.max.y<74*I&&tvb.max.x<120*I&&tvb.min.x>26*I,'TV inside the arch, below the shelf');assert(D.archFluted.userData.flutes>20);}
- m.setPanelDesign('current');assert(D.current.visible&&!D.curvyNiches.visible&&!D.archFluted.visible&&ledge.group.visible&&lv.middle.visible&&lv.left.visible&&get('tall-glass').group.visible&&ledge.glows[0].visible&&panel.tv.position.z===0);}
+ assert(lv.greenRight&&lv.rightSlats.material===panel.fluteMaterials.flute,'green right-side louvers in Option 3');
+ // Option 4: same fluted arch panel with the tall glass cabinet kept on the left.
+ m.setPanelDesign('archCabinet');for(const [k,g] of Object.entries(D))assert.equal(g.visible,k==='archCabinet');assert(get('tall-glass').group.visible&&!lv.left.visible&&!lv.middle.visible&&!ledge.group.visible&&lv.greenRight);
+ m.root.updateMatrixWorld(true);{const tvb=new T.Box3().setFromObject(panel.tv);assert(tvb.min.x>D.archCabinet.userData.archX*I,'TV inside the shifted arch');const tb=new T.Box3();get('tall-glass').group.traverse(o=>{if(o.isMesh&&!o.userData.glow)tb.union(new T.Box3().setFromObject(o));});assert(tb.max.x<24.2*I,'cabinet stays left of the panel');}
+ m.setPanelDesign('current');assert(!lv.greenRight&&lv.rightSlats.material===lv.front,'wood louvers back on Option 1');assert(D.current.visible&&!D.curvyNiches.visible&&!D.archFluted.visible&&!D.archCabinet.visible&&ledge.group.visible&&lv.middle.visible&&lv.left.visible&&get('tall-glass').group.visible&&ledge.glows[0].visible&&panel.tv.position.z===0);}
 const tall=get('tall-glass');assert.equal(tall.leftSidePanel,'Wooden mica, full height');assert.equal(tall.actions.length,1);assert.equal(tall.hingeEdge,'left');
 const con=get('console');assert.equal(con.woodShutterCount,5);assert.equal(con.actions.filter(a=>a.type==='hinge').length,5);assert.equal(con.actions.filter(a=>a.type==='lift').length,1);assert.equal(con.glassLift.type,'lift');assert.equal(con.floatHeightInches,8);
 const niche=get('awards-niche');assert.equal(niche.shelfCount,2);assert.equal(niche.shelfMaterial,'Wood mica');

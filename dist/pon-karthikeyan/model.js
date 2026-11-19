@@ -153,34 +153,44 @@ export function buildModel(){
  // light-sage band above the arch. The arch (x 26-120, top 96 in, rounded top-left corner rx 30 /
  // rz 24) is recessed to a cream back panel; a concealed strip on the arch edge washes the cream.
  // A green floating shelf crosses the arch above the TV with a strip underneath.
- const archFluted=new T.Group();archFluted.name='Option 3 · Green fluted panel with arch';archFluted.visible=false;panel.group.add(archFluted);
- const AX=26,AT=96,RX=30,RZ=24,FL=62,FY=69.15;
- const archTopZ=x=>x>=AX+RX?AT:AT-RZ+RZ*Math.sqrt(Math.max(0,1-((AX+RX-x)/RX)**2));
  const sageDark=std('#6f7d55',.85),sageLight=std('#c7cdaa',.8),flute=std('#93a273',.7),cream=std('#e6d9bf',.6),shelfGreen=std('#8e9d6f',.6);
  for(const m of [sageDark,sageLight,flute,cream,shelfGreen])m.userData.compatColor='#'+m.color.getHexString();
- const arcPts=[];for(let k=0;k<=24;k++){const a=Math.PI-k/24*Math.PI/2;arcPts.push(new T.Vector2(AX+RX+RX*Math.cos(a),AT-RZ+RZ*Math.sin(a)));}   // (AX, AT-RZ) → (AX+RX, AT)
- const frameShape=new T.Shape();frameShape.moveTo(.1*I,20*I);frameShape.lineTo(AX*I,20*I);for(const q of arcPts)frameShape.lineTo(q.x*I,q.y*I);frameShape.lineTo(FL*I,AT*I);frameShape.lineTo(FL*I,120*I);frameShape.lineTo(.1*I,120*I);frameShape.lineTo(.1*I,20*I);
- const frame=new T.Mesh(new T.ExtrudeGeometry(frameShape,{depth:(72.15-FY)*I,bevelEnabled:false}),sageDark);frame.position.z=-72.15*I;frame.castShadow=frame.receiveShadow=true;archFluted.add(frame);
- B(archFluted,FL,120,FY,72.15,AT,120,sageLight);                                  // plain light-sage band above the arch
- const fl=[];for(let x=.4;x+1.4<=FL;x+=2){const z0=x+1.4<=AX?20:archTopZ(x+1.4);if(z0<119.5)fl.push([x,x+1.4,FY-.6,FY,z0+.05,119.95]);}
- mergedBoxes(archFluted,fl,flute);archFluted.userData.flutes=fl.length;
- B(archFluted,AX,120,71.9,72.15,20,AT,cream);                                     // recessed cream arch back
- const archPts=[new T.Vector2(AX,20),new T.Vector2(AX,AT-RZ),...arcPts.slice(1),new T.Vector2(120,AT)];
- const edgeRibbon=(width,y,mat2)=>{const pos=[],uv=[],idx=[],n0=archPts.length-1;archPts.forEach((q,k)=>{const a=archPts[Math.max(0,k-1)],b=archPts[Math.min(n0,k+1)],t=new T.Vector2(b.x-a.x,b.y-a.y).normalize(),n=new T.Vector2(t.y,-t.x),o=q.clone().addScaledVector(n,width);o.x=Math.min(120,o.x);o.y=Math.max(20,o.y);pos.push(q.x*I,q.y*I,-y*I,o.x*I,o.y*I,-y*I);uv.push(1,k/n0,0,k/n0);if(k)idx.push(2*k-2,2*k-1,2*k,2*k-1,2*k+1,2*k);});
-  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();const m=new T.Mesh(g,mat2);m.renderOrder=5;archFluted.add(m);return m;};
- edgeRibbon(.3,70.2,lightMaterial);{const gl=edgeRibbon(9,71.85,(()=>{const m=glowMat(0,.6);m.side=T.DoubleSide;return m;})());gl.userData.glow=true;panel.glows.push(gl);}
- B(archFluted,AX,120,64,71.9,74,75.5,shelfGreen);                                 // green floating shelf
- archFluted.add(led(panel,AX+1,119,64.4,64.9,73.55,74));archFluted.add(glowF(panel,AX,120,60.5,74,71.8,Math.PI/2,.6));
- for(const [x,r,h,c] of [[96,1.6,5,'#e2d6bf'],[101,1.2,6.5,'#d6c08f'],[106,1.4,4,'#efe9dc']]){const v=new T.Mesh(new T.CylinderGeometry(r*.7*I,r*I,h*I,20),std(c,.5));v.position.set(x*I,(75.5+h/2)*I,-68*I);v.castShadow=true;archFluted.add(v);}
- B(archFluted,62,70,70.8,71.3,75.5,85.5,std('#3b2a1d',.6));B(archFluted,62.7,69.3,70.6,70.8,76.2,84.8,std('#d9d4c8',.9));
- {const pot=new T.Mesh(new T.CylinderGeometry(2*I,1.6*I,3.5*I,20),std('#bfb6a3',.7));pot.position.set(36*I,77.25*I,-68*I);archFluted.add(pot);const leaves=new T.Mesh(new T.SphereGeometry(3.4*I,12,8),std('#4e7a3a',.9));leaves.scale.set(1.2,.8,1);leaves.position.set(36*I,80*I,-68*I);archFluted.add(leaves);
-  for(let k=0;k<6;k++){const vine=new T.Mesh(new T.CylinderGeometry(.5*I,.3*I,(8+k*1.5)*I,6),std('#4e7a3a',.9));vine.position.set((32.5+k*1.4)*I,(75.5-(4+k*.75))*I,-66.5*I);archFluted.add(vine);}}
- makeConsoleEnd(archFluted);
- archFluted.userData.archTop=AT;
+ panel.fluteMaterials={flute,gap:sageDark};
+ const AT=96,RX=30,RZ=24,FY=69.15;
+ // cabinet=false: whole wall x 0.1-120 (arch from x 26). cabinet=true (Option 4): glass cabinet kept
+ // at x 0.1-24.1 (to 84 in); fluting continues above it to the ceiling; arch moves to x 38.
+ function makeArch(name,cabinet){
+  const g=new T.Group();g.name=name;g.visible=false;panel.group.add(g);
+  const AX=cabinet?38:26,FL=AX+36,L=cabinet?24.1:.1;
+  const archTopZ=x=>x>=AX+RX?AT:AT-RZ+RZ*Math.sqrt(Math.max(0,1-((AX+RX-x)/RX)**2));
+  const arcPts=[];for(let k=0;k<=24;k++){const a=Math.PI-k/24*Math.PI/2;arcPts.push(new T.Vector2(AX+RX+RX*Math.cos(a),AT-RZ+RZ*Math.sin(a)));}
+  const sh=new T.Shape();sh.moveTo(L*I,20*I);sh.lineTo(AX*I,20*I);for(const q of arcPts)sh.lineTo(q.x*I,q.y*I);sh.lineTo(FL*I,AT*I);sh.lineTo(FL*I,120*I);sh.lineTo(.1*I,120*I);
+  if(cabinet){sh.lineTo(.1*I,84*I);sh.lineTo(L*I,84*I);}sh.lineTo(L*I,20*I);
+  const frame=new T.Mesh(new T.ExtrudeGeometry(sh,{depth:(72.15-FY)*I,bevelEnabled:false}),sageDark);frame.position.z=-72.15*I;frame.castShadow=frame.receiveShadow=true;g.add(frame);
+  B(g,FL,120,FY,72.15,AT,120,sageLight);                                         // plain light-sage band above the arch
+  const fl=[];for(let x=.4;x+1.4<=FL;x+=2){const bottom=x+1.4<=L?84:x<L?84:x+1.4<=AX?20:archTopZ(x+1.4);if(cabinet&&x<L&&x+1.4>L)continue;if(bottom<119.5)fl.push([x,x+1.4,FY-.6,FY,(cabinet||x>=L?bottom:20)+.05,119.95]);}
+  mergedBoxes(g,fl,flute);g.userData.flutes=fl.length;
+  B(g,AX,120,71.9,72.15,20,AT,cream);                                             // recessed cream arch back
+  const archPts=[new T.Vector2(AX,20),new T.Vector2(AX,AT-RZ),...arcPts.slice(1),new T.Vector2(120,AT)];
+  const edgeRibbon=(width,y,mat2)=>{const pos=[],uv=[],idx=[],n0=archPts.length-1;archPts.forEach((q,k)=>{const a=archPts[Math.max(0,k-1)],b=archPts[Math.min(n0,k+1)],t=new T.Vector2(b.x-a.x,b.y-a.y).normalize(),n=new T.Vector2(t.y,-t.x),o=q.clone().addScaledVector(n,width);o.x=Math.min(120,o.x);o.y=Math.max(20,o.y);pos.push(q.x*I,q.y*I,-y*I,o.x*I,o.y*I,-y*I);uv.push(1,k/n0,0,k/n0);if(k)idx.push(2*k-2,2*k-1,2*k,2*k-1,2*k+1,2*k);});
+   const geo=new T.BufferGeometry();geo.setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setAttribute('uv',new T.Float32BufferAttribute(uv,2));geo.setIndex(idx);geo.computeVertexNormals();const m=new T.Mesh(geo,mat2);m.renderOrder=5;g.add(m);return m;};
+  edgeRibbon(.3,70.2,lightMaterial);{const gl=edgeRibbon(9,71.85,(()=>{const m=glowMat(0,.6);m.side=T.DoubleSide;return m;})());gl.userData.glow=true;panel.glows.push(gl);}
+  B(g,AX,120,64,71.9,74,75.5,shelfGreen);                                         // green floating shelf
+  g.add(led(panel,AX+1,119,64.4,64.9,73.55,74));g.add(glowF(panel,AX,120,60.5,74,71.8,Math.PI/2,.6));
+  for(const [x,r,h,c] of [[96,1.6,5,'#e2d6bf'],[101,1.2,6.5,'#d6c08f'],[106,1.4,4,'#efe9dc']]){const v=new T.Mesh(new T.CylinderGeometry(r*.7*I,r*I,h*I,20),std(c,.5));v.position.set(x*I,(75.5+h/2)*I,-68*I);v.castShadow=true;g.add(v);}
+  B(g,AX+36,AX+44,70.8,71.3,75.5,85.5,std('#3b2a1d',.6));B(g,AX+36.7,AX+43.3,70.6,70.8,76.2,84.8,std('#d9d4c8',.9));
+  {const px=AX+10,pot=new T.Mesh(new T.CylinderGeometry(2*I,1.6*I,3.5*I,20),std('#bfb6a3',.7));pot.position.set(px*I,77.25*I,-68*I);g.add(pot);const leaves=new T.Mesh(new T.SphereGeometry(3.4*I,12,8),std('#4e7a3a',.9));leaves.scale.set(1.2,.8,1);leaves.position.set(px*I,80*I,-68*I);g.add(leaves);
+   for(let k=0;k<6;k++){const vine=new T.Mesh(new T.CylinderGeometry(.5*I,.3*I,(8+k*1.5)*I,6),std('#4e7a3a',.9));vine.position.set((px-3.5+k*1.4)*I,(75.5-(4+k*.75))*I,-66.5*I);g.add(vine);}}
+  if(!cabinet)makeConsoleEnd(g);
+  g.userData.archTop=AT;g.userData.archX=AX;return g;}
+ // Option 3 (19 Nov): customer's second reference (green fluted panel with a cream arch), no left storage.
+ const archFluted=makeArch('Option 3 · Green fluted panel with arch',false);
+ // Option 4 (19 Nov): the same panel with the tall glass-shutter cabinet kept on the left.
+ const archCabinet=makeArch('Option 4 · Green fluted panel with arch and glass cabinet',true);
  rectDesign.name='Option 1 · Classic panel with ledge';
  panel.curveSource='Traced from customer reference IMG_0390';
- panel.designs={current:rectDesign,curvyNiches,archFluted};panel.design='current';
- panel.designOptions=[{id:'current',label:'Option 1 · Classic',note:'Rectangular 3 in panel, wooden ledge, louvers full width'},{id:'curvyNiches',label:'Option 2 · Curvy with open niches',note:'Glass display removed; green double-layer paneling across the wall to the ceiling with lit rounded open niches; no ledge'},{id:'archFluted',label:'Option 3 · Green fluted panel with arch',note:'Glass display removed, no storage on the left; green fluted panel with a lit cream arch and a green floating shelf above the TV; no ledge'}];
+ panel.designs={current:rectDesign,curvyNiches,archFluted,archCabinet};panel.design='current';
+ panel.designOptions=[{id:'current',label:'Option 1 · Classic',note:'Rectangular 3 in panel, wooden ledge, louvers full width'},{id:'curvyNiches',label:'Option 2 · Curvy with open niches',note:'Glass display removed; green double-layer paneling across the wall to the ceiling with lit rounded open niches; no ledge'},{id:'archFluted',label:'Option 3 · Green fluted panel with arch',note:'Glass display removed, no storage on the left; green fluted panel with a lit cream arch and a green floating shelf above the TV; no ledge'},{id:'archCabinet',label:'Option 4 · Fluted arch with glass cabinet',note:'Option 3 panel with the tall glass-shutter cabinet kept on the left; fluting continues above it to the ceiling; no ledge'}];
 
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();panel.tv=tv;
  B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
@@ -207,11 +217,11 @@ export function buildModel(){
  // removed for the curvy panel design, which goes up to the ceiling there (19 Nov).
  const louverMid=new T.Group();louverMid.name='Louvers above TV panel';louver.group.add(louverMid);louver.middle=louverMid;
  const louverLeft=new T.Group();louverLeft.name='Louvers above glass cabinet';louver.group.add(louverLeft);louver.left=louverLeft;
- B(louverLeft,.1,24.1,72.35,72.95,84,120,gapMat);B(louverMid,24.1,120,72.35,72.95,84,120,gapMat);B(louver.group,120,143.4,72.35,72.95,84,120,gapMat);
+ B(louverLeft,.1,24.1,72.35,72.95,84,120,gapMat);B(louverMid,24.1,120,72.35,72.95,84,120,gapMat);louver.rightBacking=[B(louver.group,120,143.4,72.35,72.95,84,120,gapMat)];
  const slatBoxes=[],midSlats=[],leftSlats=[];for(let x=.1+.3;x+LW<=143.4;x+=LP){const b=[x,x+LW,71.6,72.35,84.05,119.95];if(x>=24.1&&x+LW<=120)midSlats.push(b);else if(x+LW<=24.1)leftSlats.push(b);else if(x>=120)slatBoxes.push(b);}
- B(louver.group,143.4,144.05,1.05,72.35,84,120,gapMat);              // dark backing, side-wall return
+ louver.rightBacking.push(B(louver.group,143.4,144.05,1.05,72.35,84,120,gapMat));   // dark backing, side-wall return
  for(let y=1.05+.3;y+LW<=72.35;y+=LP)slatBoxes.push([142.65,143.4,y,y+LW,84.05,119.95]);
- mergedBoxes(louver.group,slatBoxes,slatMat);mergedBoxes(louverMid,midSlats,slatMat);mergedBoxes(louverLeft,leftSlats,slatMat);slats=slatBoxes.length+midSlats.length+leftSlats.length;
+ louver.rightSlats=mergedBoxes(louver.group,slatBoxes,slatMat);louver.gapMaterial=gapMat;mergedBoxes(louverMid,midSlats,slatMat);mergedBoxes(louverLeft,leftSlats,slatMat);slats=slatBoxes.length+midSlats.length+leftSlats.length;
  louver.slatCount=slats;louver.slatPitchInches=LP;louver.slatWidthInches=LW;
  B(louverLeft,.5,24.1,71.15,71.45,119.45,119.75,lightMaterial).castShadow=false;B(louverMid,24.1,120,71.15,71.45,119.45,119.75,lightMaterial).castShadow=false;B(louver.group,120,142.2,71.15,71.45,119.45,119.75,lightMaterial).castShadow=false;B(louver.group,142.2,142.5,1.5,71.15,119.45,119.75,lightMaterial).castShadow=false;
  louverLeft.add(glowF(louver,.5,24.1,104,119.7,71.5,Math.PI/2,.42));louverMid.add(glowF(louver,24.1,120,104,119.7,71.5,Math.PI/2,.42));glowF(louver,120,142.6,104,119.7,71.5,Math.PI/2,.42);glow(louver,'-x',142.6,36.45,111.85,70.3,15.7,Math.PI/2,.42);
@@ -366,7 +376,8 @@ export function buildModel(){
  let reference=false,lightsOn=true;
  return {robot:bay.cleaner,root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
  setReference(on){reference=on;referenceRoot.visible=on;for(const u of units)u.group.visible=!on;architecture.visible=!on;},
- setPanelDesign(name){const p=units.find(u=>u.id==='tv-panel');if(!p.designs[name])return;p.design=name;for(const [k,g] of Object.entries(p.designs))g.visible=k===name;const ledgeWash=units.find(u=>u.id==='ledge').glows[0];ledgeWash.userData.hiddenByDesign=name!=='current';ledgeWash.visible=name==='current'&&lightsOn;units.find(u=>u.id==='ledge').group.visible=name==='current';const lv=units.find(u=>u.id==='louver');lv.middle.visible=name==='current';lv.left.visible=name==='current';units.find(u=>u.id==='tall-glass').group.visible=name==='current';p.tv.position.z=({curvyNiches:(72.15-64)*I,archFluted:-(71.9-69.05)*I})[name]||0;},
+ setPanelDesign(name){const p=units.find(u=>u.id==='tv-panel');if(!p.designs[name])return;p.design=name;for(const [k,g] of Object.entries(p.designs))g.visible=k===name;const ledgeWash=units.find(u=>u.id==='ledge').glows[0];ledgeWash.userData.hiddenByDesign=name!=='current';ledgeWash.visible=name==='current'&&lightsOn;units.find(u=>u.id==='ledge').group.visible=name==='current';const lv=units.find(u=>u.id==='louver');lv.middle.visible=name==='current';lv.left.visible=name==='current';units.find(u=>u.id==='tall-glass').group.visible=name==='current'||name==='archCabinet';p.tv.position.z=({curvyNiches:(72.15-64)*I,archFluted:-(71.9-69.05)*I,archCabinet:-(71.9-69.05)*I})[name]||0;
+  const green=name==='archFluted'||name==='archCabinet';lv.rightSlats.material=green?p.fluteMaterials.flute:lv.front;for(const b of lv.rightBacking)b.material=green?p.fluteMaterials.gap:lv.gapMaterial;lv.greenRight=green;},
  setLights(on){lightsOn=on;for(const u of units)for(const g of u.glows||[])g.visible=on&&!g.userData.hiddenByDesign;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
  update(dt){bay.cleaner.update(dt);for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
  };

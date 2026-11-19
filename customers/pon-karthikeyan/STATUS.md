@@ -209,7 +209,13 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - **Verified:**
     - Check passed: only `archFluted` visible; TV on the cream back, inside the arch and below the shelf; more than 20 flutes; everything restores on Option 1.
     - Local SwiftShader: chose Option 3, badge "Option 3 of 3"; side-by-side screenshot against the reference. Cream colour and glow were tuned after the first screenshot.
-- **Next:** an Option 3 variant with the left glass-shutter storage box (customer request). Awaiting the customer's choice. See `design.json` → `designPreviews`.
+- **Update (19 Nov, h): added Option 4, "Fluted arch with glass cabinet"** (`archCabinet`).
+  - Built by `makeArch(name, cabinet)`: the tall glass cabinet stays visible, fluting runs above it from 84 to 120 in, and the arch starts at x 38.
+  - **Right-side louvers:** in Options 3 and 4, the right header run and side-return slats switch to the green flute material, with green backing. Options 1 and 2 keep wood.
+  - **Verified:**
+    - Check passed: Option 4 shows only `archCabinet` plus the tall glass; the TV is inside the shifted arch; the cabinet stays left of 24.2 in; right louvers are green in 3 and 4 and wood again on Option 1.
+    - Local SwiftShader: chose Options 3 and 4, badge "Option 4 of 4"; thumbnails option-3.jpg and option-4.jpg re-rendered.
+- **Awaiting:** the customer's choice, and whether green right-side louvers are wanted in Options 1 and 2 too. See `design.json` → `designPreviews`.
 
 ## Next action
 
