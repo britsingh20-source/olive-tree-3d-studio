@@ -11,6 +11,13 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev uh5 (19 Nov 2026) — photo cockpit
+
+- Inside-only experience. `cabin-front.webp` = Bright's reference photo `3217F66C…png` (1672×941) with windscreen made transparent (mirror, dashcam, stem kept; rosary removed). Camera matched to the photo: hfov 100°, vanishing point (930, 424), object-fit cover; live route screen overlaid on the photo's touchscreen at (748,627)-(964,742).
+- Outside/3D-cabin buttons hidden; 3D cabin and chase view remain in code but unused.
+- Pickup → inside view verified in headless Chrome 1280×760 and 390×780 (local build); earlier live uh4 also showed inside view in Chrome, so Bright's "inside view not coming" is not reproduced — may be a cached page or a different browser (not tested: iPhone Safari).
+- Realism gap: cabin is photographic, road/buildings are still procedural. Needs real route footage.
+
 ## Rev uh4 (19 Nov 2026)
 
 - Interior and exterior restyled from Bright's three reference photos (details in design.json). Inside view now looks slightly down (pitch −0.14) so the dashboard and road are both in frame.

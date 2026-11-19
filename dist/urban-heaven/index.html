@@ -11,7 +11,7 @@ html,body{margin:0;height:100%;background:#1d2b26;color:#fff;overflow:hidden}
 button{font:inherit;cursor:pointer;border:1px solid rgba(255,255,255,.25);background:rgba(20,33,28,.72);color:#fff;border-radius:10px;padding:9px 13px;backdrop-filter:blur(6px)}
 button[aria-pressed=true]{background:var(--cab);color:var(--ink);border-color:var(--cab)}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-#stage{position:fixed;inset:0;touch-action:none}#stage canvas{display:block;width:100%;height:100%}
+#stage{position:fixed;inset:0;touch-action:none}.cockpit{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}.cockpit-screen{position:fixed;pointer-events:none;border-radius:4px}#stage canvas{display:block;width:100%;height:100%}
 .loading{position:fixed;inset:0;display:grid;place-items:center;padding:30px;text-align:center;font-size:15px}
 .topbar{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));background:linear-gradient(#14211cdd,#14211c00);pointer-events:none}
 .title{display:flex;align-items:center;gap:10px}.title b{background:var(--cab);color:var(--ink);font-weight:700;padding:5px 9px;border-radius:7px;letter-spacing:.06em;font-size:13px}.title span{font-size:13px;opacity:.9}
@@ -43,7 +43,8 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media(max-width:640px){.picks{grid-template-columns:1fr}.card{padding:18px}.card h1{font-size:25px}.title span{display:none}.hint{display:none}.next{top:58px;left:10px}.next p{font-size:14px}.stop-banner h2{font-size:19px}.strip{margin:0 26px 8px}.tick span{font-size:9px}.tick:not(.arrive):not(.pickup) span{display:none}.controls button{padding:8px 10px;font-size:13px}}
 </style></head>
 <body>
-<div id="stage" aria-label="3D cab ride along Mettupalayam Road to Urban Heaven"></div>
+<div id="stage" aria-label="Cab ride along Mettupalayam Road to Urban Heaven"></div>
+<img id="cockpit" class="cockpit" src="cabin-front.webp?v=uh5" alt="" hidden><canvas id="cockpitScreen" class="cockpit-screen" hidden></canvas>
 <div id="loading" class="loading">Preparing the road…</div>
 
 <div class="topbar"><div class="title"><b>PROPERTY MANAGER</b><span>Site tour · Urban Heaven, Veerapandi</span></div>
@@ -51,12 +52,12 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 <section id="hud" hidden>
   <div class="next" aria-live="polite"><i id="nextIcon">⦿</i><div><p id="nextText">Starting</p><small id="nextDist"></small></div></div>
-  <p class="hint">Drag to look around the road · Outside view shows the cab</p>
+  
   <div id="stopBanner" class="stop-banner" hidden role="status"><h2 id="bannerTitle"></h2><p id="bannerSub"></p></div>
   <div class="bottom"><p class="route-name" id="routeName"></p><div class="strip" id="strip"></div>
     <div class="controls"><button id="playBtn" aria-pressed="false">Pause</button>
       <div class="group" role="group" aria-label="Speed"><button data-speed="1" aria-pressed="true">1×</button><button data-speed="2" aria-pressed="false">2×</button><button data-speed="4" aria-pressed="false">4×</button></div>
-      <button id="viewBtn">Outside view</button><button id="lookBtn">Look ahead</button><button id="changeBtn">Change pickup</button></div></div>
+      <button id="viewBtn" hidden>Outside view</button><button id="lookBtn" hidden>Look ahead</button><button id="changeBtn">Change pickup</button></div></div>
 </section>
 
 <section id="pickup" class="overlay" aria-labelledby="pickTitle"><div class="card">
@@ -78,5 +79,5 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   <div class="actions"><button id="again">Ride again</button><button id="againPick" class="ghost">Change pickup</button></div>
 </div></section>
 <noscript>Please enable JavaScript to take the site tour.</noscript>
-<script type="module" src="./tour.js?v=uh4"></script>
+<script type="module" src="./tour.js?v=uh5"></script>
 </body></html>

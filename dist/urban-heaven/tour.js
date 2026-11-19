@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
-import { buildSUV } from './suv.js?v=uh4';
-import { buildCabin } from './interior.js?v=uh4';
-import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh4';
+import { buildSUV } from './suv.js?v=uh5';
+import { buildCabin } from './interior.js?v=uh5';
+import { STOPS, PICKUPS, JUNCTION_KM, HIGHWAY_KM, SCALE, highwayPoint, highwayX, sideKeyPoints, buildCarPath } from './route.js?v=uh5';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage');
@@ -299,15 +299,20 @@ function placeCar(dt = 0) {
   car.rotation.y = Math.atan2(-dx, -dz);
   return p;
 }
+// 'photo' = real cabin photograph with the windscreen cut out, road rendered behind it (default).
+// 'inside' = procedural 3D cabin; 'outside' = chase camera. Only 'photo' is offered to customers.
+const PHOTO = { w: 1672, h: 941, vx: 930, vy: 424, hfov: 100, screen: [748, 627, 964, 742] };
 function setView(v) {
   view = v; $('viewBtn').textContent = v === 'inside' ? 'Outside view' : 'Inside the cab';
-  cabin.visible = v === 'inside'; ext.visible = v !== 'inside';
-  if (v === 'inside') { eye.position.set(-0.4, 1.52, 0.4); }
+  cabin.visible = v === 'inside'; ext.visible = v === 'outside';
+  $('cockpit').hidden = $('cockpitScreen').hidden = v !== 'photo';
+  if (v === 'photo') { eye.position.set(-0.15, 1.45, 0.3); lookYaw = lookPitch = 0; }
+  else if (v === 'inside') { eye.position.set(-0.4, 1.52, 0.4); }
   else { eye.position.set(-3.6, 2.3, 7.2); }
   applyLook(); resize();
 }
 function applyLook() {
-  eye.rotation.set(0, lookYaw + (view === 'inside' ? 0 : -0.46), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.14 : -0.17), 0, 0);
+  eye.rotation.set(0, lookYaw + (view === 'outside' ? -0.46 : 0), 0, 'YXZ'); camera.rotation.set(lookPitch + (view === 'inside' ? -0.14 : view === 'photo' ? 0 : -0.17), 0, 0);
 }
 function speedFor(sv) {
   const p = pointAt(sv); let v = BASE[p.type] || 10;
@@ -362,7 +367,7 @@ function updateHud(p) {
 // ---------- controls ----------
 function startTour(id) {
   path = buildCarPath(id); s = 0; s0 = 0; cabinKit.setRoute(path); firedEvents = new Set(); finished = false; lookYaw = lookPitch = 0;
-  laneNow = 2.6; setView('inside');
+  laneNow = 2.6; setView('photo');
   try { localStorage.setItem('urban-heaven-pickup', id); } catch (e) {}
   $('pickup').hidden = true; $('arrived').hidden = true; $('hud').hidden = false;
   $('routeName').textContent = `${path.pickup.label} → Urban Heaven · ≈ ${path.totalKm.toFixed(1)} km`;
@@ -385,7 +390,7 @@ for (const id of Object.keys(PICKUPS)) {
 
 // look around inside the cab by dragging (no drift: the view stays where you leave it)
 let drag = null;
-renderer.domElement.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, yaw: lookYaw, pitch: lookPitch }; renderer.domElement.setPointerCapture(e.pointerId); });
+renderer.domElement.addEventListener('pointerdown', e => { if (view === 'photo') return; drag = { x: e.clientX, y: e.clientY, yaw: lookYaw, pitch: lookPitch }; renderer.domElement.setPointerCapture(e.pointerId); });
 renderer.domElement.addEventListener('pointermove', e => {
   if (!drag) return; const k = 3.2 / stage.clientWidth;
   lookYaw = Math.max(-2.6, Math.min(2.6, drag.yaw + (e.clientX - drag.x) * k));
@@ -397,7 +402,17 @@ renderer.domElement.addEventListener('pointerup', endDrag); renderer.domElement.
 
 function resize() {
   const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false);
-  camera.aspect = w / h; camera.fov = view === 'inside' ? (w < h ? 84 : 70) : (w < h ? 74 : 62); camera.updateProjectionMatrix();
+  camera.aspect = w / h; camera.clearViewOffset();
+  if (view === 'photo') {
+    // match the photo: object-fit cover, same focal length, vanishing point under the photo's
+    const sc = Math.max(w / PHOTO.w, h / PHOTO.h), ox = (w - PHOTO.w * sc) / 2, oy = (h - PHOTO.h * sc) / 2;
+    const f = (PHOTO.w / 2) / Math.tan(PHOTO.hfov * Math.PI / 360) * sc;
+    camera.fov = 2 * Math.atan(h / 2 / f) * 180 / Math.PI;
+    camera.setViewOffset(w, h, w / 2 - (ox + PHOTO.vx * sc), h / 2 - (oy + PHOTO.vy * sc), w, h);
+    const [x0, y0, x1, y1] = PHOTO.screen, cs = $('cockpitScreen');
+    Object.assign(cs.style, { left: ox + x0 * sc + 'px', top: oy + y0 * sc + 'px', width: (x1 - x0) * sc + 'px', height: (y1 - y0) * sc + 'px' });
+  } else camera.fov = view === 'inside' ? (w < h ? 84 : 70) : (w < h ? 74 : 62);
+  camera.updateProjectionMatrix();
 }
 new ResizeObserver(resize).observe(stage); resize();
 
@@ -414,7 +429,8 @@ function frame(now) {
     const v = dt > 0 ? (s - prevS) / dt / Math.max(1, speedMul) : 0;
     const h1 = pointAt(s + 2), h2 = pointAt(s + 14), h0 = pointAt(s - 10);
     const steer = Math.atan2(h2.x - h1.x, h2.z - h1.z) - Math.atan2(h1.x - h0.x, h1.z - h0.z);
-    if (view === 'inside') cabinKit.update(dt, { speedKmh: v > 0.3 ? 18 + v * 0.95 : 0, km: p.km, steer: Math.atan2(Math.sin(steer), Math.cos(steer)), s, pos: p, ...hudState });
+    if (view !== 'outside') cabinKit.update(dt, { speedKmh: v > 0.3 ? 18 + v * 0.95 : 0, km: p.km, steer: Math.atan2(Math.sin(steer), Math.cos(steer)), s, pos: p, ...hudState });
+    if (view === 'photo') { const sc = cabinKit.screenCanvas, cs = $('cockpitScreen'); if (cs.width !== sc.width) { cs.width = sc.width; cs.height = sc.height; } cs.getContext('2d').drawImage(sc, 0, 0); }
   }
   if (bannerTimer > 0) { bannerTimer -= dt; if (bannerTimer <= 0) $('stopBanner').hidden = true; }
   renderer.render(scene, camera);

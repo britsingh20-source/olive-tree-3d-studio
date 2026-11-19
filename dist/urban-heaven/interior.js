@@ -305,6 +305,7 @@ export function buildCabin({ body = '#0c0d0f' } = {}) {
   let tScreen = 0;
   return {
     group: cab,
+    screenCanvas: screen.tex.image,
     setRoute: path => screen.setRoute(path),
     update(dt, info) {
       gauges.draw(info.speedKmh, info.km);
