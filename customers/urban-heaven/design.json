@@ -1,0 +1,36 @@
+{
+  "id": "urban-heaven",
+  "title": "Property Manager — Urban Heaven site tour",
+  "kind": "property-tour",
+  "route": "/urban-heaven/",
+  "site": {
+    "name": "Urban Heaven",
+    "locality": "Veerapandi, Mettupalayam Road, Coimbatore",
+    "publicReference": "Listed publicly as a residential plot layout in Veerapandi, RERA TN/11/Layout/3675/2024 (ghar.tv listing); not yet confirmed by Bright as the same project"
+  },
+  "confirmed": {
+    "source": "Bright, chat 19 Nov 2026",
+    "title": "Whole experience sits under the title 'Property Manager'; a cab picks the client up",
+    "pickups": ["Thudiyalur", "Mettupalayam"],
+    "customerChoosesPickup": true,
+    "customerSeesTheRoad": true,
+    "thudiyalurStops": ["Thudiyalur", "NGGO Colony ('Enjo Colony')", "Narasimhanaickenpalayam", "Periyanaickenpalayam", "'Sandimad' (KNM Mills there)"],
+    "afterKnmMills": "From Thudiyalur: turn left at KNM Mills; within ~700–800 m turn right; within ~500 m turn left; straight road; Urban Heaven appears; the car enters the site",
+    "mettupalayamSide": "Same structure from the Mettupalayam end",
+    "next": "Site map will be added after arrival (Bright to supply)"
+  },
+  "approximations": {
+    "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
+    "sideRoad": "Legs modelled as 0.75 km and 0.5 km (Bright's ranges); final straight 0.3 km is a placeholder",
+    "spelling": "'Sandimad' is shown as 'Santhaimedu' (சந்தைமேடு) — assumed, needs confirmation",
+    "mettupalayamTurn": "From the Mettupalayam side the turn at KNM Mills is modelled as RIGHT (same side road approached from the north) — derived, needs confirmation",
+    "mettupalayamStops": "Only Karamadai shown between Mettupalayam and Santhaimedu — stop list not yet given",
+    "scenery": "Road, trees, buildings, KNM Mills sheds, gate arch, hills and plot kerbs are illustrative, not survey data"
+  },
+  "openQuestions": [
+    "Is 'Sandimad' = Santhaimedu? Exact km from Thudiyalur to KNM Mills?",
+    "Stops between Mettupalayam and KNM Mills, and is the turn there a right?",
+    "Length of the final straight road to the gate",
+    "Site map / plot layout for after arrival"
+  ]
+}

@@ -12,7 +12,7 @@
     {
       "id": "venki-new-unit",
       "name": "Mr. Venki",
-      "project": "New unit — design intake",
+      "project": "New unit \u2014 design intake",
       "route": "/venki-new-unit/",
       "design": "customers/venki-new-unit/design.json",
       "status": "customers/venki-new-unit/STATUS.md"
@@ -32,6 +32,14 @@
       "route": "/pon-karthikeyan/",
       "design": "customers/pon-karthikeyan/design.json",
       "status": "customers/pon-karthikeyan/STATUS.md"
+    },
+    {
+      "id": "urban-heaven",
+      "name": "Property Manager",
+      "project": "Urban Heaven site tour (cab ride from Thudiyalur / Mettupalayam)",
+      "route": "/urban-heaven/",
+      "design": "customers/urban-heaven/design.json",
+      "status": "customers/urban-heaven/STATUS.md"
     }
   ]
 }
