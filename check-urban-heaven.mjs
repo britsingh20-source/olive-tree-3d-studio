@@ -43,6 +43,6 @@ console.log('urban-heaven route checks passed', t.toFixed(2), m.toFixed(2));
   assert.deepEqual(D.STOPS.mettupalayam.map(s => s.id), ['mettupalayam', 'karamadai', 'knm']);
   assert.equal(D.STOPS.thudiyalur.at(-1).turn, 'left'); assert.equal(D.STOPS.mettupalayam.at(-1).turn, 'right');
   const html = fs.readFileSync('dist/urban-heaven/index.html', 'utf8');
-  assert(html.includes('map.js?v=m1') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
+  assert(html.includes('map.js?v=m2') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
   console.log('map tour checks passed', t.toFixed(2), m.toFixed(2));
 }

@@ -54,8 +54,10 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .sign.pickup{background:#1d2b26;outline-color:#f6c519;border-color:#f6c519}
 .sign.turn{background:#1f4f8f;outline-color:#1f4f8f;min-width:0;padding:3px 9px;display:flex;gap:6px;align-items:center}.sign.turn b{font-size:22px;line-height:1}.sign.turn span{font-weight:700;font-size:13px}
 .sign.site{background:#2e6b4f;border-color:#d9b96a;outline-color:#2e6b4f;left:-90px;bottom:16px}.sign.site small{color:#d9b96a;letter-spacing:.12em;font-family:'DM Sans',sans-serif;font-weight:700}.sign.site strong{font-size:19px;font-family:Georgia,serif}
+.speedo{position:fixed;left:16px;bottom:150px;width:78px;height:78px;border-radius:50%;background:rgba(17,20,24,.88);border:3px solid #f6c519;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.4)}.speedo strong{font-size:26px;line-height:1}.speedo span{font-size:10px;opacity:.8;letter-spacing:.08em}
 .map-tools{position:fixed;right:16px;bottom:150px;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
-@media(max-width:640px){.sign{min-width:0;padding:3px 7px}.sign strong{font-size:12px}.sign small{font-size:10px}.sign i{font-size:9px}.map-tools{bottom:160px;right:10px}}
+@media(max-width:640px){.speedo{bottom:160px;left:10px;width:64px;height:64px}.speedo strong{font-size:21px}.sign{min-width:0;padding:3px 7px}.sign strong{font-size:12px}.sign small{font-size:10px}.sign i{font-size:9px}.speedo{position:fixed;left:16px;bottom:150px;width:78px;height:78px;border-radius:50%;background:rgba(17,20,24,.88);border:3px solid #f6c519;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.4)}.speedo strong{font-size:26px;line-height:1}.speedo span{font-size:10px;opacity:.8;letter-spacing:.08em}
+.map-tools{bottom:160px;right:10px}}
 </style></head>
 <body>
 <div id="map" aria-label="Map of the route along Mettupalayam Road to Urban Heaven"></div>
@@ -67,10 +69,10 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 <section id="hud" hidden>
   <div class="next" aria-live="polite"><i id="nextIcon">⦿</i><div><p id="nextText">Starting</p><small id="nextDist"></small></div></div>
   <div id="stopBanner" class="stop-banner" hidden role="status"><h2 id="bannerTitle"></h2><p id="bannerSub"></p></div>
+  <div class="speedo" aria-live="off"><strong id="speedVal">0</strong><span>km/h</span></div>
   <div class="map-tools"><button id="recenter">◎ Follow cab</button><button id="layerBtn">Map view</button></div>
   <div class="bottom"><p class="route-name" id="routeName"></p><div class="strip" id="strip"></div>
     <div class="controls"><button id="playBtn" aria-pressed="false">Pause</button>
-      <div class="group" role="group" aria-label="Speed"><button data-speed="1" aria-pressed="true">1×</button><button data-speed="2" aria-pressed="false">2×</button><button data-speed="4" aria-pressed="false">4×</button></div>
       <button id="changeBtn">Change pickup</button></div></div>
 </section>
 
@@ -94,5 +96,5 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 </div></section>
 <noscript>Please enable JavaScript to take the site tour.</noscript>
 <script src="../vendor/leaflet/leaflet.js"></script>
-<script type="module" src="./map.js?v=m1"></script>
+<script type="module" src="./map.js?v=m2"></script>
 </body></html>

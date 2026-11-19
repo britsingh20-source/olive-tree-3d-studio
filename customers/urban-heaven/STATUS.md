@@ -11,7 +11,12 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
-## Rev m1 (19 Nov 2026) — top-view map tour (current)
+## Rev m2 (19 Nov 2026) — speed profile
+
+- Speed buttons removed; speedometer (km/h) added bottom-left. No pause at stops.
+- Measured in headless Chrome (500 ms sampling): Thudiyalur ride 72 s — cruise 80–87, NGGO 40, Narasimhanaickenpalayam 40, Periyanaickenpalayam 42, KNM turn 25, gate 12. Mettupalayam ride 105 s — cruise 80–86, Karamadai 42, KNM 25. No page errors.
+
+## Rev m1 (19 Nov 2026) — top-view map tour
 
 - Bright dropped the in-car 3D. `/urban-heaven/` is now a Leaflet map (vendored `dist/vendor/leaflet` 1.9.4) with Esri satellite + labels, toggle to OpenStreetMap. Files: `index.html`, `map.js`, `map-data.js`. Old 3D cab kept at `cab3d.html` (unlinked).
 - Flow: pickup chooser → whole-route overview → fly down to pickup → cab icon drives real road geometry, rotates with heading, yellow travelled line, bilingual green stop signs (km to site), blue turn signs, banners at stops (1.2 s pause) and turns, HUD km/next/strip, 1×/2×/4×, follow-cab/recenter, drag to pan → enters gate → map zooms to the site outline → arrival card.

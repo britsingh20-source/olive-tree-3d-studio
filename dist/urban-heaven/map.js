@@ -1,6 +1,6 @@
 // Property Manager · Urban Heaven — top-view map tour. A cab drives the real road from the chosen
 // pickup, through each stop, takes the three turns to the site, enters it, then the map zooms in.
-import { JUNCTION, ROUTES, STOPS, SIDE } from './map-data.js?v=m1';
+import { JUNCTION, ROUTES, STOPS, SIDE } from './map-data.js?v=m2';
 const L = window.L, $ = id => document.getElementById(id);
 
 // ---------- geometry helpers ----------
@@ -92,16 +92,27 @@ function drawRoute(path) {
 
 // ---------- tour ----------
 let path = null, m = 0, playing = false, speedMul = 1, fired = new Set(), finished = false, follow = true, intro = 0, hold = 0;
-function speedAt(mm) { // metres per second of animation
-  let v = mm < path.hwLen ? 220 : 45;
+// Displayed road speed in km/h (Bright, 19 Nov): cruise 80–90 between stops, ease down to ~40 while
+// passing a stop (no stopping), back up to cruise after it. Side road to the site is slower.
+// The ride is shown TIME_SCALE× faster than real time so a whole trip takes about a minute.
+const TIME_SCALE = 10;
+const ease = t => t * t * (3 - 2 * t);
+function kmhAt(mm) {
+  const onHighway = mm < path.hwLen;
+  let v = onHighway ? 85 + 5 * Math.sin(mm / 900) : 35;
   for (const e of path.events) {
-    const d = e.m - mm;
-    if ((e.kind === 'turn' || e.kind === 'stop') && d > -30 && d < 400) v = Math.min(v, 30 + Math.max(0, d) * 0.45);
-    if (e.kind === 'arrive' && d > -60 && d < 200) v = Math.min(v, 14 + Math.max(0, d) * 0.15);
+    const d = e.m - mm; // >0 before the event
+    if (e.kind === 'stop') { // 400 m slow-down before, 200 m pick-up after
+      const t = d >= 0 ? Math.min(1, d / 400) : Math.min(1, -d / 200);
+      if (t < 1) v = Math.min(v, 40 + (v - 40) * ease(t));
+    }
+    if (e.kind === 'turn') { const t = d >= 0 ? Math.min(1, d / 300) : Math.min(1, -d / 120); if (t < 1) v = Math.min(v, 25 + (v - 25) * ease(t)); }
+    if (e.kind === 'arrive' && d > -100) v = Math.min(v, 12 + Math.max(0, d) * 0.12);
   }
-  v = Math.min(v, 10 + (path.total - mm) * 0.4, 25 + mm * 0.8);
+  v = Math.min(v, 12 + mm * 0.25, 6 + (path.total - mm) * 0.35); // pull away / roll in
   return v;
 }
+const speedAt = mm => kmhAt(mm) / 3.6 * TIME_SCALE;
 function banner(t, s) { $('bannerTitle').textContent = t; $('bannerSub').textContent = s || ''; $('stopBanner').hidden = false; clearTimeout(banner.t); banner.t = setTimeout(() => $('stopBanner').hidden = true, 2800); }
 function buildStrip() {
   const strip = $('strip'); strip.innerHTML = '<div class="strip-line"></div><div id="stripFill" class="strip-fill"></div><div id="stripCar" class="strip-car" aria-hidden="true">🚕</div>';
@@ -125,7 +136,7 @@ function updateHud() {
   } else { $('nextIcon').textContent = '🏁'; $('nextText').textContent = 'You have arrived at Urban Heaven'; $('nextDist').textContent = ''; }
   for (const e of path.events) {
     if (fired.has(e.id) || m < e.m) continue; fired.add(e.id);
-    if (e.kind === 'stop') { banner(e.en, `${e.ta} · ${(e.m / 1000).toFixed(1)} km from ${STOPS[path.id][0].en}`); hold = 1.2; }
+    if (e.kind === 'stop') banner(e.en, `${e.ta} · ${(e.m / 1000).toFixed(1)} km from ${STOPS[path.id][0].en}`);
     if (e.kind === 'turn') banner(e.en, e.id === 'knm' ? 'Leaving Mettupalayam Road · about 1.5 km to the site' : '');
     if (e.kind === 'arrive') banner('Welcome to Urban Heaven', 'Entering the site');
   }
@@ -150,14 +161,13 @@ function startTour(id) {
   setTimeout(() => { map.flyTo(path.pts[0], 16, { duration: 1.8 }); setTimeout(() => { intro = 0; setPlaying(true); }, 1900); }, 1800);
 }
 function finish() {
-  finished = true; setPlaying(false); $('playBtn').textContent = 'Ride again';
+  finished = true; $('speedVal').textContent = '0'; setPlaying(false); $('playBtn').textContent = 'Ride again';
   if (!baseIsSat) $('layerBtn').click();
   map.flyToBounds(siteBox.getBounds(), { padding: [40, 40], maxZoom: 18.5, duration: 2.2 });
   setTimeout(() => { if (finished) $('arrived').hidden = false; }, 2600);
 }
 function setPlaying(v) { playing = v; $('playBtn').textContent = v ? 'Pause' : 'Play'; }
 $('playBtn').onclick = () => { if (finished) return startTour(path.id); follow = true; setPlaying(!playing); };
-for (const b of document.querySelectorAll('[data-speed]')) b.onclick = () => { speedMul = +b.dataset.speed; for (const o of document.querySelectorAll('[data-speed]')) o.setAttribute('aria-pressed', String(o === b)); };
 const showPicker = () => { setPlaying(false); $('pickup').hidden = false; $('arrived').hidden = true; };
 $('changeBtn').onclick = showPicker; $('againPick').onclick = showPicker; $('again').onclick = () => startTour(path.id);
 $('recenter').onclick = () => { follow = true; if (path) map.setView(pointAt(path, m).ll, 16); };
@@ -169,7 +179,8 @@ let last = performance.now();
 function frame(now) {
   const dt = Math.min(0.1, (now - last) / 1000); last = now;
   if (path && playing && !finished) {
-    if (hold > 0) hold -= dt; else m = Math.min(path.total, m + speedAt(m) * speedMul * dt);
+    m = Math.min(path.total, m + speedAt(m) * dt);
+    $('speedVal').textContent = Math.round(kmhAt(m));
     placeCar(); updateHud();
     if (m >= path.total - 0.5) finish();
   }
