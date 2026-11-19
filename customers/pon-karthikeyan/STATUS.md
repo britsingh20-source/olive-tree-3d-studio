@@ -173,7 +173,17 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - The base green and the curvy layer go up to the ceiling (120 in).
   - The curve is extended with the photo's upper sweep, using a piecewise vertical scale above the TV top.
   - **Verified:** check passed (middle louvers hidden only in curvy; layer top at 120 in). Local SwiftShader side-by-side screenshot against the reference.
-- **Awaiting customer feedback:** approval of the curvy design and the layer tone. See `design.json` → `designPreviews`.
+- **Update (19 Nov, d): three TV panel options**, offered prominently on the page.
+  - The toggle button was replaced by a "Choose your TV panel design · 3 designs" card section above the toolbar.
+  - Each card has a rendered thumbnail (option-1/2/3.jpg), its option number, a description and a Selected state.
+  - A badge on the 3D view reads "TV panel · Option N of 3: …". On phones the cards swipe sideways, with a hint.
+  - The choice is saved in localStorage as panelDesign: current | curvyLouver | curvyCeiling. The old value 'curvy' maps to curvyCeiling.
+  - **Model:** makeCurvy() builds Option 2 (top at 84 in, linear scale, louvers full width) and Option 3 (top at 120 in, piecewise scale, middle louvers hidden).
+  - **Verified:**
+    - Check passed: each option shows exactly its group; TV clearance and layer top (84/120); no ledge on 2 and 3; middle louvers visible on 1 and 2 and hidden on 3; lights toggle; return to 1 restores everything.
+    - Local SwiftShader: clicked all three cards; badge and localStorage updated (curvyCeiling); thumbnails rendered from each option.
+    - Desktop and 390 px mobile screenshots of the chooser.
+- **Awaiting customer feedback:** which option, and the layer tone. See `design.json` → `designPreviews`.
 
 ## Next action
 

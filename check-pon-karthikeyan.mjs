@@ -20,13 +20,15 @@ assert.equal(get('louver').fixed,true);assert(get('louver').slatCount>100,'louve
 // Rev 2: TV panel stands 3 in off the wall.
 {const panel=get('tv-panel');assert.equal(panel.depthInches,3);let back;panel.group.traverse(o=>{if(o.userData.role==='tv-panel-box')back=o;});const bx=new T.Box3().setFromObject(back);assert(Math.abs((bx.max.z-bx.min.z)/I-3.1)<.01);assert.equal(panel.strips.length,1);assert(Math.abs(bx.max.x/I-118.5)<.01&&Math.abs(bx.min.x/I-24.1)<.01,'reveal on niche side only');assert.equal(get('louver').bottomStrip,undefined,'no strip under louvers (rev 6)');}
 assert.equal(get('awards-niche').background,'Green floral mica');
-// 19 Nov: curvy double-layer panel preview — switchable, current design untouched by default.
-{const panel=get('tv-panel');assert.equal(panel.design,'current');assert(panel.designs.current.visible&&!panel.designs.curvy.visible);
- m.setPanelDesign('curvy');assert(!panel.designs.current.visible&&panel.designs.curvy.visible);
- for(let z=28;z<=60;z+=2)assert(panel.curveXAt(z)<43.4,'TV stays on the raised layer at '+z);
- let layer;panel.group.traverse(o=>{if(o.userData.role==='curvy-layer')layer=o;});m.root.updateMatrixWorld(true);const lb=new T.Box3().setFromObject(layer);assert(Math.abs((lb.max.z-lb.min.z)/I-3)<.01,'3 in layer');
- m.setLights(false);assert(panel.glows.every(g=>!g.visible));m.setLights(true);assert(!get('ledge').glows[0].visible,'ledge wash hidden on curvy');assert(!get('ledge').group.visible,'ledge removed in curvy design');assert(!get('louver').middle.visible,'louvers cut above the panel');{const lb2=new T.Box3().setFromObject(layer);assert(Math.abs(lb2.max.y/I-120)<.05,'curvy layer reaches the ceiling');}
- m.setPanelDesign('current');assert(panel.designs.current.visible&&!panel.designs.curvy.visible&&get('ledge').glows[0].visible&&get('ledge').group.visible&&get('louver').middle.visible);}assert.match(get('pooja').doorFinish,/Wooden mica/);assert.equal(get('louver').finishable,false);
+// 19 Nov: three TV panel designs — 1 classic (default), 2 curvy under full louvers, 3 curvy to ceiling.
+{const panel=get('tv-panel'),D=panel.designs,ledge=get('ledge'),lv=get('louver');assert.equal(panel.design,'current');assert.deepEqual(panel.designOptions.map(o=>o.id),['current','curvyLouver','curvyCeiling']);
+ assert(D.current.visible&&!D.curvyLouver.visible&&!D.curvyCeiling.visible);
+ for(const [name,top,mid] of [['curvyLouver',84,true],['curvyCeiling',120,false]]){m.setPanelDesign(name);for(const [k,g] of Object.entries(D))assert.equal(g.visible,k===name);
+  for(let z=28;z<=60;z+=2)assert(D[name].userData.curveXAt(z)<43.4,name+': TV stays on the raised layer at '+z);
+  m.root.updateMatrixWorld(true);const lb=new T.Box3().setFromObject(D[name].userData.layer);assert(Math.abs((lb.max.z-lb.min.z)/I-3)<.01);assert(Math.abs(lb.max.y/I-top)<.05,name+' top');
+  assert(!ledge.group.visible,name+': no ledge');assert.equal(lv.middle.visible,mid,name+': louvers above panel');
+  m.setLights(false);assert(panel.glows.every(g=>!g.visible));m.setLights(true);assert(!ledge.glows[0].visible);}
+ m.setPanelDesign('current');assert(D.current.visible&&!D.curvyLouver.visible&&!D.curvyCeiling.visible&&ledge.group.visible&&lv.middle.visible&&ledge.glows[0].visible);}
 const tall=get('tall-glass');assert.equal(tall.leftSidePanel,'Wooden mica, full height');assert.equal(tall.actions.length,1);assert.equal(tall.hingeEdge,'left');
 const con=get('console');assert.equal(con.woodShutterCount,5);assert.equal(con.actions.filter(a=>a.type==='hinge').length,5);assert.equal(con.actions.filter(a=>a.type==='lift').length,1);assert.equal(con.glassLift.type,'lift');assert.equal(con.floatHeightInches,8);
 const niche=get('awards-niche');assert.equal(niche.shelfCount,2);assert.equal(niche.shelfMaterial,'Wood mica');

@@ -100,34 +100,37 @@ export function buildModel(){
  // ---- Design preview (19 Nov): curvy double-layer panel, after the customer's reference ----
  // A 3 in second layer of the same matte green mica over the wall panel. Its left edge is a
  // flowing S-curve from the louvers (x 80 in) down to the console at the tall unit; a concealed
- // warm-white strip follows the curve and washes the base layer. Switch with setPanelDesign().
- const curvy=new T.Group();curvy.name='Curvy double-layer panel (preview)';curvy.visible=false;panel.group.add(curvy);
- // Rev 19 Nov b: curve traced from the customer's reference photo (IMG_0390) and scaled so our
- // TV sits where the reference TV sits (ref TV px 515-900 x 405-690 → our x 43.45-100.55, z 28-60).
- // Above 84 in the reference sweep continues behind the louvers.
- // Below the reference TV top (y 405) the scale keeps the TV relation; above it the photo's
- // wall (to its ceiling at y ~15) is stretched to our 60 in from TV top to ceiling.
- const mapX=X=>43.45+(X-515)*.1483,mapZ=Y=>Y>=405?28+(690-Y)*.1123:60+(405-Y)*(60/390);
- const traced=[[15,893],[50,850],[100,800],[150,748],[200,712],[250,688],[285,665],[300,652],[315,638],[330,618],[345,566],[360,528],[375,510],[390,499],[405,491],[420,484],[450,477],[480,474],[510,471],[540,468],[570,463],[600,456],[630,444],[660,422],[690,399],[720,385],[745,380]];
- const curvePts=new T.SplineCurve(traced.map(([Y,X])=>new T.Vector2(Math.max(24.1,mapX(X)),Math.max(20,Math.min(120,mapZ(Y)))))).getSpacedPoints(90);   // top → bottom
- curvePts[0].y=120;curvePts[curvePts.length-1].set(24.1,20);
- // Rounded bottom-right corner (reference px), blended so the right edge lands on x 118.5.
+ // warm-white strip follows the curve and washes the base layer. Switch with setPanelDesign('current'|'curvyLouver'|'curvyCeiling').
+ // Two curvy variants share the traced reference curve (IMG_0390), scaled so our TV sits where
+ // the reference TV sits (ref TV px 515-900 x 405-690 → our x 43.45-100.55, z 28-60):
+ //  · 'curvyLouver'  — layer stops at the louvers (84 in); louvers run full width above.
+ //  · 'curvyCeiling' — louvers cut above the panel; base + layer run to the ceiling (120 in);
+ //    above the reference TV top the photo's wall is stretched to our 60 in TV-top-to-ceiling.
+ const mapX=X=>43.45+(X-515)*.1483,mapZLow=Y=>28+(690-Y)*.1123,mapZCeil=Y=>Y>=405?mapZLow(Y):60+(405-Y)*(60/390);
+ const tracedAll=[[15,893],[50,850],[100,800],[150,748],[191,718],[200,712],[250,688],[285,665],[300,652],[315,638],[330,618],[345,566],[360,528],[375,510],[390,499],[405,491],[420,484],[450,477],[480,474],[510,471],[540,468],[570,463],[600,456],[630,444],[660,422],[690,399],[720,385],[745,380]];
  const cornerX=X=>mapX(X)+(118.5-mapX(985))*Math.max(0,(X-850)/135);
- const cornerPts=new T.SplineCurve([[762,850],[750,872],[735,905],[710,940],[680,965],[650,978],[620,985]].map(([Y,X])=>new T.Vector2(cornerX(X),Math.max(20,mapZ(Y))))).getSpacedPoints(30);  // bottom → up
- cornerPts[0].y=20;
- const shape=new T.Shape();shape.moveTo(24.1*I,20*I);for(const q of cornerPts)shape.lineTo(q.x*I,q.y*I);shape.lineTo(118.5*I,120*I);
- for(const q of curvePts)shape.lineTo(q.x*I,q.y*I);
- B(curvy,24.1,120,72.15,72.95,84,120,panel.front);   // base green panel continues to the ceiling
- const layerGeo=new T.ExtrudeGeometry(shape,{depth:3*I,bevelEnabled:false,curveSegments:4});
- const layer=new T.Mesh(layerGeo,panel.front);layer.position.z=-72.15*I;layer.castShadow=layer.receiveShadow=true;layer.userData.role='curvy-layer';curvy.add(layer);
- const ribbon=(pts,width,y,mat)=>{const pos=[],uv=[],idx=[],n0=pts.length-1;pts.forEach((q,k)=>{const a=pts[Math.max(0,k-1)],b=pts[Math.min(n0,k+1)],t=new T.Vector2(b.x-a.x,b.y-a.y).normalize(),n=new T.Vector2(t.y,-t.x);
-   const o=q.clone().addScaledVector(n,width);o.x=Math.min(118.5,Math.max(24.1,o.x));o.y=Math.min(120,Math.max(20,o.y));pos.push(q.x*I,q.y*I,-y*I,o.x*I,o.y*I,-y*I);uv.push(1,k/n0,0,k/n0);if(k)idx.push(2*k-2,2*k-1,2*k,2*k-1,2*k+1,2*k);});
-  const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();const m=new T.Mesh(g,mat);m.renderOrder=5;curvy.add(m);return m;};
  const glowSide=()=>{const m=glowMat(0,.95);m.side=T.DoubleSide;return m;};
- for(const pts of [curvePts,cornerPts]){ribbon(pts,.35,71.9,lightMaterial);const gl=ribbon(pts,7,72.05,glowSide());gl.userData.glow=true;panel.glows.push(gl);}
+ function makeCurvy(name,top,mapZ,traced){
+  const g=new T.Group();g.name=name;g.visible=false;panel.group.add(g);
+  const curvePts=new T.SplineCurve(traced.map(([Y,X])=>new T.Vector2(Math.max(24.1,mapX(X)),Math.max(20,Math.min(top,mapZ(Y)))))).getSpacedPoints(90);   // top → bottom
+  curvePts[0].y=top;curvePts[curvePts.length-1].set(24.1,20);
+  const cornerPts=new T.SplineCurve([[762,850],[750,872],[735,905],[710,940],[680,965],[650,978],[620,985]].map(([Y,X])=>new T.Vector2(cornerX(X),Math.max(20,mapZ(Y))))).getSpacedPoints(30);  // bottom → up
+  cornerPts[0].y=20;
+  const shape=new T.Shape();shape.moveTo(24.1*I,20*I);for(const q of cornerPts)shape.lineTo(q.x*I,q.y*I);shape.lineTo(118.5*I,top*I);for(const q of curvePts)shape.lineTo(q.x*I,q.y*I);
+  if(top>84)B(g,24.1,120,72.15,72.95,84,top,panel.front);   // base green panel continues to the ceiling
+  const layer=new T.Mesh(new T.ExtrudeGeometry(shape,{depth:3*I,bevelEnabled:false,curveSegments:4}),panel.front);layer.position.z=-72.15*I;layer.castShadow=layer.receiveShadow=true;layer.userData.role='curvy-layer';g.add(layer);
+  const ribbon=(pts,width,y,mat)=>{const pos=[],uv=[],idx=[],n0=pts.length-1;pts.forEach((q,k)=>{const a=pts[Math.max(0,k-1)],b=pts[Math.min(n0,k+1)],t=new T.Vector2(b.x-a.x,b.y-a.y).normalize(),n=new T.Vector2(t.y,-t.x);
+    const o=q.clone().addScaledVector(n,width);o.x=Math.min(118.5,Math.max(24.1,o.x));o.y=Math.min(top,Math.max(20,o.y));pos.push(q.x*I,q.y*I,-y*I,o.x*I,o.y*I,-y*I);uv.push(1,k/n0,0,k/n0);if(k)idx.push(2*k-2,2*k-1,2*k,2*k-1,2*k+1,2*k);});
+   const geo=new T.BufferGeometry();geo.setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setAttribute('uv',new T.Float32BufferAttribute(uv,2));geo.setIndex(idx);geo.computeVertexNormals();const m=new T.Mesh(geo,mat);m.renderOrder=5;g.add(m);return m;};
+  for(const pts of [curvePts,cornerPts]){ribbon(pts,.35,71.9,lightMaterial);const gl=ribbon(pts,7,72.05,glowSide());gl.userData.glow=true;panel.glows.push(gl);}
+  g.userData.layer=layer;g.userData.curveXAt=z=>{let best=curvePts[0];for(const q of curvePts)if(Math.abs(q.y-z)<Math.abs(best.y-z))best=q;return best.x;};
+  return g;}
+ const curvyLouver=makeCurvy('Option 2 · Curvy panel with louvers above',84,mapZLow,tracedAll.filter(([Y])=>Y>=191));
+ const curvyCeiling=makeCurvy('Option 3 · Curvy panel to the ceiling',120,mapZCeil,tracedAll);
+ rectDesign.name='Option 1 · Classic panel with ledge';
  panel.curveSource='Traced from customer reference IMG_0390';
- panel.designs={current:rectDesign,curvy};panel.design='current';
- panel.curveXAt=z=>{let best=curvePts[0];for(const q of curvePts)if(Math.abs(q.y-z)<Math.abs(best.y-z))best=q;return best.x;};
+ panel.designs={current:rectDesign,curvyLouver,curvyCeiling};panel.design='current';
+ panel.designOptions=[{id:'current',label:'Option 1 · Classic',note:'Rectangular 3 in panel, wooden ledge, louvers full width'},{id:'curvyLouver',label:'Option 2 · Curvy, louvers above',note:'Curvy double-layer panel up to the louvers; no ledge'},{id:'curvyCeiling',label:'Option 3 · Curvy to ceiling',note:'Curvy double-layer panel up to the ceiling; louvers on both sides; no ledge'}];
 
  const tv=new T.Group();panel.group.add(tv);tv.userData.origin=new T.Vector3();
  B(tv,72-28.55,72+28.55,67.4,68.6,44-16.05,44+16.05,tvMaterial);B(tv,72-6,72+6,68.6,69.05,36,52,std('#222',.6));
@@ -312,7 +315,7 @@ export function buildModel(){
  let reference=false,lightsOn=true;
  return {robot:bay.cleaner,root,architecture,units,products:units,actions,sourceMeshes,exactLayout,lights,
  setReference(on){reference=on;referenceRoot.visible=on;for(const u of units)u.group.visible=!on;architecture.visible=!on;},
- setPanelDesign(name){const p=units.find(u=>u.id==='tv-panel');if(!p.designs[name])return;p.design=name;for(const [k,g] of Object.entries(p.designs))g.visible=k===name;const ledgeWash=units.find(u=>u.id==='ledge').glows[0];ledgeWash.userData.hiddenByDesign=name!=='current';ledgeWash.visible=name==='current'&&lightsOn;units.find(u=>u.id==='ledge').group.visible=name==='current';units.find(u=>u.id==='louver').middle.visible=name==='current';},
+ setPanelDesign(name){const p=units.find(u=>u.id==='tv-panel');if(!p.designs[name])return;p.design=name;for(const [k,g] of Object.entries(p.designs))g.visible=k===name;const ledgeWash=units.find(u=>u.id==='ledge').glows[0];ledgeWash.userData.hiddenByDesign=name!=='current';ledgeWash.visible=name==='current'&&lightsOn;units.find(u=>u.id==='ledge').group.visible=name==='current';units.find(u=>u.id==='louver').middle.visible=name!=='curvyCeiling';},
  setLights(on){lightsOn=on;for(const u of units)for(const g of u.glows||[])g.visible=on&&!g.userData.hiddenByDesign;lightMaterial.color.set(on?'#ffe2a6':'#a4a39c');},
  update(dt){bay.cleaner.update(dt);for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='hinge')a.node.rotation.y=a.travel*a.value;else if(a.type==='lift')a.node.rotation.x=a.travel*a.value;}}
  };

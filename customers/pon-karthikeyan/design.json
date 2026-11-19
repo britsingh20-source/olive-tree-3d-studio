@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/pon-karthikeyan/",
     "directory": "dist/pon-karthikeyan",
     "storageKey": "pon-karthikeyan-tv-v1",
-    "assetVersion": "pk14",
+    "assetVersion": "pk15",
     "deployedCommit": "cbb2fa9",
     "deployRun": "44081269882"
   },
@@ -415,13 +415,13 @@
   "designPreviews": [
     {
       "date": "2026-11-19",
-      "name": "Curvy double-layer TV panel",
-      "status": "PREVIEW ONLY — not confirmed; current rectangular 3 in panel remains the default",
+      "name": "TV panel design options (3)",
+      "status": "THREE OPTIONS offered to the customer on the page; Option 1 Classic is the default until the customer chooses",
       "request": "Customer asked for a curvy double-layer panel like the reference image (green panel with a raised curved layer and LED along the curve).",
       "implementation": "Toggle button 'TV panel: Current / Curvy (preview)' (saved per browser). Raised layer 3 in deep, same matte green mica, from x 24.1-118.5 in and 20-84 in high, left edge an S-curve from the louvers at x 80 in down to the console at the tall unit; concealed warm-white strip follows the curve and washes the base panel. Under-ledge wash hidden in this mode. TV stays fully on the raised layer.",
       "openQuestions": [
-        "Approve the curvy design as the final panel (then the rectangular panel and ledge are removed)?",
-        "Same green for both layers or a different tone for the raised layer?"
+        "Which of the 3 TV panel options does the customer choose?",
+        "Same green for both layers or a different tone for the raised layer (Options 2/3)?"
       ],
       "updates": [
         {
@@ -431,6 +431,27 @@
         {
           "date": "2026-11-19",
           "change": "Customer: in the curvy design cut the louvers only above the TV panel (x 24.1-120 in) so the base green panel and the curvy layer go up to the ceiling like the reference; louvers stay above the tall glass cabinet, above the niche/pooja and on the side return. Ceiling cove strip and wash cut to match. Upper part of the traced curve stretched (above the TV top) so the sweep meets the ceiling at the top-right as in the reference; TV relation unchanged."
+        },
+        {
+          "date": "2026-11-19",
+          "change": "User: the single toggle button was not noticeable and lost the 'curvy with louvers above' version. Replaced with a prominent 'Choose your TV panel design · 3 options' section (thumbnails, Option 1/2/3, Selected ✓) above the 3D view, plus a badge on the 3D view naming the shown option. Choice saved in the browser."
+        }
+      ],
+      "options": [
+        {
+          "id": "current",
+          "label": "Option 1 · Classic",
+          "detail": "Rectangular 3 in green panel, wooden ledge, louvers full width (confirmed design so far)"
+        },
+        {
+          "id": "curvyLouver",
+          "label": "Option 2 · Curvy, louvers above",
+          "detail": "Curvy double-layer panel traced from reference, up to the louvers at 84 in; louvers full width above; no ledge"
+        },
+        {
+          "id": "curvyCeiling",
+          "label": "Option 3 · Curvy to the ceiling",
+          "detail": "Curvy double-layer panel up to the ceiling; louvers cut above the panel, kept on both sides; no ledge"
         }
       ]
     }
