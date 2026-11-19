@@ -164,7 +164,11 @@ See `design.json` → `sourceColours` and `confirmed`. Two answers needed interp
   - Check: default is current; the switch shows and hides each design; the TV stays on the raised layer between 28 and 60 in high; the layer is 3 in; the Lighting toggle covers the curve glow; switching back restores everything.
   - Local SwiftShader screenshots of the full view and the TV-panel view in curvy mode.
 - **Deployed:** commit 69b579d. The first Pages run failed with a transient GitHub error ('No artifacts named github-pages'); the re-run of run 44426976781 succeeded and the live page serves pk12.
-- **Awaiting customer feedback:** the curve shape, the ledge, and the layer tone. See `design.json` → `designPreviews`.
+- **Update (19 Nov, b):** the ledge is removed in the curvy design.
+  - **Curve:** re-traced from the reference photo by detecting its glowing edge plus grid reading, and scaled so the TV matches the reference TV position.
+  - **Added:** a rounded bottom-right corner, with the strip and wash following both edges. The glow is clipped to the panel area.
+  - **Verified:** check passed (ledge hidden in curvy, restored in current). Local SwiftShader side-by-side screenshot against the reference.
+- **Awaiting customer feedback:** approval of the curvy design and the layer tone. See `design.json` → `designPreviews`.
 
 ## Next action
 
