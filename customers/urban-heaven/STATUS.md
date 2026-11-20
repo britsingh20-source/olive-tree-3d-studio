@@ -11,6 +11,12 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m13 / s7 (20 Nov 2026) — real surroundings
+
+- Cartoon fields and coconut palms removed. Ground = three live Esri World Imagery rings (z15 ~8 km, z17 ~2.7 km, z19 ~0.45 km; CORS ok; polygon offsets so finer layers win), centred on the site position passed from the map tour. Gradient sky + haze fog to the horizon; park trees rebuilt as clustered canopies; 12.2 m road strip trimmed to the site frontage (+35 m each side). Imagery credit added.
+- Checked headless Chrome/SwiftShader 1280×760 (final + orbit) and 390×780 (plot card). No page errors.
+- Limitation: centred on the approximate site until Bright's gate pin.
+
 ## Rev m11 / s5 (20 Nov 2026) — Phase 2 layout in 3D
 
 - `scripts/prepare-urban-heaven-layout.py` traces the 46 plots, park, P and EB from the PDF raster by colour (convex hull per plot), numbers them by position, attaches the PDF table areas → `dist/urban-heaven/site-layout.js`. Asserts 1..46 and the 10/20/10/6 category split.

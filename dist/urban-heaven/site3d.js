@@ -48,28 +48,63 @@ function slab(poly, h, mat, y = 0) { // extruded polygon lying on the ground, to
 }
 const at = (start, dur, fn) => anim.push({ start, dur, fn });
 
+// ---------- real surroundings ----------
+// Approximate site centre (lat, lon); the map tour passes the computed position. Until Bright drops a pin
+// for the gate, the imagery under the layout is the nearby area, not the exact plot land.
+let SITE_CENTER = [11.1677, 76.9420];
+const TILE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/';
+function lonLatToTile(lat, lon, z) {
+  const n = 2 ** z, x = (lon + 180) / 360 * n, r = lat * Math.PI / 180;
+  return [x, (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * n];
+}
+const metresPerTile = (lat, z) => 40075016.686 * Math.cos(lat * Math.PI / 180) / 2 ** z;
+function imageryPlane(z, span, y, renderOrder) {
+  // a span x span grid of tiles at zoom z centred on the site, drawn into one canvas texture
+  const [lat, lon] = SITE_CENTER, [fx, fy] = lonLatToTile(lat, lon, z), tx0 = Math.floor(fx) - (span >> 1), ty0 = Math.floor(fy) - (span >> 1);
+  const c = document.createElement('canvas'); c.width = c.height = span * 256; const g = c.getContext('2d');
+  g.fillStyle = '#7d8a5c'; g.fillRect(0, 0, c.width, c.height);
+  const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+  const mpt = metresPerTile(lat, z), size = span * mpt;
+  const mat = new THREE.MeshLambertMaterial({ map: tex, polygonOffset: true, polygonOffsetFactor: -renderOrder, polygonOffsetUnits: -renderOrder * 4 }); // finer layer always wins, no flicker
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, size), mat); mesh.rotation.x = -Math.PI / 2; mesh.receiveShadow = true; mesh.renderOrder = renderOrder;
+  // place so the site centre lands on the layout centre (0,0)
+  mesh.position.set((tx0 + span / 2 - fx) * mpt, y, (ty0 + span / 2 - fy) * mpt);
+  let pending = span * span;
+  for (let i = 0; i < span; i++) for (let j = 0; j < span; j++) {
+    const im = new Image(); im.crossOrigin = 'anonymous';
+    im.onload = () => { g.drawImage(im, i * 256, j * 256); tex.needsUpdate = true; if (--pending === 0) mesh.userData.ready = true; };
+    im.onerror = () => { pending--; };
+    im.src = `${TILE}${z}/${ty0 + j}/${tx0 + i}`;
+  }
+  return mesh;
+}
+function realGround(parent) {
+  parent.add(imageryPlane(15, 7, -0.9, 0));   // ~8 km wide, soft background to the horizon
+  parent.add(imageryPlane(17, 9, -0.5, 1));   // ~2.7 km wide, detailed fields, trees, houses
+  parent.add(imageryPlane(19, 6, -0.2, 2));   // ~0.45 km wide, sharp close-up around the site
+}
+function skyTexture() {
+  return canvasTexBare(4, 512, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, 0, h);
+    gr.addColorStop(0, '#5d93c9'); gr.addColorStop(0.42, '#9fc0dc'); gr.addColorStop(0.56, '#c3d3dc'); gr.addColorStop(1, '#c9d6dc');
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+  });
+}
+function canvasTexBare(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
+
 function build() {
   scene = new THREE.Scene();
-  scene.background = new THREE.Color('#cfe3ee'); scene.fog = new THREE.Fog('#cfe3ee', 260, 700);
-  scene.add(new THREE.HemisphereLight('#f4f8ff', '#7a6a4d', 1.5));
+  scene.background = skyTexture(); scene.fog = new THREE.Fog('#c9d6dc', 500, 3400);
+  scene.add(new THREE.HemisphereLight('#eef5ff', '#6f6a55', 1.35));
   const sun = new THREE.DirectionalLight('#fff1d6', 2.4); sun.position.set(-60, 120, -40); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -110, right: 110, top: 110, bottom: -110, far: 400 });
   scene.add(sun);
   root = new THREE.Group(); scene.add(root);
 
-  // surroundings: farmland + coconut groves
-  const fields = new THREE.Mesh(new THREE.PlaneGeometry(900, 900), new THREE.MeshLambertMaterial({ color: '#8fa65e' }));
-  fields.rotation.x = -Math.PI / 2; fields.position.y = -0.05; fields.receiveShadow = true; root.add(fields);
+  // surroundings: REAL satellite imagery around the site (Esri World Imagery, loaded live, CORS-enabled)
+  realGround(root);
   let seed = 11; const rnd = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
-  const trunk = new THREE.MeshLambertMaterial({ color: '#6b5238' }), frond = new THREE.MeshLambertMaterial({ color: '#4f7d2c' });
-  const palms = new THREE.Group(); root.add(palms);
-  for (let i = 0; i < 160; i++) {
-    const a = rnd() * Math.PI * 2, r = 85 + rnd() * 150, x = Math.cos(a) * r, z = Math.sin(a) * r * 1.2;
-    if (x > W / 2 - 10 && x < W / 2 + 20) continue;
-    const h = 8 + rnd() * 6, tr = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.32, h, 6), trunk); tr.position.set(x, h / 2, z);
-    const cr = new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 0), frond); cr.position.set(x, h + 0.5, z); cr.scale.y = 0.45;
-    palms.add(tr, cr);
-  }
+  const trunk = new THREE.MeshLambertMaterial({ color: '#6b5238' });
 
   // site earth pad (red soil) — appears first
   const earthM = new THREE.MeshLambertMaterial({ color: '#b98258', transparent: true, opacity: 0 });
@@ -90,12 +125,12 @@ function build() {
 
   // 12.2 m existing Panchayat road (east)
   const asphalt = new THREE.MeshLambertMaterial({ color: '#3c3e41' });
-  const mr = LAYOUT.mainRoad, mainRoad = new THREE.Mesh(new THREE.BoxGeometry(mr.x1 - mr.x0, 0.1, 400), asphalt);
+  const RL = D + 70, mr = LAYOUT.mainRoad, mainRoad = new THREE.Mesh(new THREE.BoxGeometry(mr.x1 - mr.x0, 0.1, RL), asphalt); // site frontage only; the real road continues in the imagery
   mainRoad.position.copy(P((mr.x0 + mr.x1) / 2, CZ, 0.05)); mainRoad.receiveShadow = true; root.add(mainRoad);
   const gift = slab(LAYOUT.giftStrip, 0.06, new THREE.MeshLambertMaterial({ color: '#c8c0b2' })); root.add(gift);
   const dashTex = canvasTex(32, 256, (g, w, h) => { g.fillStyle = '#3c3e41'; g.fillRect(0, 0, w, h); g.fillStyle = '#f2f2ea'; g.fillRect(w / 2 - 2, 0, 4, h * 0.5); });
-  dashTex.wrapT = THREE.RepeatWrapping; dashTex.repeat.set(1, 40);
-  const mrLine = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 400), new THREE.MeshBasicMaterial({ map: dashTex }));
+  dashTex.wrapT = THREE.RepeatWrapping; dashTex.repeat.set(1, RL / 10);
+  const mrLine = new THREE.Mesh(new THREE.PlaneGeometry(0.4, RL), new THREE.MeshBasicMaterial({ map: dashTex }));
   mrLine.rotation.x = -Math.PI / 2; mrLine.position.copy(P((mr.x0 + mr.x1) / 2, CZ, 0.11)); root.add(mrLine);
   const mrLbl = label('12.2 m Panchayat Road', { size: 2.6, w: 600, font: 54 }); mrLbl.position.copy(P((mr.x0 + mr.x1) / 2, B[0][1] - 14, 2)); root.add(mrLbl);
 
@@ -126,10 +161,13 @@ function build() {
       for (let i = 0; i < 14; i++) {
         const tx = Math.min(...xs) + 2.5 + (i % 7) * (Math.max(...xs) - Math.min(...xs) - 5) / 6, tz = Math.min(...zs) + (i < 7 ? 3 : 8.5);
         const tree = new THREE.Group(); tree.position.copy(P(tx, tz, 0.25)); root.add(tree);
-        const tt = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.25, 2.2, 6), trunk); tt.position.y = 1.1; tt.castShadow = true;
-        const tc = new THREE.Mesh(new THREE.IcosahedronGeometry(1.5, 1), new THREE.MeshLambertMaterial({ color: i % 2 ? '#3f7a34' : '#4f8a3c' })); tc.position.y = 2.9; tc.castShadow = true;
-        tree.add(tt, tc); tree.scale.setScalar(0.001);
-        at(2.9 + i * 0.05, 0.7, k => tree.scale.setScalar(Math.max(0.001, back(k))));
+        const hgt = 2.2 + rnd() * 1.4, tt = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.26, hgt, 7), trunk); tt.position.y = hgt / 2; tt.castShadow = true; tree.add(tt);
+        for (let k = 0; k < 5; k++) { // clustered canopy reads as foliage, not a ball
+          const leaf = new THREE.Mesh(new THREE.IcosahedronGeometry(0.75 + rnd() * 0.55, 1), new THREE.MeshStandardMaterial({ color: ['#2f5e27', '#3d6f2e', '#4a7d35', '#567f3a'][(i + k) % 4], roughness: 0.95, flatShading: true }));
+          leaf.position.set((rnd() - 0.5) * 1.6, hgt + 0.4 + rnd() * 0.9, (rnd() - 0.5) * 1.6); leaf.castShadow = true; tree.add(leaf);
+        }
+        tree.rotation.y = rnd() * 6; tree.scale.setScalar(0.001);
+        at(2.9 + i * 0.05, 0.7, k => tree.scale.setScalar(Math.max(0.001, back(k) * (0.9 + (i % 3) * 0.12))));
       }
     }
   }
@@ -180,14 +218,14 @@ function build() {
   const sign = new THREE.Mesh(new THREE.BoxGeometry(1, 0.3, 0.3), new THREE.MeshLambertMaterial({ color: '#f6c519' })); sign.position.set(0, 2.15, 0.2);
   cab.add(body, top, sign); cab.visible = false;
   const roadX = (mr.x0 * 0.35 + mr.x1 * 0.65);
-  cabPath = new THREE.CatmullRomCurve3([P(roadX, B[2][1] + 70), P(roadX, ez + 18), P(roadX - 2, ez + 4), P(mr.x0 - 1, ez + 1.6), P(ex - 8, ez + 1.6), P(ex - 22, ez + 1.6)]);
+  cabPath = new THREE.CatmullRomCurve3([P(roadX, B[2][1] + 34), P(roadX, ez + 18), P(roadX - 2, ez + 4), P(mr.x0 - 1, ez + 1.6), P(ex - 8, ez + 1.6), P(ex - 22, ez + 1.6)]);
   at(6.6, 4.2, k => {
     cab.visible = k > 0; const u = ease(k) * 0.999, p = cabPath.getPointAt(u), q = cabPath.getPointAt(Math.min(1, u + 0.002));
     cab.position.copy(p); cab.lookAt(q.x, p.y, q.z); cab.rotateY(Math.PI);
   });
 
   // camera: start straight down (continuing from the map), then swing into a 3D bird's-eye view
-  const camFrom = new THREE.Vector3(0, 230, 0.01), camTo = new THREE.Vector3(95, 85, 105);
+  const camFrom = new THREE.Vector3(0, 320, 0.01), camTo = new THREE.Vector3(105, 90, 115);
   at(0, 6.5, k => { const e = ease(k); camera.position.lerpVectors(camFrom, camTo, e); camera.lookAt(0, 0, 0); });
   at(10.8, 0.1, () => { finishIntro(); });
 }
@@ -241,7 +279,8 @@ function replay() {
   clock = 0; playing = true; controls.enabled = false; $('siteHint').hidden = true;
 }
 
-export function openSite({ onBack } = {}) {
+export function openSite({ onBack, center } = {}) {
+  if (center) SITE_CENTER = center;
   onExit = onBack || onExit;
   $('site3d').hidden = false; $('sitePanel').hidden = false;
   if (!started) {
@@ -249,10 +288,10 @@ export function openSite({ onBack } = {}) {
     renderer = new THREE.WebGLRenderer({ antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     $('site3d').appendChild(renderer.domElement);
-    camera = new THREE.PerspectiveCamera(45, 1, 0.5, 2000);
+    camera = new THREE.PerspectiveCamera(45, 1, 0.5, 6000);
     build();
     controls = new OrbitControls(camera, renderer.domElement);
-    Object.assign(controls, { enableDamping: false, maxPolarAngle: Math.PI * 0.47, minDistance: 25, maxDistance: 320, enabled: false, screenSpacePanning: false });
+    Object.assign(controls, { enableDamping: false, maxPolarAngle: Math.PI * 0.47, minDistance: 25, maxDistance: 600, enabled: false, screenSpacePanning: false });
     new ResizeObserver(resize).observe($('site3d')); resize();
     // tap a plot (ignore drags)
     let down = null;
@@ -276,3 +315,4 @@ export function closeSite() {
   cancelAnimationFrame(raf); $('site3d').hidden = true; $('sitePanel').hidden = true; select(null); onExit();
 }
 window.__site = { openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
+

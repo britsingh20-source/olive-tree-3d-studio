@@ -174,9 +174,9 @@ function finish() {
 // After arrival: the Phase 2 layout opens in 3D (falls back to the arrival card if WebGL is missing)
 async function openSite3d() {
   try {
-    const mod = await import('./site3d.js?v=s5');
+    const mod = await import('./site3d.js?v=s7');
     $('hud').hidden = true; $('arrived').hidden = true;
-    mod.openSite({ onBack: () => { $('hud').hidden = false; $('arrived').hidden = false; } });
+    mod.openSite({ center: dest(GATE, left, 30), onBack: () => { $('hud').hidden = false; $('arrived').hidden = false; } });
   } catch (err) { console.error(err); $('arrived').hidden = false; }
 }
 $('openSite').onclick = openSite3d;

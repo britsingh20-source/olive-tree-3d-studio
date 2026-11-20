@@ -37,7 +37,8 @@
     "mapTour": "19 Nov 11:21: drop the 3D in-car experience. Top-view map: customer picks Thudiyalur or Mettupalayam, a cab travels on the map through each stop, enters the site, then the map zooms into the site",
     "speed": "19 Nov 11:52 (supersedes 11:45): 150–160 km/h on the highway, no slowing at stops (boards highlighted instead); speed limit 80 km/h from the KNM Mills turn to the site",
     "mettupalayamStops": "19 Nov 12:00: Mettupalayam side needs more highlighted areas (Teachers Colony, Karamadai, …) so the longer ride doesn't feel empty",
-    "phase2Layout": "20 Nov: after entering the site, show the Phase 2 layout (Veerapandi Phase 2 Layout - A4.pdf, DTCP No. 25/2025) in 3D with graphical animations"
+    "phase2Layout": "20 Nov: after entering the site, show the Phase 2 layout (Veerapandi Phase 2 Layout - A4.pdf, DTCP No. 25/2025) in 3D with graphical animations",
+    "realSurroundings": "20 Nov 16:24: 3D layout surroundings looked cartoonish — make them real (real trees, grassland); an engaging 2D/toon look acceptable as fallback. Done with real satellite imagery"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
@@ -52,7 +53,7 @@
     "mapTour": "Road geometry from OSRM/OpenStreetMap (Thudiyalur→KNM turn 10.7 km, Mettupalayam→KNM turn 19.4 km; via Karamadai). KNM Mills turn placed at Veerapandi Pirivu (11.1693, 76.9520) — needs Bright's pin. Side road drawn as straight legs west of the highway (750 m, right 500 m, left 300 m) — not the real lanes. Site outline is a placeholder rectangle. Stop pins for NGGO Colony / Narasimhanaickenpalayam / Karamadai approximate",
     "speed": "Displayed km/h; playback 10× real time (Thudiyalur ride ≈ 34 s, Mettupalayam ≈ 54 s). Eases 155→80 over the 600 m before the KNM turn; rolls in to the gate from 80. Board highlight: 600 m before to 400 m after each stop (~2 s on screen)",
     "mettupalayamRoute": "Mettupalayam leg now from the bus stand along the old Mettupalayam–Coimbatore Road via Teachers Colony (OSM bus stop), Karamadai bus stand, Kalattiyur (OSM village; Tamil name not shown — unconfirmed), joining NH181 to the KNM turn: 17.5 km road + ~1.6 km side road. No named localities in OSM between Kalattiyur and KNM (~7 km); Bright to add any he wants",
-    "phase2": "3D plot shapes traced from the indicative drawing (scale from 29'10\" x 37'5\" plot pitch, 0.176 m/px). Plots 1, 14, 27, 40, 46 are drawn off the table areas in the PDF itself; 3D follows the drawing, plot cards show the table. Entrance arch assumed on the 9.0 m road at the Panchayat road; compound wall on N/W/S sides; surroundings (coconut palms, fields) illustrative. Layout orientation: north up as drawn — not yet aligned to the real site on the map"
+    "phase2": "3D plot shapes traced from the indicative drawing (scale from 29'10\" x 37'5\" plot pitch, 0.176 m/px). Plots 1, 14, 27, 40, 46 are drawn off the table areas in the PDF itself; 3D follows the drawing, plot cards show the table. Entrance arch assumed on the 9.0 m road at the Panchayat road; compound wall on N/W/S sides; surroundings are real Esri World Imagery (z15/z17/z19 rings, live, attributed) centred on the APPROXIMATE site position (30 m west of the modelled gate) — until the gate pin arrives, the imagery under/around the layout is the nearby area, not the exact land. Layout orientation: north up as drawn — not yet aligned to the real site on the map"
   },
   "openQuestions": [
     "Which internal road is the main entrance (arch placed on the 9.0 m road)?",
