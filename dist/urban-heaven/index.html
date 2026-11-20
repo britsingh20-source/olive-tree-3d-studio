@@ -83,12 +83,19 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .compass-wrap{position:absolute;right:16px;top:104px;width:58px;height:58px;filter:drop-shadow(0 4px 8px #0004)}.compass-wrap svg{width:100%;height:100%;transition:transform .1s linear}
 .plot-card .vastu{margin:10px 0 0;font-size:12px;line-height:1.45;background:#fbf6e8;border-left:3px solid #d9b96a;padding:8px 10px;border-radius:8px;color:#3d4d45}.plot-card .vastu b{color:#8a6a1e;margin-right:4px}.plot-card .vastu i{display:block;margin-top:3px;font-size:10px;color:#8b968f}
 .plot-card .home-btn{margin-top:10px;width:100%;background:#2e6b4f;border-color:#2e6b4f;color:#fff;font-weight:600}
+.live-btn{background:#c8302a!important;border-color:#c8302a!important;display:flex;align-items:center;gap:7px;font-weight:600}
+.rec{width:9px;height:9px;border-radius:50%;background:#fff;display:inline-block;animation:blink 1.2s ease-in-out infinite}@keyframes blink{50%{opacity:.25}}
+.live-panel{position:absolute;right:16px;top:76px;bottom:16px;width:min(360px,40vw);display:flex;flex-direction:column;background:#111418;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px #0008;animation:pop .3s ease;z-index:5}
+.live-top{display:flex;align-items:center;gap:8px;padding:10px 12px;color:#fff;font-size:13px}.live-top b{flex:1}.live-top button{background:none;border:0;font-size:22px;padding:0 6px;color:#fff;backdrop-filter:none}
+.live-tag{background:#c8302a;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:4px 8px;border-radius:6px;display:flex;gap:5px;align-items:center}.live-tag .rec{width:7px;height:7px}
+.live-panel video{flex:1;min-height:0;width:100%;object-fit:contain;background:#000}
+.live-cap{margin:0;padding:8px 12px 10px;color:#c9d0d6;font-size:11px;line-height:1.4}
 .plot-card{position:absolute;right:84px;top:250px;width:250px;background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 14px 40px #0004;animation:pop .3s ease}
 .plot-card .eyebrow{margin:0;font-size:11px;letter-spacing:.14em;font-weight:700;color:#2e6b4f}.plot-card h3{margin:2px 0 10px;font:600 28px Georgia,serif}
 .plot-card dl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0}.plot-card dl div{background:#f3f5f1;border-radius:10px;padding:7px 8px}.plot-card dl .wide{grid-column:1/-1}
 .plot-card dt{font-size:10px;color:#5f6f67;letter-spacing:.06em;text-transform:uppercase}.plot-card dd{margin:2px 0 0;font-weight:700;font-size:14px}
 .plot-card .fine{font-size:10px;color:#71827a;margin:10px 0 0}.plot-card .x{position:absolute;top:8px;right:8px;background:none;border:0;color:#14211c;font-size:22px;padding:2px 8px;backdrop-filter:none}
-@media(max-width:640px){.compass-wrap{top:auto;bottom:122px;right:auto;left:10px;width:46px;height:46px}.mood-bar{top:auto;bottom:122px;right:auto;left:50%;transform:translateX(-50%);flex-direction:row}.mood-bar button{width:56px;font-size:15px;padding:5px 0 4px}.plot-card{right:12px}.near-strip{top:96px;padding:0 8px}.near-card{width:200px}.near-note{font-size:9px}.site-head h2{font-size:21px}.site-head p#siteFacts{font-size:11px}.plot-card{left:12px;right:12px;width:auto;top:auto;bottom:178px}.chips button{font-size:11px;padding:6px 8px}.site-hint{font-size:10px;bottom:176px}}
+@media(max-width:640px){.live-panel{left:0;right:0;top:0;bottom:0;width:auto;border-radius:0}.compass-wrap{top:auto;bottom:122px;right:auto;left:10px;width:46px;height:46px}.mood-bar{top:auto;bottom:122px;right:auto;left:50%;transform:translateX(-50%);flex-direction:row}.mood-bar button{width:56px;font-size:15px;padding:5px 0 4px}.plot-card{right:12px}.near-strip{top:96px;padding:0 8px}.near-card{width:200px}.near-note{font-size:9px}.site-head h2{font-size:21px}.site-head p#siteFacts{font-size:11px}.plot-card{left:12px;right:12px;width:auto;top:auto;bottom:178px}.chips button{font-size:11px;padding:6px 8px}.site-hint{font-size:10px;bottom:176px}}
 .leaflet-control-attribution{font-size:9px}
 .leaflet-top.leaflet-right{top:64px}
 .car-icon{background:none;border:0}.car-rot{width:34px;height:34px;display:grid;place-items:center;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6));transition:transform .15s linear}
@@ -144,7 +151,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 <div id="site3d" hidden aria-label="Urban Heaven Phase 2 layout in 3D"></div>
 <section id="sitePanel" hidden>
   <div class="site-head"><div><p class="eyebrow">OLIVETREE BUILDERS · URBAN HEAVEN</p><h2>Phase 2 Layout</h2><p id="siteFacts"></p></div>
-    <div class="site-actions"><button id="siteReplay" hidden>↻ Replay</button><button id="siteBack">← Map</button></div></div>
+    <div class="site-actions"><button id="liveBtn" class="live-btn"><i class="rec"></i>Live site</button><button id="siteReplay" hidden>↻ Replay</button><button id="siteBack">← Map</button></div></div>
   <div id="nearStrip" class="near-strip" hidden>
     <div class="near-tabs" role="group" aria-label="Nearby places"><span>Nearby</span>
       <button data-near="all" aria-pressed="false">All</button><button data-near="school" aria-pressed="false">🏫 Schools</button>
@@ -162,9 +169,14 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   <div class="compass-wrap" aria-hidden="true"><svg id="compass" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="#ffffffe8" stroke="#14211c" stroke-width="2"/><path d="M32 7 L39 32 L32 29 L25 32Z" fill="#c8302a"/><path d="M32 57 L25 32 L32 35 L39 32Z" fill="#14211c"/><text x="32" y="20" text-anchor="middle" font-size="9" font-weight="700" font-family="DM Sans, sans-serif" fill="#fff">N</text></svg></div>
   <p id="siteHint" class="site-hint" hidden>Drag to rotate · pinch or scroll to zoom · tap a plot for its size</p>
   <div id="plotCard" class="plot-card" hidden></div>
+  <div id="livePanel" class="live-panel" hidden role="dialog" aria-label="Live site video">
+    <div class="live-top"><span class="live-tag"><i class="rec"></i>SITE VIDEO</span><b>Walk through Urban Heaven</b><button id="liveClose" aria-label="Close">×</button></div>
+    <video id="liveVideo" src="live-site.mp4?v=lv1" poster="live-site.jpg?v=lv1" playsinline muted controls preload="metadata"></video>
+    <p class="live-cap">Filmed at the site on 19 Nov 2026 · internal roads, kerbs and neighbouring homes under construction · tap 🔊 for sound</p>
+  </div>
   <p class="site-fine">DTCP Approval No. 25/2025 · indicative 3D from the Phase 2 layout drawing · Imagery © Esri, Maxar, Earthstar Geographics</p>
 </section>
 <noscript>Please enable JavaScript to take the site tour.</noscript>
 <script src="../vendor/leaflet/leaflet.js"></script>
-<script type="module" src="./map.js?v=m34"></script>
+<script type="module" src="./map.js?v=m35"></script>
 </body></html>

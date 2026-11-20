@@ -11,6 +11,10 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m35 / s27 (20 Nov 2026) — live site video
+
+- `dist/urban-heaven/live-site.mp4` + `live-site.jpg` poster (from IMG_0439). 3D view header: red ● Live site button → side panel (desktop) / full screen (phone) playing the walk-through, muted with controls; closes on ×, on Map. Checked headless Chrome 1280×760 and 390×780: video plays (720×1280). Originals not committed.
+
 ## Rev m34 (20 Nov 2026) — compact opening screen + Direct site view
 
 - Opening = live satellite overview (both routes, both pickup boards, Urban Heaven site outline) with a compact bottom panel: 🚕 From Thudiyalur (≈14.4 km), 🚕 From Mettupalayam (≈17.0 km), 📍 Direct site view. Direct: map zooms to the site (2.4 s), then the 3D Phase 2 layout opens; ← Map returns to the opening panel. Links: `?from=thudiyalur`, `?from=mettupalayam`, `?view=site`. km counter hidden outside rides.

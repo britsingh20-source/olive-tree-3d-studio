@@ -634,6 +634,9 @@ export function openSite({ onBack, center } = {}) {
     $('facingBtn').onclick = () => setFacing(!facingOn); $('colourBtn').onclick = () => setColour(!colourOn);
     renderer.domElement.addEventListener('pointerdown', () => { if (showcase) setShowcase(false); });
     renderer.domElement.addEventListener('wheel', () => { if (showcase) setShowcase(false); }, { passive: true });
+    const vid = $('liveVideo');
+    $('liveBtn').onclick = () => { const pnl = $('livePanel'); pnl.hidden = !pnl.hidden; if (!pnl.hidden) { select(null); vid.currentTime = 0; vid.play().catch(() => {}); } else vid.pause(); };
+    $('liveClose').onclick = () => { $('livePanel').hidden = true; vid.pause(); };
     $('siteReplay').onclick = () => { list.hidden = true; for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', 'false'); if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; replay(); }; $('siteBack').onclick = closeSite;
     const f = LAYOUT.facts;
     $('siteFacts').textContent = `${f.plots} plots · ${f.sqft.toLocaleString('en-IN')} sq.ft · ${f.cents} cents · Park ${f.park} sq.m`;
@@ -642,7 +645,7 @@ export function openSite({ onBack, center } = {}) {
   replay();
 }
 export function closeSite() {
-  cancelAnimationFrame(raf); $('site3d').hidden = true; $('sitePanel').hidden = true; select(null); onExit();
+  cancelAnimationFrame(raf); $('livePanel').hidden = true; $('liveVideo').pause(); $('site3d').hidden = true; $('sitePanel').hidden = true; select(null); onExit();
 }
 window.__site = { view: (x, y, z, tx = 0, tz = 0) => { camera.position.set(x, y, z); controls.target.set(tx, 0, tz); controls.update(); }, showNearby, focusNearby: n => focusNearby(NEARBY.find(r => r.name.startsWith(n))), hideNearby, openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
 
