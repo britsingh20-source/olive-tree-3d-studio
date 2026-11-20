@@ -11,6 +11,10 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m25 (20 Nov 2026, 18:04)
+
+- Bright: no night lights / 'high fancy things'; wants a different kind of engagement (asked what). Day/Sunset/Night buttons removed (code kept, day only). Rotate + sample home kept pending his answer.
+
 ## Rev m24 / s18 (20 Nov 2026) — road flicker fix + engaging extras
 
 - Cause of the road 'pixelating/disappearing': z-fighting — road centre line 5 mm above a 14 cm road slab over a 12 cm soil pad, with a 0.5 m–40 km depth range. Fix: logarithmic depth buffer; roads now 30 cm slabs with lines 4 cm above; Panchayat road 30 cm; shadow bias.
