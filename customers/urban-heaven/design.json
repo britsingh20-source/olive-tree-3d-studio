@@ -45,7 +45,8 @@
     "mettupalayamStops": "19 Nov 12:00: Mettupalayam side needs more highlighted areas (Teachers Colony, Karamadai, …) so the longer ride doesn't feel empty",
     "phase2Layout": "20 Nov: after entering the site, show the Phase 2 layout (Veerapandi Phase 2 Layout - A4.pdf, DTCP No. 25/2025) in 3D with graphical animations",
     "realSurroundings": "20 Nov 16:24: 3D layout surroundings looked cartoonish — make them real (real trees, grassland); an engaging 2D/toon look acceptable as fallback. Done with real satellite imagery",
-    "nearby": "20 Nov 16:39: on the 3D layout, a strip at the top that highlights nearby schools, colleges and hospitals, filtered by type, analysed by popularity around a circle of the site"
+    "nearby": "20 Nov 16:39: on the 3D layout, a strip at the top that highlights nearby schools, colleges and hospitals, filtered by type, analysed by popularity around a circle of the site",
+    "sixArcs": "20 Nov 16:55: like an IPL six trajectory graphic — on tapping Schools/Colleges/Hospitals, zoom out and draw a curved line from the site to each place with the km shown on top"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",

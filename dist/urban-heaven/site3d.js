@@ -250,7 +250,7 @@ function pinSprite(text, color, big = false) {
     while (g.measureText(text).width > w - 40 && fs > 22) { fs -= 2; g.font = `700 ${fs}px "DM Sans", sans-serif`; }
     g.fillText(text, 22, h / 2 + 2);
   });
-  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true, sizeAttenuation: false }));
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true, sizeAttenuation: false, fog: false }));
   const sc = big ? 0.062 : (matchMedia('(max-width: 640px)').matches ? 0.04 : 0.046); sp.scale.set(sc * w / h, sc, 1); sp.center.set(0.5, 0); sp.renderOrder = 20; return sp;
 }
 function buildNearby() {
@@ -271,15 +271,54 @@ function buildNearby() {
     nbItems.push({ r, g, lbl });
   }
 }
+// IPL-style "six" arcs: a ball flies from Urban Heaven to each place, leaving a glowing trail,
+// with the distance shown at the top of the arc.
+const arcs = []; let arcClock = 0;
+function arcFor(it) {
+  if (it.arc) return it.arc;
+  const end = nbPos(it.r), d = end.length(), h = Math.max(450, d * 0.42);
+  const mid = end.clone().multiplyScalar(0.5); mid.y = h * 2; // quadratic control point -> apex height h
+  const curve = new THREE.QuadraticBezierCurve3(new THREE.Vector3(0, 30, 0), mid, end.clone().setY(8));
+  const col = NB_STYLE[it.r.cat].color, segs = 120;
+  const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, segs, Math.max(14, d * 0.0045), 8, false), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 1, depthWrite: false, fog: false }));
+  const glow = new THREE.Mesh(new THREE.TubeGeometry(curve, segs, Math.max(34, d * 0.011), 8, false), new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.1, depthWrite: false, blending: THREE.AdditiveBlending }));
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(Math.max(40, d * 0.012), 20, 14), new THREE.MeshBasicMaterial({ color: '#fff7e0' }));
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: canvasTex(64, 64, (g) => { const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,240,180,1)'); gr.addColorStop(1, 'rgba(255,200,60,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); }), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  halo.scale.setScalar(Math.max(260, d * 0.08)); ball.add(halo);
+  const km = pinSprite(`${it.r.km.toFixed(1)} km`, '#111418', true); km.position.copy(curve.getPoint(0.68)).add(new THREE.Vector3(0, 60, 0)); km.center.set(0.5, 0);
+  const g = new THREE.Group(); g.add(glow, tube, ball, km); g.visible = false; nbGroup.add(g);
+  it.arc = { g, tube, glow, ball, km, curve, n: tube.geometry.index.count, start: 0, dur: 1.3 };
+  return it.arc;
+}
+function launchArcs(items) {
+  for (const it of nbItems) if (it.arc) it.arc.g.visible = false;
+  arcs.length = 0; arcClock = 0;
+  items.sort((a, b) => a.r.km - b.r.km).forEach((it, i) => { const a = arcFor(it); a.start = 0.9 + i * 0.3; a.g.visible = false; arcs.push(a); });
+}
+function tickArcs(dt) {
+  if (!arcs.length) return; arcClock += dt;
+  for (const a of arcs) {
+    const k = Math.min(1, Math.max(0, (arcClock - a.start) / a.dur)); if (k <= 0) { a.g.visible = false; continue; }
+    a.g.visible = true; const e = 1 - Math.pow(1 - k, 2);
+    const cnt = Math.max(6, Math.floor(a.n * e / 6) * 6); a.tube.geometry.setDrawRange(0, cnt); a.glow.geometry.setDrawRange(0, cnt);
+    a.ball.position.copy(a.curve.getPoint(e)); a.ball.visible = k < 1;
+    a.km.visible = k > 0.7; a.km.material.opacity = Math.min(1, (k - 0.7) * 5);
+  }
+}
+
 function showNearby(cat) {
   nbCat = cat; $('siteHint').hidden = true; nbGroup.visible = true; labelsGroup.visible = false;
   for (const it of nbItems) { it.g.visible = !cat || it.r.cat === cat; it.lbl.material.opacity = 1; it.g.scale.setScalar(1); }
-  flyTo(new THREE.Vector3(0, 0, 0), 5200, 0.9);
+  const shown = nbItems.filter(it => !cat || it.r.cat === cat), far = Math.max(...shown.map(it => it.r.km)) * 1000;
+  flyTo(new THREE.Vector3(0, 0, 0), Math.max(4200, far * 1.75), 0.62);
+  scene.fog.near = 30000; scene.fog.far = 60000; // clear air for the overview
+  launchArcs(nbItems.filter(it => !cat || it.r.cat === cat));
 }
-function hideNearby() { nbCat = null; $('siteHint').hidden = false; if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; flyTo(new THREE.Vector3(0, 0, 0), 190, 0.75); }
+function hideNearby() { scene.fog.near = 900; scene.fog.far = 16000; arcs.length = 0; for (const it of nbItems) if (it.arc) it.arc.g.visible = false; nbCat = null; $('siteHint').hidden = false; if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; flyTo(new THREE.Vector3(0, 0, 0), 190, 0.75); }
 function focusNearby(r) {
   for (const it of nbItems) { const on = it.r === r; it.g.visible = on || !nbCat || it.r.cat === nbCat; it.lbl.material.opacity = on ? 1 : 0.35; it.g.scale.setScalar(on ? 1.4 : 1); }
-  const p = nbPos(r); flyTo(p.clone().multiplyScalar(0.5), Math.max(1600, r.km * 1000 * 1.25), 0.85);
+  const p = nbPos(r); flyTo(p.clone().multiplyScalar(0.5), Math.max(2000, r.km * 1000 * 1.5), 0.95);
+  const it = nbItems.find(x => x.r === r); launchArcs([it]); arcs[0].start = 0.6;
 }
 function flyTo(target, distance, polar) { // smooth camera move; keeps the current compass direction
   const dir = camera.position.clone().sub(controls.target); dir.y = 0; if (dir.lengthSq() < 1) dir.set(1, 0, 1); dir.normalize();
@@ -328,6 +367,7 @@ function loop(now) {
     clock += dt;
     for (const a of anim) { const k = (clock - a.start) / a.dur; if (k >= 0 && (k <= 1 || !a.done)) { a.fn(Math.min(1, k)); if (k >= 1) a.done = true; } }
   } else {
+    tickArcs(dt);
     if (nbFly) { nbFly.t = Math.min(1, nbFly.t + dt / 1.4); const e = ease(nbFly.t); camera.position.lerpVectors(nbFly.fromP, nbFly.toP, e); controls.target.lerpVectors(nbFly.fromT, nbFly.toT, e); if (nbFly.t >= 1) nbFly = null; }
     controls.update();
   }

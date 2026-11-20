@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m20 / s14 (20 Nov 2026) — IPL-style distance arcs
+
+- Tapping a nearby tab zooms out to fit the farthest place (1.75× its distance, clear air — fog pushed out) and launches "six" arcs one after another (nearest first, 0.3 s apart): a glowing ball flies from Urban Heaven along a tall coloured arc (apex ≈ 0.42× distance) leaving a trail, and the km badge appears near the top of the arc. Tapping a card replays a single arc to that place. Labels ignore fog.
+- Checked headless Chrome/SwiftShader 1280×760 (Schools, Colleges) and 390×780 (Schools). No page errors. Software rendering is slower than phones, so arc timing not judged.
+
 ## Rev m16 / s10 (20 Nov 2026) — nearby schools, colleges, hospitals
 
 - `dist/urban-heaven/nearby.js` (16 places, see design.json). In the 3D layout, after the build-up: top strip Nearby · All / Schools / Colleges / Hospitals → camera flies out to ~5 km, 1/3/5 km gold rings on real imagery (added z14 ring, ~22 km), colour-coded pins with labels, Urban Heaven marker; horizontally scrolling cards sorted by stars then distance (icon, name, ★1–5, km, reasons). Tapping a card flies to that place and dims the rest; tapping the active tab again returns to the layout.
