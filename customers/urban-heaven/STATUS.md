@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m36 / s28 (20 Nov 2026) — live video always playing
+
+- Live-site video auto-plays muted on loop in a dock: bottom-left 300×188 on desktop; full-width bottom 25vh strip on phones (category chips become one scrolling row above it, Facing/Colours/Rotate + compass above those, hint hidden, Live site header button hidden on phones). Tap the dock → full-screen player with sound, resumes the dock on close. Phone header compacted (no title/Nearby overlap seen in Bright's iPhone screenshot).
+- Verified video currentTime advancing in headless Chrome (desktop + 390×844 @3x touch). Known headless-only artifact: a pale rectangle the size of the video dock appears at top-left in full-page screenshots (SwiftShader video-overlay compositing); a clipped capture of that spot shows the 3D scene. Needs confirmation on Bright's iPhone.
+
 ## Rev m35 / s27 (20 Nov 2026) — live site video
 
 - `dist/urban-heaven/live-site.mp4` + `live-site.jpg` poster (from IMG_0439). 3D view header: red ● Live site button → side panel (desktop) / full screen (phone) playing the walk-through, muted with controls; closes on ×, on Map. Checked headless Chrome 1280×760 and 390×780: video plays (720×1280). Originals not committed.

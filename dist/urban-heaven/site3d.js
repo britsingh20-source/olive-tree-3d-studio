@@ -593,6 +593,7 @@ function replay() {
 }
 
 export function openSite({ onBack, center } = {}) {
+  $('liveDock').hidden = false; $('dockVideo').play().catch(() => {});
   if (center) SITE_CENTER = center;
   onExit = onBack || onExit;
   $('site3d').hidden = false; $('sitePanel').hidden = false;
@@ -635,8 +636,11 @@ export function openSite({ onBack, center } = {}) {
     renderer.domElement.addEventListener('pointerdown', () => { if (showcase) setShowcase(false); });
     renderer.domElement.addEventListener('wheel', () => { if (showcase) setShowcase(false); }, { passive: true });
     const vid = $('liveVideo');
-    $('liveBtn').onclick = () => { const pnl = $('livePanel'); pnl.hidden = !pnl.hidden; if (!pnl.hidden) { select(null); vid.currentTime = 0; vid.play().catch(() => {}); } else vid.pause(); };
-    $('liveClose').onclick = () => { $('livePanel').hidden = true; vid.pause(); };
+    const dock = $('dockVideo');
+    const openLive = () => { $('livePanel').hidden = false; select(null); dock.pause(); vid.currentTime = dock.currentTime || 0; vid.muted = false; vid.play().catch(() => { vid.muted = true; vid.play().catch(() => {}); }); };
+    const closeLive = () => { $('livePanel').hidden = true; vid.pause(); dock.play().catch(() => {}); };
+    $('liveBtn').onclick = () => ($('livePanel').hidden ? openLive() : closeLive());
+    $('liveDock').onclick = openLive; $('liveClose').onclick = closeLive;
     $('siteReplay').onclick = () => { list.hidden = true; for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', 'false'); if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; replay(); }; $('siteBack').onclick = closeSite;
     const f = LAYOUT.facts;
     $('siteFacts').textContent = `${f.plots} plots · ${f.sqft.toLocaleString('en-IN')} sq.ft · ${f.cents} cents · Park ${f.park} sq.m`;
@@ -645,7 +649,7 @@ export function openSite({ onBack, center } = {}) {
   replay();
 }
 export function closeSite() {
-  cancelAnimationFrame(raf); $('livePanel').hidden = true; $('liveVideo').pause(); $('site3d').hidden = true; $('sitePanel').hidden = true; select(null); onExit();
+  cancelAnimationFrame(raf); $('liveDock').hidden = true; $('dockVideo').pause(); $('livePanel').hidden = true; $('liveVideo').pause(); $('site3d').hidden = true; $('sitePanel').hidden = true; select(null); onExit();
 }
-window.__site = { view: (x, y, z, tx = 0, tz = 0) => { camera.position.set(x, y, z); controls.target.set(tx, 0, tz); controls.update(); }, showNearby, focusNearby: n => focusNearby(NEARBY.find(r => r.name.startsWith(n))), hideNearby, openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
+window.__site = { get scene() { return scene; }, view: (x, y, z, tx = 0, tz = 0) => { camera.position.set(x, y, z); controls.target.set(tx, 0, tz); controls.update(); }, showNearby, focusNearby: n => focusNearby(NEARBY.find(r => r.name.startsWith(n))), hideNearby, openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
 

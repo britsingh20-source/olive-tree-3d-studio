@@ -50,7 +50,8 @@
     "engaging": "20 Nov 17:26: road pixelated/disappeared while rotating the 3D layout — fix; make the 3D layout more engaging",
     "vastuRealLook": "20 Nov 18:04: Bright doesn't want night lights / fancy effects; chose 'Direction & Vastu view' and 'Real photo look' for the 3D layout",
     "openingScreen": "20 Nov 18:33: opening screen must not cover the whole screen; three buttons only — From Thudiyalur, From Mettupalayam, Direct site view (some clients skip the ride and go straight to the map/site)",
-    "liveVideo": "20 Nov 18:45: Bright sent two live site videos (IMG_0438 2.4 s, IMG_0439 24.4 s, iPhone 17, filmed 19 Nov 2026, no GPS) to show customers alongside the 3D map"
+    "liveVideo": "20 Nov 18:45: Bright sent two live site videos (IMG_0438 2.4 s, IMG_0439 24.4 s, iPhone 17, filmed 19 Nov 2026, no GPS) to show customers alongside the 3D map",
+    "liveDock": "20 Nov 18:55: play the live site video automatically in the bottom area of the 3D view (customers won't all tap the top-right Live site button)"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
