@@ -628,7 +628,7 @@ export function openSite({ onBack, center } = {}) {
       const v = b.dataset.near, on = b.getAttribute('aria-pressed') !== 'true';
       for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', String(on && o === b));
       if (!on || v === 'off') { list.hidden = true; strip.querySelector('[data-near]').setAttribute('aria-pressed', 'false'); hideNearby(); return; }
-      const cat = v === 'all' ? null : v; render(cat); list.hidden = false; select(null); showNearby(cat);
+      const cat = v === 'all' ? null : v; render(cat); list.hidden = false; window.__dockMin && window.__dockMin(true); select(null); showNearby(cat);
     };
     for (const b of document.querySelectorAll('[data-mood]')) b.onclick = () => setMood(b.dataset.mood);
     $('showBtn').onclick = () => setShowcase(!showcase);
@@ -640,7 +640,11 @@ export function openSite({ onBack, center } = {}) {
     const openLive = () => { $('livePanel').hidden = false; select(null); dock.pause(); vid.currentTime = dock.currentTime || 0; vid.muted = false; vid.play().catch(() => { vid.muted = true; vid.play().catch(() => {}); }); };
     const closeLive = () => { $('livePanel').hidden = true; vid.pause(); dock.play().catch(() => {}); };
     $('liveBtn').onclick = () => ($('livePanel').hidden ? openLive() : closeLive());
-    $('liveDock').onclick = openLive; $('liveClose').onclick = closeLive;
+    const dockEl = $('liveDock');
+    const setMin = on => { dockEl.classList.toggle('min', on); $('compass').parentElement.style.bottom = on && matchMedia('(max-width: 640px)').matches ? '100px' : ''; };
+    dockEl.onclick = () => setMin(!dockEl.classList.contains('min'));
+    $('dockFull').onclick = e => { e.stopPropagation(); openLive(); };
+    window.__dockMin = setMin; $('liveClose').onclick = closeLive;
     $('siteReplay').onclick = () => { list.hidden = true; for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', 'false'); if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; replay(); }; $('siteBack').onclick = closeSite;
     const f = LAYOUT.facts;
     $('siteFacts').textContent = `${f.plots} plots · ${f.sqft.toLocaleString('en-IN')} sq.ft · ${f.cents} cents · Park ${f.park} sq.m`;

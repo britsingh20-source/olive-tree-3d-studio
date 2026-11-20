@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m38 / s29 (20 Nov 2026) — clean bottom, minimisable video
+
+- Category chips and Facing/Colours/Rotate bar removed (facing arrows stay on; auto showcase rotation still runs once after the intro). Video dock: tap = minimise to a 132×84 thumbnail '▲ Site video' (keeps playing) / tap again = maximise; ⛶ button = full screen with sound. Dock auto-minimises when a Nearby tab is opened. Credit line moved bottom-right above the dock (phones).
+- Checked headless Chrome 390×844@3x touch and 1280×760: minimise, re-expand, Colleges view with minimised dock. No page errors.
+
 ## Rev m36 / s28 (20 Nov 2026) — live video always playing
 
 - Live-site video auto-plays muted on loop in a dock: bottom-left 300×188 on desktop; full-width bottom 25vh strip on phones (category chips become one scrolling row above it, Facing/Colours/Rotate + compass above those, hint hidden, Live site header button hidden on phones). Tap the dock → full-screen player with sound, resumes the dock on close. Phone header compacted (no title/Nearby overlap seen in Bright's iPhone screenshot).

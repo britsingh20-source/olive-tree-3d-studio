@@ -45,7 +45,7 @@ console.log('urban-heaven route checks passed', t.toFixed(2), m.toFixed(2));
   assert.deepEqual(D.STOPS.mettupalayam.map(s => s.id), ['mettupalayam', 'teachers', 'karamadai', 'kalattiyur', 'knm']);
   assert.equal(D.STOPS.thudiyalur.at(-1).turn, 'left'); assert.equal(D.STOPS.mettupalayam.at(-1).turn, 'right');
   const html = fs.readFileSync('dist/urban-heaven/index.html', 'utf8');
-  assert(html.includes('map.js?v=m36') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
+  assert(html.includes('map.js?v=m38') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
   console.log('map tour checks passed', t.toFixed(2), m.toFixed(2));
 }
 // Phase 2 3D layout (site3d.js) — traced from the PDF
