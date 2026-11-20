@@ -4,6 +4,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from '../vendor/OrbitControls.js';
 import { LAYOUT } from './site-layout.js?v=s1';
+import { NEARBY } from './nearby.js?v=n1';
 
 const CAT = {
   sunshine: { name: 'Sunshine East', color: '#7fa6ec' },
@@ -79,7 +80,8 @@ function imageryPlane(z, span, y, renderOrder) {
   return mesh;
 }
 function realGround(parent) {
-  parent.add(imageryPlane(15, 7, -0.9, 0));   // ~8 km wide, soft background to the horizon
+  parent.add(imageryPlane(14, 9, -1.4, -1));  // ~22 km wide, so the 5 km rings sit on real ground
+  parent.add(imageryPlane(15, 7, -0.9, 0));   // ~8 km wide
   parent.add(imageryPlane(17, 9, -0.5, 1));   // ~2.7 km wide, detailed fields, trees, houses
   parent.add(imageryPlane(19, 6, -0.2, 2));   // ~0.45 km wide, sharp close-up around the site
 }
@@ -94,7 +96,7 @@ function canvasTexBare(w, h, draw) { const c = document.createElement('canvas');
 
 function build() {
   scene = new THREE.Scene();
-  scene.background = skyTexture(); scene.fog = new THREE.Fog('#c9d6dc', 500, 3400);
+  scene.background = skyTexture(); scene.fog = new THREE.Fog('#c9d6dc', 900, 16000);
   scene.add(new THREE.HemisphereLight('#eef5ff', '#6f6a55', 1.35));
   const sun = new THREE.DirectionalLight('#fff1d6', 2.4); sun.position.set(-60, 120, -40); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -110, right: 110, top: 110, bottom: -110, far: 400 });
@@ -230,10 +232,65 @@ function build() {
   at(10.8, 0.1, () => { finishIntro(); });
 }
 
+// ---------- nearby schools / colleges / hospitals ----------
+const NB_STYLE = { school: { icon: '🏫', color: '#2f7dff', label: 'Schools' }, college: { icon: '🎓', color: '#9b59d6', label: 'Colleges' }, hospital: { icon: '🏥', color: '#e0303a', label: 'Hospitals' } };
+let nbGroup, nbItems = [], nbCat = null, nbFly = null;
+function nbPos(r) {
+  const k = 111320, x = (r.lon - SITE_CENTER[1]) * k * Math.cos(SITE_CENTER[0] * Math.PI / 180), z = (SITE_CENTER[0] - r.lat) * k;
+  return new THREE.Vector3(x, 0, z);
+}
+function pinSprite(text, color, big = false) {
+  const h = 120, mc = document.createElement('canvas').getContext('2d'); mc.font = `700 ${big ? 52 : 44}px "DM Sans", sans-serif`;
+  const w = Math.min(640, Math.ceil(mc.measureText(text).width) + 48);
+  const tex = canvasTex(w, h, (g) => {
+    g.fillStyle = color; g.beginPath(); g.roundRect(4, 4, w - 8, h - 8, 26); g.fill();
+    g.strokeStyle = '#ffffff'; g.lineWidth = 6; g.stroke();
+    g.fillStyle = '#fff'; g.textAlign = 'left'; g.textBaseline = 'middle';
+    let fs = big ? 52 : 44; g.font = `700 ${fs}px "DM Sans", sans-serif`;
+    while (g.measureText(text).width > w - 40 && fs > 22) { fs -= 2; g.font = `700 ${fs}px "DM Sans", sans-serif`; }
+    g.fillText(text, 22, h / 2 + 2);
+  });
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true, sizeAttenuation: false }));
+  const sc = big ? 0.062 : (matchMedia('(max-width: 640px)').matches ? 0.04 : 0.046); sp.scale.set(sc * w / h, sc, 1); sp.center.set(0.5, 0); sp.renderOrder = 20; return sp;
+}
+function buildNearby() {
+  nbGroup = new THREE.Group(); nbGroup.visible = false; scene.add(nbGroup);
+  // distance rings 1 / 3 / 5 km around the site
+  for (const km of [1, 3, 5]) {
+    const ring = new THREE.Mesh(new THREE.RingGeometry(km * 1000 - 6 * km, km * 1000 + 6 * km, 160), new THREE.MeshBasicMaterial({ color: '#f6c519', transparent: true, opacity: 0.85, depthWrite: false }));
+    ring.rotation.x = -Math.PI / 2; ring.position.y = 2; nbGroup.add(ring);
+    const lbl = pinSprite(`${km} km`, 'rgba(17,20,24,.85)'); lbl.scale.multiplyScalar(0.8); lbl.position.set(0, 4, -km * 1000); nbGroup.add(lbl);
+  }
+  const home = pinSprite('★ Urban Heaven', '#2e6b4f', true); home.position.set(0, 40, 0); nbGroup.add(home);
+  const homeDot = new THREE.Mesh(new THREE.CylinderGeometry(40, 40, 3, 32), new THREE.MeshBasicMaterial({ color: '#2e6b4f' })); homeDot.position.y = 2; nbGroup.add(homeDot);
+  for (const r of NEARBY) {
+    const st = NB_STYLE[r.cat], pos = nbPos(r), g = new THREE.Group(); g.position.copy(pos); nbGroup.add(g);
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(6, 6, 160, 8), new THREE.MeshBasicMaterial({ color: st.color })); stem.position.y = 80; g.add(stem);
+    const dot = new THREE.Mesh(new THREE.CylinderGeometry(30, 30, 3, 24), new THREE.MeshBasicMaterial({ color: st.color })); dot.position.y = 2; g.add(dot);
+    const lbl = pinSprite(`${st.icon} ${r.name.replace(/, Coimbatore$/, '')}`, st.color); lbl.position.y = 165; g.add(lbl);
+    nbItems.push({ r, g, lbl });
+  }
+}
+function showNearby(cat) {
+  nbCat = cat; $('siteHint').hidden = true; nbGroup.visible = true; labelsGroup.visible = false;
+  for (const it of nbItems) { it.g.visible = !cat || it.r.cat === cat; it.lbl.material.opacity = 1; it.g.scale.setScalar(1); }
+  flyTo(new THREE.Vector3(0, 0, 0), 5200, 0.9);
+}
+function hideNearby() { nbCat = null; $('siteHint').hidden = false; if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; flyTo(new THREE.Vector3(0, 0, 0), 190, 0.75); }
+function focusNearby(r) {
+  for (const it of nbItems) { const on = it.r === r; it.g.visible = on || !nbCat || it.r.cat === nbCat; it.lbl.material.opacity = on ? 1 : 0.35; it.g.scale.setScalar(on ? 1.4 : 1); }
+  const p = nbPos(r); flyTo(p.clone().multiplyScalar(0.5), Math.max(1600, r.km * 1000 * 1.25), 0.85);
+}
+function flyTo(target, distance, polar) { // smooth camera move; keeps the current compass direction
+  const dir = camera.position.clone().sub(controls.target); dir.y = 0; if (dir.lengthSq() < 1) dir.set(1, 0, 1); dir.normalize();
+  const end = target.clone().add(dir.multiplyScalar(Math.sin(polar) * distance)); end.y = Math.cos(polar) * distance;
+  nbFly = { t: 0, fromP: camera.position.clone(), fromT: controls.target.clone(), toP: end, toT: target.clone() };
+}
+
 function finishIntro() {
   if (!playing) return; playing = false;
   controls.enabled = true; controls.target.set(0, 0, 0); controls.update();
-  $('siteHint').hidden = false; $('siteReplay').hidden = false;
+  $('siteHint').hidden = false; $('siteReplay').hidden = false; $('nearStrip').hidden = false;
 }
 
 function select(mesh) {
@@ -270,13 +327,16 @@ function loop(now) {
   if (playing) {
     clock += dt;
     for (const a of anim) { const k = (clock - a.start) / a.dur; if (k >= 0 && (k <= 1 || !a.done)) { a.fn(Math.min(1, k)); if (k >= 1) a.done = true; } }
-  } else controls.update();
+  } else {
+    if (nbFly) { nbFly.t = Math.min(1, nbFly.t + dt / 1.4); const e = ease(nbFly.t); camera.position.lerpVectors(nbFly.fromP, nbFly.toP, e); controls.target.lerpVectors(nbFly.fromT, nbFly.toT, e); if (nbFly.t >= 1) nbFly = null; }
+    controls.update();
+  }
   renderer.render(scene, camera);
 }
 function replay() {
   for (const a of anim) { a.done = false; a.fn(0); }
   select(null); if (filterCat) setFilter(filterCat);
-  clock = 0; playing = true; controls.enabled = false; $('siteHint').hidden = true;
+  clock = 0; playing = true; controls.enabled = false; $('siteHint').hidden = true; $('nearStrip').hidden = true; nbFly = null;
 }
 
 export function openSite({ onBack, center } = {}) {
@@ -288,10 +348,10 @@ export function openSite({ onBack, center } = {}) {
     renderer = new THREE.WebGLRenderer({ antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     $('site3d').appendChild(renderer.domElement);
-    camera = new THREE.PerspectiveCamera(45, 1, 0.5, 6000);
-    build();
+    camera = new THREE.PerspectiveCamera(45, 1, 0.5, 40000);
+    build(); buildNearby();
     controls = new OrbitControls(camera, renderer.domElement);
-    Object.assign(controls, { enableDamping: false, maxPolarAngle: Math.PI * 0.47, minDistance: 25, maxDistance: 600, enabled: false, screenSpacePanning: false });
+    Object.assign(controls, { enableDamping: false, maxPolarAngle: Math.PI * 0.47, minDistance: 25, maxDistance: 14000, enabled: false, screenSpacePanning: false });
     new ResizeObserver(resize).observe($('site3d')); resize();
     // tap a plot (ignore drags)
     let down = null;
@@ -304,7 +364,19 @@ export function openSite({ onBack, center } = {}) {
       select(hit ? hit.object : null);
     });
     for (const b of document.querySelectorAll('[data-cat]')) b.onclick = () => setFilter(b.dataset.cat);
-    $('siteReplay').onclick = replay; $('siteBack').onclick = closeSite;
+    const strip = $('nearStrip'), list = $('nearList');
+    const render = cat => {
+      const rows = NEARBY.filter(r => !cat || r.cat === cat).sort((a, b) => b.stars - a.stars || a.km - b.km);
+      list.innerHTML = rows.map((r, i) => `<button class="near-card" data-i="${NEARBY.indexOf(r)}"><span class="ico" style="background:${NB_STYLE[r.cat].color}">${NB_STYLE[r.cat].icon}</span><b>${r.name.replace(/, Coimbatore$/, '')}</b><span class="stars" aria-label="${r.stars} of 5">${'★'.repeat(r.stars)}<i>${'★'.repeat(5 - r.stars)}</i></span><small>${r.km.toFixed(1)} km away${r.why.length ? ' · ' + r.why.slice(0, 2).join(', ') : ''}</small></button>`).join('');
+      for (const b of list.querySelectorAll('.near-card')) b.onclick = () => { for (const o of list.querySelectorAll('.near-card')) o.classList.toggle('on', o === b); focusNearby(NEARBY[+b.dataset.i]); };
+    };
+    for (const b of strip.querySelectorAll('[data-near]')) b.onclick = () => {
+      const v = b.dataset.near, on = b.getAttribute('aria-pressed') !== 'true';
+      for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', String(on && o === b));
+      if (!on || v === 'off') { list.hidden = true; strip.querySelector('[data-near]').setAttribute('aria-pressed', 'false'); hideNearby(); return; }
+      const cat = v === 'all' ? null : v; render(cat); list.hidden = false; select(null); showNearby(cat);
+    };
+    $('siteReplay').onclick = () => { list.hidden = true; for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', 'false'); if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; replay(); }; $('siteBack').onclick = closeSite;
     const f = LAYOUT.facts;
     $('siteFacts').textContent = `${f.plots} plots · ${f.sqft.toLocaleString('en-IN')} sq.ft · ${f.cents} cents · Park ${f.park} sq.m`;
   }
@@ -314,5 +386,5 @@ export function openSite({ onBack, center } = {}) {
 export function closeSite() {
   cancelAnimationFrame(raf); $('site3d').hidden = true; $('sitePanel').hidden = true; select(null); onExit();
 }
-window.__site = { openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
+window.__site = { showNearby, focusNearby: n => focusNearby(NEARBY.find(r => r.name.startsWith(n))), hideNearby, openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
 

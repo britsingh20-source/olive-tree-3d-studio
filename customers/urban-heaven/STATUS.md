@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m16 / s10 (20 Nov 2026) — nearby schools, colleges, hospitals
+
+- `dist/urban-heaven/nearby.js` (16 places, see design.json). In the 3D layout, after the build-up: top strip Nearby · All / Schools / Colleges / Hospitals → camera flies out to ~5 km, 1/3/5 km gold rings on real imagery (added z14 ring, ~22 km), colour-coded pins with labels, Urban Heaven marker; horizontally scrolling cards sorted by stars then distance (icon, name, ★1–5, km, reasons). Tapping a card flies to that place and dims the rest; tapping the active tab again returns to the layout.
+- Checked headless Chrome/SwiftShader 1280×760 and 390×780: All, Schools filter, focus on Ramakrishna Mission Vidyalaya. No page errors.
+
 ## Rev m14 / s8 (20 Nov 2026) — real site position
 
 - Bright's pin 5WPX+F9 decoded to 11.186187, 76.948437. Turn-off moved ~1.9 km north to the real junction (11.18607, 76.96040); side route = real OSRM road geometry to the Panchayat road, then entry to the 9.0 m road. Turn sequence: KNM left (right from Mettupalayam) → right → left → left onto Panchayat road → right into the site. Map site outline = the Phase 2 boundary placed on the pin; 3D imagery centred on it; 3D cab now arrives from the north.
