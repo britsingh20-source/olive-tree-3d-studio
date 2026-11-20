@@ -29,17 +29,29 @@ const B = LAYOUT.boundary, CX = (B[0][0] + B[1][0]) / 2, CZ = (B[0][1] + B[2][1]
 const W = LAYOUT.mainRoad.x1 + 6 - (B[0][0] - 6), D = B[2][1] - B[0][1];
 const P = (x, z, y = 0) => new THREE.Vector3(x - CX, y, z - CZ);
 
+// Sharp screen-space labels: draw the canvas at ~1.3x the pixels it will occupy on this screen,
+// and sample it without mipmaps (mipmapped downscaling is what made the names look blurred).
+function crispTex(w, h, screenH, draw) {
+  const fovY = (innerWidth < innerHeight ? 62 : 45) * Math.PI / 360;
+  const px = screenH / Math.tan(fovY) * innerHeight / 2 * Math.min(devicePixelRatio || 1, 3);
+  const k = Math.max(1, Math.min(4, px * 1.3 / h));
+  const c = document.createElement('canvas'); c.width = Math.ceil(w * k); c.height = Math.ceil(h * k);
+  const g = c.getContext('2d'); g.scale(k, k); draw(g, w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  t.generateMipmaps = false; t.minFilter = THREE.LinearFilter; t.magFilter = THREE.LinearFilter; return t;
+}
 function canvasTex(w, h, draw) {
   const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
 }
 function label(text, { size = 3, bg = 'rgba(17,20,24,.82)', fg = '#fff', w = 256, h = 128, font = 70 } = {}) {
-  const tex = canvasTex(w, h, (g) => {
+  const k = size * 0.0095 * (matchMedia('(max-width: 640px)').matches ? 0.85 : 1);
+  const tex = crispTex(w, h, k, (g) => {
     g.fillStyle = bg; g.beginPath(); g.roundRect(4, 4, w - 8, h - 8, 26); g.fill();
     g.fillStyle = fg; g.font = `700 ${font}px "DM Sans", sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, w / 2, h / 2 + 4);
   });
   const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true, sizeAttenuation: false })); // constant on-screen size, never giant up close
-  const k = size * 0.0095 * (matchMedia('(max-width: 640px)').matches ? 0.85 : 1); s.scale.set(k * w / h, k, 1); s.renderOrder = 10; return s;
+  s.scale.set(k * w / h, k, 1); s.renderOrder = 10; return s;
 }
 function shapeFrom(poly) {
   const s = new THREE.Shape(); poly.forEach(([x, z], i) => (i ? s.lineTo(x - CX, -(z - CZ)) : s.moveTo(x - CX, -(z - CZ)))); s.closePath(); return s;
@@ -298,8 +310,9 @@ function nbPos(r) {
 }
 function pinSprite(text, color, big = false) {
   const h = 120, mc = document.createElement('canvas').getContext('2d'); mc.font = `700 ${big ? 52 : 44}px "DM Sans", sans-serif`;
-  const w = Math.min(640, Math.ceil(mc.measureText(text).width) + 48);
-  const tex = canvasTex(w, h, (g) => {
+  const w = Math.min(1100, Math.ceil(mc.measureText(text).width) + 48); // wide enough that long names keep full-size text
+  const phone = matchMedia('(max-width: 640px)').matches, sc = big ? (phone ? 0.062 : 0.062) : (phone ? 0.048 : 0.046);
+  const tex = crispTex(w, h, sc, (g) => {
     g.fillStyle = color; g.beginPath(); g.roundRect(4, 4, w - 8, h - 8, 26); g.fill();
     g.strokeStyle = '#ffffff'; g.lineWidth = 6; g.stroke();
     g.fillStyle = '#fff'; g.textAlign = 'left'; g.textBaseline = 'middle';
@@ -308,7 +321,11 @@ function pinSprite(text, color, big = false) {
     g.fillText(text, 22, h / 2 + 2);
   });
   const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true, sizeAttenuation: false, fog: false }));
-  const sc = big ? 0.062 : (matchMedia('(max-width: 640px)').matches ? 0.04 : 0.046); sp.scale.set(sc * w / h, sc, 1); sp.center.set(0.5, 0); sp.renderOrder = 20; return sp;
+  sp.scale.set(sc * w / h, sc, 1); sp.center.set(0.5, 0); sp.renderOrder = 20; return sp;
+}
+function shortName(n) {
+  return n.replace(/, Coimbatore$/, '').replace(/Matriculation and higher secondary school/i, 'Matric. Hr. Sec. School').replace(/Higher Secondary School/, 'Hr. Sec. School')
+    .replace(/Government Hospital, Perianaickenpalaym/, 'Govt. Hospital, PN Palayam').replace(/College of Arts and Science/, 'Arts & Science College').replace(/^panchayat union primary school$/i, 'Panchayat Union Primary School');
 }
 function buildNearby() {
   nbGroup = new THREE.Group(); nbGroup.visible = false; scene.add(nbGroup);
@@ -324,7 +341,7 @@ function buildNearby() {
     const st = NB_STYLE[r.cat], pos = nbPos(r), g = new THREE.Group(); g.position.copy(pos); nbGroup.add(g);
     const stem = new THREE.Mesh(new THREE.CylinderGeometry(6, 6, 160, 8), new THREE.MeshBasicMaterial({ color: st.color })); stem.position.y = 80; g.add(stem);
     const dot = new THREE.Mesh(new THREE.CylinderGeometry(30, 30, 3, 24), new THREE.MeshBasicMaterial({ color: st.color })); dot.position.y = 2; g.add(dot);
-    const lbl = pinSprite(`${st.icon} ${r.name.replace(/, Coimbatore$/, '')}`, st.color); lbl.position.y = 165; g.add(lbl);
+    const lbl = pinSprite(`${st.icon} ${shortName(r.name)}`, st.color); lbl.position.y = 165; g.add(lbl);
     nbItems.push({ r, g, lbl });
   }
 }
@@ -351,6 +368,26 @@ function launchArcs(items) {
   for (const it of nbItems) if (it.arc) it.arc.g.visible = false;
   arcs.length = 0; arcClock = 0;
   items.sort((a, b) => a.r.km - b.r.km).forEach((it, i) => { const a = arcFor(it); a.start = 0.9 + i * 0.3; a.g.visible = false; arcs.push(a); });
+}
+// keep names readable: when labels collide on screen, show the better-known / focused one
+const _v = new THREE.Vector3();
+function declutter() {
+  if (!nbGroup || !nbGroup.visible) return;
+  const H = renderer.domElement.clientHeight, Wd = renderer.domElement.clientWidth, f = camera.projectionMatrix.elements[5] * H / 2;
+  const items = nbItems.filter(it => it.g.visible).sort((a, b) => (b.lbl.material.opacity - a.lbl.material.opacity) || (b.r.stars - a.r.stars) || (a.r.km - b.r.km));
+  const placed = [];
+  for (const it of nbItems) { // distance badges first: they are the point of the arc animation
+    const km = it.arc && it.arc.g.visible && it.arc.km.visible ? it.arc.km : null; if (!km) continue;
+    km.getWorldPosition(_v).project(camera); if (_v.z > 1) continue;
+    const x = (_v.x + 1) / 2 * Wd, y = (1 - _v.y) / 2 * H, w = km.scale.x * f, h = km.scale.y * f; placed.push([x - w / 2 - 4, y - h - 4, x + w / 2 + 4, y + 4]);
+  }
+  for (const it of items) {
+    it.lbl.getWorldPosition(_v).project(camera);
+    const x = (_v.x + 1) / 2 * Wd, y = (1 - _v.y) / 2 * H, w = it.lbl.scale.x * f, h = it.lbl.scale.y * f;
+    const box = [x - w / 2 - 4, y - h - 4, x + w / 2 + 4, y + 4];
+    const hit = _v.z > 1 || placed.some(b => !(box[2] < b[0] || box[0] > b[2] || box[3] < b[1] || box[1] > b[3]));
+    it.lbl.visible = !hit; if (!hit) placed.push(box);
+  }
 }
 function tickArcs(dt) {
   if (!arcs.length) return; arcClock += dt;
@@ -546,7 +583,7 @@ function loop(now) {
     if (nbFly) { nbFly.t = Math.min(1, nbFly.t + dt / 1.4); const e = ease(nbFly.t); camera.position.lerpVectors(nbFly.fromP, nbFly.toP, e); controls.target.lerpVectors(nbFly.fromT, nbFly.toT, e); if (nbFly.t >= 1) nbFly = null; }
     controls.update();
   }
-  updateCompass();
+  updateCompass(); declutter();
   renderer.render(scene, camera);
 }
 function replay() {

@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m32 / s26 (20 Nov 2026) — sharp place names
+
+- Bright: school/college names looked blurred. Cause: small canvas textures shrunk with mipmaps. Now all screen-space labels are drawn at ~1.3× their on-screen device pixels (DPR-aware) without mipmaps; long names no longer squeezed (canvas up to 1100 px, shortened forms like 'Hr. Sec. School', 'Govt. Hospital, PN Palayam'); colliding names are hidden by priority (focused > stars > nearer), distance badges always win. Also fixed a broken label() edit caught in testing.
+- Checked headless Chrome 1280×760 and 390×780 @3× DPR: All and Schools views. No page errors.
+
 ## Rev m26 / s20 (20 Nov 2026) — real-site look + direction & Vastu
 
 - Bright picked 'Direction & Vastu view' + 'Real photo look'. Plots = textured red earth, kerbs + corner stones; textured tar roads, grass park, plaster wall. Buttons (right): 🧭 Facing (arrow + letter per plot, on by default), 🎨 Colours (category colours), ⟳ Rotate. Compass top-right (bottom-left on phones) turns with the view. Plot card: facing, corner plot, road, Vastu note.
