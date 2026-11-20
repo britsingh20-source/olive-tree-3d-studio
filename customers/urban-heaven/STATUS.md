@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m14 / s8 (20 Nov 2026) — real site position
+
+- Bright's pin 5WPX+F9 decoded to 11.186187, 76.948437. Turn-off moved ~1.9 km north to the real junction (11.18607, 76.96040); side route = real OSRM road geometry to the Panchayat road, then entry to the 9.0 m road. Turn sequence: KNM left (right from Mettupalayam) → right → left → left onto Panchayat road → right into the site. Map site outline = the Phase 2 boundary placed on the pin; 3D imagery centred on it; 3D cab now arrives from the north.
+- Measured: Thudiyalur 14.36 km, Mettupalayam 17.01 km. Checked headless Chrome (map at turns/gate, zoom, 3D on real land). No page errors.
+
 ## Rev m13 / s7 (20 Nov 2026) — real surroundings
 
 - Cartoon fields and coconut palms removed. Ground = three live Esri World Imagery rings (z15 ~8 km, z17 ~2.7 km, z19 ~0.45 km; CORS ok; polygon offsets so finer layers win), centred on the site position passed from the map tour. Gradient sky + haze fog to the horizon; park trees rebuilt as clustered canopies; 12.2 m road strip trimmed to the site frontage (+35 m each side). Imagery credit added.

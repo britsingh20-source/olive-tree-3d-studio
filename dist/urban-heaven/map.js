@@ -1,6 +1,6 @@
 // Property Manager · Urban Heaven — top-view map tour. A cab drives the real road from the chosen
 // pickup, through each stop, takes the three turns to the site, enters it, then the map zooms in.
-import { JUNCTION, ROUTES, STOPS, SIDE } from './map-data.js?v=m5';
+import { JUNCTION, ROUTES, STOPS, SIDE_ROUTE, SITE } from './map-data.js?v=m14';
 const L = window.L, $ = id => document.getElementById(id);
 
 // ---------- geometry helpers ----------
@@ -20,9 +20,8 @@ function dest(a, brg, m) {
   return [deg(p2), deg(l2)];
 }
 // side road from the KNM turn, per Bright's directions (west side of the highway)
-const hb = SIDE.highwayBearing, left = (hb + 270) % 360;
-const T1 = dest(JUNCTION, left, SIDE.first), T2 = dest(T1, hb, SIDE.second), GATE = dest(T2, left, SIDE.final), END = dest(GATE, left, SIDE.inside);
-const SIDE_PATH = [T1, T2, GATE, END];
+// side road: real road geometry from the KNM turn to the Panchayat road, then into the site (map-data.js)
+const SIDE_PATH = SIDE_ROUTE.slice(1), GATE = SITE.gate;
 
 function buildPath(id) {
   const pts = ROUTES[id].map(p => [p[0], p[1]]).concat(SIDE_PATH);
@@ -31,9 +30,9 @@ function buildPath(id) {
   const nearest = at => { let bi = 0, bd = 1e9; for (let i = 0; i < ROUTES[id].length; i++) { const d = dist(pts[i], at); if (d < bd) { bd = d; bi = i; } } return cum[bi]; };
   const events = STOPS[id].map(st => ({ kind: st.pickup ? 'pickup' : 'stop', ...st, m: st.id === 'knm' ? hwLen : nearest(st.at) }));
   const knm = events.find(e => e.id === 'knm');
-  events.push({ kind: 'turn', id: 'turn2', en: 'Turn right', m: hwLen + dist(JUNCTION, T1), turn: 'right' });
-  events.push({ kind: 'turn', id: 'turn3', en: 'Turn left · straight road to the site', m: hwLen + dist(JUNCTION, T1) + SIDE.second, turn: 'left' });
-  events.push({ kind: 'arrive', id: 'gate', en: 'Urban Heaven', m: cum[cum.length - 2] });
+  const nearSide = at => { let bi = ROUTES[id].length - 1, bd = 1e9; for (let i = bi; i < pts.length; i++) { const d = dist(pts[i], at); if (d < bd) { bd = d; bi = i; } } return cum[bi]; };
+  SITE.turns.forEach((t, k) => events.push({ kind: 'turn', id: 'turn' + (k + 2), en: t.en, turn: t.turn, m: nearSide(t.at) }));
+  events.push({ kind: 'arrive', id: 'gate', en: 'Urban Heaven', m: nearSide(GATE) + 8 });
   knm.kind = 'turn'; knm.en = `Turn ${knm.turn} at KNM Mills`; knm.stopName = 'Santhaimedu · KNM Mills';
   events.sort((a, b) => a.m - b.m);
   return { id, pts, cum, total: cum[cum.length - 1], hwLen, events };
@@ -84,9 +83,9 @@ function drawRoute(path) {
     L.circleMarker(at, { radius: 6, color: '#0d1b14', weight: 2, fillColor: e.kind === 'turn' ? '#4f8dff' : '#ffffff', fillOpacity: 1 }).addTo(signLayer);
   }
   // site: placeholder plot area beyond the gate (replace with the real layout when supplied)
-  const g = GATE, c1 = dest(dest(g, hb, 70), left, 5), c2 = dest(dest(g, hb + 180, 70), left, 5), c3 = dest(c2, left, 160), c4 = dest(c1, left, 160);
-  siteBox = L.polygon([c1, c2, c3, c4], { color: '#d9b96a', weight: 3, fillColor: '#2e6b4f', fillOpacity: 0.18, dashArray: '6 6' }).addTo(signLayer);
-  L.marker(dest(g, left, 80), { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: '<div class="sign site"><small>OLIVETREE BUILDERS</small><strong>URBAN HEAVEN</strong><i>Veerapandi · Mettupalayam Road</i></div>' }) }).addTo(signLayer);
+  // site outline: Phase 2 boundary placed from Bright's pin (north-up as drawn)
+  siteBox = L.polygon(SITE.outline, { color: '#d9b96a', weight: 3, fillColor: '#2e6b4f', fillOpacity: 0.22, dashArray: '6 6' }).addTo(signLayer);
+  L.marker(SITE.center, { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: '<div class="sign site"><small>OLIVETREE BUILDERS</small><strong>URBAN HEAVEN</strong><i>Veerapandi · Mettupalayam Road</i></div>' }) }).addTo(signLayer);
   car.addTo(map);
 }
 
@@ -174,9 +173,9 @@ function finish() {
 // After arrival: the Phase 2 layout opens in 3D (falls back to the arrival card if WebGL is missing)
 async function openSite3d() {
   try {
-    const mod = await import('./site3d.js?v=s7');
+    const mod = await import('./site3d.js?v=s8');
     $('hud').hidden = true; $('arrived').hidden = true;
-    mod.openSite({ center: dest(GATE, left, 30), onBack: () => { $('hud').hidden = false; $('arrived').hidden = false; } });
+    mod.openSite({ center: SITE.center, onBack: () => { $('hud').hidden = false; $('arrived').hidden = false; } });
   } catch (err) { console.error(err); $('arrived').hidden = false; }
 }
 $('openSite').onclick = openSite3d;

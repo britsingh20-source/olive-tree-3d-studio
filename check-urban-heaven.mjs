@@ -37,13 +37,15 @@ console.log('urban-heaven route checks passed', t.toFixed(2), m.toFixed(2));
   const D = await import('./dist/urban-heaven/map-data.js');
   const len = r => r.reduce((s, p, i) => i ? s + Math.hypot((p[0] - r[i - 1][0]) * 111320, (p[1] - r[i - 1][1]) * 111320 * Math.cos(p[0] * Math.PI / 180)) : 0, 0);
   const t = len(D.ROUTES.thudiyalur) / 1000, m = len(D.ROUTES.mettupalayam) / 1000;
-  assert(t > 10.4 && t < 11.1, 'Thudiyalur road leg ' + t); assert(m > 17.2 && m < 17.9, 'Mettupalayam road leg ' + m);
+  assert(t > 12.5 && t < 13.1, 'Thudiyalur road leg ' + t); assert(m > 15.2 && m < 15.8, 'Mettupalayam road leg ' + m);
   for (const r of Object.values(D.ROUTES)) assert(Math.hypot(r.at(-1)[0] - D.JUNCTION[0], r.at(-1)[1] - D.JUNCTION[1]) < 0.001, 'route ends at KNM turn');
+  assert(Math.hypot(D.SITE.pin[0] - 11.186187, D.SITE.pin[1] - 76.948437) < 1e-6, 'site pin 5WPX+F9');
+  assert(Math.hypot(D.SIDE_ROUTE[0][0] - D.JUNCTION[0], D.SIDE_ROUTE[0][1] - D.JUNCTION[1]) < 0.0003, 'side route starts at junction');
   assert.deepEqual(D.STOPS.thudiyalur.map(s => s.id), ['thudiyalur', 'nggo', 'nnpalayam', 'pnpalayam', 'knm']);
   assert.deepEqual(D.STOPS.mettupalayam.map(s => s.id), ['mettupalayam', 'teachers', 'karamadai', 'kalattiyur', 'knm']);
   assert.equal(D.STOPS.thudiyalur.at(-1).turn, 'left'); assert.equal(D.STOPS.mettupalayam.at(-1).turn, 'right');
   const html = fs.readFileSync('dist/urban-heaven/index.html', 'utf8');
-  assert(html.includes('map.js?v=m13') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
+  assert(html.includes('map.js?v=m14') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
   console.log('map tour checks passed', t.toFixed(2), m.toFixed(2));
 }
 // Phase 2 3D layout (site3d.js) — traced from the PDF

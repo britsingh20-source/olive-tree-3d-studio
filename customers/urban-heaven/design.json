@@ -6,7 +6,13 @@
   "site": {
     "name": "Urban Heaven",
     "locality": "Veerapandi, Mettupalayam Road, Coimbatore",
-    "publicReference": "Listed publicly as a residential plot layout in Veerapandi, RERA TN/11/Layout/3675/2024 (ghar.tv listing); not yet confirmed by Bright as the same project"
+    "publicReference": "Listed publicly as a residential plot layout in Veerapandi, RERA TN/11/Layout/3675/2024 (ghar.tv listing); not yet confirmed by Bright as the same project",
+    "pin": {
+      "plusCode": "5WPX+F9 Coimbatore",
+      "lat": 11.186187,
+      "lon": 76.948437,
+      "source": "Bright, 20 Nov 16:32"
+    }
   },
   "confirmed": {
     "source": "Bright, chat 19 Nov 2026",
@@ -50,16 +56,16 @@
     "car": "Original SUV (suv.js), gloss black: own trapezoid grille with chrome frame, three chrome bars and rectangular dark mesh; slim LED headlamps with twin chrome projectors and DRL strip; fog lamps in black recesses; silver skid plate; roof rails; yellow PROPERTY MANAGER door decals and roof sign; yellow URBAN HEAVEN plates",
     "interior": "Procedural cabin (interior.js) styled after Bright's references: dark chocolate leather with light contrast stitching (seats, door inserts, dash band, armrests), perforated seat inserts, black soft-touch dash top, chrome-bezel vents and centre clock, piano-black centre stack framed by stitched leather pillars with screen (live route), blue climate LCD and chrome knobs, dark wood console with chrome gear gate, black wheel with silver lower spokes and button pads (plain hub, no logo), blue-ring dials, beige roof lining with grab handles and dome lights, black carpet, split 2nd row with armrest, PROPERTY MANAGER windscreen sun strip. No driver figure",
     "branding": "Olivetree Builders text wordmark with a simple leaf mark drawn by us (not an official logo): front seatbacks + headrests, rear floor mats, windscreen sun strip, touchscreen header, cluster, page header. Replace with the official logo file when Bright supplies it",
-    "mapTour": "Road geometry from OSRM/OpenStreetMap (Thudiyalur→KNM turn 10.7 km, Mettupalayam→KNM turn 19.4 km; via Karamadai). KNM Mills turn placed at Veerapandi Pirivu (11.1693, 76.9520) — needs Bright's pin. Side road drawn as straight legs west of the highway (750 m, right 500 m, left 300 m) — not the real lanes. Site outline is a placeholder rectangle. Stop pins for NGGO Colony / Narasimhanaickenpalayam / Karamadai approximate",
+    "mapTour": "Road geometry from OSRM/OpenStreetMap. Highway leaves Mettupalayam Road at 11.18607, 76.96040 (road junction leading to the pin; taken as the KNM Mills turn — not confirmed by name). Real side roads: west ~0.93 km, right, ~80 m, left, ~0.4 km to the 12.2 m Panchayat road, left (south) ~0.12 km, right into the 9.0 m road. Thudiyalur 14.4 km, Mettupalayam 17.0 km in total",
     "speed": "Displayed km/h; playback 10× real time (Thudiyalur ride ≈ 34 s, Mettupalayam ≈ 54 s). Eases 155→80 over the 600 m before the KNM turn; rolls in to the gate from 80. Board highlight: 600 m before to 400 m after each stop (~2 s on screen)",
     "mettupalayamRoute": "Mettupalayam leg now from the bus stand along the old Mettupalayam–Coimbatore Road via Teachers Colony (OSM bus stop), Karamadai bus stand, Kalattiyur (OSM village; Tamil name not shown — unconfirmed), joining NH181 to the KNM turn: 17.5 km road + ~1.6 km side road. No named localities in OSM between Kalattiyur and KNM (~7 km); Bright to add any he wants",
-    "phase2": "3D plot shapes traced from the indicative drawing (scale from 29'10\" x 37'5\" plot pitch, 0.176 m/px). Plots 1, 14, 27, 40, 46 are drawn off the table areas in the PDF itself; 3D follows the drawing, plot cards show the table. Entrance arch assumed on the 9.0 m road at the Panchayat road; compound wall on N/W/S sides; surroundings are real Esri World Imagery (z15/z17/z19 rings, live, attributed) centred on the APPROXIMATE site position (30 m west of the modelled gate) — until the gate pin arrives, the imagery under/around the layout is the nearby area, not the exact land. Layout orientation: north up as drawn — not yet aligned to the real site on the map"
+    "phase2": "3D plot shapes traced from the indicative drawing (scale from 29'10\" x 37'5\" plot pitch, 0.176 m/px). Plots 1, 14, 27, 40, 46 are drawn off the table areas in the PDF itself; 3D follows the drawing, plot cards show the table. Entrance arch assumed on the 9.0 m road at the Panchayat road; compound wall on N/W/S sides; surroundings are real Esri World Imagery (z15/z17/z19 rings, live, attributed) centred on the APPROXIMATE site position (30 m west of the modelled gate) — until the gate pin arrives, the imagery under/around the layout is the nearby area, not the exact land. Layout orientation: north up as drawn — not yet aligned to the real site on the map; placed from the pin: north-up, Panchayat road centre on the pin longitude, layout centred on the pin latitude — position/rotation of the boundary on the land not surveyed"
   },
   "openQuestions": [
     "Which internal road is the main entrance (arch placed on the 9.0 m road)?",
-    "Google Maps pins: Urban Heaven gate and KNM Mills turn (also needed to align the 3D layout with the map)",
     "Official Olivetree Builders logo file",
-    "Plot availability / sold status, if it should be shown"
+    "Plot availability / sold status, if it should be shown",
+    "Is the junction at 11.18607, 76.96040 the KNM Mills turn? Is the layout's north edge / Panchayat road where the 3D places it?"
   ],
   "phase2Source": {
     "file": "Veerapandi Phase 2 Layout - A4.pdf",

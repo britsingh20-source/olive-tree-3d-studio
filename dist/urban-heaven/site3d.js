@@ -51,7 +51,7 @@ const at = (start, dur, fn) => anim.push({ start, dur, fn });
 // ---------- real surroundings ----------
 // Approximate site centre (lat, lon); the map tour passes the computed position. Until Bright drops a pin
 // for the gate, the imagery under the layout is the nearby area, not the exact plot land.
-let SITE_CENTER = [11.1677, 76.9420];
+let SITE_CENTER = [11.186187, 76.948113]; // from Bright's pin 5WPX+F9
 const TILE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/';
 function lonLatToTile(lat, lon, z) {
   const n = 2 ** z, x = (lon + 180) / 360 * n, r = lat * Math.PI / 180;
@@ -217,8 +217,8 @@ function build() {
   const top = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.7, 2.6), new THREE.MeshStandardMaterial({ color: '#26323b', roughness: 0.1, metalness: 0.6 })); top.position.set(0, 1.65, 0.3);
   const sign = new THREE.Mesh(new THREE.BoxGeometry(1, 0.3, 0.3), new THREE.MeshLambertMaterial({ color: '#f6c519' })); sign.position.set(0, 2.15, 0.2);
   cab.add(body, top, sign); cab.visible = false;
-  const roadX = (mr.x0 * 0.35 + mr.x1 * 0.65);
-  cabPath = new THREE.CatmullRomCurve3([P(roadX, B[2][1] + 34), P(roadX, ez + 18), P(roadX - 2, ez + 4), P(mr.x0 - 1, ez + 1.6), P(ex - 8, ez + 1.6), P(ex - 22, ez + 1.6)]);
+  const roadX = (mr.x0 * 0.35 + mr.x1 * 0.65); // southbound, keep left = east lane (India drives on the left)
+  cabPath = new THREE.CatmullRomCurve3([P(roadX, B[0][1] - 34), P(roadX, ez - 18), P(roadX - 2, ez - 4), P(mr.x0 - 1, ez + 1.6), P(ex - 8, ez + 1.6), P(ex - 22, ez + 1.6)]); // arrives from the north, as on the real roads
   at(6.6, 4.2, k => {
     cab.visible = k > 0; const u = ease(k) * 0.999, p = cabPath.getPointAt(u), q = cabPath.getPointAt(Math.min(1, u + 0.002));
     cab.position.copy(p); cab.lookAt(q.x, p.y, q.z); cab.rotateY(Math.PI);
