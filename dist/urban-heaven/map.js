@@ -155,7 +155,7 @@ function placeCar() {
 function startTour(id) {
   path = buildPath(id); m = 0; fired = new Set(); finished = false; follow = true; hold = 0;
   drawRoute(path); buildStrip(); placeCar(); updateHud();
-  $('pickup').hidden = true; $('arrived').hidden = true; $('hud').hidden = false;
+  $('pickup').hidden = true; $('arrived').hidden = true; $('hud').hidden = false; $('kmBox').hidden = false;
   $('routeName').textContent = `${STOPS[id][0].en} → Urban Heaven · ≈ ${(path.total / 1000).toFixed(1)} km`;
   try { localStorage.setItem('urban-heaven-pickup', id); } catch (e) {}
   // overview of the whole route first, then drop down to the cab
@@ -171,22 +171,31 @@ function finish() {
   setTimeout(() => { if (finished) openSite3d(); }, 2800);
 }
 // After arrival: the Phase 2 layout opens in 3D (falls back to the arrival card if WebGL is missing)
-async function openSite3d() {
+async function openSite3d(direct = false) {
   try {
     const mod = await import('./site3d.js?v=s26');
-    $('hud').hidden = true; $('arrived').hidden = true;
-    mod.openSite({ center: SITE.center, onBack: () => { $('hud').hidden = false; $('arrived').hidden = false; } });
+    $('hud').hidden = true; $('arrived').hidden = true; $('pickup').hidden = true;
+    mod.openSite({ center: SITE.center, onBack: direct ? showPicker : () => { $('hud').hidden = false; $('arrived').hidden = false; } });
   } catch (err) { console.error(err); $('arrived').hidden = false; }
 }
-$('openSite').onclick = openSite3d;
+$('openSite').onclick = () => openSite3d();
+// Direct site view: no cab ride — zoom the map into the site, then open the 3D layout
+function directSite() {
+  setPlaying(false); $('kmBox').hidden = true; path = null; $('pickup').hidden = true; $('hud').hidden = true; $('arrived').hidden = true;
+  routeLayer.clearLayers(); signLayer.clearLayers(); map.removeLayer(car); drawOverview();
+  if (!baseIsSat) $('layerBtn').click();
+  map.flyToBounds(L.latLngBounds(SITE.outline), { padding: [60, 60], maxZoom: 18.5, duration: 2.4 });
+  setTimeout(() => openSite3d(true), 2700);
+}
+$('directBtn').onclick = directSite;
 function setPlaying(v) { playing = v; $('playBtn').textContent = v ? 'Pause' : 'Play'; }
 $('playBtn').onclick = () => { if (finished) return startTour(path.id); follow = true; setPlaying(!playing); };
-const showPicker = () => { setPlaying(false); $('pickup').hidden = false; $('arrived').hidden = true; };
+function showPicker() { setPlaying(false); $('kmBox').hidden = true; $('pickup').hidden = false; $('arrived').hidden = true; $('hud').hidden = true; if (!path) { drawOverview(); map.flyToBounds(OVERVIEW, { padding: [40, 40], duration: 1.2 }); } }
 $('changeBtn').onclick = showPicker; $('againPick').onclick = showPicker; $('again').onclick = () => startTour(path.id);
 $('recenter').onclick = () => { follow = true; if (path) map.setView(pointAt(path, m).ll, 16); };
 map.on('dragstart', () => { follow = false; });
 for (const b of document.querySelectorAll('[data-pickup]')) b.onclick = () => startTour(b.dataset.pickup);
-for (const id of Object.keys(ROUTES)) { const el = document.querySelector(`[data-km="${id}"]`); if (el) el.textContent = `≈ ${(buildPath(id).total / 1000).toFixed(1)} km`; }
+for (const id of Object.keys(ROUTES)) { const el = document.querySelector(`[data-km="${id}"]`); if (el) el.textContent = `Cab ride · ≈ ${(buildPath(id).total / 1000).toFixed(1)} km`; }
 
 let last = performance.now();
 function frame(now) {
@@ -200,9 +209,17 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-// overview behind the chooser: both routes
-for (const id of Object.keys(ROUTES)) L.polyline(buildPath(id).pts, { color: '#f6c519', weight: 4, opacity: 0.8 }).addTo(routeLayer);
-map.fitBounds(L.latLngBounds(ROUTES.thudiyalur.concat(ROUTES.mettupalayam)), { padding: [40, 40] });
+// overview behind the chooser: both routes, both pickup points and the site
+const OVERVIEW = L.latLngBounds(ROUTES.thudiyalur.concat(ROUTES.mettupalayam));
+function drawOverview() {
+  routeLayer.clearLayers(); signLayer.clearLayers();
+  for (const id of Object.keys(ROUTES)) L.polyline(buildPath(id).pts, { color: '#f6c519', weight: 4, opacity: 0.85 }).addTo(routeLayer);
+  for (const id of Object.keys(ROUTES)) { const st = STOPS[id][0]; L.marker(st.at, { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: `<div class="sign pickup"><strong>${st.en.toUpperCase()}</strong><i>PICKUP POINT</i></div>` }) }).addTo(signLayer); }
+  L.polygon(SITE.outline, { color: '#d9b96a', weight: 3, fillColor: '#2e6b4f', fillOpacity: 0.3 }).addTo(signLayer);
+  L.marker(SITE.center, { interactive: false, icon: L.divIcon({ className: 'sign-wrap', iconSize: [0, 0], html: '<div class="sign site"><small>OLIVETREE BUILDERS</small><strong>URBAN HEAVEN</strong><i>Veerapandi</i></div>' }) }).addTo(signLayer);
+}
+drawOverview();
+map.fitBounds(OVERVIEW, { padding: [40, 40], paddingBottomRight: [40, 200] });
 $('loading').hidden = true;
-const want = new URLSearchParams(location.search).get('from'); if (want && ROUTES[want]) startTour(want);
+const q = new URLSearchParams(location.search), want = q.get('from'); if (want && ROUTES[want]) startTour(want); else if (q.get('view') === 'site') directSite();
 window.__map = { map, get m() { return m; }, set m(v) { m = v; }, get path() { return path; }, startTour, finish };

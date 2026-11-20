@@ -31,6 +31,15 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .controls{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}.controls .group{display:flex;gap:4px}
 .route-name{text-align:center;font-size:12px;opacity:.8;margin:0 0 8px}
 .hint{position:fixed;right:16px;top:70px;font-size:12px;opacity:.75;max-width:180px;text-align:right}
+.chooser{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:14px;padding-bottom:max(14px,env(safe-area-inset-bottom));pointer-events:none}
+.chooser-card{pointer-events:auto;width:min(760px,100%);background:#f6f4eef2;color:var(--ink);border-radius:18px;padding:14px 16px 16px;box-shadow:0 18px 50px #0006;backdrop-filter:blur(8px)}
+.chooser-card .eyebrow{letter-spacing:.18em;font-size:10px;font-weight:700;color:var(--green);margin:0}
+.chooser-card h1{font:600 20px Georgia,serif;margin:3px 0 10px}
+.choices{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.choice{display:flex;gap:10px;align-items:center;text-align:left;background:#fff;color:var(--ink);border:1.5px solid #d9dfd5;border-radius:13px;padding:10px 12px;backdrop-filter:none}
+.choice:hover{border-color:var(--green);background:#eef4ee}.choice .ci{font-size:22px}.choice b{display:block;font-size:14px}.choice small{display:block;font-size:11px;color:#5f6f67;margin-top:1px}
+.choice.direct{background:var(--green);border-color:var(--green);color:#fff}.choice.direct small{color:#e6efe9}.choice.direct:hover{background:#285e45}
+@media(max-width:640px){.choices{grid-template-columns:1fr}.chooser-card h1{font-size:18px}.choice{padding:9px 11px}}
 .overlay{position:fixed;inset:0;display:grid;place-items:center;padding:18px;background:radial-gradient(circle at 50% 40%,#14211c99,#14211cee)}
 .card{width:min(760px,100%);background:#f6f4ee;color:var(--ink);border-radius:20px;padding:26px;box-shadow:0 30px 80px #0008}
 .card .eyebrow{letter-spacing:.18em;font-size:11px;font-weight:700;color:var(--green);margin:0}
@@ -105,7 +114,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 <div id="loading" class="loading">Loading the map…</div>
 
 <div class="topbar"><div class="title"><b>PROPERTY MANAGER</b><span>by Olivetree Builders · Urban Heaven, Veerapandi</span></div>
-<div class="km" id="kmBox"><div><strong id="kmDone">0.0</strong>km travelled</div><div><strong id="kmLeft">–</strong>km to site</div></div></div>
+<div class="km" id="kmBox" hidden><div><strong id="kmDone">0.0</strong>km travelled</div><div><strong id="kmLeft">–</strong>km to site</div></div></div>
 
 <section id="hud" hidden>
   <div class="next" aria-live="polite"><i id="nextIcon">⦿</i><div><p id="nextText">Starting</p><small id="nextDist"></small></div></div>
@@ -117,17 +126,14 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
       <button id="changeBtn">Change pickup</button></div></div>
 </section>
 
-<section id="pickup" class="overlay" aria-labelledby="pickTitle"><div class="card">
-  <p class="eyebrow">OLIVETREE BUILDERS · PROPERTY MANAGER</p>
-  <h1 id="pickTitle">Where should the cab pick you up?</h1>
-  <p class="lede">Choose your pickup point and follow the cab on the map along Mettupalayam Road to Urban Heaven, Veerapandi.</p>
-  <div class="picks">
-    <button class="pick" data-pickup="thudiyalur"><strong>Thudiyalur</strong><em data-km="thudiyalur">≈ 12 km</em>
-      <ol><li>NGGO Colony</li><li>Narasimhanaickenpalayam</li><li>Periyanaickenpalayam</li><li>Santhaimedu · left at KNM Mills</li><li>~750 m, right · ~500 m, left</li><li>Straight road → Urban Heaven</li></ol></button>
-    <button class="pick" data-pickup="mettupalayam"><strong>Mettupalayam</strong><em data-km="mettupalayam">≈ 21 km</em>
-      <ol><li>Teachers Colony</li><li>Karamadai</li><li>Kalattiyur</li><li>Santhaimedu · right at KNM Mills</li><li>~750 m, right · ~500 m, left</li><li>Straight road → Urban Heaven</li></ol></button>
+<section id="pickup" class="chooser" aria-labelledby="pickTitle"><div class="chooser-card">
+  <p class="eyebrow">OLIVETREE BUILDERS · URBAN HEAVEN</p>
+  <h1 id="pickTitle">Explore Urban Heaven, Veerapandi</h1>
+  <div class="choices">
+    <button class="choice" data-pickup="thudiyalur"><span class="ci">🚕</span><span><b>From Thudiyalur</b><small data-km="thudiyalur">Cab ride · ≈ 14 km</small></span></button>
+    <button class="choice" data-pickup="mettupalayam"><span class="ci">🚕</span><span><b>From Mettupalayam</b><small data-km="mettupalayam">Cab ride · ≈ 17 km</small></span></button>
+    <button class="choice direct" id="directBtn"><span class="ci">📍</span><span><b>Direct site view</b><small>Skip the ride · Phase 2 layout in 3D</small></span></button>
   </div>
-  <p class="note">Road distances from OpenStreetMap. Site position from the Urban Heaven pin; layout orientation indicative.</p>
 </div></section>
 
 <section id="arrived" class="overlay" hidden style="background:linear-gradient(#14211c00 40%,#14211cdd)"><div class="card" style="align-self:end">
@@ -160,5 +166,5 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 </section>
 <noscript>Please enable JavaScript to take the site tour.</noscript>
 <script src="../vendor/leaflet/leaflet.js"></script>
-<script type="module" src="./map.js?v=m32"></script>
+<script type="module" src="./map.js?v=m34"></script>
 </body></html>

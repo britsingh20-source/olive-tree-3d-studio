@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m34 (20 Nov 2026) — compact opening screen + Direct site view
+
+- Opening = live satellite overview (both routes, both pickup boards, Urban Heaven site outline) with a compact bottom panel: 🚕 From Thudiyalur (≈14.4 km), 🚕 From Mettupalayam (≈17.0 km), 📍 Direct site view. Direct: map zooms to the site (2.4 s), then the 3D Phase 2 layout opens; ← Map returns to the opening panel. Links: `?from=thudiyalur`, `?from=mettupalayam`, `?view=site`. km counter hidden outside rides.
+- Checked headless Chrome 1280×760 and 390×780: opening, Direct → 3D, back, then Mettupalayam ride starts. No page errors.
+
 ## Rev m32 / s26 (20 Nov 2026) — sharp place names
 
 - Bright: school/college names looked blurred. Cause: small canvas textures shrunk with mipmaps. Now all screen-space labels are drawn at ~1.3× their on-screen device pixels (DPR-aware) without mipmaps; long names no longer squeezed (canvas up to 1100 px, shortened forms like 'Hr. Sec. School', 'Govt. Hospital, PN Palayam'); colliding names are hidden by priority (focused > stars > nearer), distance badges always win. Also fixed a broken label() edit caught in testing.
