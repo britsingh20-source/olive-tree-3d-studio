@@ -17,6 +17,7 @@ const $ = id => document.getElementById(id);
 const ease = t => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
 const back = t => { t = Math.min(1, Math.max(0, t)); const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
 
+let hemi, sun, lamps = [], tweens = [], houses = new Map(), mood = 'day', showcase = false;
 let renderer, scene, camera, controls, root, started = false, raf = 0, t0 = 0, clock = 0, playing = false, onExit = () => {};
 const anim = [];      // { start, dur, fn(k) }
 const plotMeshes = [];
@@ -36,8 +37,8 @@ function label(text, { size = 3, bg = 'rgba(17,20,24,.82)', fg = '#fff', w = 256
     g.fillStyle = bg; g.beginPath(); g.roundRect(4, 4, w - 8, h - 8, 26); g.fill();
     g.fillStyle = fg; g.font = `700 ${font}px "DM Sans", sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, w / 2, h / 2 + 4);
   });
-  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true }));
-  s.scale.set(size * w / h, size, 1); s.renderOrder = 10; return s;
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true, sizeAttenuation: false })); // constant on-screen size, never giant up close
+  const k = size * 0.0095 * (matchMedia('(max-width: 640px)').matches ? 0.85 : 1); s.scale.set(k * w / h, k, 1); s.renderOrder = 10; return s;
 }
 function shapeFrom(poly) {
   const s = new THREE.Shape(); poly.forEach(([x, z], i) => (i ? s.lineTo(x - CX, -(z - CZ)) : s.moveTo(x - CX, -(z - CZ)))); s.closePath(); return s;
@@ -98,8 +99,9 @@ function build() {
   scene = new THREE.Scene();
   scene.background = skyTexture(); scene.fog = new THREE.Fog('#c9d6dc', 900, 16000);
   scene.add(new THREE.HemisphereLight('#eef5ff', '#6f6a55', 1.35));
-  const sun = new THREE.DirectionalLight('#fff1d6', 2.4); sun.position.set(-60, 120, -40); sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -110, right: 110, top: 110, bottom: -110, far: 400 });
+  hemi = scene.children.find(o => o.isHemisphereLight);
+  sun = new THREE.DirectionalLight('#fff1d6', 2.4); sun.position.set(-60, 120, -40); sun.castShadow = true;
+  sun.shadow.bias = -0.0006; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -110, right: 110, top: 110, bottom: -110, far: 400 });
   scene.add(sun);
   root = new THREE.Group(); scene.add(root);
 
@@ -127,26 +129,54 @@ function build() {
 
   // 12.2 m existing Panchayat road (east)
   const asphalt = new THREE.MeshLambertMaterial({ color: '#3c3e41' });
-  const RL = D + 70, mr = LAYOUT.mainRoad, mainRoad = new THREE.Mesh(new THREE.BoxGeometry(mr.x1 - mr.x0, 0.1, RL), asphalt); // site frontage only; the real road continues in the imagery
-  mainRoad.position.copy(P((mr.x0 + mr.x1) / 2, CZ, 0.05)); mainRoad.receiveShadow = true; root.add(mainRoad);
+  const RL = D + 70, mr = LAYOUT.mainRoad, mainRoad = new THREE.Mesh(new THREE.BoxGeometry(mr.x1 - mr.x0, 0.3, RL), asphalt); // site frontage only; the real road continues in the imagery
+  mainRoad.position.copy(P((mr.x0 + mr.x1) / 2, CZ, 0.15)); mainRoad.receiveShadow = true; root.add(mainRoad);
   const gift = slab(LAYOUT.giftStrip, 0.06, new THREE.MeshLambertMaterial({ color: '#c8c0b2' })); root.add(gift);
   const dashTex = canvasTex(32, 256, (g, w, h) => { g.fillStyle = '#3c3e41'; g.fillRect(0, 0, w, h); g.fillStyle = '#f2f2ea'; g.fillRect(w / 2 - 2, 0, 4, h * 0.5); });
   dashTex.wrapT = THREE.RepeatWrapping; dashTex.repeat.set(1, RL / 10);
   const mrLine = new THREE.Mesh(new THREE.PlaneGeometry(0.4, RL), new THREE.MeshBasicMaterial({ map: dashTex }));
-  mrLine.rotation.x = -Math.PI / 2; mrLine.position.copy(P((mr.x0 + mr.x1) / 2, CZ, 0.11)); root.add(mrLine);
+  mrLine.rotation.x = -Math.PI / 2; mrLine.position.copy(P((mr.x0 + mr.x1) / 2, CZ, 0.34)); root.add(mrLine);
   const mrLbl = label('12.2 m Panchayat Road', { size: 2.6, w: 600, font: 54 }); mrLbl.position.copy(P((mr.x0 + mr.x1) / 2, B[0][1] - 14, 2)); root.add(mrLbl);
 
   // internal roads roll out from the main road westwards
   for (const [i, r] of LAYOUT.roads.entries()) {
     const len = mr.x0 - B[0][0];
-    const road = new THREE.Mesh(new THREE.BoxGeometry(len, 0.14, r.z1 - r.z0), asphalt); road.receiveShadow = true;
-    const g = new THREE.Group(); g.position.copy(P(mr.x0, (r.z0 + r.z1) / 2, 0.07)); root.add(g);
+    const road = new THREE.Mesh(new THREE.BoxGeometry(len, 0.3, r.z1 - r.z0), asphalt); road.receiveShadow = true;
+    const g = new THREE.Group(); g.position.copy(P(mr.x0, (r.z0 + r.z1) / 2, 0.15)); root.add(g);
     road.position.x = -len / 2; g.add(road);
     const line = new THREE.Mesh(new THREE.PlaneGeometry(len, 0.25), new THREE.MeshBasicMaterial({ color: '#f2f2ea' }));
-    line.rotation.x = -Math.PI / 2; line.position.set(-len / 2, 0.075, 0); g.add(line);
+    line.rotation.x = -Math.PI / 2; line.position.set(-len / 2, 0.19, 0); g.add(line); // 4 cm above the 30 cm road slab
     const lbl = label(r.name.replace('wide road', 'road'), { size: 2.2, w: 360, font: 60 }); lbl.position.set(-len * 0.18, 1.2, 0); g.add(lbl); lbl.visible = false;
     g.scale.x = 0.001;
     at(1.4 + i * 0.3, 1.1, k => { g.scale.x = Math.max(0.001, ease(k)); lbl.visible = k > 0.9; });
+  }
+
+  // street lights along every internal road edge + avenue trees on the Panchayat road
+  const poleM = new THREE.MeshStandardMaterial({ color: '#c9ced3', roughness: 0.35, metalness: 0.7 });
+  const headM = new THREE.MeshStandardMaterial({ color: '#fff4d6', emissive: '#ffcf6b', emissiveIntensity: 0 });
+  const glowTex = canvasTex(64, 64, (g) => { const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,214,120,1)'); gr.addColorStop(1, 'rgba(255,190,80,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); });
+  const poolTex = canvasTex(128, 128, (g) => { const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64); gr.addColorStop(0, 'rgba(255,200,110,.55)'); gr.addColorStop(1, 'rgba(255,200,110,0)'); g.fillStyle = gr; g.fillRect(0, 0, 128, 128); });
+  const lamp = (x, z, faceZ, delay) => {
+    const g = new THREE.Group(); g.position.copy(P(x, z)); root.add(g);
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.09, 6, 8), poleM); pole.position.y = 3; pole.castShadow = true; g.add(pole);
+    const arm = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.08, 1.2), poleM); arm.position.set(0, 5.95, faceZ * 0.6); g.add(arm);
+    const head = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.12, 0.6), headM); head.position.set(0, 5.88, faceZ * 1.15); g.add(head);
+    const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0 })); glow.scale.setScalar(3.2); glow.position.copy(head.position); g.add(glow);
+    const pool = new THREE.Mesh(new THREE.PlaneGeometry(9, 9), new THREE.MeshBasicMaterial({ map: poolTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0 }));
+    pool.rotation.x = -Math.PI / 2; pool.position.set(0, 0.36, faceZ * 2.2); g.add(pool);
+    lamps.push({ glow, pool }); g.scale.setScalar(0.001); at(delay, 0.6, k => g.scale.setScalar(Math.max(0.001, back(k))));
+  };
+  LAYOUT.roads.forEach((r, i) => {
+    for (let x = B[0][0] + 6, j = 0; x < mr.x0 - 3; x += 13, j++) {
+      const north = j % 2 === 0; // staggered on both sides
+      lamp(x, north ? r.z0 + 0.35 : r.z1 - 0.35, north ? 1 : -1, 2.4 + i * 0.2 + j * 0.04);
+    }
+  });
+  for (let z = B[0][1] - 30; z < B[2][1] + 30; z += 11) {
+    const tx = mr.x1 + 3.2, tree = new THREE.Group(); tree.position.copy(P(tx, z)); root.add(tree);
+    const hgt = 3 + rnd() * 1.5, tt = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.3, hgt, 7), trunk); tt.position.y = hgt / 2; tt.castShadow = true; tree.add(tt);
+    for (let k = 0; k < 6; k++) { const leaf = new THREE.Mesh(new THREE.IcosahedronGeometry(1 + rnd() * 0.7, 1), new THREE.MeshStandardMaterial({ color: ['#2f5e27', '#3d6f2e', '#4a7d35'][k % 3], roughness: 0.95, flatShading: true })); leaf.position.set((rnd() - 0.5) * 2.2, hgt + 0.6 + rnd() * 1.2, (rnd() - 0.5) * 2.2); leaf.castShadow = true; tree.add(leaf); }
+    tree.scale.setScalar(0.001); at(2.2 + (z - B[0][1]) / 400, 0.7, k => tree.scale.setScalar(Math.max(0.001, back(k))));
   }
 
   // park with trees, P and EB
@@ -326,14 +356,80 @@ function flyTo(target, distance, polar) { // smooth camera move; keeps the curre
   nbFly = { t: 0, fromP: camera.position.clone(), fromT: controls.target.clone(), toP: end, toT: target.clone() };
 }
 
+// ---------- moods: day / sunset / night ----------
+function sky(stops) { return canvasTexBare(4, 512, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); stops.forEach(([o, c]) => gr.addColorStop(o, c)); g.fillStyle = gr; g.fillRect(0, 0, w, h); }); }
+const MOODS = {
+  day: { sky: [[0, '#5d93c9'], [0.42, '#9fc0dc'], [0.56, '#c3d3dc'], [1, '#c9d6dc']], fog: '#c9d6dc', hemi: ['#eef5ff', '#6f6a55', 1.35], sun: ['#fff1d6', 2.4, [-60, 120, -40]], lamps: 0, glow: 0 },
+  sunset: { sky: [[0, '#2c3e70'], [0.35, '#c4607a'], [0.5, '#f29a52'], [0.58, '#f7c27a'], [1, '#e9b98a']], fog: '#e7b48a', hemi: ['#ffd2a8', '#4a3a52', 0.85], sun: ['#ff9a4a', 2.1, [-140, 28, 30]], lamps: 0.7, glow: 0.12 },
+  night: { sky: [[0, '#050a1a'], [0.45, '#0d1a36'], [0.58, '#1c2a4a'], [1, '#141d30']], fog: '#141d30', hemi: ['#5c6f9e', '#0b0d14', 0.32], sun: ['#9fb4ff', 0.25, [80, 120, -60]], lamps: 1, glow: 0.28 },
+};
+function setMood(name) {
+  mood = name; const m = MOODS[name];
+  scene.background = sky(m.sky); scene.fog.color.set(m.fog);
+  hemi.color.set(m.hemi[0]); hemi.groundColor.set(m.hemi[1]); hemi.intensity = m.hemi[2];
+  sun.color.set(m.sun[0]); sun.intensity = m.sun[1]; sun.position.set(...m.sun[2]);
+  for (const l of lamps) { l.glow.material.opacity = m.lamps; l.pool.material.opacity = m.lamps * 0.9; }
+  lamps.length && (lamps[0].glow.parent.children[2].material.emissiveIntensity = m.lamps * 2.2);
+  for (const pm of plotMeshes) { pm.userData.mat.emissive.set(pm === selected ? '#5a4a00' : pm.userData.mat.color).multiplyScalar(pm === selected ? 1 : m.glow); }
+  for (const b of document.querySelectorAll('[data-mood]')) b.setAttribute('aria-pressed', String(b.dataset.mood === name));
+}
+
+// ---------- sample home on a plot ----------
+function sampleHome(p) {
+  const xs = p.poly.map(q => q[0]), zs = p.poly.map(q => q[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), z0 = Math.min(...zs), z1 = Math.max(...zs);
+  // which side faces a road: north/south internal road, else the Panchayat road on the east
+  const north = LAYOUT.roads.some(r => Math.abs(z0 - r.z1) < 1.5), south = LAYOUT.roads.some(r => Math.abs(z1 - r.z0) < 1.5);
+  const front = north ? 'n' : south ? 's' : 'e';
+  const set = { n: [1, 1, 2.6, 1.2], s: [1, 1, 1.2, 2.6], e: [1.2, 2.6, 1, 1] }[front]; // [west, east, north, south] setbacks
+  const hx0 = x0 + set[0], hx1 = x1 - set[1], hz0 = z0 + set[2], hz1 = z1 - set[3];
+  const W = hx1 - hx0, Dd = hz1 - hz0, cx = (hx0 + hx1) / 2, cz = (hz0 + hz1) / 2;
+  const g = new THREE.Group(); g.position.copy(P(cx, cz, 0.62)); root.add(g);
+  const wall = new THREE.MeshStandardMaterial({ color: '#fbf3e4', roughness: 0.8 }), wood = new THREE.MeshStandardMaterial({ color: '#9a6238', roughness: 0.55 }), accent = new THREE.MeshStandardMaterial({ color: '#c8693f', roughness: 0.7 });
+  const glass = new THREE.MeshStandardMaterial({ color: '#7fa6c2', roughness: 0.08, metalness: 0.3, emissive: '#ffcf80', emissiveIntensity: mood === 'day' ? 0 : 0.9 });
+  const dark = new THREE.MeshStandardMaterial({ color: '#3a3d42', roughness: 0.7 }), grey = new THREE.MeshStandardMaterial({ color: '#c9c3b8', roughness: 0.9 });
+  const add = (geo, mat, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; g.add(m); return m; };
+  // local frame: +z points to the front (road) side
+  const rotY = { n: Math.PI, s: 0, e: Math.PI / 2 }[front];
+  const fw = front === 'e' ? Dd : W, fd = front === 'e' ? W : Dd; // width along the front, depth into the plot
+  const body = new THREE.Group(); body.rotation.y = rotY; g.add(body);
+  const put = (geo, mat, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; body.add(m); return m; };
+  put(new THREE.BoxGeometry(fw, 0.45, fd), grey, 0, 0.22, 0);                                   // plinth
+  put(new THREE.BoxGeometry(fw, 3.1, fd * 0.92), wall, 0, 0.45 + 1.55, -fd * 0.04);             // ground floor
+  put(new THREE.BoxGeometry(fw * 0.82, 3.0, fd * 0.7), wall, -fw * 0.09, 3.55 + 1.5, -fd * 0.12); // first floor (stepped back)
+  put(new THREE.BoxGeometry(fw * 0.86, 0.25, fd * 0.74), dark, -fw * 0.09, 6.15, -fd * 0.12);    // roof slab
+  put(new THREE.BoxGeometry(fw * 0.32, 0.9, fd * 0.3), wall, fw * 0.2, 6.7, -fd * 0.3);           // staircase head room
+  put(new THREE.BoxGeometry(fw * 0.84, 0.5, 0.12), accent, -fw * 0.09, 6.0, fd * 0.23 + 0.06);  // terracotta parapet band
+  put(new THREE.BoxGeometry(fw * 1.02, 0.28, 0.5), accent, 0, 3.45, fd * 0.42);                 // ground-floor sunshade
+  const lawn = put(new THREE.BoxGeometry(fw * 0.96, 0.05, 1.6), new THREE.MeshStandardMaterial({ color: '#5e9a45', roughness: 1 }), 0, 0.03, fd / 2 + 0.05); lawn.castShadow = false;
+  put(new THREE.BoxGeometry(fw * 0.42, 0.14, 1.4), dark, fw * 0.26, 3.62, fd * 0.36);           // balcony slab
+  put(new THREE.BoxGeometry(fw * 0.42, 0.9, 0.06), glass, fw * 0.26, 4.1, fd * 0.36 + 0.68);     // glass railing
+  put(new THREE.BoxGeometry(fw * 0.3, 2.1, 0.08), wood, -fw * 0.22, 1.5, fd * 0.42 + 0.02);      // wooden main door + cladding
+  put(new THREE.BoxGeometry(fw * 0.34, 1.5, 0.06), glass, fw * 0.2, 1.8, fd * 0.42 + 0.03);      // ground window
+  put(new THREE.BoxGeometry(fw * 0.3, 1.7, 0.06), glass, -fw * 0.16, 4.9, fd * 0.23 + 0.03);     // first-floor window
+  put(new THREE.BoxGeometry(fw * 0.12, 6.2, 0.4), wood, fw * 0.47, 3.4, fd * 0.3);               // vertical wood fin
+  put(new THREE.BoxGeometry(fw, 0.9, 0.18), wall, 0, 0.45, fd / 2 + set[2] * 0.0 + 1.0);         // front compound wall
+  put(new THREE.BoxGeometry(fw * 0.34, 1.2, 0.08), dark, fw * 0.25, 0.75, fd / 2 + 1.05);        // gate
+  const tag = pinSprite(`Sample home · Plot ${p.n}`, '#2e6b4f'); tag.position.set(0, 8.5, 0); g.add(tag);
+  g.scale.set(1, 0.001, 1); tweens.push({ t: 0, dur: 1.3, fn: k => g.scale.set(1, Math.max(0.001, back(k)), 1) });
+  return g;
+}
+function toggleHome(p) {
+  if (houses.has(p.n)) { root.remove(houses.get(p.n)); houses.delete(p.n); }
+  else houses.set(p.n, sampleHome(p));
+  if (selected) select(selected);
+}
+
 function finishIntro() {
   if (!playing) return; playing = false;
   controls.enabled = true; controls.target.set(0, 0, 0); controls.update();
-  $('siteHint').hidden = false; $('siteReplay').hidden = false; $('nearStrip').hidden = false;
+  $('siteHint').hidden = false; $('siteReplay').hidden = false; $('nearStrip').hidden = false; $('moodBar').hidden = false;
+  setShowcase(true);
 }
 
+function setShowcase(on) { showcase = on; controls.autoRotate = on; controls.autoRotateSpeed = 0.6; const b = $('showBtn'); if (b) b.setAttribute('aria-pressed', String(on)); }
 function select(mesh) {
-  if (selected) { selected.userData.mat.emissive.set('#000000'); selected.userData.group.position.y = 0; }
+  if (selected) { selected.userData.mat.emissive.copy(selected.userData.mat.color).multiplyScalar(MOODS[mood].glow); selected.userData.group.position.y = 0; }
   selected = mesh;
   const card = $('plotCard');
   if (!mesh) { card.hidden = true; return; }
@@ -342,8 +438,10 @@ function select(mesh) {
   card.innerHTML = `<button class="x" aria-label="Close">×</button><p class="eyebrow">${CAT[p.cat].name.toUpperCase()}</p><h3>Plot ${p.n}</h3>
     <dl><div><dt>Area</dt><dd>${p.sqft.toLocaleString('en-IN')} sq.ft</dd></div><div><dt>Sq.m</dt><dd>${p.sqm}</dd></div><div><dt>Cents</dt><dd>${p.cent}</dd></div>
     ${faces.length ? `<div class="wide"><dt>Facing</dt><dd>${[...new Set(faces)].join(' & ')}</dd></div>` : ''}</dl>
-    <p class="fine">Indicative · refer to the DTCP approved plan (No. 25/2025)</p>`;
+    <button class="home-btn">${houses.has(p.n) ? 'Remove sample home' : '🏠 See a sample home here'}</button>
+    <p class="fine">Indicative · refer to the DTCP approved plan (No. 25/2025)${houses.has(p.n) ? ' · sample G+1 home for illustration only' : ''}</p>`;
   card.querySelector('.x').onclick = () => select(null);
+  card.querySelector('.home-btn').onclick = () => toggleHome(p);
   card.hidden = false;
 }
 function setFilter(cat) {
@@ -368,6 +466,7 @@ function loop(now) {
     for (const a of anim) { const k = (clock - a.start) / a.dur; if (k >= 0 && (k <= 1 || !a.done)) { a.fn(Math.min(1, k)); if (k >= 1) a.done = true; } }
   } else {
     tickArcs(dt);
+    for (const tw of tweens) { tw.t = Math.min(1, tw.t + dt / tw.dur); tw.fn(tw.t); } for (let i = tweens.length - 1; i >= 0; i--) if (tweens[i].t >= 1) tweens.splice(i, 1);
     if (nbFly) { nbFly.t = Math.min(1, nbFly.t + dt / 1.4); const e = ease(nbFly.t); camera.position.lerpVectors(nbFly.fromP, nbFly.toP, e); controls.target.lerpVectors(nbFly.fromT, nbFly.toT, e); if (nbFly.t >= 1) nbFly = null; }
     controls.update();
   }
@@ -375,7 +474,7 @@ function loop(now) {
 }
 function replay() {
   for (const a of anim) { a.done = false; a.fn(0); }
-  select(null); if (filterCat) setFilter(filterCat);
+  select(null); if (filterCat) setFilter(filterCat); for (const h of houses.values()) root.remove(h); houses.clear(); if (controls) setShowcase(false); $('moodBar').hidden = true;
   clock = 0; playing = true; controls.enabled = false; $('siteHint').hidden = true; $('nearStrip').hidden = true; nbFly = null;
 }
 
@@ -385,7 +484,7 @@ export function openSite({ onBack, center } = {}) {
   $('site3d').hidden = false; $('sitePanel').hidden = false;
   if (!started) {
     started = true;
-    renderer = new THREE.WebGLRenderer({ antialias: true }); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true }); // log depth: no road/line flicker across a 25 m – 14 km zoom range renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     $('site3d').appendChild(renderer.domElement);
     camera = new THREE.PerspectiveCamera(45, 1, 0.5, 40000);
@@ -416,6 +515,10 @@ export function openSite({ onBack, center } = {}) {
       if (!on || v === 'off') { list.hidden = true; strip.querySelector('[data-near]').setAttribute('aria-pressed', 'false'); hideNearby(); return; }
       const cat = v === 'all' ? null : v; render(cat); list.hidden = false; select(null); showNearby(cat);
     };
+    for (const b of document.querySelectorAll('[data-mood]')) b.onclick = () => setMood(b.dataset.mood);
+    $('showBtn').onclick = () => setShowcase(!showcase);
+    renderer.domElement.addEventListener('pointerdown', () => { if (showcase) setShowcase(false); });
+    renderer.domElement.addEventListener('wheel', () => { if (showcase) setShowcase(false); }, { passive: true });
     $('siteReplay').onclick = () => { list.hidden = true; for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', 'false'); if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; replay(); }; $('siteBack').onclick = closeSite;
     const f = LAYOUT.facts;
     $('siteFacts').textContent = `${f.plots} plots · ${f.sqft.toLocaleString('en-IN')} sq.ft · ${f.cents} cents · Park ${f.park} sq.m`;
@@ -426,5 +529,5 @@ export function openSite({ onBack, center } = {}) {
 export function closeSite() {
   cancelAnimationFrame(raf); $('site3d').hidden = true; $('sitePanel').hidden = true; select(null); onExit();
 }
-window.__site = { showNearby, focusNearby: n => focusNearby(NEARBY.find(r => r.name.startsWith(n))), hideNearby, openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
+window.__site = { view: (x, y, z, tx = 0, tz = 0) => { camera.position.set(x, y, z); controls.target.set(tx, 0, tz); controls.update(); }, showNearby, focusNearby: n => focusNearby(NEARBY.find(r => r.name.startsWith(n))), hideNearby, openSite, get playing() { return playing; }, select: n => select(plotMeshes.find(m => m.userData.plot.n === n)), setFilter, skip: () => { clock = 99; } };
 

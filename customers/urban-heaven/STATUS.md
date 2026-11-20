@@ -11,6 +11,13 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m24 / s18 (20 Nov 2026) — road flicker fix + engaging extras
+
+- Cause of the road 'pixelating/disappearing': z-fighting — road centre line 5 mm above a 14 cm road slab over a 12 cm soil pad, with a 0.5 m–40 km depth range. Fix: logarithmic depth buffer; roads now 30 cm slabs with lines 4 cm above; Panchayat road 30 cm; shadow bias.
+- Labels (plot numbers, road/park names) now constant on-screen size (no giant numbers up close).
+- New: street lights, avenue trees, Day/Sunset/Night mood buttons (right side; row above chips on phones), showcase auto-rotate (⟳ Rotate), sample home per plot from the plot card. Replay clears homes/rotation.
+- Checked headless Chrome/SwiftShader 1280×760: low rotated road view, close street-level road view, sample homes on plots 17/30/40, sunset, night; 390×780 plot card + moods. No page errors.
+
 ## Rev m20 / s14 (20 Nov 2026) — IPL-style distance arcs
 
 - Tapping a nearby tab zooms out to fit the farthest place (1.75× its distance, clear air — fog pushed out) and launches "six" arcs one after another (nearest first, 0.3 s apart): a glowing ball flies from Urban Heaven along a tall coloured arc (apex ≈ 0.42× distance) leaving a trail, and the km badge appears near the top of the arc. Tapping a card replays a single arc to that place. Labels ignore fog.

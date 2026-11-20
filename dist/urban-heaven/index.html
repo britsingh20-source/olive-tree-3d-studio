@@ -50,7 +50,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 #sitePanel>*{pointer-events:auto}
 .site-head{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:14px 16px;padding-top:max(14px,env(safe-area-inset-top));background:linear-gradient(#ffffffee,#ffffff00);pointer-events:none}
 .site-head>*{pointer-events:auto}.site-head .eyebrow{margin:0;font-size:11px;letter-spacing:.16em;font-weight:700;color:#2e6b4f}
-.site-head h2{margin:2px 0;font:600 26px Georgia,serif}.site-head p#siteFacts{margin:0;font-size:13px;color:#3d4d45}
+.site-head{text-shadow:0 0 6px #fff,0 0 2px #fff}.site-head h2{margin:2px 0;font:600 26px Georgia,serif}.site-head p#siteFacts{margin:0;font-size:13px;color:#3d4d45}
 .site-actions{display:flex;gap:6px}.site-actions button{background:#14211c;border-color:#14211c}
 .chips{position:absolute;left:12px;right:12px;bottom:max(34px,env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .chips button{background:#ffffffe8;color:#14211c;border-color:#d6dcd2;font-size:13px;display:flex;gap:7px;align-items:center;padding:8px 11px}
@@ -68,12 +68,16 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .near-card b{font-size:13px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.near-card .stars{color:#e4a400;font-size:13px;letter-spacing:1px}.near-card .stars i{font-style:normal;color:#d6dcd2}
 .near-card small{font-size:11px;color:#5f6f67;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .near-note{margin:2px 2px 0;font-size:10px;color:#14211c;background:#ffffffb8;display:inline-block;padding:2px 7px;border-radius:6px}
-.plot-card{position:absolute;right:16px;top:250px;width:250px;background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 14px 40px #0004;animation:pop .3s ease}
+.mood-bar{position:absolute;right:12px;top:46%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px}
+.mood-bar button{width:58px;padding:7px 0 5px;background:#ffffffe8;color:#14211c;border-color:#d6dcd2;font-size:18px;line-height:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.mood-bar button span{font-size:10px;font-weight:600}.mood-bar button[aria-pressed=true]{background:#14211c;color:#fff;border-color:#14211c}
+.plot-card .home-btn{margin-top:10px;width:100%;background:#2e6b4f;border-color:#2e6b4f;color:#fff;font-weight:600}
+.plot-card{position:absolute;right:84px;top:250px;width:250px;background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 14px 40px #0004;animation:pop .3s ease}
 .plot-card .eyebrow{margin:0;font-size:11px;letter-spacing:.14em;font-weight:700;color:#2e6b4f}.plot-card h3{margin:2px 0 10px;font:600 28px Georgia,serif}
 .plot-card dl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0}.plot-card dl div{background:#f3f5f1;border-radius:10px;padding:7px 8px}.plot-card dl .wide{grid-column:1/-1}
 .plot-card dt{font-size:10px;color:#5f6f67;letter-spacing:.06em;text-transform:uppercase}.plot-card dd{margin:2px 0 0;font-weight:700;font-size:14px}
 .plot-card .fine{font-size:10px;color:#71827a;margin:10px 0 0}.plot-card .x{position:absolute;top:8px;right:8px;background:none;border:0;color:#14211c;font-size:22px;padding:2px 8px;backdrop-filter:none}
-@media(max-width:640px){.near-strip{top:96px;padding:0 8px}.near-card{width:200px}.near-note{font-size:9px}.site-head h2{font-size:21px}.site-head p#siteFacts{font-size:11px}.plot-card{left:12px;right:12px;width:auto;top:auto;bottom:150px}.chips button{font-size:11px;padding:6px 8px}.site-hint{font-size:10px;bottom:118px}}
+@media(max-width:640px){.mood-bar{top:auto;bottom:122px;right:auto;left:50%;transform:translateX(-50%);flex-direction:row}.mood-bar button{width:56px;font-size:15px;padding:5px 0 4px}.plot-card{right:12px}.near-strip{top:96px;padding:0 8px}.near-card{width:200px}.near-note{font-size:9px}.site-head h2{font-size:21px}.site-head p#siteFacts{font-size:11px}.plot-card{left:12px;right:12px;width:auto;top:auto;bottom:178px}.chips button{font-size:11px;padding:6px 8px}.site-hint{font-size:10px;bottom:176px}}
 .leaflet-control-attribution{font-size:9px}
 .leaflet-top.leaflet-right{top:64px}
 .car-icon{background:none;border:0}.car-rot{width:34px;height:34px;display:grid;place-items:center;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6));transition:transform .15s linear}
@@ -145,11 +149,14 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <button data-cat="elegant" aria-pressed="false"><i style="background:#c7a9ea"></i>Elegant North · 20</button>
     <button data-cat="ethnic" aria-pressed="false"><i style="background:#6fd0b4"></i>Ethnic South · 10</button>
     <button data-cat="early" aria-pressed="false"><i style="background:#e7ec7a"></i>Early Bird South · 6</button></div>
+  <div id="moodBar" class="mood-bar" hidden role="group" aria-label="Lighting and view">
+    <button data-mood="day" aria-pressed="true" title="Day">☀️<span>Day</span></button><button data-mood="sunset" aria-pressed="false" title="Sunset">🌇<span>Sunset</span></button>
+    <button data-mood="night" aria-pressed="false" title="Night">🌙<span>Night</span></button><button id="showBtn" aria-pressed="false" title="Showcase rotation">⟳<span>Rotate</span></button></div>
   <p id="siteHint" class="site-hint" hidden>Drag to rotate · pinch or scroll to zoom · tap a plot for its size</p>
   <div id="plotCard" class="plot-card" hidden></div>
   <p class="site-fine">DTCP Approval No. 25/2025 · indicative 3D from the Phase 2 layout drawing · Imagery © Esri, Maxar, Earthstar Geographics</p>
 </section>
 <noscript>Please enable JavaScript to take the site tour.</noscript>
 <script src="../vendor/leaflet/leaflet.js"></script>
-<script type="module" src="./map.js?v=m20"></script>
+<script type="module" src="./map.js?v=m24"></script>
 </body></html>
