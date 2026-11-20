@@ -36,7 +36,8 @@
     "seat360": "19 Nov 10:20 (supersedes 10:04 back-seat request): customer sits in the FRONT passenger seat; front view is the main view; 360° look-around kept; Olivetree Builders branding inside the car",
     "mapTour": "19 Nov 11:21: drop the 3D in-car experience. Top-view map: customer picks Thudiyalur or Mettupalayam, a cab travels on the map through each stop, enters the site, then the map zooms into the site",
     "speed": "19 Nov 11:52 (supersedes 11:45): 150–160 km/h on the highway, no slowing at stops (boards highlighted instead); speed limit 80 km/h from the KNM Mills turn to the site",
-    "mettupalayamStops": "19 Nov 12:00: Mettupalayam side needs more highlighted areas (Teachers Colony, Karamadai, …) so the longer ride doesn't feel empty"
+    "mettupalayamStops": "19 Nov 12:00: Mettupalayam side needs more highlighted areas (Teachers Colony, Karamadai, …) so the longer ride doesn't feel empty",
+    "phase2Layout": "20 Nov: after entering the site, show the Phase 2 layout (Veerapandi Phase 2 Layout - A4.pdf, DTCP No. 25/2025) in 3D with graphical animations"
   },
   "approximations": {
     "kilometreMarks": "Highway km marks are estimates (public locality coordinates + ~26 km Thudiyalur–Mettupalayam): NGGO 1.6, Narasimhanaickenpalayam 4.0, Periyanaickenpalayam 7.0, Santhaimedu/KNM 9.0, Karamadai 17.0, Mettupalayam 26.0",
@@ -50,17 +51,32 @@
     "branding": "Olivetree Builders text wordmark with a simple leaf mark drawn by us (not an official logo): front seatbacks + headrests, rear floor mats, windscreen sun strip, touchscreen header, cluster, page header. Replace with the official logo file when Bright supplies it",
     "mapTour": "Road geometry from OSRM/OpenStreetMap (Thudiyalur→KNM turn 10.7 km, Mettupalayam→KNM turn 19.4 km; via Karamadai). KNM Mills turn placed at Veerapandi Pirivu (11.1693, 76.9520) — needs Bright's pin. Side road drawn as straight legs west of the highway (750 m, right 500 m, left 300 m) — not the real lanes. Site outline is a placeholder rectangle. Stop pins for NGGO Colony / Narasimhanaickenpalayam / Karamadai approximate",
     "speed": "Displayed km/h; playback 10× real time (Thudiyalur ride ≈ 34 s, Mettupalayam ≈ 54 s). Eases 155→80 over the 600 m before the KNM turn; rolls in to the gate from 80. Board highlight: 600 m before to 400 m after each stop (~2 s on screen)",
-    "mettupalayamRoute": "Mettupalayam leg now from the bus stand along the old Mettupalayam–Coimbatore Road via Teachers Colony (OSM bus stop), Karamadai bus stand, Kalattiyur (OSM village; Tamil name not shown — unconfirmed), joining NH181 to the KNM turn: 17.5 km road + ~1.6 km side road. No named localities in OSM between Kalattiyur and KNM (~7 km); Bright to add any he wants"
+    "mettupalayamRoute": "Mettupalayam leg now from the bus stand along the old Mettupalayam–Coimbatore Road via Teachers Colony (OSM bus stop), Karamadai bus stand, Kalattiyur (OSM village; Tamil name not shown — unconfirmed), joining NH181 to the KNM turn: 17.5 km road + ~1.6 km side road. No named localities in OSM between Kalattiyur and KNM (~7 km); Bright to add any he wants",
+    "phase2": "3D plot shapes traced from the indicative drawing (scale from 29'10\" x 37'5\" plot pitch, 0.176 m/px). Plots 1, 14, 27, 40, 46 are drawn off the table areas in the PDF itself; 3D follows the drawing, plot cards show the table. Entrance arch assumed on the 9.0 m road at the Panchayat road; compound wall on N/W/S sides; surroundings (coconut palms, fields) illustrative. Layout orientation: north up as drawn — not yet aligned to the real site on the map"
   },
   "openQuestions": [
-    "Google Maps pin (or lat/long) of the Urban Heaven gate and of the KNM Mills turn",
-    "Site plot layout image/PDF for the zoom-in",
+    "Which internal road is the main entrance (arch placed on the 9.0 m road)?",
+    "Google Maps pins: Urban Heaven gate and KNM Mills turn (also needed to align the 3D layout with the map)",
     "Official Olivetree Builders logo file",
-    "Outside realism: real phone/dashcam video of each route (Thudiyalur→site, Mettupalayam→site) needed — procedural road cannot match the photo cabin",
-    "Reference photos of road/buildings per stretch (awaiting from Bright)",
-    "Is 'Sandimad' = Santhaimedu? Exact km from Thudiyalur to KNM Mills?",
-    "Stops between Mettupalayam and KNM Mills, and is the turn there a right?",
-    "Length of the final straight road to the gate",
-    "Site map / plot layout for after arrival"
-  ]
+    "Plot availability / sold status, if it should be shown"
+  ],
+  "phase2Source": {
+    "file": "Veerapandi Phase 2 Layout - A4.pdf",
+    "sha256_prefix": "f460b6102919b30d",
+    "pages": 1,
+    "note": "single raster page 2382x3369; not committed",
+    "plots": 46,
+    "categories": {
+      "Sunshine East": 10,
+      "Elegant North": 20,
+      "Ethnic South": 10,
+      "Early Bird South": 6
+    },
+    "park_sqm": 515.35,
+    "totals_stated": "49,494 sq.ft / 4,598.13 sq.m / 113.62 cents",
+    "totals_rows_sum": "49,504 / 4,598.28 / 113.54 (row rounding)",
+    "mainRoad": "12.2 m existing Panchayat road, east",
+    "internalRoads": "7.2 m x3, 9.0 m x1",
+    "companyLine": "PDF still shows [YOUR COMPANY NAME] / [YOUR PHONE NUMBER] placeholders"
+  }
 }

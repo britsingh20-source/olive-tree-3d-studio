@@ -4,6 +4,7 @@
 <meta name="description" content="Follow the Property Manager cab on the map from Thudiyalur or Mettupalayam along Mettupalayam Road to Urban Heaven, Veerapandi.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
+<script type="importmap">{"imports":{"three":"../vendor/three.module.js"}}</script>
 <style>
 :root{--ink:#14211c;--green:#2e6b4f;--gold:#d9b96a;--cab:#f6c519;font-family:'DM Sans',system-ui,sans-serif}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -43,6 +44,25 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media(max-width:640px){.picks{grid-template-columns:1fr}.card{padding:18px}.card h1{font-size:25px}.title span{display:none}.hint{display:none}.next{top:58px;left:10px}.next p{font-size:14px}.stop-banner h2{font-size:19px}.strip{margin:0 26px 8px}.tick span{font-size:9px}.tick:not(.arrive):not(.pickup) span{display:none}.controls button{padding:8px 10px;font-size:13px}}
 
 #map{position:fixed;inset:0;background:#1d2b26}
+#site3d{position:fixed;inset:0;background:#cfe3ee;animation:fadein .8s ease}#site3d canvas{display:block;width:100%;height:100%;touch-action:none}
+@keyframes fadein{from{opacity:0}}
+#sitePanel{position:fixed;inset:0;pointer-events:none;color:#14211c}
+#sitePanel>*{pointer-events:auto}
+.site-head{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:14px 16px;padding-top:max(14px,env(safe-area-inset-top));background:linear-gradient(#ffffffee,#ffffff00);pointer-events:none}
+.site-head>*{pointer-events:auto}.site-head .eyebrow{margin:0;font-size:11px;letter-spacing:.16em;font-weight:700;color:#2e6b4f}
+.site-head h2{margin:2px 0;font:600 26px Georgia,serif}.site-head p#siteFacts{margin:0;font-size:13px;color:#3d4d45}
+.site-actions{display:flex;gap:6px}.site-actions button{background:#14211c;border-color:#14211c}
+.chips{position:absolute;left:12px;right:12px;bottom:max(34px,env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.chips button{background:#ffffffe8;color:#14211c;border-color:#d6dcd2;font-size:13px;display:flex;gap:7px;align-items:center;padding:8px 11px}
+.chips button i{width:13px;height:13px;border-radius:3px;border:1px solid #0002}.chips button[aria-pressed=true]{background:#14211c;color:#fff;border-color:#14211c}
+.site-hint{position:absolute;left:50%;transform:translateX(-50%);bottom:max(86px,calc(env(safe-area-inset-bottom) + 60px));margin:0;font-size:12px;background:#14211cc0;color:#fff;padding:6px 12px;border-radius:20px;white-space:nowrap}
+.site-fine{position:absolute;left:0;right:0;bottom:8px;text-align:center;margin:0;font-size:10px;color:#2d3a33}
+.plot-card{position:absolute;right:16px;top:110px;width:250px;background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 14px 40px #0004;animation:pop .3s ease}
+.plot-card .eyebrow{margin:0;font-size:11px;letter-spacing:.14em;font-weight:700;color:#2e6b4f}.plot-card h3{margin:2px 0 10px;font:600 28px Georgia,serif}
+.plot-card dl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0}.plot-card dl div{background:#f3f5f1;border-radius:10px;padding:7px 8px}.plot-card dl .wide{grid-column:1/-1}
+.plot-card dt{font-size:10px;color:#5f6f67;letter-spacing:.06em;text-transform:uppercase}.plot-card dd{margin:2px 0 0;font-weight:700;font-size:14px}
+.plot-card .fine{font-size:10px;color:#71827a;margin:10px 0 0}.plot-card .x{position:absolute;top:8px;right:8px;background:none;border:0;color:#14211c;font-size:22px;padding:2px 8px;backdrop-filter:none}
+@media(max-width:640px){.site-head h2{font-size:21px}.site-head p#siteFacts{font-size:11px}.plot-card{left:12px;right:12px;width:auto;top:auto;bottom:150px}.chips button{font-size:11px;padding:6px 8px}.site-hint{font-size:10px;bottom:118px}}
 .leaflet-control-attribution{font-size:9px}
 .leaflet-top.leaflet-right{top:64px}
 .car-icon{background:none;border:0}.car-rot{width:34px;height:34px;display:grid;place-items:center;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6));transition:transform .15s linear}
@@ -95,10 +115,23 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 <section id="arrived" class="overlay" hidden style="background:linear-gradient(#14211c00 40%,#14211cdd)"><div class="card" style="align-self:end">
   <p class="eyebrow">YOU HAVE ARRIVED</p><h1>Welcome to Urban Heaven</h1>
-  <p class="lede">You're at the site. The plot layout map will be added here.</p>
-  <div class="actions"><button id="again">Ride again</button><button id="againPick" class="ghost">Change pickup</button></div>
+  <p class="lede">You're at the site. See the Phase 2 plots in 3D.</p>
+  <div class="actions"><button id="openSite">View Phase 2 layout in 3D</button><button id="again" class="ghost">Ride again</button><button id="againPick" class="ghost">Change pickup</button></div>
 </div></section>
+<div id="site3d" hidden aria-label="Urban Heaven Phase 2 layout in 3D"></div>
+<section id="sitePanel" hidden>
+  <div class="site-head"><div><p class="eyebrow">OLIVETREE BUILDERS · URBAN HEAVEN</p><h2>Phase 2 Layout</h2><p id="siteFacts"></p></div>
+    <div class="site-actions"><button id="siteReplay" hidden>↻ Replay</button><button id="siteBack">← Map</button></div></div>
+  <div class="chips" role="group" aria-label="Plot categories">
+    <button data-cat="sunshine" aria-pressed="false"><i style="background:#7fa6ec"></i>Sunshine East · 10</button>
+    <button data-cat="elegant" aria-pressed="false"><i style="background:#c7a9ea"></i>Elegant North · 20</button>
+    <button data-cat="ethnic" aria-pressed="false"><i style="background:#6fd0b4"></i>Ethnic South · 10</button>
+    <button data-cat="early" aria-pressed="false"><i style="background:#e7ec7a"></i>Early Bird South · 6</button></div>
+  <p id="siteHint" class="site-hint" hidden>Drag to rotate · pinch or scroll to zoom · tap a plot for its size</p>
+  <div id="plotCard" class="plot-card" hidden></div>
+  <p class="site-fine">DTCP Approval No. 25/2025 · indicative 3D from the Phase 2 layout drawing</p>
+</section>
 <noscript>Please enable JavaScript to take the site tour.</noscript>
 <script src="../vendor/leaflet/leaflet.js"></script>
-<script type="module" src="./map.js?v=m6"></script>
+<script type="module" src="./map.js?v=m11"></script>
 </body></html>

@@ -43,6 +43,22 @@ console.log('urban-heaven route checks passed', t.toFixed(2), m.toFixed(2));
   assert.deepEqual(D.STOPS.mettupalayam.map(s => s.id), ['mettupalayam', 'teachers', 'karamadai', 'kalattiyur', 'knm']);
   assert.equal(D.STOPS.thudiyalur.at(-1).turn, 'left'); assert.equal(D.STOPS.mettupalayam.at(-1).turn, 'right');
   const html = fs.readFileSync('dist/urban-heaven/index.html', 'utf8');
-  assert(html.includes('map.js?v=m6') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
+  assert(html.includes('map.js?v=m11') && html.includes('../vendor/leaflet/leaflet.js') && html.includes('OLIVETREE BUILDERS'));
   console.log('map tour checks passed', t.toFixed(2), m.toFixed(2));
+}
+// Phase 2 3D layout (site3d.js) — traced from the PDF
+{
+  const { LAYOUT } = await import('./dist/urban-heaven/site-layout.js');
+  assert.deepEqual(LAYOUT.plots.map(p => p.n), Array.from({ length: 46 }, (_, i) => i + 1));
+  const cnt = c => LAYOUT.plots.filter(p => p.cat === c).length;
+  assert.deepEqual([cnt('sunshine'), cnt('elegant'), cnt('ethnic'), cnt('early')], [10, 20, 10, 6]);
+  for (const n of [45, 33, 20, 7]) assert(LAYOUT.plots[n - 1].c[0] < LAYOUT.plots[n + (n === 45 ? -4 : 4) - 1].c[0], 'row order west→east');
+  const area = p => Math.abs(p.reduce((s, a, i) => { const b = p[(i + 1) % p.length]; return s + a[0] * b[1] - b[0] * a[1]; }, 0) / 2);
+  // The PDF drawing is indicative: corner/odd plots 1, 14, 27, 40 and 46 are not drawn to the table's areas
+  // (plot 1 drawn ~14% small, 46 ~19% large). All others trace within 5%. Cards show the table figures.
+  const DRAWN_OFF = new Set([1, 14, 27, 40, 46]);
+  for (const p of LAYOUT.plots) assert(Math.abs(area(p.poly) - p.sqm) / p.sqm < (DRAWN_OFF.has(p.n) ? 0.2 : 0.05), `plot ${p.n} traced ${area(p.poly).toFixed(1)} vs ${p.sqm} sq.m`);
+  assert.equal(LAYOUT.facts.sqft, 49494);
+  assert.deepEqual(LAYOUT.extras.map(e => e.id).sort(), ['EB', 'P', 'park']);
+  console.log('phase 2 layout checks passed');
 }

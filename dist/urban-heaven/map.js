@@ -169,8 +169,17 @@ function finish() {
   finished = true; $('speedVal').textContent = '0'; setPlaying(false); $('playBtn').textContent = 'Ride again';
   if (!baseIsSat) $('layerBtn').click();
   map.flyToBounds(siteBox.getBounds(), { padding: [40, 40], maxZoom: 18.5, duration: 2.2 });
-  setTimeout(() => { if (finished) $('arrived').hidden = false; }, 2600);
+  setTimeout(() => { if (finished) openSite3d(); }, 2800);
 }
+// After arrival: the Phase 2 layout opens in 3D (falls back to the arrival card if WebGL is missing)
+async function openSite3d() {
+  try {
+    const mod = await import('./site3d.js?v=s5');
+    $('hud').hidden = true; $('arrived').hidden = true;
+    mod.openSite({ onBack: () => { $('hud').hidden = false; $('arrived').hidden = false; } });
+  } catch (err) { console.error(err); $('arrived').hidden = false; }
+}
+$('openSite').onclick = openSite3d;
 function setPlaying(v) { playing = v; $('playBtn').textContent = v ? 'Pause' : 'Play'; }
 $('playBtn').onclick = () => { if (finished) return startTour(path.id); follow = true; setPlaying(!playing); };
 const showPicker = () => { setPlaying(false); $('pickup').hidden = false; $('arrived').hidden = true; };

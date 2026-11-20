@@ -11,6 +11,13 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m11 / s5 (20 Nov 2026) — Phase 2 layout in 3D
+
+- `scripts/prepare-urban-heaven-layout.py` traces the 46 plots, park, P and EB from the PDF raster by colour (convex hull per plot), numbers them by position, attaches the PDF table areas → `dist/urban-heaven/site-layout.js`. Asserts 1..46 and the 10/20/10/6 category split.
+- `dist/urban-heaven/site3d.js` (Three.js, shadows): after the map zooms into the site, a 3D scene opens straight down and swings to a bird's-eye view while the red-soil pad fades in, compound wall draws, the four internal roads roll out from the 12.2 m Panchayat road, park + trees + P/EB pop up, plots rise category by category with numbers, the entrance arch appears, and the cab drives in on the 9.0 m road (~11 s). Then: rotate/zoom, tap a plot → card (category, sq.ft, sq.m, cents, facing road), category chips dim the rest, Replay, ← Map.
+- Bugs fixed during testing: kerb outlines floating before plots landed; invisible plots casting shadows and cutting holes in the soil pad (transparent depth writes); category filter not dimming (material.needsUpdate).
+- Checked headless Chrome/SwiftShader 1280×760 (mid-animation, final, plot 43 card, Early Bird filter, orbit) and 390×780 (plot card). No page errors. SwiftShader runs the animation slower than real time; real-phone smoothness not yet checked.
+
 ## Rev m6 (19 Nov 2026) — Mettupalayam-side areas
 
 - Mettupalayam route re-fetched via Teachers Colony on the old Mettupalayam–Coimbatore Road (previous OSRM route went east via Jadayampalayam). Boards: Mettupalayam → Teachers Colony 5.6 km → Karamadai 8.3 → Kalattiyur 10.7 → KNM 17.5 → gate 19.1 km.
