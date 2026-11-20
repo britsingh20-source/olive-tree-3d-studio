@@ -11,6 +11,11 @@ Updated 19 November 2026 (rev uh2). Decisions and approximations are in design.j
 - HUD: km travelled / km to site, next stop or turn with distance, stop/turn banners, progress strip with stops, Pause/Play, 1×/2×/4×, Change pickup. Slows at stops and turns; arrival card with Ride again / Change pickup.
 - Thudiyalur ≈ 10.7 km (turns L, R, L); Mettupalayam ≈ 18.7 km (turns R, R, L).
 
+## Rev m26 / s20 (20 Nov 2026) — real-site look + direction & Vastu
+
+- Bright picked 'Direction & Vastu view' + 'Real photo look'. Plots = textured red earth, kerbs + corner stones; textured tar roads, grass park, plaster wall. Buttons (right): 🧭 Facing (arrow + letter per plot, on by default), 🎨 Colours (category colours), ⟳ Rotate. Compass top-right (bottom-left on phones) turns with the view. Plot card: facing, corner plot, road, Vastu note.
+- Checked headless Chrome/SwiftShader 1280×760 (overview, close, top-down arrow check) and 390×780 (plot 1 card). No page errors.
+
 ## Rev m25 (20 Nov 2026, 18:04)
 
 - Bright: no night lights / 'high fancy things'; wants a different kind of engagement (asked what). Day/Sunset/Night buttons removed (code kept, day only). Rotate + sample home kept pending his answer.

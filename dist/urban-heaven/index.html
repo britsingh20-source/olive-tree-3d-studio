@@ -71,13 +71,15 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .mood-bar{position:absolute;right:12px;top:46%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px}
 .mood-bar button{width:58px;padding:7px 0 5px;background:#ffffffe8;color:#14211c;border-color:#d6dcd2;font-size:18px;line-height:1;display:flex;flex-direction:column;align-items:center;gap:3px}
 .mood-bar button span{font-size:10px;font-weight:600}.mood-bar button[aria-pressed=true]{background:#14211c;color:#fff;border-color:#14211c}
+.compass-wrap{position:absolute;right:16px;top:104px;width:58px;height:58px;filter:drop-shadow(0 4px 8px #0004)}.compass-wrap svg{width:100%;height:100%;transition:transform .1s linear}
+.plot-card .vastu{margin:10px 0 0;font-size:12px;line-height:1.45;background:#fbf6e8;border-left:3px solid #d9b96a;padding:8px 10px;border-radius:8px;color:#3d4d45}.plot-card .vastu b{color:#8a6a1e;margin-right:4px}.plot-card .vastu i{display:block;margin-top:3px;font-size:10px;color:#8b968f}
 .plot-card .home-btn{margin-top:10px;width:100%;background:#2e6b4f;border-color:#2e6b4f;color:#fff;font-weight:600}
 .plot-card{position:absolute;right:84px;top:250px;width:250px;background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 14px 40px #0004;animation:pop .3s ease}
 .plot-card .eyebrow{margin:0;font-size:11px;letter-spacing:.14em;font-weight:700;color:#2e6b4f}.plot-card h3{margin:2px 0 10px;font:600 28px Georgia,serif}
 .plot-card dl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:0}.plot-card dl div{background:#f3f5f1;border-radius:10px;padding:7px 8px}.plot-card dl .wide{grid-column:1/-1}
 .plot-card dt{font-size:10px;color:#5f6f67;letter-spacing:.06em;text-transform:uppercase}.plot-card dd{margin:2px 0 0;font-weight:700;font-size:14px}
 .plot-card .fine{font-size:10px;color:#71827a;margin:10px 0 0}.plot-card .x{position:absolute;top:8px;right:8px;background:none;border:0;color:#14211c;font-size:22px;padding:2px 8px;backdrop-filter:none}
-@media(max-width:640px){.mood-bar{top:auto;bottom:122px;right:auto;left:50%;transform:translateX(-50%);flex-direction:row}.mood-bar button{width:56px;font-size:15px;padding:5px 0 4px}.plot-card{right:12px}.near-strip{top:96px;padding:0 8px}.near-card{width:200px}.near-note{font-size:9px}.site-head h2{font-size:21px}.site-head p#siteFacts{font-size:11px}.plot-card{left:12px;right:12px;width:auto;top:auto;bottom:178px}.chips button{font-size:11px;padding:6px 8px}.site-hint{font-size:10px;bottom:176px}}
+@media(max-width:640px){.compass-wrap{top:auto;bottom:122px;right:auto;left:10px;width:46px;height:46px}.mood-bar{top:auto;bottom:122px;right:auto;left:50%;transform:translateX(-50%);flex-direction:row}.mood-bar button{width:56px;font-size:15px;padding:5px 0 4px}.plot-card{right:12px}.near-strip{top:96px;padding:0 8px}.near-card{width:200px}.near-note{font-size:9px}.site-head h2{font-size:21px}.site-head p#siteFacts{font-size:11px}.plot-card{left:12px;right:12px;width:auto;top:auto;bottom:178px}.chips button{font-size:11px;padding:6px 8px}.site-hint{font-size:10px;bottom:176px}}
 .leaflet-control-attribution{font-size:9px}
 .leaflet-top.leaflet-right{top:64px}
 .car-icon{background:none;border:0}.car-rot{width:34px;height:34px;display:grid;place-items:center;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6));transition:transform .15s linear}
@@ -150,12 +152,13 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <button data-cat="ethnic" aria-pressed="false"><i style="background:#6fd0b4"></i>Ethnic South · 10</button>
     <button data-cat="early" aria-pressed="false"><i style="background:#e7ec7a"></i>Early Bird South · 6</button></div>
   <div id="moodBar" class="mood-bar" hidden role="group" aria-label="Lighting and view">
-<button id="showBtn" aria-pressed="false" title="Showcase rotation">⟳<span>Rotate</span></button></div>
+<button id="facingBtn" aria-pressed="false" title="Plot facing arrows">🧭<span>Facing</span></button><button id="colourBtn" aria-pressed="false" title="Category colours">🎨<span>Colours</span></button><button id="showBtn" aria-pressed="false" title="Showcase rotation">⟳<span>Rotate</span></button></div>
+  <div class="compass-wrap" aria-hidden="true"><svg id="compass" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="#ffffffe8" stroke="#14211c" stroke-width="2"/><path d="M32 7 L39 32 L32 29 L25 32Z" fill="#c8302a"/><path d="M32 57 L25 32 L32 35 L39 32Z" fill="#14211c"/><text x="32" y="20" text-anchor="middle" font-size="9" font-weight="700" font-family="DM Sans, sans-serif" fill="#fff">N</text></svg></div>
   <p id="siteHint" class="site-hint" hidden>Drag to rotate · pinch or scroll to zoom · tap a plot for its size</p>
   <div id="plotCard" class="plot-card" hidden></div>
   <p class="site-fine">DTCP Approval No. 25/2025 · indicative 3D from the Phase 2 layout drawing · Imagery © Esri, Maxar, Earthstar Geographics</p>
 </section>
 <noscript>Please enable JavaScript to take the site tour.</noscript>
 <script src="../vendor/leaflet/leaflet.js"></script>
-<script type="module" src="./map.js?v=m25"></script>
+<script type="module" src="./map.js?v=m26"></script>
 </body></html>

@@ -17,6 +17,7 @@ const $ = id => document.getElementById(id);
 const ease = t => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
 const back = t => { t = Math.min(1, Math.max(0, t)); const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
 
+let arrows = [], facingOn = false, colourOn = false;
 let hemi, sun, lamps = [], tweens = [], houses = new Map(), mood = 'day', showcase = false;
 let renderer, scene, camera, controls, root, started = false, raf = 0, t0 = 0, clock = 0, playing = false, onExit = () => {};
 const anim = [];      // { start, dur, fn(k) }
@@ -95,7 +96,26 @@ function skyTexture() {
 }
 function canvasTexBare(w, h, draw) { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
 
+// ---------- real-site textures (procedural, tiled in metres) ----------
+function noiseTex(size, base, specks, repeatM, extra) {
+  const t = canvasTex(size, size, (g) => {
+    g.fillStyle = base; g.fillRect(0, 0, size, size);
+    let sd = 7; const r = () => ((sd = (sd * 1664525 + 1013904223) >>> 0) / 4294967296);
+    for (const [col, n, rmin, rmax, alpha] of specks) { g.fillStyle = col; for (let i = 0; i < n; i++) { g.globalAlpha = alpha * (0.4 + r() * 0.6); g.beginPath(); g.arc(r() * size, r() * size, rmin + r() * (rmax - rmin), 0, 7); g.fill(); } }
+    g.globalAlpha = 1; if (extra) extra(g, size, r);
+  });
+  t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1 / repeatM, 1 / repeatM); return t;
+}
+const TEX = {};
+function makeTextures() {
+  TEX.earth = noiseTex(512, '#a8693f', [['#7d4a2a', 900, 2, 9, 0.35], ['#c48552', 700, 2, 8, 0.35], ['#d9c3a5', 260, 1, 3, 0.9], ['#5d3a22', 160, 1, 2.5, 0.8], ['#8a8a6a', 40, 6, 16, 0.15]], 9);
+  TEX.tar = noiseTex(512, '#3b3c3e', [['#232425', 2600, 0.6, 2, 0.6], ['#6b6b68', 1800, 0.5, 1.6, 0.55], ['#4a4b4d', 120, 8, 22, 0.25]], 6);
+  TEX.grass = noiseTex(512, '#6f9a45', [['#4f7a30', 1600, 1, 4, 0.5], ['#93b862', 1200, 1, 3.5, 0.45], ['#a58a52', 90, 3, 10, 0.25]], 7);
+  TEX.wall = noiseTex(256, '#e9e1d2', [['#cfc5b3', 500, 0.6, 2, 0.6], ['#ffffff', 300, 0.6, 1.6, 0.5]], 3);
+}
+
 function build() {
+  makeTextures();
   scene = new THREE.Scene();
   scene.background = skyTexture(); scene.fog = new THREE.Fog('#c9d6dc', 900, 16000);
   scene.add(new THREE.HemisphereLight('#eef5ff', '#6f6a55', 1.35));
@@ -111,12 +131,12 @@ function build() {
   const trunk = new THREE.MeshLambertMaterial({ color: '#6b5238' });
 
   // site earth pad (red soil) — appears first
-  const earthM = new THREE.MeshLambertMaterial({ color: '#b98258', transparent: true, opacity: 0 });
+  const earthM = new THREE.MeshLambertMaterial({ map: TEX.earth, color: '#c9b19a', transparent: true, opacity: 0 });
   const earth = slab(B, 0.12, earthM); earth.receiveShadow = true; root.add(earth);
   at(0, 0.8, k => { earthM.opacity = k; earthM.transparent = k < 1; earthM.depthWrite = k >= 1; earthM.needsUpdate = true; });
 
   // boundary: compound wall drawn around (grows along its length)
-  const wallM = new THREE.MeshLambertMaterial({ color: '#efe8da' });
+  const wallM = new THREE.MeshStandardMaterial({ map: TEX.wall, roughness: 0.9 });
   const corners = B.concat([B[0]]);
   corners.slice(0, -1).forEach((a, i) => {
     const b = corners[i + 1], len = Math.hypot(b[0] - a[0], b[1] - a[1]);
@@ -128,7 +148,7 @@ function build() {
   });
 
   // 12.2 m existing Panchayat road (east)
-  const asphalt = new THREE.MeshLambertMaterial({ color: '#3c3e41' });
+  const asphalt = new THREE.MeshStandardMaterial({ map: TEX.tar, roughness: 0.95 });
   const RL = D + 70, mr = LAYOUT.mainRoad, mainRoad = new THREE.Mesh(new THREE.BoxGeometry(mr.x1 - mr.x0, 0.3, RL), asphalt); // site frontage only; the real road continues in the imagery
   mainRoad.position.copy(P((mr.x0 + mr.x1) / 2, CZ, 0.15)); mainRoad.receiveShadow = true; root.add(mainRoad);
   const gift = slab(LAYOUT.giftStrip, 0.06, new THREE.MeshLambertMaterial({ color: '#c8c0b2' })); root.add(gift);
@@ -182,7 +202,7 @@ function build() {
   // park with trees, P and EB
   for (const e of LAYOUT.extras) {
     const isPark = e.id === 'park';
-    const m = new THREE.MeshLambertMaterial({ color: isPark ? '#79b85a' : e.id === 'P' ? '#e06d5a' : '#5ea154' });
+    const m = isPark ? new THREE.MeshLambertMaterial({ map: TEX.grass }) : new THREE.MeshLambertMaterial({ color: e.id === 'P' ? '#e06d5a' : '#5ea154' });
     const s = slab(e.poly, isPark ? 0.25 : 0.6, m); s.receiveShadow = true; s.castShadow = !isPark; root.add(s);
     s.scale.y = 0.001; at(2.6, 0.8, k => { s.scale.y = Math.max(0.001, back(k)); });
     const lbl = label(isPark ? 'Park · பூங்கா' : e.id === 'P' ? 'P' : 'EB', { size: isPark ? 2.6 : 2, w: isPark ? 420 : 160, font: 64 });
@@ -206,21 +226,28 @@ function build() {
 
   // plots: rise category by category with a stagger, kerb stones + number label
   labelsGroup = new THREE.Group(); root.add(labelsGroup);
-  const kerbM = new THREE.MeshLambertMaterial({ color: '#f4f1ea' });
+  const kerbM = new THREE.MeshStandardMaterial({ color: '#d8d2c6', roughness: 0.9 });
+  const stoneM = new THREE.MeshStandardMaterial({ map: TEX.wall, roughness: 0.9 });
   let order = 0;
   for (const cat of ORDER) {
     for (const p of LAYOUT.plots.filter(q => q.cat === cat).sort((a, b) => a.n - b.n)) {
-      const mat = new THREE.MeshStandardMaterial({ color: CAT[cat].color, roughness: 0.7, emissive: '#000000', transparent: true });
+      const mat = new THREE.MeshStandardMaterial({ map: TEX.earth, color: '#ffffff', roughness: 0.95, emissive: '#000000', transparent: true });
       const g = new THREE.Group(); root.add(g);
-      const pad = slab(p.poly, 0.5, mat, 0.12); pad.castShadow = true; pad.receiveShadow = true; g.add(pad);
+      const pad = slab(p.poly, 0.18, mat, 0.12); pad.castShadow = true; pad.receiveShadow = true; g.add(pad);
       // kerb outline
       const pts = p.poly.concat([p.poly[0]]), kerbs = [];
       for (let i = 0; i < pts.length - 1; i++) {
         const a = pts[i], b = pts[i + 1], len = Math.hypot(b[0] - a[0], b[1] - a[1]);
         if (len < 0.3) continue;
-        const k = new THREE.Mesh(new THREE.BoxGeometry(len, 0.2, 0.18), kerbM);
-        k.position.copy(P((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, 0.72)); k.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); g.add(k); kerbs.push(k);
+        const k = new THREE.Mesh(new THREE.BoxGeometry(len, 0.06, 0.08), kerbM);
+        k.position.copy(P((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, 0.33)); k.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); g.add(k); kerbs.push(k);
       }
+      // concrete corner stones with a category-coloured painted top, like real layout stones
+      for (const c of cornerPoints(p.poly)) {
+        const st = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.6, 0.22), stoneM); st.position.copy(P(c[0], c[1], 0.55)); st.castShadow = true; g.add(st); kerbs.push(st);
+        const cap = new THREE.Mesh(new THREE.BoxGeometry(0.23, 0.12, 0.23), new THREE.MeshStandardMaterial({ color: CAT[cat].color, roughness: 0.6 })); cap.position.copy(P(c[0], c[1], 0.86)); g.add(cap); kerbs.push(cap);
+      }
+      const arrow = facingArrow(p); g.add(arrow); arrows.push(arrow);
       const lbl = label(String(p.n), { size: 2.4, w: 160, font: 84, bg: 'rgba(17,20,24,.78)' }); lbl.position.copy(P(p.c[0], p.c[1], 2.6)); lbl.visible = false; labelsGroup.add(lbl);
       pad.userData.plot = p; pad.userData.group = g; pad.userData.mat = mat; pad.userData.label = lbl; plotMeshes.push(pad);
       g.position.y = 6; g.scale.y = 0.001; mat.opacity = 0;
@@ -356,6 +383,53 @@ function flyTo(target, distance, polar) { // smooth camera move; keeps the curre
   nbFly = { t: 0, fromP: camera.position.clone(), fromT: controls.target.clone(), toP: end, toT: target.clone() };
 }
 
+// ---------- direction & Vastu ----------
+const FACING = { sunshine: 'East', elegant: 'North', ethnic: 'South', early: 'South' }; // from the PDF legend (category = facing)
+const DIRV = { East: [1, 0], North: [0, -1], South: [0, 1], West: [-1, 0] };
+const VASTU = {
+  East: 'East-facing plots are traditionally the most preferred in Vastu — the main door receives the morning sun.',
+  North: 'North is associated with prosperity (Kubera) in Vastu; steady daylight. A main door toward the north-east is preferred.',
+  South: 'South-facing plots suit Vastu when planned well — main door in the south-east part, heavier rooms (stairs, master bedroom) toward the south-west.',
+};
+function cornerPoints(poly) { // keep real corners (turn > ~30°), drop near-duplicate hull points
+  const out = [];
+  for (let i = 0; i < poly.length; i++) {
+    const a = poly[(i + poly.length - 1) % poly.length], b = poly[i], c = poly[(i + 1) % poly.length];
+    const ux = b[0] - a[0], uz = b[1] - a[1], vx = c[0] - b[0], vz = c[1] - b[1];
+    const ang = Math.abs(Math.atan2(ux * vz - uz * vx, ux * vx + uz * vz));
+    if (ang > 0.5 && !out.some(o => Math.hypot(o[0] - b[0], o[1] - b[1]) < 1)) out.push(b);
+  }
+  return out;
+}
+function cornerPlot(p) {
+  const xs = p.poly.map(q => q[0]), zs = p.poly.map(q => q[1]), z0 = Math.min(...zs), z1 = Math.max(...zs), x1 = Math.max(...xs);
+  const n = [LAYOUT.roads.some(r => Math.abs(z0 - r.z1) < 1.5), LAYOUT.roads.some(r => Math.abs(z1 - r.z0) < 1.5), x1 > LAYOUT.boundary[1][0] - 1.5].filter(Boolean).length;
+  return n >= 2;
+}
+function facingArrow(p) {
+  const f = FACING[p.cat], [dx, dz] = DIRV[f];
+  const s = new THREE.Shape(); s.moveTo(-0.5, -1.6); s.lineTo(0.5, -1.6); s.lineTo(0.5, 0.2); s.lineTo(1.3, 0.2); s.lineTo(0, 1.7); s.lineTo(-1.3, 0.2); s.lineTo(-0.5, 0.2); s.closePath();
+  const m = new THREE.Mesh(new THREE.ShapeGeometry(s), new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.92, depthWrite: false }));
+  m.rotation.x = -Math.PI / 2; m.rotation.z = Math.atan2(-dx, -dz); // shape points +y → world direction (dx, dz)
+  m.position.copy(P(p.c[0] + dx * 2.2, p.c[1] + dz * 2.2, 0.34)); m.visible = false;
+  const tag = label(f[0], { size: 1.6, w: 110, h: 110, font: 70, bg: CAT[p.cat].color, fg: '#14211c' }); tag.position.set(0, 0, 0.8); m.add(tag);
+  return m;
+}
+function setFacing(on) {
+  facingOn = on; for (const a of arrows) a.visible = on;
+  const b = $('facingBtn'); if (b) b.setAttribute('aria-pressed', String(on));
+}
+function setColour(on) { // category colours vs real ground
+  colourOn = on;
+  for (const pm of plotMeshes) { const mt = pm.userData.mat; mt.map = on ? null : TEX.earth; mt.color.set(on ? CAT[pm.userData.plot.cat].color : '#ffffff'); mt.needsUpdate = true; }
+  const b = $('colourBtn'); if (b) b.setAttribute('aria-pressed', String(on));
+}
+function updateCompass() {
+  const el = $('compass'); if (!el || !controls) return;
+  const az = Math.atan2(camera.position.x - controls.target.x, camera.position.z - controls.target.z) * 180 / Math.PI;
+  el.style.transform = `rotate(${az}deg)`;
+}
+
 // ---------- moods: day / sunset / night ----------
 function sky(stops) { return canvasTexBare(4, 512, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); stops.forEach(([o, c]) => gr.addColorStop(o, c)); g.fillStyle = gr; g.fillRect(0, 0, w, h); }); }
 const MOODS = {
@@ -424,7 +498,7 @@ function finishIntro() {
   if (!playing) return; playing = false;
   controls.enabled = true; controls.target.set(0, 0, 0); controls.update();
   $('siteHint').hidden = false; $('siteReplay').hidden = false; $('nearStrip').hidden = false; $('moodBar').hidden = false;
-  setShowcase(true);
+  setShowcase(true); setFacing(true);
 }
 
 function setShowcase(on) { showcase = on; controls.autoRotate = on; controls.autoRotateSpeed = 0.6; const b = $('showBtn'); if (b) b.setAttribute('aria-pressed', String(on)); }
@@ -437,7 +511,8 @@ function select(mesh) {
   const faces = LAYOUT.roads.filter(r => p.poly.some(([, z]) => Math.abs(z - r.z0) < 1.2 || Math.abs(z - r.z1) < 1.2)).map(r => r.name.replace(' wide road', ' road'));
   card.innerHTML = `<button class="x" aria-label="Close">×</button><p class="eyebrow">${CAT[p.cat].name.toUpperCase()}</p><h3>Plot ${p.n}</h3>
     <dl><div><dt>Area</dt><dd>${p.sqft.toLocaleString('en-IN')} sq.ft</dd></div><div><dt>Sq.m</dt><dd>${p.sqm}</dd></div><div><dt>Cents</dt><dd>${p.cent}</dd></div>
-    ${faces.length ? `<div class="wide"><dt>Facing</dt><dd>${[...new Set(faces)].join(' & ')}</dd></div>` : ''}</dl>
+    <div class="wide"><dt>Facing</dt><dd>🧭 ${FACING[p.cat]} facing${cornerPlot(p) ? ' · Corner plot' : ''}${faces.length ? ' · ' + [...new Set(faces)].join(' & ') : (FACING[p.cat] === 'East' ? ' · 12.2 m Panchayat road' : '')}</dd></div></dl>
+    <p class="vastu"><b>Vastu</b> ${VASTU[FACING[p.cat]]}${cornerPlot(p) ? ' Corner plots get light and air from two sides.' : ''} <i>General guidance — consult your Vastu expert.</i></p>
     <button class="home-btn">${houses.has(p.n) ? 'Remove sample home' : '🏠 See a sample home here'}</button>
     <p class="fine">Indicative · refer to the DTCP approved plan (No. 25/2025)${houses.has(p.n) ? ' · sample G+1 home for illustration only' : ''}</p>`;
   card.querySelector('.x').onclick = () => select(null);
@@ -448,7 +523,8 @@ function setFilter(cat) {
   filterCat = filterCat === cat ? null : cat;
   for (const m of plotMeshes) {
     const on = !filterCat || m.userData.plot.cat === filterCat;
-    const mt = m.userData.mat; mt.transparent = !on; mt.opacity = on ? 1 : 0.15; mt.depthWrite = on; mt.needsUpdate = true; m.userData.label.visible = on;
+    const mt = m.userData.mat; mt.transparent = !on; mt.opacity = on ? 1 : 0.15; mt.depthWrite = on; m.userData.label.visible = on;
+    if (!colourOn) mt.color.set(on && filterCat ? CAT[m.userData.plot.cat].color : '#ffffff'); mt.needsUpdate = true;
     m.userData.group.position.y = on && filterCat ? 0.35 : 0;
   }
   for (const b of document.querySelectorAll('[data-cat]')) b.setAttribute('aria-pressed', String(b.dataset.cat === filterCat));
@@ -470,6 +546,7 @@ function loop(now) {
     if (nbFly) { nbFly.t = Math.min(1, nbFly.t + dt / 1.4); const e = ease(nbFly.t); camera.position.lerpVectors(nbFly.fromP, nbFly.toP, e); controls.target.lerpVectors(nbFly.fromT, nbFly.toT, e); if (nbFly.t >= 1) nbFly = null; }
     controls.update();
   }
+  updateCompass();
   renderer.render(scene, camera);
 }
 function replay() {
@@ -517,6 +594,7 @@ export function openSite({ onBack, center } = {}) {
     };
     for (const b of document.querySelectorAll('[data-mood]')) b.onclick = () => setMood(b.dataset.mood);
     $('showBtn').onclick = () => setShowcase(!showcase);
+    $('facingBtn').onclick = () => setFacing(!facingOn); $('colourBtn').onclick = () => setColour(!colourOn);
     renderer.domElement.addEventListener('pointerdown', () => { if (showcase) setShowcase(false); });
     renderer.domElement.addEventListener('wheel', () => { if (showcase) setShowcase(false); }, { passive: true });
     $('siteReplay').onclick = () => { list.hidden = true; for (const o of strip.querySelectorAll('[data-near]')) o.setAttribute('aria-pressed', 'false'); if (nbGroup) nbGroup.visible = false; labelsGroup.visible = true; replay(); }; $('siteBack').onclick = closeSite;
