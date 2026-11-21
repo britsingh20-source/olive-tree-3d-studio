@@ -4,15 +4,25 @@ Updated 2026-11-21 (Asia/Kolkata).
 
 ## Current state
 
-New client. Source intake complete; colour-by-colour design questions in progress. No viewer built yet; route /krishnagiri-kitchen/ reserved in customers/index.json.
+All 10 source colours confirmed with Bright (see design.json → confirmed, globalFinish, globalRules). First interactive viewer built at /krishnagiri-kitchen/ for Bright's review. Bright asked to see the 3D view before answering the countertop question and will send corrections.
 
 ## Sources
 
-- Chat uploads of both SKPs were text-corrupted in transfer (~51k U+FFFD replacement sequences each; zip container unreadable). This was a transfer fault, not a bad model.
-- Originals staged from Bright's PC (Downloads/krishnagiri) and parsed with the bundled read_skp.py on Linux Python 3: EXTRACTION_OK for both. 58 vertices, 89 edges, 33 root faces, 120 × 96 × 84 in, zero omitted instances. Geometry and materials identical between the two files.
-- Geometry saved to customers/krishnagiri-kitchen/source-geometry.json. Original SKPs not committed.
-- Observed layout (not yet confirmed by Bright) is in design.json → source.observedLayout.
+- Chat uploads of both SKPs were text-corrupted in transfer (~51k U+FFFD sequences each; zip unreadable) — transfer fault, not a bad model.
+- Originals staged from Bright's PC (Downloads/krishnagiri), parsed with bundled read_skp.py (Linux Python 3): EXTRACTION_OK for both; 58 vertices, 89 edges, 33 root faces, 120 × 96 × 84 in, zero omitted instances; identical geometry/materials.
+- Geometry: customers/krishnagiri-kitchen/source-geometry.json. Layout: scripts/prepare-krishnagiri-kitchen-layout.py → dist/krishnagiri-kitchen/exact-layout.js. Original SKPs not committed.
+- Wood mica reference (Bright's swatch) committed unchanged as dist/krishnagiri-kitchen/wood-mica-reference.jpg. The aqua reference kitchen photo (third-party watermark) is NOT committed; colour sampled only.
+
+## Implementation (asset version kk1)
+
+Template: dist/rathesh kitchen (S-corner, wicker, rice, oil, glass mechanisms) with fixes from ratesh: orbit damping off; drag/multi-touch never becomes a selection tap; tour starts only by button and stopping it never reframes; resize reframes only the untouched opening view (stops after the first user camera move); Lighting on/off toggle added. 13 sections / 5 selectable products. Aqua high gloss (#7fb3ad approx.) handleless fronts; wood mica only in the open wicker unit, the open box and the lit wall-unit undersides; black tinted glass wall shutters with concealed lights and one glass shelf; closed cabinet interiors neutral off-white; countertop black stone placeholder.
+
+## Validation performed (2026-11-21)
+
+- node check-krishnagiri-kitchen.mjs (Node 22.23.5): passed — 33 source faces at measured positions, colour→section mapping, wicker/open box without shutters, S-corner trays, all actions open/close back to initial, lights toggle, reference mode shows exactly 33 faces, product framing at phone/desktop aspects, tour stop/complete.
+- Headless Chrome (Playwright, SwiftShader WebGL — software renderer, not real GPU) against local server: desktop 1366×900 and mobile 390×844. Visually inspected default view, three close angles closed, two angles with Open all (S-corner trays, wicker baskets, rice/drawers out), under-unit LED strips and open box. Countertop z-fighting found and fixed with polygon offset. Drag-rotate: camera moved, no drift after release, viewport resize did not change camera, drag did not select. Tour started by button and stopped on tap. Lighting button toggled. No page errors (only favicon 404).
+- Not tested: real phones/GPUs, CPU compatibility fallback, finish persistence across reload, full tour completion in browser.
 
 ## Next action
 
-#a56348 confirmed (shutters + shelves, aqua high gloss per reference photo, handleless). #ffb299 confirmed: cutlery tandem drawer. Global finish confirmed: every front aqua high gloss, handleless. #ffd562 confirmed: thali basket tandem. #5a7a43 confirmed: oil pull-out. #65ffff confirmed: S-corner (trays come out when door opens). #3e5781 confirmed: rice basket. #cc99ff confirmed: open unit, two visible wicker baskets, no shutter, wooden mica inside (reference saved as dist/krishnagiri-kitchen/wood-mica-reference.jpg). #4d6fb2 confirmed: black tinted glass shutters, concealed lights, one glass shelf each. #ff007f confirmed: normal shutter. #ffff00 confirmed: concealed lights + wooden mica on undersides. Open counter box: wooden mica. Rule: all open areas apart from shutters are wood-covered. All source colours resolved. Next: countertop material, then build dist/krishnagiri-kitchen/ viewer. Save each answer to design.json before the next question. Then build dist/krishnagiri-kitchen/ from the newest viewer template.
+Wait for Bright's review/corrections of the 3D view; ask countertop material/colour. Then update design.json, bump ?v=, re-verify and redeploy.

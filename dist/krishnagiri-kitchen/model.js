@@ -1,0 +1,105 @@
+import * as T from 'three';
+import {RoundedBoxGeometry} from '../vendor/RoundedBoxGeometry.js';
+import {exactLayout} from './exact-layout.js';
+export {exactLayout};
+// Confirmed 2026-11-21: every solid front aqua/mint high gloss, handleless.
+// Hex is an approximation sampled from Bright's reference photo.
+export const DEFAULT_FINISH='#7fb3ad';
+export const FINISH_NAME='Aqua high gloss';
+export const WOOD_TEXTURE='./wood-mica-reference.jpg';
+export const WOOD_FINISH={name:'Wooden mica (reference)',color:'#a8693a',wood:true,texture:WOOD_TEXTURE};
+export const project={id:'krishnagiri-kitchen-v1',customer:'Krishnagiri kitchen',location:'Krishnagiri',quotation:null};
+export const definitions=exactLayout.units;
+const OPEN_KINDS=['wicker-open','open'];
+function proceduralWood(){const w=128,h=512,data=new Uint8Array(w*h*4);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const warp=Math.sin(y*.014)*2+Math.sin(y*.036+x*.018)*1.5,grain=Math.sin((x+warp)*1.5)*9+Math.sin((x+warp)*.35)*11;const i=(y*w+x)*4;data[i]=168+grain;data[i+1]=105+grain*.8;data[i+2]=58+grain*.6;data[i+3]=255;}const t=new T.DataTexture(data,w,h);t.needsUpdate=true;return t;}
+function woodTexture(){let t;if(typeof document!=='undefined'){t=new T.TextureLoader().load(WOOD_TEXTURE);}else t=proceduralWood();t.colorSpace=T.SRGBColorSpace;t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=8;t.magFilter=T.LinearFilter;t.minFilter=T.LinearMipmapLinearFilter;t.generateMipmaps=true;return t;}
+export function buildModel(){
+ const root=new T.Group(),architecture=new T.Group();root.add(architecture);const units=[],actions=[],sourceMeshes=[],lightNodes=[];
+ const woodMap=woodTexture();
+ const wood=new T.MeshPhysicalMaterial({color:'#ffffff',map:woodMap,roughness:.5,clearcoat:.12,side:T.DoubleSide});
+ const woodSkin=wood.clone();woodSkin.polygonOffset=true;woodSkin.polygonOffsetFactor=-2;woodSkin.polygonOffsetUnits=-4;
+ // Closed-cabinet interiors: neutral, not wood (wood only in open areas per Bright's correction).
+ const liner=new T.MeshStandardMaterial({color:'#eeebe3',roughness:.55});
+ const steel=new T.MeshStandardMaterial({color:'#929b9d',metalness:.85,roughness:.25}),wicker=new T.MeshStandardMaterial({color:'#b99461',roughness:.85}),plinth=new T.MeshStandardMaterial({color:'#dddcd3',roughness:.6,side:T.DoubleSide});
+ const shelfGlass=new T.MeshPhysicalMaterial({color:'#cfe3e0',transparent:true,opacity:.35,roughness:.03,clearcoat:1,depthWrite:false});
+ const led=new T.MeshStandardMaterial({color:'#fff0c9',emissive:'#ffd59d',emissiveIntensity:2});
+ const faceById=new Map(exactLayout.sourceFaces.map(f=>[f.id,f]));
+ function box(parent,w,h,d,x,y,z,mat){if(Math.min(w,h,d)<.0001)return null;const m=new T.Mesh(new RoundedBoxGeometry(w,h,d,2,Math.min(.002,w/6,h/6,d/6)),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
+ function rod(parent,a,b,r=.003,mat=steel){const av=new T.Vector3(...a),bv=new T.Vector3(...b),v=bv.clone().sub(av),m=new T.Mesh(new T.CylinderGeometry(r,r,v.length(),6),mat);m.position.copy(av).add(bv).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.normalize());parent.add(m);return m;}
+ function wire(p,w,d,y,z,hh=.13){for(const yy of [y,y+hh]){for(const zz of [z-d/2,z+d/2])rod(p,[-w/2,yy,zz],[w/2,yy,zz]);for(const xx of [-w/2,w/2])rod(p,[xx,yy,z-d/2],[xx,yy,z+d/2]);}for(let i=0;i<=8;i++){const xx=-w/2+w*i/8;rod(p,[xx,y,z-d/2],[xx,y,z+d/2],.002);for(const zz of [z-d/2,z+d/2])rod(p,[xx,y,zz],[xx,y+hh,zz],.002);}for(let i=0;i<=5;i++){const zz=z-d/2+d*i/5;for(const xx of [-w/2,w/2])rod(p,[xx,y,zz],[xx,y+hh,zz],.002);}}
+ function sourceFace(f,mat,parent){const n=new T.Vector3(...f.normal).normalize(),u=Math.abs(n.y)<.8?new T.Vector3(0,1,0).cross(n).normalize():new T.Vector3(1,0,0),v=n.clone().cross(u).normalize();const loops=f.points.map(l=>l.map(p=>new T.Vector3(...p))),planeLoops=loops.map(l=>l.map(p=>new T.Vector2(p.dot(u),p.dot(v))));const indices=T.ShapeUtils.triangulateShape(planeLoops[0],planeLoops.slice(1)).flat(),points=loops.flat();const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(points.flatMap(p=>p.toArray()),3));g.setAttribute('normal',new T.Float32BufferAttribute(points.flatMap(()=>n.toArray()),3));g.setAttribute('uv',new T.Float32BufferAttribute(points.flatMap(p=>[p.dot(u)*1.4,p.dot(v)*1.4]),2));g.setIndex(indices);parent.updateWorldMatrix(true,false);g.applyMatrix4(parent.matrixWorld.clone().invert());const mesh=new T.Mesh(g,mat);mesh.userData.sourceFace=f.id;mesh.castShadow=true;mesh.receiveShadow=true;parent.add(mesh);sourceMeshes.push(mesh);return mesh;}
+ function action(u,node,type,travel,direction){const a={unit:u,node,type,travel,open:false,value:0,initial:node.position.clone(),direction:direction||new T.Vector3(0,0,1)};u.actions.push(a);actions.push(a);node.traverse(o=>{if(o.isMesh)o.userData.action=a;});return a;}
+ function localPart(u,part){const frame=new T.Group();frame.position.fromArray(part.center);frame.rotation.y=Math.atan2(part.normal[0],part.normal[2]);u.group.add(frame);return frame;}
+ function interior(u,parent){const p=new T.Group();p.userData.interior=true;u.interiors.push(p);parent.add(p);return p;}
+ function addLight(parent,x,y,z,w,d){const strip=box(parent,w,.008,.014,x,y,z,led);strip.castShadow=false;strip.userData.led=true;const light=new T.PointLight('#ffe1af',.45,1.1);light.position.set(x,y-.05,z+d);parent.add(light);lightNodes.push(strip,light);return strip;}
+ function carcass(u,frame,w,h,d,inner=liner){const t=.018;const cabinet=new T.Group();cabinet.position.z=-.022;frame.add(cabinet);frame=cabinet;d=Math.max(.05,d-.022);box(frame,t,h,d,-w/2+t/2,0,-d/2,inner===liner?u.side:inner);box(frame,t,h,d,w/2-t/2,0,-d/2,inner===liner?u.side:inner);box(frame,w-2*t,t,d,0,-h/2+t/2,-d/2,inner);box(frame,w-2*t,t,d,0,h/2-t/2,-d/2,inner);box(frame,w-2*t,h-2*t,t,0,0,-d+t/2,inner);}
+ function shelves(u,frame,w,h,d,count,mat=liner){const inside=interior(u,frame);for(let i=1;i<=count;i++)box(inside,w-.045,mat===shelfGlass?.008:.018,d-.06,0,-h/2+h*i/(count+1),-d/2,mat);}
+ function shutter(u,frame,part,{glass=false,hinge=true}={}){const pivot=new T.Group();pivot.position.x=-part.w/2;frame.add(pivot);const {w,h}=part;frame.updateWorldMatrix(true,true);
+ if(glass){const pane=new T.MeshPhysicalMaterial({color:'#16191a',transparent:true,opacity:.72,roughness:.03,metalness:.1,clearcoat:1,clearcoatRoughness:.02,envMapIntensity:1.6,side:T.DoubleSide,depthWrite:false});sourceFace(faceById.get(part.faceId),pane,pivot);const frameMetal=new T.MeshPhysicalMaterial({color:'#1d1e1d',metalness:.7,roughness:.3});for(const x of [.01,w-.01])box(pivot,.02,h,.02,x,0,-.008,frameMetal);for(const y of [-h/2+.01,h/2-.01])box(pivot,w,.02,.02,w/2,y,-.008,frameMetal);}
+ else{const reference=sourceFace(faceById.get(part.faceId),u.front,pivot);reference.userData.referenceOnly=true;reference.visible=false;box(pivot,w-.006,h-.006,.019,w/2,0,-.0095,u.front);}
+ if(hinge)action(u,pivot,'hinge',-1.65);return pivot;}
+ function tray(u,frame,part,kind,{y=0,hh=part.h,hasFront=true}={}){const {w,depth:d}=part;const p=new T.Group();p.position.y=y;frame.add(p);
+ if(hasFront){frame.updateWorldMatrix(true,true);const reference=sourceFace(faceById.get(part.faceId),u.front,p);reference.userData.referenceOnly=true;reference.visible=false;box(p,w-.006,hh-.006,.019,0,0,-.0095,u.front);}
+ const inside=interior(u,p),ww=Math.max(.1,w-.07),dd=Math.max(.12,d-.08),base=-hh/2+.03,z=-d/2;
+ if(kind==='oil'){for(let i=0;i<3;i++)wire(inside,ww,dd,-hh/2+.07+i*(hh-.22)/2,z,.12);}
+ else if(kind==='rice'){const bh=Math.min(.46,hh-.07);box(inside,ww,bh,dd,0,-hh/2+.04+bh/2,z,liner);box(inside,.012,bh*.9,dd*.95,0,-hh/2+.04+bh/2,z,steel);box(inside,ww+.005,.016,dd+.005,0,-hh/2+.055+bh,z,steel);}
+ else if(kind==='wicker'){const bh=Math.max(.1,hh-.07);box(inside,ww,.012,dd,0,base,z,wicker);for(let i=0;i<11;i++){const yy=base+bh*i/10;for(const x of [-ww/2,ww/2])box(inside,.009,.008,dd,x,yy,z,wicker);for(const zz of [z-dd/2,z+dd/2])box(inside,ww,.008,.009,0,yy,zz,wicker);}for(let i=0;i<14;i++)for(const zz of [z-dd/2,z+dd/2])box(inside,.007,bh,.007,-ww/2+ww*i/13,base+bh/2,zz,wicker);}
+ else{// tandem drawer box: steel sides, liner base/back
+  const sh=Math.max(.06,hh-.05);box(inside,ww,.012,dd,0,base,z,liner);for(const x of [-ww/2,ww/2])box(inside,.012,sh,dd,x,base+sh/2,z,steel);box(inside,ww,sh,.012,0,base+sh/2,z-dd/2,liner);
+  if(kind==='cutlery'){const tray=new T.MeshStandardMaterial({color:'#8d9192',roughness:.4});for(let i=1;i<5;i++)box(inside,.006,.04,dd*.9,-ww/2+ww*i/5,base+.026,z,tray);box(inside,ww*.95,.006,.006,0,base+.026,z-dd*.2,tray);}
+  if(kind==='thali'){for(let i=0;i<9;i++)for(const zz of [z-dd*.15,z+dd*.25])rod(inside,[-ww*.4+ww*.8*i/8,base+.01,zz],[-ww*.4+ww*.8*i/8,base+.14,zz],.0025);for(const zz of [z-dd*.15,z+dd*.25])rod(inside,[-ww*.42,base+.14,zz],[ww*.42,base+.14,zz]);}
+ }
+ action(u,p,'slide',Math.min(.46,d*.78));return p;}
+ const assigned=new Set();
+ for(const def of definitions){const group=new T.Group();root.add(group);const front=new T.MeshPhysicalMaterial({color:DEFAULT_FINISH,roughness:.07,metalness:0,clearcoat:1,clearcoatRoughness:.025,ior:1.49,specularIntensity:1,envMapIntensity:1.25,side:T.DoubleSide}),side=front.clone(),sideSkin=side.clone(),u={...def,group,front,side,sideSkin,actions:[],interiors:[],angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};
+ if(OPEN_KINDS.includes(u.kind)){u.defaultSide={...WOOD_FINISH};u.finishable=false;for(const mat of [side,sideSkin]){mat.map=woodMap;mat.color.set('#ffffff');mat.roughness=.5;mat.clearcoat=.12;}}
+ // Imported outer skins share planes with generated panels; offset only the skins.
+ sideSkin.polygonOffset=true;sideSkin.polygonOffsetFactor=-2;sideSkin.polygonOffsetUnits=-4;
+ units.push(u);def.sourceFaces.forEach(id=>assigned.add(id));
+ if(def.kind==='open'){
+  for(const id of def.sourceFaces)sourceFace(faceById.get(id),woodSkin,group);
+  // concealed light in the open box ceiling (source face 42942)
+  const ceil=faceById.get(42942),pts=ceil.points.flat(),lo=[0,1,2].map(i=>Math.min(...pts.map(p=>p[i]))),hi=[0,1,2].map(i=>Math.max(...pts.map(p=>p[i])));
+  const holder=new T.Group();holder.position.set((lo[0]+hi[0])/2,lo[1]-.006,(lo[2]+hi[2])/2);holder.rotation.y=-Math.PI/2;group.add(holder);addLight(holder,0,0,.1,hi[2]-lo[2]-.04,.05);
+ }else for(const part of def.parts){const frame=localPart(u,part),{w,h,depth:d}=part;
+  if(def.kind==='wicker-open'){carcass(u,frame,w,h,d,wood);const ref=sourceFace(faceById.get(part.faceId),u.front,frame);ref.userData.referenceOnly=true;ref.visible=false;for(let i=0;i<2;i++)tray(u,frame,part,'wicker',{y:-h/2+h/2*(i+.5),hh:h/2,hasFront:false});box(frame,w-.036,.018,d-.06,0,0,-d/2-.01,wood);continue;}
+  carcass(u,frame,w,h,d);
+  if(def.kind==='shelves'){shelves(u,frame,w,h,d,1);shutter(u,frame,part);}
+  else if(def.kind==='glass'){shelves(u,frame,w,h,d,1,shelfGlass);shutter(u,frame,part,{glass:true});addLight(frame,0,h/2-.03,-d+.03,w-.05,.12);}
+  else if(def.kind==='corner'){
+   shutter(u,frame,part);const linked=u.actions[u.actions.length-1];linked.cornerRacks=[];
+   for(let tier=0;tier<2;tier++){
+    const rack=interior(u,frame);rack.userData.cornerBasket=true;const ww=w-.07,dd=d-.10,y=-h/2+.10+tier*(h-.24),shape=new T.Shape();
+    shape.moveTo(-ww*.42,-dd*.35);shape.bezierCurveTo(-ww*.58,-dd*.05,-ww*.46,dd*.38,-ww*.10,dd*.42);shape.bezierCurveTo(ww*.40,dd*.48,ww*.58,dd*.18,ww*.42,-dd*.10);shape.bezierCurveTo(ww*.28,-dd*.40,ww*.05,-dd*.10,-ww*.10,-dd*.10);shape.bezierCurveTo(-ww*.22,-dd*.11,-ww*.18,-dd*.42,-ww*.42,-dd*.35);
+    const base=new T.Mesh(new T.ExtrudeGeometry(shape,{depth:.008,bevelEnabled:false,curveSegments:20}),steel);base.rotation.x=-Math.PI/2;base.position.set(0,y,-d/2);rack.add(base);
+    const outline=shape.getPoints(40);for(let j=1;j<outline.length;j++){const a=outline[j-1],b=outline[j];rod(rack,[a.x,y+.08,-d/2-a.y],[b.x,y+.08,-d/2-b.y],.003);if(j%4===0)rod(rack,[a.x,y,-d/2-a.y],[a.x,y+.08,-d/2-a.y],.002);}
+    linked.cornerRacks.push(rack);rack.traverse(o=>{if(o.isMesh)o.userData.action=linked;});
+   }
+  }
+  else tray(u,frame,part,def.kind);
+ }
+ group.traverse(o=>{if(o.isMesh)o.userData.unit=u;});
+ }
+ // Fixed source geometry: countertop placeholder stone, lit wooden undersides, aqua outer skins.
+ const stoneIds=new Set(exactLayout.special.countertop),litIds=new Set(exactLayout.special.litUndersides);
+ const stone=new T.MeshPhysicalMaterial({color:'#1f2221',roughness:.18,clearcoat:.7,side:T.DoubleSide});stone.polygonOffset=true;stone.polygonOffsetFactor=-3;stone.polygonOffsetUnits=-6;const wallFace=new T.MeshStandardMaterial({color:'#efede6',roughness:.8,side:T.DoubleSide});
+ for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const pts=f.points.flat(),isFloor=pts.every(p=>Math.abs(p[1])<1e-8);const wallSide=f.normal[0]>.9||f.normal[2]<-.9;let mat=isFloor?plinth:stoneIds.has(f.id)?stone:litIds.has(f.id)?woodSkin:wallSide?wallFace:null,owner=null;
+ if(!mat){const center=pts.reduce((v,p)=>v.add(new T.Vector3(...p)),new T.Vector3()).multiplyScalar(1/pts.length);let distance=Infinity;for(const u of units)for(const part of u.parts){if(OPEN_KINDS.includes(u.kind))continue;const d=center.distanceToSquared(new T.Vector3(...part.center));if(d<distance){distance=d;owner=u;}}mat=owner.sideSkin;}
+ const mesh=sourceFace(f,mat,architecture);mesh.userData.floor=isFloor;mesh.userData.countertop=stoneIds.has(f.id);mesh.userData.wallSide=wallSide;if(owner){mesh.userData.unit=owner;mesh.userData.outerSkin=true;mesh.castShadow=false;}
+ if(litIds.has(f.id)){mesh.userData.litUnderside=true;// concealed strips along the front edges of the corner wall units
+  const lo=[0,1,2].map(i=>Math.min(...pts.map(p=>p[i]))),hi=[0,1,2].map(i=>Math.max(...pts.map(p=>p[i])));const y=lo[1]-.006;
+  const backFrontZ=-(185.3-101.3)*.0254,sideFrontX=(154.2-exactLayout.originInches[0])*.0254;
+  const a=new T.Group();a.position.set((lo[0]+sideFrontX)/2,y,backFrontZ-.06);architecture.add(a);addLight(a,0,0,0,sideFrontX-lo[0]-.04,.02);
+  const b=new T.Group();b.position.set(sideFrontX+.06,y,(backFrontZ+hi[2])/2);b.rotation.y=-Math.PI/2;architecture.add(b);addLight(b,0,0,0,hi[2]-backFrontZ-.04,.02);
+ }}
+ const baseMembers=units.filter(u=>u.parts.every(p=>p.center[1]+p.h/2<.9));
+ const baseGroup=new T.Group();root.add(baseGroup);
+ const base={id:'base-cabinet',name:'Complete kitchen base cabinet',kind:'base',group:baseGroup,members:baseMembers,angle:0,actions:baseMembers.flatMap(u=>u.actions)};
+ for(const u of units){u.product=baseMembers.includes(u)?base:u;if(u.product===u)u.members=[u];else baseGroup.add(u.group);}
+ for(const mesh of [...architecture.children]){const f=faceById.get(mesh.userData.sourceFace);if(!f)continue;const pts=f.points.flat();if(!mesh.userData.floor&&Math.max(...pts.map(p=>p[1]))<.90){baseGroup.add(mesh);mesh.userData.unit??=baseMembers[0];}}
+ const products=[base,...units.filter(u=>u.product===u)];
+ let reference=false,lightsOn=true;const allMeshes=[];root.traverse(o=>{if(o.isMesh)allMeshes.push(o);});
+ function setLights(on){lightsOn=on;for(const n of lightNodes){if(n.isLight)n.visible=on&&!reference;else n.material=on?led:liner;}}
+ function setReference(on){reference=on;if(on){for(const a of actions){a.open=false;a.value=0;a.node.position.copy(a.initial);a.node.rotation.set(0,0,0);}}for(const mesh of allMeshes){if(on){mesh.userData.finishedMaterial??=mesh.material;const f=faceById.get(mesh.userData.sourceFace);if(f){mesh.userData.referenceMaterial??=new T.MeshStandardMaterial({color:f.color,roughness:.65,side:T.DoubleSide});mesh.material=mesh.userData.referenceMaterial;mesh.visible=true;}else mesh.visible=false;}else{if(mesh.userData.finishedMaterial)mesh.material=mesh.userData.finishedMaterial;mesh.visible=!mesh.userData.referenceOnly;}}setLights(lightsOn);}
+ root.updateMatrixWorld(true);return {root,architecture,units,products,actions,sourceMeshes,lightNodes,exactLayout,setReference,setLights,get lightsOn(){return lightsOn;},update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='slide')a.node.position.z=a.initial.z+a.travel*a.value;else a.node.rotation.y=a.travel*a.value;if(a.cornerRacks){const p=T.MathUtils.clamp((a.value-.35)/.65,0,1);a.cornerRacks.forEach((rack,i)=>{rack.position.z=.36*p;rack.position.x=(i?-.04:.04)*p;rack.rotation.y=(i?.55:-.55)*p;});}}for(const u of units){const visible=!reference&&(OPEN_KINDS.includes(u.kind)||u.kind==='glass'||u.actions.some(a=>a.value>.015));for(const p of u.interiors)p.visible=visible;}}};
+}

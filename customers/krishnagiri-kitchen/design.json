@@ -7,10 +7,17 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 all 10 source colours confirmed; countertop pending",
+    "status": "First 3D view built for Bright's review",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
-    "directory": "dist/krishnagiri-kitchen"
+    "directory": "dist/krishnagiri-kitchen",
+    "storageKey": "krishnagiri-kitchen-v1",
+    "assetVersion": "kk1",
+    "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
+    "layout": "dist/krishnagiri-kitchen/exact-layout.js",
+    "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
+    "check": "check-krishnagiri-kitchen.mjs",
+    "woodTexture": "dist/krishnagiri-kitchen/wood-mica-reference.jpg"
   },
   "source": {
     "files": [
@@ -282,14 +289,30 @@
       "detail": "Light type (profile strip vs spots) and colour temperature not stated; render uses a warm-white concealed strip."
     },
     {
-      "item": "Exposed end/side panels",
-      "detail": "Interpreted under the 'all open areas wood' rule as wooden mica; flag to Bright if end panels should match the aqua shutters instead."
+      "item": "Exposed end/side panels and carcass",
+      "detail": "Not wood (per correction). Render uses the aqua high-gloss front finish on exposed end panels; walls plain off-white. Confirm on review."
+    },
+    {
+      "item": "Countertop",
+      "detail": "Not yet specified; render uses black granite-like top (as in the aqua reference photo) as a placeholder."
+    },
+    {
+      "item": "Glass shutter pairs",
+      "detail": "Both glass doors in each pair hinge on their left in the render; actual pair hinging not stated."
+    },
+    {
+      "item": "Wall-side back faces",
+      "detail": "Source back faces against the walls (42798, 43062, 43083, 43084) render as plain off-white wall colour, not aqua or wood."
     }
   ],
   "openQuestions": [
     {
-      "topic": "Countertop material/colour (granite/quartz, colour)",
-      "status": "to ask"
+      "topic": "Countertop material/colour (render placeholder: black stone)",
+      "status": "open"
+    },
+    {
+      "topic": "Bright's review of the first 3D view",
+      "status": "awaiting"
     }
   ],
   "pricing": "No rates confirmed for this client.",
@@ -303,8 +326,8 @@
   },
   "globalRules": [
     {
-      "rule": "Apart from shutters, all open areas get wood coverings (wooden mica, reference dist/krishnagiri-kitchen/wood-mica-reference.jpg)",
-      "quote": "Apart from shutters, all the open areas will be wood coverings.",
+      "rule": "Wooden mica only inside the cabinets' open areas (open wicker unit, open counter box, wall-unit undersides). Not on walls, not as a general covering.",
+      "correction": "Bright 2026-11-21: earlier 'all open areas wood' reading was wrong \u2014 'Only the wooden cabinet will be covering that. No, the wall and all.'",
       "confirmedOn": "2026-11-21"
     }
   ]
