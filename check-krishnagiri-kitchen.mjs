@@ -16,7 +16,9 @@ assert.equal(unit('wicker').actions.length,2);assert(unit('wicker').actions.ever
 assert.equal(unit('corner').actions.length,1);{const c=unit('corner').actions[0];assert.equal(c.hingeSide,'right');assert(c.node.position.x>0,'S-corner hinge on the corner (right) side');assert(c.travel>0,'opens from the left edge toward the room');}assert.equal(unit('corner').actions[0].cornerRacks.length,2);
 for(const id of ['cutlery','thali','oil','rice'])assert(unit(id).actions.length===1&&unit(id).actions[0].type==='slide',id);
 for(const id of ['glass-back','glass-side'])assert.equal(unit(id).actions.length,2);
-assert(m.lightNodes.some(n=>n.isLight),'concealed lights present');for(const id of ['glass-back','glass-side']){let strips=0,lamps=0;unit(id).group.traverse(o=>{if(o.userData.led)strips++;if(o.isLight)lamps++;});assert(strips>=8&&lamps>=4,id+' concealed lighting inside every glass unit');}
+assert(m.lightNodes.some(n=>n.isLight),'concealed lights present');for(const id of ['glass-back','glass-side']){let strips=0,lamps=0;unit(id).group.traverse(o=>{if(o.userData.led)strips++;if(o.isLight)lamps++;});assert.equal(strips,2,id+' one top concealed strip per glass bay only');assert.equal(lamps,2);}
+m.root.traverse(o=>{if(o.isLight)assert(o.isRectAreaLight,'LED surface lights only — no spot/point lights');});
+{let rattan=0;unit('wicker').group.traverse(o=>{if(o.isMesh&&o.material.map&&o.material.color.getHexString()==='ffffff'&&o.material.roughness===.7)rattan++;});assert(rattan>=10,'woven rattan basket bodies');}
 const base=m.products.find(p=>p.id==='base-cabinet');assert.equal(base.members.length,9);assert.equal(m.products.length,5);
 m.update(.033);assert(unit('wicker').interiors.every(p=>p.visible));
 for(const a of m.actions)a.open=true;for(let i=0;i<100;i++)m.update(.033);assert(unit('corner').actions[0].cornerRacks.every(p=>p.position.z>.3));

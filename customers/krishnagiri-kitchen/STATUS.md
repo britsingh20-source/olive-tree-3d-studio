@@ -48,3 +48,11 @@ Bright asked for concealed lighting inside the glass shutters (the kk1 single to
 Validation: check-krishnagiri-kitchen.mjs passed (adds ≥8 strips and ≥4 lamps per glass unit). Headless Chrome (SwiftShader) close-up rendered with lighting on and off; strips visible through the glass when on, dark when off; no page errors. Real-device/GPU check not done.
 
 Deployed: commit 3b2a8aeaaa1d4964abec80d5de5d85d414d2e8fd, Pages run 44887322737 success; live index serves studio.js?v=kk3 and live model.js contains the glass-unit lighting.
+
+## Baskets and lighting corrections — 2026-11-21 (kk4)
+
+Bright: (1) baskets should look like his reference wicker basket, only two; (2) lights looked artificial — inside glass units keep only the top concealed light (remove shelf/side strips); (3) under-unit/open-box lights looked like spotlights; they must look like LED surface/strip lights and read naturally while rotating.
+
+Changes: two rattan baskets with woven texture body, brown wooden rim and front handle slot (procedural approximation; reference photo not committed). Removed the fixed shelf between baskets. All PointLights replaced by frosted LED strips + RectAreaLights (vendored three r180 RectAreaLightUniformsLib/TexturesLib, initialised only for WebGL). Glass units: single top strip each, warm white.
+
+Validation: check-krishnagiri-kitchen.mjs passed (one strip/lamp per glass bay, only RectAreaLights, rattan bodies present). Headless Chrome SwiftShader renders inspected: baskets pulled out; under-unit LED strips and open-box wash from two angles (no spot pools); glass units showing top strip only. Final warm-white strip colour tweak made after the glass render (not re-rendered). Software renderer is slow with area lights; real GPU/phone not tested.
