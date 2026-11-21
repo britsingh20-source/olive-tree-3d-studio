@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk5",
+    "assetVersion": "kk6",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
@@ -254,7 +254,8 @@
       "unit": "Exposed end panels: left end of the back-wall black-glass wall units (42991) and outer side of the tall unit with the pink normal shutter and open box (42898)",
       "finish": "Wooden mica (dist/krishnagiri-kitchen/wood-mica-reference.jpg)",
       "source": "Bright marked both in black on a screenshot, 2026-11-21",
-      "confirmedOn": "2026-11-21"
+      "confirmedOn": "2026-11-21",
+      "grain": "Vertical grain (Bright correction 2026-11-21: 'I need vertical texture')"
     }
   ],
   "approximations": [
@@ -321,6 +322,10 @@
     {
       "item": "Other exposed end panels",
       "detail": "Base-run end panels and other unmarked outer sides stay aqua high gloss until Bright says otherwise."
+    },
+    {
+      "item": "Wood grain direction elsewhere",
+      "detail": "Only the two end panels were asked to be vertical; the open box, wicker unit interior and undersides keep the original horizontal grain until Bright says otherwise."
     }
   ],
   "openQuestions": [
