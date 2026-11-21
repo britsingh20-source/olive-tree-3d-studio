@@ -72,3 +72,9 @@ Deployed: commit 1c74b0f9e286968cb3552f727485490a4b6dc3ba, Pages run 44890162328
 Bright: the end-panel mica was horizontal; he needs vertical. Faces 42991 and 42898 now use a second wood texture rotated 90° with panel-local UVs so the grain runs vertically in one continuous piece (two seam iterations fixed during render checks). Other wood surfaces unchanged. check-krishnagiri-kitchen.mjs passed (asserts rotation). Headless Chrome SwiftShader render from Bright's angle: both panels vertical, seamless.
 
 Deployed: commit 81efe589f53da47d11b8f3d11603f0b4273e73ee, Pages run 44890896432 success; live serves studio.js?v=kk6 with vertical end-panel grain.
+
+## Option 2 · Beige & wood — 2026-11-21 (kk7)
+
+Bright: keep aqua+wood as Option 1 and add beige+wood (from his beige reference kitchen photo) as Option 2. model.js exports OPTIONS; the toolbar 'Restore aqua & wood' button is replaced by 'Option 1 · Aqua & wood' and 'Option 2 · Beige & wood'. Choosing an option repaints all solid fronts and their sides (wood areas keep wood), saves the choice in the browser (saved.option) and is restored on reload. Both colours are in the finish strip.
+
+Validation: check-krishnagiri-kitchen.mjs passed (OPTIONS values, option buttons/persistence). Headless Chrome SwiftShader: clicked Option 2, rendered (beige fronts, wood/glass/lights unchanged); reload kept Option 2 pressed and a front at #a8927e; no page errors. Real phone not tested.

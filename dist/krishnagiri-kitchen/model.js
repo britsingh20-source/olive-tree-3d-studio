@@ -6,6 +6,9 @@ export {exactLayout};
 // Hex is an approximation sampled from Bright's reference photo.
 export const DEFAULT_FINISH='#7fb3ad';
 export const FINISH_NAME='Aqua high gloss';
+// Design options (Bright 2026-11-21): 1 = aqua high gloss + wood (original), 2 = beige high gloss + wood.
+// Beige hex sampled from Bright's beige reference kitchen photo; approximation until a laminate code is given.
+export const OPTIONS=[{id:1,label:'Option 1 · Aqua & wood',name:'Aqua high gloss',color:'#7fb3ad'},{id:2,label:'Option 2 · Beige & wood',name:'Beige high gloss',color:'#a8927e'}];
 export const WOOD_TEXTURE='./wood-mica-reference.jpg';
 export const WOOD_FINISH={name:'Wooden mica (reference)',color:'#a8693a',wood:true,texture:WOOD_TEXTURE};
 export const project={id:'krishnagiri-kitchen-v1',customer:'Krishnagiri kitchen',location:'Krishnagiri',quotation:null};

@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk6",
+    "assetVersion": "kk7",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
@@ -326,6 +326,10 @@
     {
       "item": "Wood grain direction elsewhere",
       "detail": "Only the two end panels were asked to be vertical; the open box, wicker unit interior and undersides keep the original horizontal grain until Bright says otherwise."
+    },
+    {
+      "item": "Option 2 beige colour",
+      "detail": "#a8927e sampled from the beige reference photo; laminate brand/code not given."
     }
   ],
   "openQuestions": [
@@ -340,7 +344,7 @@
   ],
   "pricing": "No rates confirmed for this client.",
   "globalFinish": {
-    "appliesTo": "Every front in the kitchen (all base, drawer and wall-unit fronts)",
+    "appliesTo": "Every front in the kitchen (all base, drawer and wall-unit fronts) \u2014 this is Option 1; Option 2 swaps the colour to beige high gloss (see designOptions).",
     "colour": "Aqua / mint teal as in reference photo",
     "gloss": "High gloss",
     "renderApproxHex": "#7fb3ad",
@@ -351,6 +355,23 @@
     {
       "rule": "Wooden mica only inside the cabinets' open areas (open wicker unit, open counter box, wall-unit undersides). Not on walls, not as a general covering. Exception confirmed later: the two marked exposed end panels (42991, 42898) are also wooden mica.",
       "correction": "Bright 2026-11-21: earlier 'all open areas wood' reading was wrong \u2014 'Only the wooden cabinet will be covering that. No, the wall and all.'",
+      "confirmedOn": "2026-11-21"
+    }
+  ],
+  "designOptions": [
+    {
+      "id": 1,
+      "name": "Option 1 \u00b7 Aqua & wood",
+      "solidFronts": "Aqua/mint high gloss (render #7fb3ad, sampled from Bright's aqua reference photo)",
+      "handles": "None",
+      "everythingElse": "Same wood mica, black glass, lighting and baskets"
+    },
+    {
+      "id": 2,
+      "name": "Option 2 \u00b7 Beige & wood",
+      "solidFronts": "Beige high gloss (render #a8927e, sampled from Bright's beige reference kitchen photo 2026-11-21, Pinterest screenshot, not committed)",
+      "handles": "None",
+      "everythingElse": "Same wood mica, black glass, lighting and baskets",
       "confirmedOn": "2026-11-21"
     }
   ]
