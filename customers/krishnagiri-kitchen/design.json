@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (1 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (2 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -109,6 +109,17 @@
       },
       "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#ffb299",
+      "faces": [
+        42849
+      ],
+      "unit": "24x10in front at top of back-wall base (20\u201330in), above the yellow #ffd562 section",
+      "purpose": "Cutlery tandem drawer (Bright: 'cutlery tandem')",
+      "shutterFinish": "Not yet stated",
+      "handles": "Not yet stated",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -119,12 +130,16 @@
     {
       "item": "Brown-section shelf count, hinge side",
       "detail": "Not specified; render will use one mid shelf and conventional hinge sides until confirmed."
+    },
+    {
+      "item": "Cutlery tandem drawer",
+      "detail": "Tandem brand, organiser insert layout and drawer box depth not specified; render uses a generic full-depth drawer with cutlery tray."
     }
   ],
   "openQuestions": [
     {
-      "sourceColour": "#ffb299",
-      "status": "unresolved"
+      "topic": "Does the aqua high-gloss handleless finish apply to all fronts (incl. cutlery drawer)?",
+      "status": "asked 2026-11-21"
     },
     {
       "sourceColour": "#ffd562",
