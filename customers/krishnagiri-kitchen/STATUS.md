@@ -94,3 +94,5 @@ Deployed: commit fe2e79e58f4cbe888026f66b19d1bb8755d23db4, Pages run 44898528893
 Bright: both options look glossy but not like acrylic. Changes (studio.js paint + model.js default): solid fronts drop the mica grain map, roughness 0.015, clearcoat 1 with 0 roughness, and use a dedicated acrylic reflection environment (grey room, LED cove/plinth lines, windows, floor tile lines; captured from 0.9 m — first attempt captured at floor level showed no lines, fixed). Wood and textured finishes unchanged. Option card thumbnails re-rendered (on-stage badge blanked in the thumbnails).
 
 Validation: check-krishnagiri-kitchen.mjs passed (acrylic assertions). Headless Chrome SwiftShader renders of Option 1 and Option 2 base runs: crisp moving-line reflections visible, colours retained. Real phone/GPU not tested.
+
+Deployed: commit 92447e22c76da1f5a0ee327b234565a903d25b57, Pages run 44900169124 success; live serves studio.js?v=kk9 with the acrylic environment.
