@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (6 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (7 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -165,6 +165,23 @@
       "shutterFinish": "Global finish (aqua high gloss)",
       "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#cc99ff",
+      "faces": [
+        42855
+      ],
+      "unit": "24x30in side-wall base opening, last before the corner (next to S-corner)",
+      "purpose": "Open unit with two wicker baskets, visible from the front",
+      "shutters": "None \u2014 open, no shutter (exception to the global aqua front finish)",
+      "interiorFinish": {
+        "material": "Wooden mica lined inside",
+        "reference": "dist/krishnagiri-kitchen/wood-mica-reference.jpg",
+        "sha256": "1a2b58801055150205362712a097191c220a94bf9271174fa91aad1467aa1568",
+        "bytes": 93239,
+        "note": "Bright's supplied wood-mica swatch, 845x845 JPEG; laminate brand/code not given"
+      },
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -195,13 +212,13 @@
     {
       "item": "Rice basket",
       "detail": "Mechanism (pull-out tandem vs shutter), bin count and capacity not specified; render uses a full-height pull-out front with rice bin compartments."
+    },
+    {
+      "item": "Wicker basket placement",
+      "detail": "Two baskets confirmed; arrangement not stated \u2014 render stacks them one above the other on a mid shelf, with generic natural-cane weave."
     }
   ],
   "openQuestions": [
-    {
-      "sourceColour": "#cc99ff",
-      "status": "unresolved"
-    },
     {
       "sourceColour": "#4d6fb2",
       "status": "unresolved"
