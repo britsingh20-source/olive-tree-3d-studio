@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress",
+    "status": "Not built \u2014 colour intake in progress (1 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -91,13 +91,37 @@
       "materialNames": "Ty_* names here are SketchUp palette colours painted on cabinet faces, not a human figure; nothing omitted."
     }
   },
-  "confirmed": [],
-  "approximations": [],
-  "openQuestions": [
+  "confirmed": [
     {
       "sourceColour": "#a56348",
-      "status": "unresolved"
+      "faces": [
+        42830,
+        42836,
+        42794
+      ],
+      "unit": "Three brown base fronts: two 18x30in at left end of back-wall run, one 24x30in at open end of side-wall run",
+      "purpose": "Shutters only, with shelves inside (no drawers)",
+      "shutterFinish": {
+        "colour": "Aqua / mint teal as in Bright's reference kitchen photo",
+        "gloss": "High gloss (as in reference photo)",
+        "renderApproxHex": "#7fb3ad",
+        "reference": "Chat reference photo 2026-11-21 (sha256 57192fae\u2026), used only for colour and finish; not committed (third-party watermarked image)"
+      },
+      "handles": "None \u2014 handleless",
+      "confirmedOn": "2026-11-21"
+    }
+  ],
+  "approximations": [
+    {
+      "item": "Brown-section aqua gloss colour",
+      "detail": "Hex #7fb3ad is sampled/estimated from the reference photo; laminate/acrylic brand and code not yet given."
     },
+    {
+      "item": "Brown-section shelf count, hinge side",
+      "detail": "Not specified; render will use one mid shelf and conventional hinge sides until confirmed."
+    }
+  ],
+  "openQuestions": [
     {
       "sourceColour": "#ffb299",
       "status": "unresolved"

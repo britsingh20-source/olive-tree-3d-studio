@@ -15,4 +15,4 @@ New client. Source intake complete; colour-by-colour design questions in progres
 
 ## Next action
 
-Ask Bright what each source colour is, one at a time, starting with #a56348 (three base fronts). Save each answer to design.json before the next question. Then build dist/krishnagiri-kitchen/ from the newest viewer template.
+#a56348 confirmed (shutters + shelves, aqua high gloss per reference photo, handleless). Next colour: #ffb299 (24x10in front above the yellow on the back wall). Save each answer to design.json before the next question. Then build dist/krishnagiri-kitchen/ from the newest viewer template.
