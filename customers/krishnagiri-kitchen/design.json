@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (2 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (3 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -120,6 +120,17 @@
       "shutterFinish": "Global finish (aqua high gloss)",
       "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#ffd562",
+      "faces": [
+        43189
+      ],
+      "unit": "24x20in front from floor to cutlery drawer, back-wall run",
+      "purpose": "Thali basket tandem drawer (Bright: 'thali basket tandem')",
+      "shutterFinish": "Global finish (aqua high gloss)",
+      "handles": "None \u2014 handleless",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -134,13 +145,13 @@
     {
       "item": "Cutlery tandem drawer",
       "detail": "Tandem brand, organiser insert layout and drawer box depth not specified; render uses a generic full-depth drawer with cutlery tray."
+    },
+    {
+      "item": "Thali basket tandem",
+      "detail": "Basket layout (plate/thali racks) and tandem brand not specified; render uses a generic deep drawer with a thali/plate basket."
     }
   ],
   "openQuestions": [
-    {
-      "sourceColour": "#ffd562",
-      "status": "unresolved"
-    },
     {
       "sourceColour": "#5a7a43",
       "status": "unresolved"
