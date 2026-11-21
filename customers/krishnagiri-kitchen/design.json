@@ -12,13 +12,14 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk12",
+    "assetVersion": "kk13",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
     "check": "check-krishnagiri-kitchen.mjs",
     "woodTexture": "dist/krishnagiri-kitchen/wood-mica-reference.jpg",
-    "optionPicker": "'Choose your kitchen design' card block placed directly ABOVE (outside) the studio section, so the full-screen product view (.studio.is-focused, position:fixed) never contains it; option thumbnails + on-stage design badge"
+    "optionPicker": "'Choose your kitchen design' card block placed directly ABOVE (outside) the studio section, so the full-screen product view (.studio.is-focused, position:fixed) never contains it; option thumbnails + on-stage design badge",
+    "productView": "Zooms the selected product in place inside the normal page; no full-screen overlay and no scroll lock (removed 2026-11-21 after it got stuck on Bright's phone). Guided tour also no longer locks scrolling."
   },
   "source": {
     "files": [

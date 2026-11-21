@@ -112,3 +112,9 @@ Bright: tapping a product still jumps into Option 1 and locks; cannot scroll. Ro
 Validation: check-krishnagiri-kitchen.mjs passed (option block before the studio section). Headless Chrome SwiftShader 390×844 touch: tapped the rice-basket front in the 3D stage → full-screen product view with the base cabinet visible (stage 269 px tall at top 228), no option cards; untick Product view → overlay closed, body scroll restored, page scrolls. Real phone not tested.
 
 Deployed: commit b2b64181c5bbcbbde817fd73ca0d1b6164915ddc, Pages run 44901444453 success; live index serves studio.js?v=kk12 with the option block before the studio section.
+
+## Product view scroll lock removed — 2026-11-21 (kk13)
+
+Bright (on his phone): tapping the base cabinet still 'goes to option 2 and locks'; scrolling only returns after unticking Product view. In headless Chrome the kk12 full-screen overlay covered the viewport correctly, so the failure is device-specific (likely iOS Safari with position:fixed overlay + body overflow lock + programmatic scroll, leaving the page parked on the option cards with scroll blocked). Not reproduced on a real device. Fix chosen to remove the mechanism: select() no longer adds .is-focused or sets body overflow hidden; showAll() (incl. tour) never locks either. Product view now zooms the product in the normal in-page stage; revealStage() scrolls the stage to ~70 px from the top when it is out of view.
+
+Validation: check-krishnagiri-kitchen.mjs passed (asserts no overflow lock / is-focused add). Headless Chrome SwiftShader 390×844 touch: base-cabinet card tap from far down → stage at top 70 px, product zoomed, page scrolls 500 px while product open; untick/tick Product view → same, scroll free. Real iPhone not tested — ask Bright to confirm.
