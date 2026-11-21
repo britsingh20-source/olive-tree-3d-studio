@@ -46,3 +46,5 @@ Deployed: commit 102923aeba62e899709b97d5cbd94942132a15d5, Pages run 44886443336
 Bright asked for concealed lighting inside the glass shutters (the kk1 single top strip did not read through the tint). Each glass bay now has a top strip, an under-shelf strip and two vertical inner-side profiles plus a warm point light; strips render after the tinted glass so they glow through. Glass made darker (near-black, ~80% opacity, low reflection) so it reads as black tinted glass instead of grey. Lighting toggle switches all strips/lights off.
 
 Validation: check-krishnagiri-kitchen.mjs passed (adds ≥8 strips and ≥4 lamps per glass unit). Headless Chrome (SwiftShader) close-up rendered with lighting on and off; strips visible through the glass when on, dark when off; no page errors. Real-device/GPU check not done.
+
+Deployed: commit 3b2a8aeaaa1d4964abec80d5de5d85d414d2e8fd, Pages run 44887322737 success; live index serves studio.js?v=kk3 and live model.js contains the glass-unit lighting.
