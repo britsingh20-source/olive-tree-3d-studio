@@ -64,3 +64,5 @@ Deployed: commit 4f34e244f121dc4f3d68e8950daff5b8ef2674a9; Pages run 44888669344
 Bright asked why the base shutter colour changed. Code check: DEFAULT_FINISH #7fb3ad and the front material are identical in every commit since kk1; nothing changed it. Likely a swatch tapped in the finish strip (saved per browser); told Bright 'Restore aqua & wood' resets it. His following screenshot shows the normal aqua.
 
 Bright marked two exposed end panels for wooden mica: left end of the back glass wall units (face 42991) and outer side of the tall pink-shutter/open-box unit (face 42898). Added special.woodEndPanels to the layout script; those source faces now use the wood-mica skin. check-krishnagiri-kitchen.mjs passed (asserts both are wood). Headless Chrome SwiftShader render from Bright's screenshot angle confirms both panels wood, other fronts unchanged.
+
+Deployed: commit 1c74b0f9e286968cb3552f727485490a4b6dc3ba, Pages run 44890162328 success; live serves studio.js?v=kk5 and layout with woodEndPanels.
