@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (3 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (4 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -131,6 +131,17 @@
       "shutterFinish": "Global finish (aqua high gloss)",
       "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#5a7a43",
+      "faces": [
+        42842
+      ],
+      "unit": "12x30in full-height base front, back-wall run, right of thali basket",
+      "purpose": "Oil pull-out (Bright: 'oil pullout')",
+      "shutterFinish": "Global finish (aqua high gloss)",
+      "handles": "None \u2014 handleless",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -149,13 +160,13 @@
     {
       "item": "Thali basket tandem",
       "detail": "Basket layout (plate/thali racks) and tandem brand not specified; render uses a generic deep drawer with a thali/plate basket."
+    },
+    {
+      "item": "Oil pull-out",
+      "detail": "Number of tiers and brand not specified; render uses a generic 3-tier wire pull-out."
     }
   ],
   "openQuestions": [
-    {
-      "sourceColour": "#5a7a43",
-      "status": "unresolved"
-    },
     {
       "sourceColour": "#65ffff",
       "status": "unresolved"
