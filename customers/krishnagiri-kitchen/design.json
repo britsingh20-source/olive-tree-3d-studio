@@ -12,12 +12,13 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk7",
+    "assetVersion": "kk8",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
     "check": "check-krishnagiri-kitchen.mjs",
-    "woodTexture": "dist/krishnagiri-kitchen/wood-mica-reference.jpg"
+    "woodTexture": "dist/krishnagiri-kitchen/wood-mica-reference.jpg",
+    "optionPicker": "Top 'Choose your kitchen design' card block (same pattern as pon-karthikeyan TV panel options) above the toolbar, with option-1.jpg/option-2.jpg thumbnails and an on-stage design badge"
   },
   "source": {
     "files": [

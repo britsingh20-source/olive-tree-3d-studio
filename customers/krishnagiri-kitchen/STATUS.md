@@ -80,3 +80,9 @@ Bright: keep aqua+wood as Option 1 and add beige+wood (from his beige reference 
 Validation: check-krishnagiri-kitchen.mjs passed (OPTIONS values, option buttons/persistence). Headless Chrome SwiftShader: clicked Option 2, rendered (beige fronts, wood/glass/lights unchanged); reload kept Option 2 pressed and a front at #a8927e; no page errors. Real phone not tested.
 
 Deployed: commit ada4d0dcc88b1fb896739f1906722177131677e6, Pages run 44897744404 success; live index has both option buttons and studio.js?v=kk7.
+
+## Option picker moved to the top — 2026-11-21 (kk8)
+
+Bright: option buttons were only visible after scrolling; place Option 1 / Option 2 on top like the earlier TV panel (pon-karthikeyan). Removed the toolbar option buttons; added the same 'panel-options' card block (copied styles) after the selection bar and before the toolbar, with rendered thumbnails option-1.jpg (aqua) and option-2.jpg (beige) and a 'design-badge' on the 3D stage. Cards are a radiogroup; choice persists (saved.option).
+
+Validation: check-krishnagiri-kitchen.mjs passed (cards present, above toolbar). Headless Chrome SwiftShader 390×844 @2x: card block begins ~560 px from page top (visible on first screen), Option 2 card click → badge 'Option 2 · Beige & wood', card checked, fronts beige; no page errors. Real phone not tested.
