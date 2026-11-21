@@ -104,3 +104,9 @@ Bright: tapping Product view jumped to Option 1 and nothing could be done; produ
 Validation: check-krishnagiri-kitchen.mjs passed (option block above tour bar, nothing between selection bar and stage, product view calls revealStage). Headless Chrome SwiftShader 390×844 touch: tick Product view → stage top at 327 px (visible), base cabinet framed from the room; untick → full kitchen; tap 'Black glass wall units · side' card further down → scrolled back to the stage, unit fills view; no page errors. Real phone not tested.
 
 Deployed: commit c790970a2500f71a31ccc2b7752dfe8bb8cf1200, Pages run 44900980318 success; live serves studio.js?v=kk11 with revealStage.
+
+## Product tap still locked on Option 1 — 2026-11-21 (kk12)
+
+Bright: tapping a product still jumps into Option 1 and locks; cannot scroll. Root cause (missed in kk11 testing, which only checked the stage position): select() turns .studio into a position:fixed full-screen overlay (is-focused) with body scroll locked; the option card block was still INSIDE .studio, so on a phone the overlay was filled by the tall Option 1 card and the stage was squeezed out. Fix: option block moved outside/above the studio section. Now the full-screen product view shows only selection bar, toolbar, stage, open controls and finish strip.
+
+Validation: check-krishnagiri-kitchen.mjs passed (option block before the studio section). Headless Chrome SwiftShader 390×844 touch: tapped the rice-basket front in the 3D stage → full-screen product view with the base cabinet visible (stage 269 px tall at top 228), no option cards; untick Product view → overlay closed, body scroll restored, page scrolls. Real phone not tested.

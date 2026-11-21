@@ -12,13 +12,13 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk11",
+    "assetVersion": "kk12",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
     "check": "check-krishnagiri-kitchen.mjs",
     "woodTexture": "dist/krishnagiri-kitchen/wood-mica-reference.jpg",
-    "optionPicker": "Top 'Choose your kitchen design' card block placed above the tour bar (moved 2026-11-21 so the Product view toggle, toolbar and 3D stage stay together), with option thumbnails and an on-stage design badge"
+    "optionPicker": "'Choose your kitchen design' card block placed directly ABOVE (outside) the studio section, so the full-screen product view (.studio.is-focused, position:fixed) never contains it; option thumbnails + on-stage design badge"
   },
   "source": {
     "files": [

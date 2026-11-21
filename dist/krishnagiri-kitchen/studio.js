@@ -1,10 +1,10 @@
 import * as T from 'three';
-import {createKitchenTour} from './tour.js?v=kk11';
+import {createKitchenTour} from './tour.js?v=kk12';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {CompatibilityRenderer} from '../prem/compatibility.js?v=smooth5';
 import {RoomEnvironment} from '../vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from '../vendor/RectAreaLightUniformsLib.js';
-import {buildModel,OPTIONS,WOOD_TEXTURE,project} from './model.js?v=kk11';
+import {buildModel,OPTIONS,WOOD_TEXTURE,project} from './model.js?v=kk12';
 // Active design option drives the default solid finish everywhere below.
 let DEFAULT_FINISH=OPTIONS[0].color,FINISH_NAME=OPTIONS[0].name;
 const $=id=>document.getElementById(id),stage=$('stage'),storageKey=project.id;
