@@ -1,9 +1,9 @@
 import * as T from 'three';
-import {createKitchenTour} from './tour.js?v=kk2';
+import {createKitchenTour} from './tour.js?v=kk3';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {CompatibilityRenderer} from '../prem/compatibility.js?v=smooth5';
 import {RoomEnvironment} from '../vendor/RoomEnvironment.js';
-import {buildModel,DEFAULT_FINISH,FINISH_NAME,WOOD_TEXTURE,project} from './model.js?v=kk2';
+import {buildModel,DEFAULT_FINISH,FINISH_NAME,WOOD_TEXTURE,project} from './model.js?v=kk3';
 const $=id=>document.getElementById(id),stage=$('stage'),storageKey=project.id;
 const palette=[{name:FINISH_NAME,color:DEFAULT_FINISH},{name:'Wooden mica (reference)',color:'#a8693a',wood:true,texture:WOOD_TEXTURE},{name:'Warm ivory',color:'#e5e0d2'},{name:'Porcelain white',color:'#f4f1e9'},{name:'Sage green',color:'#789283'},{name:'Forest green',color:'#35534a'},{name:'Pebble grey',color:'#989d96'},{name:'Terracotta',color:'#aa7661'},{name:'Champagne',color:'#c7b99f'},{name:'Walnut',color:'#76523b',wood:true},{name:'Natural oak',color:'#b89568',wood:true},{name:'Charcoal',color:'#3c4140'},{name:'Dusty rose',color:'#bc9691'}];
 const specs={open:'Open wooden box on the counter, below the wall shutter. Wooden mica inside with a concealed light. No shutter.',corner:'S-corner unit: opening the hinged shutter brings two curved S-corner trays out of the blind corner.',base:'Complete kitchen base cabinet: shutters with shelves, cutlery tandem, thali basket tandem, oil pull-out, S-corner, rice basket and the open wicker-basket unit. Tap individual doors and drawers to inspect them.',shelves:'Handleless aqua high-gloss shutter with a shelf inside.',glass:'Black tinted glass shutters with concealed lights inside and one glass shelf.',cutlery:'Cutlery tandem drawer. Organiser layout shown is illustrative.',thali:'Thali basket tandem drawer. Basket layout shown is illustrative.',oil:'Narrow oil pull-out. Tier count shown is illustrative.',rice:'Rice basket pull-out. Bin layout shown is illustrative.','wicker-open':'Open unit with two visible wicker baskets, no shutter, wooden mica inside.'};

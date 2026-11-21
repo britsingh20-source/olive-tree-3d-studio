@@ -40,3 +40,9 @@ Bright: the S-corner door was opening from the right; it must open from the left
 Validation: check-krishnagiri-kitchen.mjs passed (adds hinge-side assertions). Headless Chrome (SwiftShader) local render with only the S-corner opened: door folds toward the corner side, both trays visible and out; no page errors. Real-device check not done.
 
 Deployed: commit 102923aeba62e899709b97d5cbd94942132a15d5, Pages run 44886443336 success; live index serves studio.js?v=kk2 and live model.js contains the right-hinge S-corner.
+
+## Glass-unit concealed lighting — 2026-11-21 (kk3)
+
+Bright asked for concealed lighting inside the glass shutters (the kk1 single top strip did not read through the tint). Each glass bay now has a top strip, an under-shelf strip and two vertical inner-side profiles plus a warm point light; strips render after the tinted glass so they glow through. Glass made darker (near-black, ~80% opacity, low reflection) so it reads as black tinted glass instead of grey. Lighting toggle switches all strips/lights off.
+
+Validation: check-krishnagiri-kitchen.mjs passed (adds ≥8 strips and ≥4 lamps per glass unit). Headless Chrome (SwiftShader) close-up rendered with lighting on and off; strips visible through the glass when on, dark when off; no page errors. Real-device/GPU check not done.

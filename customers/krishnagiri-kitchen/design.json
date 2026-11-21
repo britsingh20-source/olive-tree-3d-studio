@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk2",
+    "assetVersion": "kk3",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
@@ -202,7 +202,7 @@
       "unit": "Four wall-unit shutters 54\u201384in, 12in deep: two 16in on back wall, two 18in on side wall",
       "purpose": "Display wall units",
       "shutters": "Black tinted glass shutters (exception to the global aqua front finish)",
-      "lighting": "Concealed lights inside",
+      "lighting": "Concealed lights inside each glass unit (re-confirmed 2026-11-21: 'Inside the glass shutters also place concealed lightings')",
       "internal": "One glass shelf inside each unit",
       "handles": "None \u2014 handleless (global)",
       "confirmedOn": "2026-11-21"
@@ -304,6 +304,14 @@
     {
       "item": "Wall-side back faces",
       "detail": "Source back faces against the walls (42798, 43062, 43083, 43084) render as plain off-white wall colour, not aqua or wood."
+    },
+    {
+      "item": "Glass-unit concealed lighting layout",
+      "detail": "Render: warm-white strip at the top, a strip under the glass shelf and vertical profiles on both inner sides of every glass bay; strips are drawn over the tint so they read through black glass. Exact profile positions/colour temperature not specified."
+    },
+    {
+      "item": "Black glass tint",
+      "detail": "Render tint ~80% opaque near-black; actual tint density not specified."
     }
   ],
   "openQuestions": [
