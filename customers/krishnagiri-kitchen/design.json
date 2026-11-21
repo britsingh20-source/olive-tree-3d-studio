@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk8",
+    "assetVersion": "kk9",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
@@ -331,6 +331,10 @@
     {
       "item": "Option 2 beige colour",
       "detail": "#a8927e sampled from the beige reference photo; laminate brand/code not given."
+    },
+    {
+      "item": "Acrylic rendering",
+      "detail": "Plain colour (no mica grain map), roughness 0.015, clearcoat 1/0, plus a dedicated reflection room (grey surroundings, LED cove lines, windows, tiled floor lines) captured at 0.9 m so shutters mirror crisp lines that move with rotation. Real-time scene reflections of the actual kitchen are not simulated."
     }
   ],
   "openQuestions": [
@@ -347,7 +351,7 @@
   "globalFinish": {
     "appliesTo": "Every front in the kitchen (all base, drawer and wall-unit fronts) \u2014 this is Option 1; Option 2 swaps the colour to beige high gloss (see designOptions).",
     "colour": "Aqua / mint teal as in reference photo",
-    "gloss": "High gloss",
+    "gloss": "Acrylic high gloss (corrected 2026-11-21)",
     "renderApproxHex": "#7fb3ad",
     "handles": "None \u2014 handleless",
     "confirmedOn": "2026-11-21"
@@ -363,17 +367,19 @@
     {
       "id": 1,
       "name": "Option 1 \u00b7 Aqua & wood",
-      "solidFronts": "Aqua/mint high gloss (render #7fb3ad, sampled from Bright's aqua reference photo)",
+      "solidFronts": "Aqua/mint acrylic high gloss (render #7fb3ad, sampled from Bright's aqua reference photo)",
       "handles": "None",
-      "everythingElse": "Same wood mica, black glass, lighting and baskets"
+      "everythingElse": "Same wood mica, black glass, lighting and baskets",
+      "surface": "Acrylic (Bright 2026-11-21: both options need acrylic-type gloss, not ordinary gloss)"
     },
     {
       "id": 2,
       "name": "Option 2 \u00b7 Beige & wood",
-      "solidFronts": "Beige high gloss (render #a8927e, sampled from Bright's beige reference kitchen photo 2026-11-21, Pinterest screenshot, not committed)",
+      "solidFronts": "Beige acrylic high gloss (render #a8927e, sampled from Bright's beige reference kitchen photo 2026-11-21, Pinterest screenshot, not committed)",
       "handles": "None",
       "everythingElse": "Same wood mica, black glass, lighting and baskets",
-      "confirmedOn": "2026-11-21"
+      "confirmedOn": "2026-11-21",
+      "surface": "Acrylic (Bright 2026-11-21: both options need acrylic-type gloss, not ordinary gloss)"
     }
   ]
 }

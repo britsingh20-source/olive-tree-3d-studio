@@ -63,7 +63,7 @@ export function buildModel(){
  }
  action(u,p,'slide',Math.min(.46,d*.78));return p;}
  const assigned=new Set();
- for(const def of definitions){const group=new T.Group();root.add(group);const front=new T.MeshPhysicalMaterial({color:DEFAULT_FINISH,roughness:.07,metalness:0,clearcoat:1,clearcoatRoughness:.025,ior:1.49,specularIntensity:1,envMapIntensity:1.25,side:T.DoubleSide}),side=front.clone(),sideSkin=side.clone(),u={...def,group,front,side,sideSkin,actions:[],interiors:[],angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};
+ for(const def of definitions){const group=new T.Group();root.add(group);const front=new T.MeshPhysicalMaterial({color:DEFAULT_FINISH,roughness:.015,metalness:0,clearcoat:1,clearcoatRoughness:0,ior:1.49,specularIntensity:1,envMapIntensity:2.1,side:T.DoubleSide}),side=front.clone(),sideSkin=side.clone(),u={...def,group,front,side,sideSkin,actions:[],interiors:[],angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};
  if(OPEN_KINDS.includes(u.kind)){u.defaultSide={...WOOD_FINISH};u.finishable=false;for(const mat of [side,sideSkin]){mat.map=woodMap;mat.color.set('#ffffff');mat.roughness=.5;mat.clearcoat=.12;}}
  // Imported outer skins share planes with generated panels; offset only the skins.
  sideSkin.polygonOffset=true;sideSkin.polygonOffsetFactor=-2;sideSkin.polygonOffsetUnits=-4;

@@ -88,3 +88,9 @@ Bright: option buttons were only visible after scrolling; place Option 1 / Optio
 Validation: check-krishnagiri-kitchen.mjs passed (cards present, above toolbar). Headless Chrome SwiftShader 390×844 @2x: card block begins ~560 px from page top (visible on first screen), Option 2 card click → badge 'Option 2 · Beige & wood', card checked, fronts beige; no page errors. Real phone not tested.
 
 Deployed: commit fe2e79e58f4cbe888026f66b19d1bb8755d23db4, Pages run 44898528893 success; live index has the option card block, studio.js?v=kk8, option thumbnails HTTP 200.
+
+## Acrylic gloss for both options — 2026-11-21 (kk9)
+
+Bright: both options look glossy but not like acrylic. Changes (studio.js paint + model.js default): solid fronts drop the mica grain map, roughness 0.015, clearcoat 1 with 0 roughness, and use a dedicated acrylic reflection environment (grey room, LED cove/plinth lines, windows, floor tile lines; captured from 0.9 m — first attempt captured at floor level showed no lines, fixed). Wood and textured finishes unchanged. Option card thumbnails re-rendered (on-stage badge blanked in the thumbnails).
+
+Validation: check-krishnagiri-kitchen.mjs passed (acrylic assertions). Headless Chrome SwiftShader renders of Option 1 and Option 2 base runs: crisp moving-line reflections visible, colours retained. Real phone/GPU not tested.
