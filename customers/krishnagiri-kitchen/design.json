@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (4 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (5 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -142,6 +142,18 @@
       "shutterFinish": "Global finish (aqua high gloss)",
       "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#65ffff",
+      "faces": [
+        42792
+      ],
+      "unit": "24x30in back-wall front, last front before the blind corner",
+      "purpose": "S-corner unit \u2014 opening this door brings the S-corner trays out (Bright: 's corner while opening this door s corner should come out')",
+      "openingAction": "Door opens and S-corner trays swing/slide out from the blind corner",
+      "shutterFinish": "Global finish (aqua high gloss)",
+      "handles": "None \u2014 handleless",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -164,13 +176,13 @@
     {
       "item": "Oil pull-out",
       "detail": "Number of tiers and brand not specified; render uses a generic 3-tier wire pull-out."
+    },
+    {
+      "item": "S-corner mechanism",
+      "detail": "Hinge side not stated (render: hinged on the side away from the corner); tray count, shape and brand not specified \u2014 render uses two curved S/kidney trays that swing out of the corner when the door opens."
     }
   ],
   "openQuestions": [
-    {
-      "sourceColour": "#65ffff",
-      "status": "unresolved"
-    },
     {
       "sourceColour": "#3e5781",
       "status": "unresolved"
