@@ -40,6 +40,14 @@
       "route": "/urban-heaven/",
       "design": "customers/urban-heaven/design.json",
       "status": "customers/urban-heaven/STATUS.md"
+    },
+    {
+      "id": "krishnagiri-kitchen",
+      "name": "Krishnagiri kitchen client",
+      "project": "L-shaped kitchen \u2014 design intake",
+      "route": "/krishnagiri-kitchen/",
+      "design": "customers/krishnagiri-kitchen/design.json",
+      "status": "customers/krishnagiri-kitchen/STATUS.md"
     }
   ]
 }

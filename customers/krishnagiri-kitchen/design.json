@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-11-21",
+  "customer": {
+    "id": "krishnagiri-kitchen",
+    "name": "Krishnagiri kitchen client (name to confirm)"
+  },
+  "project": "L-shaped kitchen (Krishnagiri)",
+  "viewer": {
+    "status": "Not built \u2014 colour intake in progress",
+    "route": "/krishnagiri-kitchen/",
+    "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
+    "directory": "dist/krishnagiri-kitchen"
+  },
+  "source": {
+    "files": [
+      {
+        "name": "krisnagiri kitchen (1).skp",
+        "sha256": "24e850444bcc7c25b89342d45479cea6dbef8941370f75e5c6dfa017bbbd89ff",
+        "bytes": 146625
+      },
+      {
+        "name": "krisnagiri kitchen.skp",
+        "sha256": "4db430cac4507ab5ce5055a51804613eefbfbfca173aecee859b084ef7f0cb25",
+        "bytes": 146908
+      }
+    ],
+    "sketchupVersion": "27.0.0",
+    "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py",
+    "sourceUnits": "inches",
+    "bounds": {
+      "width": 120,
+      "depth": 96,
+      "height": 84
+    },
+    "vertices": 58,
+    "edges": 89,
+    "rootFaces": 33,
+    "omittedInstances": {},
+    "comparison": "Both files: identical vertices, edges, faces and materials; only file hashes differ. Treated as one kitchen.",
+    "intakeNote": "Chat uploads of both files arrived text-corrupted (U+FFFD replacement bytes, not parseable). Originals staged from Bright's PC folder Downloads/krishnagiri parsed cleanly.",
+    "geometry": "customers/krishnagiri-kitchen/source-geometry.json",
+    "materials": {
+      "42733": {
+        "name": "Ty_Skin",
+        "color": "#ffb299"
+      },
+      "42734": {
+        "name": "Ty_Brown1",
+        "color": "#a56348"
+      },
+      "42738": {
+        "name": "Ty_Green",
+        "color": "#5a7a43"
+      },
+      "42739": {
+        "name": "Ty_Blue3",
+        "color": "#3e5781"
+      },
+      "42740": {
+        "name": "Ty_Yellow",
+        "color": "#ffd562"
+      },
+      "42741": {
+        "name": "Ty_Blue2",
+        "color": "#4d6fb2"
+      },
+      "43190": {
+        "name": "H03_Glacier_Glow",
+        "color": "#65ffff"
+      },
+      "43191": {
+        "name": "J02_Lavender_Veil",
+        "color": "#cc99ff"
+      },
+      "43192": {
+        "name": "L05_Cherry_Flame",
+        "color": "#ff007f"
+      },
+      "43194": {
+        "name": "E05_Leaf_Glow",
+        "color": "#ffff00"
+      }
+    },
+    "observedLayout": {
+      "note": "Geometry reading only \u2014 not customer-confirmed purposes.",
+      "backWallRun": "Base 96in long x 24in deep x 30in high along back wall; fronts left\u2192right: #a56348 18x30, #a56348 18x30, #ffb299 24x10 over #ffd562 24x20, #5a7a43 12x30, #65ffff 24x30, then plain corner.",
+      "sideWallRun": "Base 72in x 24in deep x 30in along side wall; fronts from open end: #a56348 24x30, #3e5781 24x30, #cc99ff 24x30, then corner.",
+      "wallUnits": "12in-deep wall units 54\u201384in: back wall #4d6fb2 16x30 x2; side wall #ff007f 24x30 over open 24x24 recess (30\u201354in, sits on counter), then #4d6fb2 18x30 x2.",
+      "undersides": "#ffff00 on undersides of wall units and of the recess top (z=53/54).",
+      "materialNames": "Ty_* names here are SketchUp palette colours painted on cabinet faces, not a human figure; nothing omitted."
+    }
+  },
+  "confirmed": [],
+  "approximations": [],
+  "openQuestions": [
+    {
+      "sourceColour": "#a56348",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#ffb299",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#ffd562",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#5a7a43",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#65ffff",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#3e5781",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#cc99ff",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#4d6fb2",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#ff007f",
+      "status": "unresolved"
+    },
+    {
+      "sourceColour": "#ffff00",
+      "status": "unresolved"
+    }
+  ],
+  "pricing": "No rates confirmed for this client."
+}
