@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (9 of 10 colours confirmed)",
+    "status": "Not built \u2014 all 10 source colours confirmed; countertop pending",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -209,6 +209,31 @@
       "shutterFinish": "Global finish (aqua high gloss)",
       "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#ffff00",
+      "faces": [
+        43064,
+        42942
+      ],
+      "unit": "Undersides of corner wall units (54in) and ceiling of the open counter box (53in)",
+      "purpose": "Concealed lights here",
+      "finish": "Wooden mica (dist/krishnagiri-kitchen/wood-mica-reference.jpg)",
+      "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#ffffff (Default)",
+      "faces": [
+        42912,
+        42921,
+        42940,
+        42944,
+        42945
+      ],
+      "unit": "Open 24x24in box on counter below the pink normal shutter (30\u201354in)",
+      "purpose": "Open box (no shutter)",
+      "finish": "Wooden mica inside",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -251,16 +276,20 @@
     {
       "item": "Pink-section wall unit",
       "detail": "Internal shelves and hinge side not stated; render uses one shelf, single side-hinged shutter."
+    },
+    {
+      "item": "Concealed lights under wall units / in open box",
+      "detail": "Light type (profile strip vs spots) and colour temperature not stated; render uses a warm-white concealed strip."
+    },
+    {
+      "item": "Exposed end/side panels",
+      "detail": "Interpreted under the 'all open areas wood' rule as wooden mica; flag to Bright if end panels should match the aqua shutters instead."
     }
   ],
   "openQuestions": [
     {
-      "sourceColour": "#ffff00",
-      "status": "unresolved"
-    },
-    {
-      "topic": "Open 24x24in box on the counter below the pink shutter (30\u201354in, faces 42912/42921/42940/42944/42945, white in source) \u2014 purpose (e.g. microwave/OTG niche) and inner finish",
-      "status": "unresolved"
+      "topic": "Countertop material/colour (granite/quartz, colour)",
+      "status": "to ask"
     }
   ],
   "pricing": "No rates confirmed for this client.",
@@ -271,5 +300,12 @@
     "renderApproxHex": "#7fb3ad",
     "handles": "None \u2014 handleless",
     "confirmedOn": "2026-11-21"
-  }
+  },
+  "globalRules": [
+    {
+      "rule": "Apart from shutters, all open areas get wood coverings (wooden mica, reference dist/krishnagiri-kitchen/wood-mica-reference.jpg)",
+      "quote": "Apart from shutters, all the open areas will be wood coverings.",
+      "confirmedOn": "2026-11-21"
+    }
+  ]
 }
