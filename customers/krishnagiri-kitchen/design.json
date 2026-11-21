@@ -117,8 +117,8 @@
       ],
       "unit": "24x10in front at top of back-wall base (20\u201330in), above the yellow #ffd562 section",
       "purpose": "Cutlery tandem drawer (Bright: 'cutlery tandem')",
-      "shutterFinish": "Not yet stated",
-      "handles": "Not yet stated",
+      "shutterFinish": "Global finish (aqua high gloss)",
+      "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
     }
   ],
@@ -137,10 +137,6 @@
     }
   ],
   "openQuestions": [
-    {
-      "topic": "Does the aqua high-gloss handleless finish apply to all fronts (incl. cutlery drawer)?",
-      "status": "asked 2026-11-21"
-    },
     {
       "sourceColour": "#ffd562",
       "status": "unresolved"
@@ -174,5 +170,13 @@
       "status": "unresolved"
     }
   ],
-  "pricing": "No rates confirmed for this client."
+  "pricing": "No rates confirmed for this client.",
+  "globalFinish": {
+    "appliesTo": "Every front in the kitchen (all base, drawer and wall-unit fronts)",
+    "colour": "Aqua / mint teal as in reference photo",
+    "gloss": "High gloss",
+    "renderApproxHex": "#7fb3ad",
+    "handles": "None \u2014 handleless",
+    "confirmedOn": "2026-11-21"
+  }
 }

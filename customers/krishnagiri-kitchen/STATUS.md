@@ -15,4 +15,4 @@ New client. Source intake complete; colour-by-colour design questions in progres
 
 ## Next action
 
-#a56348 confirmed (shutters + shelves, aqua high gloss per reference photo, handleless). #ffb299 confirmed: cutlery tandem drawer. Asked whether aqua gloss handleless applies to all fronts; then next colour #ffd562. Save each answer to design.json before the next question. Then build dist/krishnagiri-kitchen/ from the newest viewer template.
+#a56348 confirmed (shutters + shelves, aqua high gloss per reference photo, handleless). #ffb299 confirmed: cutlery tandem drawer. Global finish confirmed: every front aqua high gloss, handleless. Next colour: #ffd562 (24x20in below cutlery drawer). Save each answer to design.json before the next question. Then build dist/krishnagiri-kitchen/ from the newest viewer template.
