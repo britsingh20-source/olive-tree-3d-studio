@@ -78,3 +78,5 @@ Deployed: commit 81efe589f53da47d11b8f3d11603f0b4273e73ee, Pages run 44890896432
 Bright: keep aqua+wood as Option 1 and add beige+wood (from his beige reference kitchen photo) as Option 2. model.js exports OPTIONS; the toolbar 'Restore aqua & wood' button is replaced by 'Option 1 · Aqua & wood' and 'Option 2 · Beige & wood'. Choosing an option repaints all solid fronts and their sides (wood areas keep wood), saves the choice in the browser (saved.option) and is restored on reload. Both colours are in the finish strip.
 
 Validation: check-krishnagiri-kitchen.mjs passed (OPTIONS values, option buttons/persistence). Headless Chrome SwiftShader: clicked Option 2, rendered (beige fronts, wood/glass/lights unchanged); reload kept Option 2 pressed and a front at #a8927e; no page errors. Real phone not tested.
+
+Deployed: commit ada4d0dcc88b1fb896739f1906722177131677e6, Pages run 44897744404 success; live index has both option buttons and studio.js?v=kk7.
