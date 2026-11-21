@@ -90,9 +90,9 @@ export function buildModel(){
  group.traverse(o=>{if(o.isMesh)o.userData.unit=u;});
  }
  // Fixed source geometry: countertop placeholder stone, lit wooden undersides, aqua outer skins.
- const stoneIds=new Set(exactLayout.special.countertop),litIds=new Set(exactLayout.special.litUndersides);
+ const stoneIds=new Set(exactLayout.special.countertop),litIds=new Set(exactLayout.special.litUndersides),woodEndIds=new Set(exactLayout.special.woodEndPanels||[]);
  const stone=new T.MeshPhysicalMaterial({color:'#1f2221',roughness:.18,clearcoat:.7,side:T.DoubleSide});stone.polygonOffset=true;stone.polygonOffsetFactor=-3;stone.polygonOffsetUnits=-6;const wallFace=new T.MeshStandardMaterial({color:'#efede6',roughness:.8,side:T.DoubleSide});
- for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const pts=f.points.flat(),isFloor=pts.every(p=>Math.abs(p[1])<1e-8);const wallSide=f.normal[0]>.9||f.normal[2]<-.9;let mat=isFloor?plinth:stoneIds.has(f.id)?stone:litIds.has(f.id)?woodSkin:wallSide?wallFace:null,owner=null;
+ for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const pts=f.points.flat(),isFloor=pts.every(p=>Math.abs(p[1])<1e-8);const wallSide=f.normal[0]>.9||f.normal[2]<-.9;let mat=isFloor?plinth:stoneIds.has(f.id)?stone:litIds.has(f.id)||woodEndIds.has(f.id)?woodSkin:wallSide?wallFace:null,owner=null;
  if(!mat){const center=pts.reduce((v,p)=>v.add(new T.Vector3(...p)),new T.Vector3()).multiplyScalar(1/pts.length);let distance=Infinity;for(const u of units)for(const part of u.parts){if(OPEN_KINDS.includes(u.kind))continue;const d=center.distanceToSquared(new T.Vector3(...part.center));if(d<distance){distance=d;owner=u;}}mat=owner.sideSkin;}
  const mesh=sourceFace(f,mat,architecture);mesh.userData.floor=isFloor;mesh.userData.countertop=stoneIds.has(f.id);mesh.userData.wallSide=wallSide;if(owner){mesh.userData.unit=owner;mesh.userData.outerSkin=true;mesh.castShadow=false;}
  if(litIds.has(f.id)){mesh.userData.litUnderside=true;// concealed strips along the front edges of the corner wall units

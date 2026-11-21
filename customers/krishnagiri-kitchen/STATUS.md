@@ -58,3 +58,9 @@ Changes: two rattan baskets with woven texture body, brown wooden rim and front 
 Validation: check-krishnagiri-kitchen.mjs passed (one strip/lamp per glass bay, only RectAreaLights, rattan bodies present). Headless Chrome SwiftShader renders inspected: baskets pulled out; under-unit LED strips and open-box wash from two angles (no spot pools); glass units showing top strip only. Final warm-white strip colour tweak made after the glass render (not re-rendered). Software renderer is slow with area lights; real GPU/phone not tested.
 
 Deployed: commit 4f34e244f121dc4f3d68e8950daff5b8ef2674a9; Pages run 44888669344 first failed with a GitHub artifact-metadata error, succeeded on re-run. Live serves studio.js?v=kk4 and both vendored RectAreaLight libs (HTTP 200); live page loaded in headless Chrome 390x844 with no console/page errors.
+
+## Base shutter colour question + wood end panels — 2026-11-21 (kk5)
+
+Bright asked why the base shutter colour changed. Code check: DEFAULT_FINISH #7fb3ad and the front material are identical in every commit since kk1; nothing changed it. Likely a swatch tapped in the finish strip (saved per browser); told Bright 'Restore aqua & wood' resets it. His following screenshot shows the normal aqua.
+
+Bright marked two exposed end panels for wooden mica: left end of the back glass wall units (face 42991) and outer side of the tall pink-shutter/open-box unit (face 42898). Added special.woodEndPanels to the layout script; those source faces now use the wood-mica skin. check-krishnagiri-kitchen.mjs passed (asserts both are wood). Headless Chrome SwiftShader render from Bright's screenshot angle confirms both panels wood, other fronts unchanged.

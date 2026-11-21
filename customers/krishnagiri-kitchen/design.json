@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk4",
+    "assetVersion": "kk5",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
@@ -244,6 +244,17 @@
       "purpose": "Open box (no shutter)",
       "finish": "Wooden mica inside",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#ffffff (Default)",
+      "faces": [
+        42991,
+        42898
+      ],
+      "unit": "Exposed end panels: left end of the back-wall black-glass wall units (42991) and outer side of the tall unit with the pink normal shutter and open box (42898)",
+      "finish": "Wooden mica (dist/krishnagiri-kitchen/wood-mica-reference.jpg)",
+      "source": "Bright marked both in black on a screenshot, 2026-11-21",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -284,10 +295,6 @@
       "detail": "Internal shelves and hinge side not stated; render uses one shelf, single side-hinged shutter."
     },
     {
-      "item": "Exposed end/side panels and carcass",
-      "detail": "Not wood (per correction). Render uses the aqua high-gloss front finish on exposed end panels; walls plain off-white. Confirm on review."
-    },
-    {
       "item": "Countertop",
       "detail": "Not yet specified; render uses black granite-like top (as in the aqua reference photo) as a placeholder."
     },
@@ -310,6 +317,10 @@
     {
       "item": "Wicker basket build",
       "detail": "Procedural rattan weave texture and brown wood rim approximating the reference; brand/size of actual basket not specified. Baskets stacked one above the other on their own runners (no fixed shelf)."
+    },
+    {
+      "item": "Other exposed end panels",
+      "detail": "Base-run end panels and other unmarked outer sides stay aqua high gloss until Bright says otherwise."
     }
   ],
   "openQuestions": [
@@ -333,7 +344,7 @@
   },
   "globalRules": [
     {
-      "rule": "Wooden mica only inside the cabinets' open areas (open wicker unit, open counter box, wall-unit undersides). Not on walls, not as a general covering.",
+      "rule": "Wooden mica only inside the cabinets' open areas (open wicker unit, open counter box, wall-unit undersides). Not on walls, not as a general covering. Exception confirmed later: the two marked exposed end panels (42991, 42898) are also wooden mica.",
       "correction": "Bright 2026-11-21: earlier 'all open areas wood' reading was wrong \u2014 'Only the wooden cabinet will be covering that. No, the wall and all.'",
       "confirmedOn": "2026-11-21"
     }

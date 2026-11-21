@@ -17,6 +17,7 @@ assert.equal(unit('corner').actions.length,1);{const c=unit('corner').actions[0]
 for(const id of ['cutlery','thali','oil','rice'])assert(unit(id).actions.length===1&&unit(id).actions[0].type==='slide',id);
 for(const id of ['glass-back','glass-side'])assert.equal(unit(id).actions.length,2);
 assert(m.lightNodes.some(n=>n.isLight),'concealed lights present');for(const id of ['glass-back','glass-side']){let strips=0,lamps=0;unit(id).group.traverse(o=>{if(o.userData.led)strips++;if(o.isLight)lamps++;});assert.equal(strips,2,id+' one top concealed strip per glass bay only');assert.equal(lamps,2);}
+{const ends=m.sourceMeshes.filter(o=>[42991,42898].includes(o.userData.sourceFace));assert.equal(ends.length,2);for(const e of ends)assert(e.material.map,'marked end panels are wooden mica');}
 m.root.traverse(o=>{if(o.isLight)assert(o.isRectAreaLight,'LED surface lights only — no spot/point lights');});
 {let rattan=0;unit('wicker').group.traverse(o=>{if(o.isMesh&&o.material.map&&o.material.color.getHexString()==='ffffff'&&o.material.roughness===.7)rattan++;});assert(rattan>=10,'woven rattan basket bodies');}
 const base=m.products.find(p=>p.id==='base-cabinet');assert.equal(base.members.length,9);assert.equal(m.products.length,5);

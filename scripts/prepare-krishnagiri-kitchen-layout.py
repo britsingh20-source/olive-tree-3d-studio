@@ -50,7 +50,9 @@ for uid, name, kind, ids, depth in groups:
                       'w': max(hi[0] - lo[0], hi[2] - lo[2]), 'h': hi[1] - lo[1], 'depth': depth})
     units.append({'id': uid, 'name': name, 'kind': kind, 'ref': by[ids[0]]['color'], 'sourceFaces': ids, 'parts': parts})
 
-special = {'countertop': [42973], 'litUndersides': [43064]}
+# woodEndPanels: exposed end panels Bright marked for wooden mica on 2026-11-21 —
+# 42991 left end of the back-wall glass wall units, 42898 outer side of the tall unit (pink shutter + open box).
+special = {'countertop': [42973], 'litUndersides': [43064], 'woodEndPanels': [42991, 42898]}
 d = {'source': p['source'], 'sha256': p['sha256'], 'sourceUnits': 'inches', 'metresPerInch': .0254, 'originInches': origin,
      'sourceFaces': faces, 'units': units, 'special': special,
      'omittedNonCabinetInstances': p['omittedNonCabinetInstances'],
