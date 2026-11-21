@@ -26,3 +26,9 @@ Template: dist/rathesh kitchen (S-corner, wicker, rice, oil, glass mechanisms) w
 ## Next action
 
 Wait for Bright's review/corrections of the 3D view; ask countertop material/colour. Then update design.json, bump ?v=, re-verify and redeploy.
+
+## Deployment — 2026-11-21
+
+Viewer commit 2e8216007e266cfd17851a6cf3d46f39339d117b deployed by GitHub Pages run 44885859441 (success). Live route returned index (title, Lighting button, studio.js?v=kk1), model.js, exact-layout.js and wood-mica-reference.jpg with HTTP 200. Live page loaded in headless Chrome (SwiftShader) at 390×844 and rendered the kitchen; only console error is the site-wide favicon 404.
+
+Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/
