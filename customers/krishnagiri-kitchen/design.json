@@ -12,7 +12,7 @@
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen",
     "storageKey": "krishnagiri-kitchen-v1",
-    "assetVersion": "kk1",
+    "assetVersion": "kk2",
     "template": "dist/rathesh (kitchen) with ratesh-style camera/tour fixes",
     "layout": "dist/krishnagiri-kitchen/exact-layout.js",
     "layoutScript": "scripts/prepare-krishnagiri-kitchen-layout.py",
@@ -160,7 +160,8 @@
       "openingAction": "Door opens and S-corner trays swing/slide out from the blind corner",
       "shutterFinish": "Global finish (aqua high gloss)",
       "handles": "None \u2014 handleless",
-      "confirmedOn": "2026-11-21"
+      "confirmedOn": "2026-11-21",
+      "hinge": "Hinged on the right (corner) side; opens from the left edge, so the door folds away and only the S-corner trays come out (Bright correction 2026-11-21)"
     },
     {
       "sourceColour": "#3e5781",
@@ -266,7 +267,7 @@
     },
     {
       "item": "S-corner mechanism",
-      "detail": "Hinge side not stated (render: hinged on the side away from the corner); tray count, shape and brand not specified \u2014 render uses two curved S/kidney trays that swing out of the corner when the door opens."
+      "detail": "Hinge side now confirmed (right/corner side). Tray count, shape and brand not specified \u2014 render uses two curved S trays; door stops at ~83\u00b0 so it clears the side-run fronts."
     },
     {
       "item": "Rice basket",

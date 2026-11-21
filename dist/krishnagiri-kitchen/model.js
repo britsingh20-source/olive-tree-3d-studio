@@ -34,10 +34,10 @@ export function buildModel(){
  function addLight(parent,x,y,z,w,d){const strip=box(parent,w,.008,.014,x,y,z,led);strip.castShadow=false;strip.userData.led=true;const light=new T.PointLight('#ffe1af',.45,1.1);light.position.set(x,y-.05,z+d);parent.add(light);lightNodes.push(strip,light);return strip;}
  function carcass(u,frame,w,h,d,inner=liner){const t=.018;const cabinet=new T.Group();cabinet.position.z=-.022;frame.add(cabinet);frame=cabinet;d=Math.max(.05,d-.022);box(frame,t,h,d,-w/2+t/2,0,-d/2,inner===liner?u.side:inner);box(frame,t,h,d,w/2-t/2,0,-d/2,inner===liner?u.side:inner);box(frame,w-2*t,t,d,0,-h/2+t/2,-d/2,inner);box(frame,w-2*t,t,d,0,h/2-t/2,-d/2,inner);box(frame,w-2*t,h-2*t,t,0,0,-d+t/2,inner);}
  function shelves(u,frame,w,h,d,count,mat=liner){const inside=interior(u,frame);for(let i=1;i<=count;i++)box(inside,w-.045,mat===shelfGlass?.008:.018,d-.06,0,-h/2+h*i/(count+1),-d/2,mat);}
- function shutter(u,frame,part,{glass=false,hinge=true}={}){const pivot=new T.Group();pivot.position.x=-part.w/2;frame.add(pivot);const {w,h}=part;frame.updateWorldMatrix(true,true);
- if(glass){const pane=new T.MeshPhysicalMaterial({color:'#16191a',transparent:true,opacity:.72,roughness:.03,metalness:.1,clearcoat:1,clearcoatRoughness:.02,envMapIntensity:1.6,side:T.DoubleSide,depthWrite:false});sourceFace(faceById.get(part.faceId),pane,pivot);const frameMetal=new T.MeshPhysicalMaterial({color:'#1d1e1d',metalness:.7,roughness:.3});for(const x of [.01,w-.01])box(pivot,.02,h,.02,x,0,-.008,frameMetal);for(const y of [-h/2+.01,h/2-.01])box(pivot,w,.02,.02,w/2,y,-.008,frameMetal);}
- else{const reference=sourceFace(faceById.get(part.faceId),u.front,pivot);reference.userData.referenceOnly=true;reference.visible=false;box(pivot,w-.006,h-.006,.019,w/2,0,-.0095,u.front);}
- if(hinge)action(u,pivot,'hinge',-1.65);return pivot;}
+ function shutter(u,frame,part,{glass=false,hinge=true,hingeRight=false,travel=1.65}={}){const pivot=new T.Group();const sgn=hingeRight?-1:1;pivot.position.x=-sgn*part.w/2;pivot.userData.hingeRight=hingeRight;frame.add(pivot);const {w,h}=part;frame.updateWorldMatrix(true,true);
+ if(glass){const pane=new T.MeshPhysicalMaterial({color:'#16191a',transparent:true,opacity:.72,roughness:.03,metalness:.1,clearcoat:1,clearcoatRoughness:.02,envMapIntensity:1.6,side:T.DoubleSide,depthWrite:false});sourceFace(faceById.get(part.faceId),pane,pivot);const frameMetal=new T.MeshPhysicalMaterial({color:'#1d1e1d',metalness:.7,roughness:.3});for(const x of [.01,w-.01])box(pivot,.02,h,.02,sgn*x,0,-.008,frameMetal);for(const y of [-h/2+.01,h/2-.01])box(pivot,w,.02,.02,sgn*w/2,y,-.008,frameMetal);}
+ else{const reference=sourceFace(faceById.get(part.faceId),u.front,pivot);reference.userData.referenceOnly=true;reference.visible=false;box(pivot,w-.006,h-.006,.019,sgn*w/2,0,-.0095,u.front);}
+ if(hinge)action(u,pivot,'hinge',-sgn*travel);return pivot;}
  function tray(u,frame,part,kind,{y=0,hh=part.h,hasFront=true}={}){const {w,depth:d}=part;const p=new T.Group();p.position.y=y;frame.add(p);
  if(hasFront){frame.updateWorldMatrix(true,true);const reference=sourceFace(faceById.get(part.faceId),u.front,p);reference.userData.referenceOnly=true;reference.visible=false;box(p,w-.006,hh-.006,.019,0,0,-.0095,u.front);}
  const inside=interior(u,p),ww=Math.max(.1,w-.07),dd=Math.max(.12,d-.08),base=-hh/2+.03,z=-d/2;
@@ -67,7 +67,7 @@ export function buildModel(){
   if(def.kind==='shelves'){shelves(u,frame,w,h,d,1);shutter(u,frame,part);}
   else if(def.kind==='glass'){shelves(u,frame,w,h,d,1,shelfGlass);shutter(u,frame,part,{glass:true});addLight(frame,0,h/2-.03,-d+.03,w-.05,.12);}
   else if(def.kind==='corner'){
-   shutter(u,frame,part);const linked=u.actions[u.actions.length-1];linked.cornerRacks=[];
+   shutter(u,frame,part,{hingeRight:true,travel:1.45});const linked=u.actions[u.actions.length-1];linked.hingeSide='right';linked.cornerRacks=[];
    for(let tier=0;tier<2;tier++){
     const rack=interior(u,frame);rack.userData.cornerBasket=true;const ww=w-.07,dd=d-.10,y=-h/2+.10+tier*(h-.24),shape=new T.Shape();
     shape.moveTo(-ww*.42,-dd*.35);shape.bezierCurveTo(-ww*.58,-dd*.05,-ww*.46,dd*.38,-ww*.10,dd*.42);shape.bezierCurveTo(ww*.40,dd*.48,ww*.58,dd*.18,ww*.42,-dd*.10);shape.bezierCurveTo(ww*.28,-dd*.40,ww*.05,-dd*.10,-ww*.10,-dd*.10);shape.bezierCurveTo(-ww*.22,-dd*.11,-ww*.18,-dd*.42,-ww*.42,-dd*.35);

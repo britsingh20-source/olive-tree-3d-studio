@@ -13,7 +13,7 @@ m.root.updateMatrixWorld(true);for(const mesh of m.sourceMeshes){const f=exactLa
 const map={'shelves-back-1':'#a56348','shelves-back-2':'#a56348','shelves-side':'#a56348',cutlery:'#ffb299',thali:'#ffd562',oil:'#5a7a43',corner:'#65ffff',rice:'#3e5781',wicker:'#cc99ff','glass-back':'#4d6fb2','glass-side':'#4d6fb2','wall-normal':'#ff007f'};
 for(const [id,c] of Object.entries(map))assert.equal(unit(id).ref,c,id);
 assert.equal(unit('wicker').actions.length,2);assert(unit('wicker').actions.every(a=>a.type==='slide'),'wicker baskets slide; no shutter');assert.equal(unit('open-box').actions.length,0);
-assert.equal(unit('corner').actions.length,1);assert.equal(unit('corner').actions[0].cornerRacks.length,2);
+assert.equal(unit('corner').actions.length,1);{const c=unit('corner').actions[0];assert.equal(c.hingeSide,'right');assert(c.node.position.x>0,'S-corner hinge on the corner (right) side');assert(c.travel>0,'opens from the left edge toward the room');}assert.equal(unit('corner').actions[0].cornerRacks.length,2);
 for(const id of ['cutlery','thali','oil','rice'])assert(unit(id).actions.length===1&&unit(id).actions[0].type==='slide',id);
 for(const id of ['glass-back','glass-side'])assert.equal(unit(id).actions.length,2);
 assert(m.lightNodes.some(n=>n.isLight),'concealed lights present');

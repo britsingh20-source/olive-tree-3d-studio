@@ -32,3 +32,9 @@ Wait for Bright's review/corrections of the 3D view; ask countertop material/col
 Viewer commit 2e8216007e266cfd17851a6cf3d46f39339d117b deployed by GitHub Pages run 44885859441 (success). Live route returned index (title, Lighting button, studio.js?v=kk1), model.js, exact-layout.js and wood-mica-reference.jpg with HTTP 200. Live page loaded in headless Chrome (SwiftShader) at 390×844 and rendered the kitchen; only console error is the site-wide favicon 404.
 
 Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/
+
+## S-corner hinge correction — 2026-11-21 (kk2)
+
+Bright: the S-corner door was opening from the right; it must open from the left so only the S-corner comes out. Shutter now hinged on the right (corner) side, opening from the left edge toward the room (travel 1.45 rad so it stops just in front of the side-run fronts); S trays swing out as before. Source face 42792 unchanged. Asset version bumped to kk2.
+
+Validation: check-krishnagiri-kitchen.mjs passed (adds hinge-side assertions). Headless Chrome (SwiftShader) local render with only the S-corner opened: door folds toward the corner side, both trays visible and out; no page errors. Real-device check not done.
