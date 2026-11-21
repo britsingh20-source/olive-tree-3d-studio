@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (8 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (9 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -198,6 +198,17 @@
       "internal": "One glass shelf inside each unit",
       "handles": "None \u2014 handleless (global)",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#ff007f",
+      "faces": [
+        42896
+      ],
+      "unit": "24x30in side-wall wall unit (54\u201384in), top of the tall unit above the open counter box",
+      "purpose": "Normal shutter (Bright: 'normal shutter')",
+      "shutterFinish": "Global finish (aqua high gloss)",
+      "handles": "None \u2014 handleless",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -236,15 +247,19 @@
     {
       "item": "Black glass wall units",
       "detail": "Glass frame/profile, hinge sides, light colour temperature and exact shelf height not stated \u2014 render uses thin black aluminium profile, side-hinged pairs, warm-white concealed strip, shelf at mid-height. Interior carcass finish not stated."
+    },
+    {
+      "item": "Pink-section wall unit",
+      "detail": "Internal shelves and hinge side not stated; render uses one shelf, single side-hinged shutter."
     }
   ],
   "openQuestions": [
     {
-      "sourceColour": "#ff007f",
+      "sourceColour": "#ffff00",
       "status": "unresolved"
     },
     {
-      "sourceColour": "#ffff00",
+      "topic": "Open 24x24in box on the counter below the pink shutter (30\u201354in, faces 42912/42921/42940/42944/42945, white in source) \u2014 purpose (e.g. microwave/OTG niche) and inner finish",
       "status": "unresolved"
     }
   ],
