@@ -70,3 +70,5 @@ Deployed: commit 1c74b0f9e286968cb3552f727485490a4b6dc3ba, Pages run 44890162328
 ## Vertical grain on end panels — 2026-11-21 (kk6)
 
 Bright: the end-panel mica was horizontal; he needs vertical. Faces 42991 and 42898 now use a second wood texture rotated 90° with panel-local UVs so the grain runs vertically in one continuous piece (two seam iterations fixed during render checks). Other wood surfaces unchanged. check-krishnagiri-kitchen.mjs passed (asserts rotation). Headless Chrome SwiftShader render from Bright's angle: both panels vertical, seamless.
+
+Deployed: commit 81efe589f53da47d11b8f3d11603f0b4273e73ee, Pages run 44890896432 success; live serves studio.js?v=kk6 with vertical end-panel grain.
