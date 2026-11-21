@@ -15,4 +15,4 @@ New client. Source intake complete; colour-by-colour design questions in progres
 
 ## Next action
 
-#a56348 confirmed (shutters + shelves, aqua high gloss per reference photo, handleless). #ffb299 confirmed: cutlery tandem drawer. Global finish confirmed: every front aqua high gloss, handleless. #ffd562 confirmed: thali basket tandem. #5a7a43 confirmed: oil pull-out. #65ffff confirmed: S-corner (trays come out when door opens). Next colour: #3e5781 (24x30in, middle of side-wall base). Save each answer to design.json before the next question. Then build dist/krishnagiri-kitchen/ from the newest viewer template.
+#a56348 confirmed (shutters + shelves, aqua high gloss per reference photo, handleless). #ffb299 confirmed: cutlery tandem drawer. Global finish confirmed: every front aqua high gloss, handleless. #ffd562 confirmed: thali basket tandem. #5a7a43 confirmed: oil pull-out. #65ffff confirmed: S-corner (trays come out when door opens). #3e5781 confirmed: rice basket. Next colour: #cc99ff (24x30in side-wall base front next to corner). Save each answer to design.json before the next question. Then build dist/krishnagiri-kitchen/ from the newest viewer template.

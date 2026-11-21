@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (5 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (6 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -154,6 +154,17 @@
       "shutterFinish": "Global finish (aqua high gloss)",
       "handles": "None \u2014 handleless",
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#3e5781",
+      "faces": [
+        42861
+      ],
+      "unit": "24x30in side-wall base front, between brown shutter and lavender section",
+      "purpose": "Rice basket (Bright: 'Rice basket')",
+      "shutterFinish": "Global finish (aqua high gloss)",
+      "handles": "None \u2014 handleless",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -180,13 +191,13 @@
     {
       "item": "S-corner mechanism",
       "detail": "Hinge side not stated (render: hinged on the side away from the corner); tray count, shape and brand not specified \u2014 render uses two curved S/kidney trays that swing out of the corner when the door opens."
+    },
+    {
+      "item": "Rice basket",
+      "detail": "Mechanism (pull-out tandem vs shutter), bin count and capacity not specified; render uses a full-height pull-out front with rice bin compartments."
     }
   ],
   "openQuestions": [
-    {
-      "sourceColour": "#3e5781",
-      "status": "unresolved"
-    },
     {
       "sourceColour": "#cc99ff",
       "status": "unresolved"
