@@ -38,3 +38,5 @@ Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-
 Bright: the S-corner door was opening from the right; it must open from the left so only the S-corner comes out. Shutter now hinged on the right (corner) side, opening from the left edge toward the room (travel 1.45 rad so it stops just in front of the side-run fronts); S trays swing out as before. Source face 42792 unchanged. Asset version bumped to kk2.
 
 Validation: check-krishnagiri-kitchen.mjs passed (adds hinge-side assertions). Headless Chrome (SwiftShader) local render with only the S-corner opened: door folds toward the corner side, both trays visible and out; no page errors. Real-device check not done.
+
+Deployed: commit 102923aeba62e899709b97d5cbd94942132a15d5, Pages run 44886443336 success; live index serves studio.js?v=kk2 and live model.js contains the right-hinge S-corner.
