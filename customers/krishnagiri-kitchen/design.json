@@ -7,7 +7,7 @@
   },
   "project": "L-shaped kitchen (Krishnagiri)",
   "viewer": {
-    "status": "Not built \u2014 colour intake in progress (7 of 10 colours confirmed)",
+    "status": "Not built \u2014 colour intake in progress (8 of 10 colours confirmed)",
     "route": "/krishnagiri-kitchen/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-kitchen/",
     "directory": "dist/krishnagiri-kitchen"
@@ -182,6 +182,22 @@
         "note": "Bright's supplied wood-mica swatch, 845x845 JPEG; laminate brand/code not given"
       },
       "confirmedOn": "2026-11-21"
+    },
+    {
+      "sourceColour": "#4d6fb2",
+      "faces": [
+        43008,
+        43014,
+        43100,
+        43107
+      ],
+      "unit": "Four wall-unit shutters 54\u201384in, 12in deep: two 16in on back wall, two 18in on side wall",
+      "purpose": "Display wall units",
+      "shutters": "Black tinted glass shutters (exception to the global aqua front finish)",
+      "lighting": "Concealed lights inside",
+      "internal": "One glass shelf inside each unit",
+      "handles": "None \u2014 handleless (global)",
+      "confirmedOn": "2026-11-21"
     }
   ],
   "approximations": [
@@ -216,13 +232,13 @@
     {
       "item": "Wicker basket placement",
       "detail": "Two baskets confirmed; arrangement not stated \u2014 render stacks them one above the other on a mid shelf, with generic natural-cane weave."
+    },
+    {
+      "item": "Black glass wall units",
+      "detail": "Glass frame/profile, hinge sides, light colour temperature and exact shelf height not stated \u2014 render uses thin black aluminium profile, side-hinged pairs, warm-white concealed strip, shelf at mid-height. Interior carcass finish not stated."
     }
   ],
   "openQuestions": [
-    {
-      "sourceColour": "#4d6fb2",
-      "status": "unresolved"
-    },
     {
       "sourceColour": "#ff007f",
       "status": "unresolved"
