@@ -58,6 +58,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - TV wall four low wood-mica fronts (18x12in, 8–20in) = side-hinged shutters; hinge sides open.
 
+- TV wall #660066 (18in x 0–67in by the bench) = display box, clear glass shutter, glass shelves, concealed lights inside.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.
