@@ -54,6 +54,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - TV wall #ff007f (back-side colour; 90x47in panel 20–67in + 108in strip 68–84in) = white marble-look panels with gold/beige veining, from Bright's photo — TV background only, not its brown panels/boxes. Photo not committed.
 
+- TV wall #6600cc (middle low front 18x12in, 8–20in) = tinted glass shutter, lift-up.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.

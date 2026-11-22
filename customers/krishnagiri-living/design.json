@@ -799,6 +799,16 @@
    "material": "White marble-look large-format panels with warm gold/beige veining and fine panel joints (Bright's reference photo). Use ONLY the white marble TV background \u2014 ignore the brown wood panelling and brown floating boxes in that photo. Photo not committed (third-party watermark); look described/sampled only.",
    "note": "The 68\u201384in strip carries the same colour, so treated as the same marble panelling",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#6600cc (back side)",
+   "faces": [
+    46927
+   ],
+   "unit": "TV wall low front 18x12in (y157.7\u2013175.7, 8\u201320in), middle of five under the TV panel",
+   "purpose": "Tinted glass shutter",
+   "opening": "Lift-up (opens upwards)",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -813,6 +823,7 @@
   "Pooja shutters: colour/finish (NOT from the reference photo), backing behind CNC (lit?), internal layout",
   "Hanging lights: number, style, drop height; plants: type/planter position",
   "TV panelling: await Bright's reference; then confirm TV size/position, lower 8\u201320in fronts (drawers?), niche, lighting",
-  "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time"
+  "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time",
+  "TV low wood-mica fronts (4 x 18x12in): drawers or shutters?"
  ]
 }
