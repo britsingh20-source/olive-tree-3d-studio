@@ -4,7 +4,7 @@ Updated 2026-11-22 (Asia/Kolkata). Same client as `krishnagiri-kitchen`.
 
 ## Current state
 
-Colour intake started. No viewer yet. 5 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
+Colour intake started. No viewer yet. 4 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
 
 ## Sources
 
@@ -31,6 +31,8 @@ Colour intake started. No viewer yet. 5 of 14 painted source colours unresolved 
 - #006666 (14in deep x 4.1in high at floor, side of the robot bay) = robot cleaner entry/exit opening.
 
 - #31ff31 (low unit along left wall) = seating bench with cushion top; seat lifts for storage under the seating area only.
+
+- #ff9831 (underside at 54in over the open niche, x39.5–87.5) = concealed LED strip.
 
 ## Next action
 

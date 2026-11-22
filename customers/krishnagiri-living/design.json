@@ -374,7 +374,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Concealed LED strip light position"
   },
   "#ff8c65": {
    "materialName": "B03_Apricot_Glow",
@@ -712,6 +713,15 @@
    "top": "Cushion top",
    "storage": "Seat opens (lift-up) for storage \u2014 storage only under the seating area",
    "bright": "'seating bench with cushion top open for storage only the seating area'",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff9831",
+   "faces": [
+    44605
+   ],
+   "unit": "Underside at 54in over the open niche (x39.5\u201387.5, 30\u201354in) left of the book shelf",
+   "purpose": "Concealed LED strip light",
    "confirmedOn": "2026-11-22"
   }
  ],
