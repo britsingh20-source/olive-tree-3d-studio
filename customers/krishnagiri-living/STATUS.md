@@ -4,7 +4,7 @@ Updated 2026-11-22 (Asia/Kolkata). Same client as `krishnagiri-kitchen`.
 
 ## Current state
 
-Colour intake started. No viewer yet. 11 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
+Colour intake started. No viewer yet. 10 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
 
 ## Sources
 
@@ -19,6 +19,8 @@ Colour intake started. No viewer yet. 11 of 14 painted source colours unresolved
 - #ff31ff (2 faces, 18x93in each) = tinted glass shutters of a crockery unit with glass shelves and concealed lights inside. Details (tint, shelf count, hinges, handles) still open.
 
 - #ff7b00 (1 face, underside at 93in over the 57in opening) = concealed LED strip light position.
+
+- #3a3a3a (1 face above opening + crockery unit, 96.7–120in) = plain white wall.
 
 ## Next action
 

@@ -499,7 +499,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Plain white wall (no joinery)"
   },
   "#ff7b00": {
    "materialName": "C05_Golden_Blaze",
@@ -644,6 +645,15 @@
    ],
    "unit": "Underside at 93in across the top of the 57in opening (x114.5\u2013171.5, 15in deep) left of the crockery unit",
    "purpose": "Indicates a concealed LED strip light at this underside",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#3a3a3a",
+   "faces": [
+    45137
+   ],
+   "unit": "96in-wide face above the opening and crockery unit, 96.7\u2013120in",
+   "purpose": "White wall \u2014 render as plain white wall, no cabinet/panel",
    "confirmedOn": "2026-11-22"
   }
  ],
