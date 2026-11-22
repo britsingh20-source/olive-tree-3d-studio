@@ -39,6 +39,16 @@ function cncTexture(){const PX=20;return canvasTexture(30*PX,84*PX,(g,w,h)=>{g.f
  for(const [x,drop] of [[3,14],[7.5,8],[11.5,4],[18.5,4],[22.5,8],[27,14]]){for(let z=84;z>84-drop;z-=1.4){g.fillRect(X(x)-PX*.12,Y(z),PX*.24,PX*.7);}bell(x,84-drop-2.2,2);}
  const lotus=(x,z,s)=>{for(const [a,len,wid] of [[0,1,.32],[-.45,.85,.28],[.45,.85,.28],[-1,.7,.24],[1,.7,.24]]){g.save();g.translate(X(x),Y(z));g.rotate(a);g.beginPath();g.ellipse(0,-len*s*PX*.5,wid*s*PX,len*s*PX*.5,0,0,Math.PI*2);g.fill();g.restore();}g.fillRect(X(x-s*.8),Y(z-s*.18),s*1.6*PX,s*.16*PX);};
  lotus(11,24,3.2);lotus(19,24,3.2);lotus(4.5,10,3.2);lotus(25.5,10,3.2);},'#ffffff');}
+// Louver panel as ONE mipmapped surface (Bright 2026-11-22: 3D slats pixelated while rotating). Ten 34 mm slats per tile,
+// each a vertical strip of the wooden mica image, with dark recessed gaps; a matching bump map gives the slat depth.
+const LOUVER_TILE=[.34,.915];
+function louverTextures(){const W=512,H=1380,slats=10,pitch=W/slats,gap=Math.round(pitch*.24);
+ const draw=(g,img,bump)=>{g.fillStyle=bump?'#000':'#4a301c';g.fillRect(0,0,W,H);for(let k=0;k<slats;k++){const x=k*pitch+gap/2,w=pitch-gap;if(bump){const gr=g.createLinearGradient(x,0,x+w,0);gr.addColorStop(0,'#9a9a9a');gr.addColorStop(.18,'#fff');gr.addColorStop(.82,'#fff');gr.addColorStop(1,'#9a9a9a');g.fillStyle=gr;g.fillRect(x,0,w,H);continue;}
+  if(img){g.save();g.translate(x,0);g.rotate(Math.PI/2);const sy=(k*97)%Math.max(1,img.height-w*img.width/H);g.drawImage(img,0,sy,img.width,w*img.width/H,0,-w,H,w);g.restore();}else{g.fillStyle='#a06230';g.fillRect(x,0,w,H);}
+  const sh=g.createLinearGradient(x,0,x+w,0);sh.addColorStop(0,'rgba(0,0,0,.28)');sh.addColorStop(.15,'rgba(0,0,0,0)');sh.addColorStop(.85,'rgba(0,0,0,0)');sh.addColorStop(1,'rgba(0,0,0,.32)');g.fillStyle=sh;g.fillRect(x,0,w,H);}};
+ const color=canvasTexture(W,H,g=>draw(g,null,false),'#8a5a35'),bump=canvasTexture(W,H,g=>draw(g,null,true),'#cccccc');bump.colorSpace=T.NoColorSpace;
+ if(browser){const img=new Image();img.onload=()=>{const c=color.image,g=c.getContext('2d');draw(g,img,false);color.needsUpdate=true;};img.src=WOOD_TEXTURE;}
+ return {color,bump};}
 export function buildModel(){
  const root=new T.Group(),architecture=new T.Group();root.add(architecture);const units=[],actions=[],sourceMeshes=[],lightNodes=[];
  const woodMap=imageTexture(WOOD_TEXTURE,'#a06230');
@@ -48,7 +58,7 @@ export function buildModel(){
  const liner=new T.MeshStandardMaterial({color:'#eeebe3',roughness:.55,side:T.DoubleSide});
  const marble=new T.MeshPhysicalMaterial({color:'#ffffff',map:marbleTexture(),roughness:.12,clearcoat:.8,clearcoatRoughness:.08,side:T.DoubleSide});marble.polygonOffset=true;marble.polygonOffsetFactor=-2;marble.polygonOffsetUnits=-4;
  const louverMat=new T.MeshStandardMaterial({color:'#ffffff',map:imageTexture(LOUVER_TEXTURE,'#7a4a2c'),roughness:.6,side:T.DoubleSide});louverMat.polygonOffset=true;louverMat.polygonOffsetFactor=-2;louverMat.polygonOffsetUnits=-4;
- const louverBack=new T.MeshStandardMaterial({color:'#4a301c',roughness:.9,side:T.DoubleSide});louverBack.polygonOffset=true;louverBack.polygonOffsetFactor=-2;louverBack.polygonOffsetUnits=-4;const slatMat=wood;// Bright 2026-11-22: louver slats in the same wooden mica as the rest (walnut tint was too dark); vertical grain per slat
+ const louverBack=new T.MeshStandardMaterial({color:'#4a301c',roughness:.9,side:T.DoubleSide});louverBack.polygonOffset=true;louverBack.polygonOffsetFactor=-2;louverBack.polygonOffsetUnits=-4;const LT=louverTextures(),louverMat2=new T.MeshPhysicalMaterial({color:'#ffffff',map:LT.color,bumpMap:LT.bump,bumpScale:2.2,roughness:.48,clearcoat:.25,clearcoatRoughness:.3,side:T.DoubleSide});louverMat2.polygonOffset=true;louverMat2.polygonOffsetFactor=-2;louverMat2.polygonOffsetUnits=-4;const slatMat=wood;// Bright 2026-11-22: louver slats in the same wooden mica as the rest (walnut tint was too dark); vertical grain per slat
  const blackHole=new T.MeshStandardMaterial({color:'#0d0d0c',roughness:1,side:T.DoubleSide});blackHole.polygonOffset=true;blackHole.polygonOffsetFactor=-3;blackHole.polygonOffsetUnits=-6;
  const plate=new T.MeshStandardMaterial({color:'#f7f6f2',roughness:.35,side:T.DoubleSide});plate.polygonOffset=true;plate.polygonOffsetFactor=-3;plate.polygonOffsetUnits=-6;
  const switchMat=new T.MeshStandardMaterial({color:'#e6e4de',roughness:.3});
@@ -131,9 +141,8 @@ export function buildModel(){
  const ownerOf=f=>{const [lo,hi]=faceBounds(f),c=new T.Vector3(...lo).add(new T.Vector3(...hi)).multiplyScalar(.5);for(const [b,u] of unitBoxes)if(b.containsPoint(c))return u;for(const [b,u] of regions)if(b.containsPoint(c))return u;return null;};
  const groupOf=pid=>units.find(u=>u.product===pid).group;
  for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const c=f.visibleColor;let mat,uv=null;
-  if(sets.marble.has(f.id)){mat=marble;uv=[1.2,1.2];}else if(sets.louver.has(f.id)){mat=louverBack;uv=[1,1];}else if(sets.whiteWall.has(f.id))mat=whiteMat;else if(sets.robotOpening.has(f.id))mat=blackHole;else if(sets.switchBoxes.has(f.id))mat=plate;else if(sets.pebbles.has(f.id))mat=pebbleBase;else if(woodColours.has(c))mat=woodSkin;else mat=whiteMat;
+  if(sets.marble.has(f.id)){mat=marble;uv=[1.2,1.2];}else if(sets.louver.has(f.id)){mat=louverMat2;uv=LOUVER_TILE;}else if(sets.whiteWall.has(f.id))mat=whiteMat;else if(sets.robotOpening.has(f.id))mat=blackHole;else if(sets.switchBoxes.has(f.id))mat=plate;else if(sets.pebbles.has(f.id))mat=pebbleBase;else if(woodColours.has(c))mat=woodSkin;else mat=whiteMat;
   const lvl=S.pushBack[f.id];if(lvl)mat=pushed(mat,lvl);const owner=ownerOf(f),parent=owner?owner.group:architecture;const mesh=sourceFace(f,mat,parent,uv);if(owner){mesh.userData.unit=owner;mesh.userData.outerSkin=true;}
-  if(sets.louver.has(f.id)){const [lo,hi]=faceBounds(f),n=new T.Vector3(...f.visibleNormal),alongX=hi[0]-lo[0]>hi[2]-lo[2],len=alongX?hi[0]-lo[0]:hi[2]-lo[2],pitch=.034,wS=.024,dS=.016,cnt=Math.floor(len/pitch),hgt=hi[1]-lo[1]-.004;const geo=new T.BoxGeometry(alongX?wS:dS,hgt,alongX?dS:wS);grainUV(geo,[alongX?wS:dS,hgt,alongX?dS:wS]);const inst=new T.InstancedMesh(geo,slatMat,cnt),mtx=new T.Matrix4();for(let k=0;k<cnt;k++){const t=(k+.5)*len/cnt;const p=new T.Vector3(alongX?lo[0]+t:(lo[0]+hi[0])/2,(lo[1]+hi[1])/2,alongX?(lo[2]+hi[2])/2:lo[2]+t).addScaledVector(n,dS/2+.001);mtx.makeTranslation(p.x,p.y,p.z);inst.setMatrixAt(k,mtx);}inst.castShadow=true;inst.receiveShadow=true;parent.updateWorldMatrix(true,false);inst.applyMatrix4(parent.matrixWorld.clone().invert());parent.add(inst);}
   if(sets.ledStrips.has(f.id))stripUnder(f,f.id===45644?28:40,parent);
   if(sets.switchBoxes.has(f.id)){const [lo,hi]=faceBounds(f),n=new T.Vector3(...f.visibleNormal),c0=new T.Vector3(...lo).add(new T.Vector3(...hi)).multiplyScalar(.5),wide=Math.max(hi[0]-lo[0],hi[2]-lo[2]);const across=Math.abs(n.x)>.5?new T.Vector3(0,0,1):new T.Vector3(1,0,0);const cnt=Math.max(2,Math.floor(wide/.045));for(let k=0;k<cnt;k++){const s=new T.Mesh(new T.BoxGeometry(.026,.05,.008),switchMat);s.position.copy(c0).addScaledVector(across,(k-(cnt-1)/2)*.04).addScaledVector(n,.004);s.lookAt(s.position.clone().add(n));architecture.add(s);}}
  }

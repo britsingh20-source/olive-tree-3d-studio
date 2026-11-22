@@ -21,7 +21,7 @@ for(const id of ['wall-unit','tv-unit'])assert(product(id),id);assert.equal(prod
 // materials on fixed source faces
 const meshOf=id=>m.sourceMeshes.find(o=>o.userData.sourceFace===id);
 for(const id of exactLayout.special.marble)assert(meshOf(id).material.map&&meshOf(id).material.clearcoat>.5,'marble '+id);
-{let slats=0;m.root.traverse(o=>{if(o.isInstancedMesh&&o.material.map)slats+=o.count;});assert(slats>100,'3D louver slats');}
+for(const id of exactLayout.special.louver){const o=meshOf(id);assert(o.material.map&&o.material.bumpMap,'louver: one mipmapped wood-slat surface '+id);}{let inst=0;m.root.traverse(o=>{if(o.isInstancedMesh)inst++;});assert.equal(inst,0,'no thin slat geometry (pixelated while rotating)');}
 const grainOK=(mesh)=>{const g=mesh.geometry,uv=g.attributes.uv,pos=g.attributes.position;let best=null;for(let k=0;k<pos.count;k++)for(let l=k+1;l<pos.count;l++){const du=Math.abs(uv.getX(k)-uv.getX(l)),dv=Math.abs(uv.getY(k)-uv.getY(l));if(!best||du+dv>best[0]+best[1])best=[du,dv];}return best[0]>=best[1]-1e-9;};
 for(const f of exactLayout.sourceFaces){const o=meshOf(f.id);if(o.material.userData?.wood)assert(grainOK(o),'grain runs along the longer side '+f.id);}
 assert(unit('crockery').group.getObjectsByProperty('isMesh',true).some(o=>o.material.userData?.wood&&o.parent?.parent&&o.geometry.parameters?.height>2),'crockery interior wooden');
