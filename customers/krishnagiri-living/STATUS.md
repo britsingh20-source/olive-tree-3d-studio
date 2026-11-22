@@ -68,6 +68,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - Rafter inner sides #ff9831 = small plant shelves in the four gaps between rafters, staggered 5 ft / 4 ft alternately, concealed light under each shelf.
 
+- #666600 (outer sides of the end rafters) = wooden mica.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.

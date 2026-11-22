@@ -887,6 +887,16 @@
    "lighting": "Concealed light under each shelf",
    "renderPlan": "Gaps left\u2192right from the TV side: 60, 48, 60, 48in (Bright's example pattern; exact heights adjustable)",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#666600 (back side)",
+   "faces": [
+    46256,
+    46453
+   ],
+   "unit": "Outer sides of the first and last entrance rafters",
+   "material": "Wooden mica (no shelves in the end gaps)",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
