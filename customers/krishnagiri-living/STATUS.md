@@ -78,6 +78,10 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - #ffcd9b (three 18in sloped-top panels under the stairs) = staircase storage shutters, wooden mica.
 
+- #660033 band above the book-shelf wall unit = same wood-slat louver panel, continuing from above the TV.
+
+Colour intake (front + back colours) complete 2026-11-22.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.

@@ -10,7 +10,7 @@
  },
  "project": "Living area (Krishnagiri)",
  "viewer": {
-  "status": "Not built \u2014 colour intake in progress",
+  "status": "Colour intake complete (front and back colours); building first viewer",
   "route": "/krishnagiri-living/",
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living"
@@ -950,6 +950,15 @@
    "purpose": "Under-staircase storage shutters",
    "material": "Wooden mica",
    "opening": "Side-hinged assumed; hinge sides not stated",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#660033 (back side)",
+   "faces": [
+    45184
+   ],
+   "unit": "72x36in band on the back wall above the book-shelf wall unit (84\u2013120in)",
+   "material": "Same wood-slat louver wall panel as above the TV wall, continuing it",
    "confirmedOn": "2026-11-22"
   }
  ],
