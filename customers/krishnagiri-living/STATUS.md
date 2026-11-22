@@ -198,3 +198,9 @@ Bright (iPhone, 15:24): the beige panels beside the book-shelf glass shutter don
 Validation: check-krishnagiri-living.mjs passed (13 sections; wall-upper/seat-end open on hinges; beige units). Headless Chrome SwiftShader 1366x900 seat-side view closed and Open all: doors swing, drawer slides, robot panel beige. Real phone not tested.
 
 Deployed kl12: commit 4ce03bd0b65ec68f849260610965a5316f1e629d; live index serves studio.js?v=kl12.
+
+## Walkthrough — 2026-11-22 (kl13)
+
+Bright (marked top view): a walkthrough 3D view from the entrance to the pooja, realistic, as a person entering would see it. Added a 'Walkthrough' toolbar button: Catmull-Rom camera path at 62 in eye height, FOV 60, 11 keyframes / 60 s — entrance partition (rafters, plants, pebbles) → around the grey-glass end → TV wall (marble, beige base, display box) → seat and book-shelf unit (beige shutters, drawer, robot) → crockery → ends facing the pooja CNC shutters. Lights on, doors closed, Reference off, controls disabled during the walk; any drag/tap stops it; staircase fades automatically. Bug found while testing: an inline // comment had swallowed the camera update (fixed with a block comment).
+
+Validation: check-krishnagiri-living.mjs passed (route starts in front of the partition, never crosses the TV wall/bench, ends looking at the pooja). Headless Chrome SwiftShader 1366x900 frames at 0, 9, 17, 30, 42, 52 s inspected (route adjusted after the 9 s and 42 s frames were too close). Smoothness of motion on a phone not tested.

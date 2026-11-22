@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl12",
+  "assetVersion": "kl13",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -33,7 +33,8 @@
   ],
   "productView": "Zooms in place; no full-screen overlay or scroll lock (lesson from the kitchen).",
   "coplanarFix": "special.pushBack in exact-layout.js: 40 coplanar overlapping source faces get a levelled positive polygon offset (unit faces win, then coloured over white, then smaller over larger)",
-  "staircase": "Staircase faces grouped; auto-fade to 12% opacity whenever the staircase box lies between the camera and the orbit target (full view only); 'Hide staircase' toolbar button hides it completely. Units (pooja, under-stair storage) never fade."
+  "staircase": "Staircase faces grouped; auto-fade to 12% opacity whenever the staircase box lies between the camera and the orbit target (full view only); 'Hide staircase' toolbar button hides it completely. Units (pooja, under-stair storage) never fade.",
+  "walkthrough": "'Walkthrough' toolbar button: 60 s eye-level (62 in) camera walk, FOV 60, from in front of the entrance partition around its right end, past the TV wall, seat + book-shelf unit and crockery unit, ending facing the pooja (route from Bright's marked top view). Stops on drag/tap; stairs fade automatically."
  },
  "source": {
   "files": [
@@ -1043,6 +1044,11 @@
     "Tandem drawer and robot-bay fixed panel below the book-shelf glass shutter: classy beige"
    ],
    "bright": "the beige you changed beside the glass shutter is not opening, does not look like a door\u2026 below the glass shutter the drawer and fixed panel should be beige",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Walkthrough from the entrance to the pooja",
+   "bright": "provide a walkthrough 3D view from the entrance till the puja\u2026 when a human enters, how this view will be",
    "confirmedOn": "2026-11-22"
   }
  ],
