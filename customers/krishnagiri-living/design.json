@@ -312,7 +312,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Wooden mica (all 17 faces, one material)"
   },
   "#661900": {
    "materialName": "B08_Burnt_Sienna",
@@ -594,10 +595,38 @@
    "status": "unresolved"
   }
  },
- "confirmed": [],
+ "confirmed": [
+  {
+   "sourceColour": "#660000",
+   "faces": [
+    43447,
+    43636,
+    43738,
+    43750,
+    43897,
+    44377,
+    44496,
+    44607,
+    44739,
+    44691,
+    43916,
+    45003,
+    46501,
+    46696,
+    46518,
+    46951,
+    46995
+   ],
+   "unit": "Wall-unit side panels, posts and top frame of the opening beside the tall unit, staircase end panel, entrance-partition top panels",
+   "material": "Wooden mica \u2014 same reference as the kitchen (sha256 1a2b5880\u2026, avg colour #a06230)",
+   "texture": "dist/krishnagiri-living/wood-mica-reference.jpg",
+   "confirmedOn": "2026-11-22"
+  }
+ ],
  "approximations": [],
  "openQuestions": [
   "Meaning of each source colour (asked one at a time)",
-  "Client name"
+  "Client name",
+  "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake"
  ]
 }
