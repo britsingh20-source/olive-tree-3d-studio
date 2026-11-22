@@ -52,7 +52,7 @@
     {
       "id": "krishnagiri-living",
       "name": "Krishnagiri client (same as kitchen)",
-      "project": "Living area \u2014 design intake",
+      "project": "Living area (TV wall, entrance, pooja, crockery)",
       "route": "/krishnagiri-living/",
       "design": "customers/krishnagiri-living/design.json",
       "status": "customers/krishnagiri-living/STATUS.md"

@@ -10,10 +10,28 @@
  },
  "project": "Living area (Krishnagiri)",
  "viewer": {
-  "status": "Colour intake complete (front and back colours); building first viewer",
+  "status": "First 3D view built for Bright's review",
   "route": "/krishnagiri-living/",
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
-  "directory": "dist/krishnagiri-living"
+  "directory": "dist/krishnagiri-living",
+  "storageKey": "krishnagiri-living-v1",
+  "assetVersion": "kl1",
+  "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
+  "layout": "dist/krishnagiri-living/exact-layout.js",
+  "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
+  "check": "check-krishnagiri-living.mjs",
+  "woodTexture": "dist/krishnagiri-living/wood-mica-reference.jpg",
+  "louverTexture": "dist/krishnagiri-living/louver-reference.jpg",
+  "products": [
+   "Crockery unit",
+   "Book shelf wall unit (book shelf, tandem, robot bay)",
+   "TV unit (marble, low shutters, glass lift-up, display box)",
+   "Entrance partition (grey glass display, rafters, plant shelves, key box, plant box)",
+   "Pooja unit",
+   "Under-staircase storage",
+   "Seating bench"
+  ],
+  "productView": "Zooms in place; no full-screen overlay or scroll lock (lesson from the kitchen)."
  },
  "source": {
   "files": [
@@ -962,21 +980,24 @@
    "confirmedOn": "2026-11-22"
   }
  ],
- "approximations": [],
+ "approximations": [
+  "Glass shades: crockery and TV lift-up dark tint, entrance display grey tint, book shelf and TV display clear \u2014 shades approximate",
+  "Shelf counts: crockery 4 glass, book shelf 2, TV display 3 glass, entrance display 5 glass, key box 4 wood shelves",
+  "Hinge sides: crockery and pooja pairs open from the middle; TV low shutters in pairs; under-stair shutters hinged on the taller (left) side",
+  "Pooja CNC shutter colour: neutral off-white placeholder (photo used for pattern only); CNC pattern redrawn by hand, not traced",
+  "Bench cushion colour: neutral beige placeholder; bench body wooden mica",
+  "Marble texture: procedural white with gold veins, 1.2 x 0.6 m slabs",
+  "Plants: simple procedural money plants and bonsai; pencil lights 4 pendants",
+  "Bench seat is at 12in (source geometry); lid hinged at the wall edge",
+  "No TV drawn (size not given)"
+ ],
  "openQuestions": [
-  "Meaning of each source colour (asked one at a time)",
-  "Client name",
-  "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake",
-  "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish",
-  "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side",
-  "Wall-unit solid fronts (drawer etc.): finish/colour and handles",
-  "Bench: cushion colour/fabric; bench body finish",
-  "Pooja shutters: colour/finish (NOT from the reference photo), backing behind CNC (lit?), internal layout",
-  "TV panelling: await Bright's reference; then confirm TV size/position, lower 8\u201320in fronts (drawers?), niche, lighting",
-  "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time",
-  "TV low wood shutters: hinge side of each (Bright said 'opens sideways')",
-  "Key/decor open display box: number/spacing of shelves",
-  "Entrance-end tinted grey glass display: internal shelves (glass?) and count",
-  "Under-stair shutters: hinge sides"
+  "Pooja shutter colour/finish",
+  "Glass tint shades (crockery, TV lift-up, entrance grey)",
+  "Shelf counts in crockery, book shelf, displays, key box",
+  "Hinge sides of TV low shutters and under-stair shutters",
+  "Cushion colour/fabric",
+  "TV size/position",
+  "Client name"
  ]
 }

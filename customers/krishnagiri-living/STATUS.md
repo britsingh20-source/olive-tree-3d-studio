@@ -4,7 +4,7 @@ Updated 2026-11-22 (Asia/Kolkata). Same client as `krishnagiri-kitchen`.
 
 ## Current state
 
-Colour intake started. No viewer yet. All 14 painted source colours confirmed; unit details (finishes, shelves, white geometry) next (22 materials defined, 8 unused) (see design.json → sourceColours).
+First 3D viewer built 2026-11-22 (kl1) — see below. All painted colours (front and back) confirmed.
 
 ## Sources
 
@@ -85,3 +85,18 @@ Colour intake (front + back colours) complete 2026-11-22.
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.
+
+## First viewer — 2026-11-22 (asset version kl1)
+
+Built dist/krishnagiri-living/ on the krishnagiri-kitchen studio shell (studio.js/css, tour.js, camera fixes: no damping, drag never selects, tour only by button and stops without reframing, resize reframes only the untouched opening view, no scroll lock in product view). New model.js for the living area: 11 sections in 7 products, 17 opening actions (glass hinged shutters, TV glass lift-up, tandem slide, wood shutters, pooja CNC pair, under-stair sloped shutters, bench seat lift). Robot bay fixed with robot visible through the side opening. Marble TV background, louver bands, LED strips (4), surface lights between rafters, staggered plant shelves with lights, pebbles, key box shelves, switch boxes, money plants + bonsai with pencil lights. Lighting on/off and Reference colours (shows visible source colours incl. back-side colours). Finish strip applies to wood fronts only; default wooden mica. Layout script uses visible (back-side) colours/normals; product regions attach surrounding faces to each product.
+
+Bench correction during build: source shows the seat at 12in (44687/44883 top), not 29in; seat top now lifts with the lid.
+
+Validation performed:
+- node check-krishnagiri-living.mjs (Node 22.23.5): passed — 283 source faces each rendered once at measured position, unit kinds per confirmations, hinge/lift/slide types, robot bay fixed, 7 products, marble/louver/white-wall/wood materials, only RectAreaLights (11), all actions open and return to rest, lights toggle, reference mode shows exactly 283 faces, no scroll lock, asset versions match.
+- Headless Chrome (Playwright 1.63, SwiftShader software WebGL — not a real GPU), local server: desktop 1366x900 default view and close views of TV wall, wall unit + crockery, entrance rafters (from the room), plant box above the entrance, pooja + under-stair, Open all; mobile 390x844 default view, product view of TV unit, entrance partition and bench (opened). No page errors (only the site favicon 404).
+- Not tested: real phones/GPUs, compatibility fallback, finish persistence across reload, full tour run, drag/resize camera persistence in this route (code identical to kitchen).
+
+## Next action
+
+Bright reviews the 3D view. Open questions (design.json → openQuestions): pooja shutter colour, glass shades, shelf counts, hinge sides, cushion colour, TV size.

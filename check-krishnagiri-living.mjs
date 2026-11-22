@@ -1,0 +1,38 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import * as T from './dist/vendor/three.module.js';
+const vendor=new URL('./dist/vendor/three.module.js',import.meta.url).href;
+const rounded=fs.readFileSync('dist/vendor/RoundedBoxGeometry.js','utf8').replace("from 'three'",`from '${vendor}'`),roundedURL='data:text/javascript;base64,'+Buffer.from(rounded).toString('base64');
+const layoutURL=new URL('./dist/krishnagiri-living/exact-layout.js',import.meta.url).href;
+const source=fs.readFileSync('dist/krishnagiri-living/model.js','utf8').replace("from 'three'",`from '${vendor}'`).replace("from '../vendor/RoundedBoxGeometry.js'",`from '${roundedURL}'`).replace("from './exact-layout.js'",`from '${layoutURL}'`);
+const {buildModel,exactLayout,WOOD_FINISH}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const m=buildModel(),unit=id=>m.units.find(u=>u.id===id),product=id=>m.products.find(p=>p.id===id);
+assert.equal(exactLayout.sourceFaces.length,283);assert.equal(exactLayout.validation.backColouredFaces,62);
+// every source face rendered exactly once at its measured position (doors at rest)
+assert.equal(m.sourceMeshes.length,283);assert.equal(new Set(m.sourceMeshes.map(o=>o.userData.sourceFace)).size,283);
+m.root.updateMatrixWorld(true);for(const mesh of m.sourceMeshes){const f=exactLayout.sourceFaces.find(f=>f.id===mesh.userData.sourceFace),pts=f.points.flat();for(let i=0;i<pts.length;i++){const p=new T.Vector3().fromBufferAttribute(mesh.geometry.attributes.position,i).applyMatrix4(mesh.matrixWorld);assert(p.distanceTo(new T.Vector3(...pts[i]))<1e-6,'Source face moved: '+f.id);}}
+// confirmed meanings (Bright 2026-11-22)
+const kinds={crockery:'glass-tinted','book-shelf':'glass-clear',tandem:'tandem','robot-bay':'fixed','tv-shutters':'wood-shutters','tv-lift':'glass-lift','tv-display':'glass-clear','entrance-display':'glass-grey',pooja:'cnc','under-stair':'stair-shutters',bench:'bench'};
+for(const [id,k] of Object.entries(kinds))assert.equal(unit(id).kind,k,id);
+assert.equal(unit('crockery').actions.length,2);assert.deepEqual(unit('crockery').actions.map(a=>a.hingeSide),['left','right']);
+assert.equal(unit('robot-bay').actions.length,0,'robot bay shutter is fixed');
+assert.equal(unit('tandem').actions[0].type,'slide');assert.equal(unit('tv-lift').actions[0].type,'liftX');assert.equal(unit('tv-lift').actions[0].hingeSide,'top');
+assert.equal(unit('tv-shutters').actions.length,4);assert(unit('tv-shutters').actions.every(a=>a.type==='hinge'));
+assert.equal(unit('pooja').actions.length,2);assert.equal(unit('under-stair').actions.length,3);assert.equal(unit('bench').actions[0].type,'liftZ');
+for(const id of ['wall-unit','tv-unit'])assert(product(id),id);assert.equal(product('wall-unit').members.length,3);assert.equal(product('tv-unit').members.length,3);assert.equal(m.products.length,7);
+// materials on fixed source faces
+const meshOf=id=>m.sourceMeshes.find(o=>o.userData.sourceFace===id);
+for(const id of exactLayout.special.marble)assert(meshOf(id).material.map&&meshOf(id).material.clearcoat>.5,'marble '+id);
+for(const id of exactLayout.special.louver)assert(meshOf(id).material.map,'louver '+id);
+assert.equal(meshOf(45137).material.color.getHexString(),'f1efe9','charcoal face is white wall');
+for(const f of exactLayout.sourceFaces)if(['#660000','#661900','#666600'].includes(f.visibleColor)&&!unit('tv-shutters').sourceFaces.includes(f.id))assert(meshOf(f.id).material.map,'wood mica '+f.id);
+let rect=0;m.root.traverse(o=>{if(o.isLight){assert(o.isRectAreaLight,'LED surface lights only');rect++;}});assert(rect>=10&&rect<=16,'area light count '+rect);
+// open everything then close: all return to rest
+for(const a of m.actions)a.open=true;for(let i=0;i<120;i++)m.update(.033);
+assert(unit('bench').actions[0].node.rotation.z>1.2,'bench seat lifts');assert(exactLayout.special.benchTop.every(id=>{let o=m.sourceMeshes.find(x=>x.userData.sourceFace===id);while(o&&o!==unit('bench').actions[0].node)o=o.parent;return !!o;}),'measured seat top lifts with the lid');assert(unit('tv-lift').actions[0].node.rotation.x<-1.1,'glass lifts up');
+for(const a of m.actions)a.open=false;for(let i=0;i<200;i++)m.update(.033);for(const a of m.actions){assert(a.node.position.distanceTo(a.initial)<1e-3);assert(Math.abs(a.node.rotation.x)+Math.abs(a.node.rotation.y)+Math.abs(a.node.rotation.z)<1e-3);}
+m.setLights(false);m.root.traverse(o=>{if(o.isLight)assert(!o.visible);});m.setLights(true);
+m.setReference(true);let shown=0;m.root.traverse(o=>{if(o.isMesh&&o.visible){assert(o.userData.sourceFace,'only source faces in reference mode');shown++;}});assert.equal(shown,283);m.setReference(false);
+// studio wiring
+const studio=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8'),html=fs.readFileSync('dist/krishnagiri-living/index.html','utf8');
+assert(!/overflow='hidden'|classList\.add\('is-focused'\)/.test(studio),'no scroll lock in product view');assert(/controls\.enableDamping=false/.test(studio));
+const v=html.match(/studio\.js\?v=(\w+)/)[1];assert(studio.includes('model.js?v='+v),'asset versions match');
+console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.products.length,'products,',m.actions.length,'actions,',rect,'area lights');
