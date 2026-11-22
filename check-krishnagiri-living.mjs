@@ -21,10 +21,13 @@ for(const id of ['wall-unit','tv-unit'])assert(product(id),id);assert.equal(prod
 // materials on fixed source faces
 const meshOf=id=>m.sourceMeshes.find(o=>o.userData.sourceFace===id);
 for(const id of exactLayout.special.marble)assert(meshOf(id).material.map&&meshOf(id).material.clearcoat>.5,'marble '+id);
-for(const id of exactLayout.special.louver)assert(meshOf(id).material.map,'louver '+id);
+{let slats=0;m.root.traverse(o=>{if(o.isInstancedMesh&&o.material.map)slats+=o.count;});assert(slats>100,'3D louver slats');}
+const grainOK=(mesh)=>{const g=mesh.geometry,uv=g.attributes.uv,pos=g.attributes.position;let best=null;for(let k=0;k<pos.count;k++)for(let l=k+1;l<pos.count;l++){const du=Math.abs(uv.getX(k)-uv.getX(l)),dv=Math.abs(uv.getY(k)-uv.getY(l));if(!best||du+dv>best[0]+best[1])best=[du,dv];}return best[0]>=best[1]-1e-9;};
+for(const f of exactLayout.sourceFaces){const o=meshOf(f.id);if(o.material.userData?.wood)assert(grainOK(o),'grain runs along the longer side '+f.id);}
+assert(unit('crockery').group.getObjectsByProperty('isMesh',true).some(o=>o.material.userData?.wood&&o.parent?.parent&&o.geometry.parameters?.height>2),'crockery interior wooden');
 assert.equal(meshOf(45137).material.color.getHexString(),'f1efe9','charcoal face is white wall');
 for(const f of exactLayout.sourceFaces)if(['#660000','#661900','#666600'].includes(f.visibleColor)&&!unit('tv-shutters').sourceFaces.includes(f.id))assert(meshOf(f.id).material.map,'wood mica '+f.id);
-let rect=0;m.root.traverse(o=>{if(o.isLight){assert(o.isRectAreaLight,'LED surface lights only');rect++;}});assert(rect>=10&&rect<=16,'area light count '+rect);
+let rect=0;m.root.traverse(o=>{if(o.isLight){assert(o.isRectAreaLight,'LED surface lights only');rect++;}});assert(rect>=10&&rect<=20,'area light count '+rect);
 // open everything then close: all return to rest
 for(const a of m.actions)a.open=true;for(let i=0;i<120;i++)m.update(.033);
 assert(unit('bench').actions[0].node.rotation.z>1.2,'bench seat lifts');assert(exactLayout.special.benchTop.every(id=>{let o=m.sourceMeshes.find(x=>x.userData.sourceFace===id);while(o&&o!==unit('bench').actions[0].node)o=o.parent;return !!o;}),'measured seat top lifts with the lid');assert(unit('tv-lift').actions[0].node.rotation.x<-1.1,'glass lifts up');

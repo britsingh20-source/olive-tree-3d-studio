@@ -104,3 +104,13 @@ Bright reviews the 3D view. Open questions (design.json → openQuestions): pooj
 Deployed: commit 94d1b59a8e3a51aa39c6abb8fb24d5838f0dcff0, Pages run 44978272293 success. Live route, model.js?v=kl1, studio.js?v=kl1, exact-layout.js and both textures return HTTP 200; live page loaded in headless Chrome (SwiftShader) at 390x844 and the TV unit product view rendered; only console error is the site favicon 404.
 
 Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/
+
+## Review corrections — 2026-11-22 (kl2)
+
+Bright: wood was horizontal everywhere — vertical units need vertical grain, horizontal units horizontal grain; inside of display boxes looked white — must be wood; look was cartoonish — improve lighting/finish and surface lights; the panel above the TV unit ("lower panel", read as the louver panel) showed white and lines.
+
+Changes: grainUV() gives every wood box/face its grain along its longer side (source faces and generated boxes); glass-unit and pooja carcass interiors + book-shelf shelves in wooden mica; louver bands rebuilt as InstancedMesh vertical slats (24 mm wide, 34 mm pitch) on a dark backing, walnut-tinted wood grain; marble redrawn (soft clouding, gold veins, faint joints; recursion depth-limited after it stalled page load); LED strips now aluminium profile with a narrow diffuser; surface lights over the rafters are black round surface downlights each with a small area light; polished tile floor receiving shadows; studio lighting: lower hemisphere fill, sun/fill aimed at the model centre with wider soft shadows, exposure .95. Area lights 16.
+
+Validation: check-krishnagiri-living.mjs passed (adds: grain along the longer side for every wood source face, crockery interior wood, >100 louver slats). Headless Chrome SwiftShader 1366x900 renders inspected: TV wall (marble, LED profile, vertical-grain posts, horizontal-grain TV shutters), wall unit + crockery (wood interiors, vertical grain on tall fronts), entrance rafters (downlights), louver close-up (slats, first attempt showed photo stripes across slats — fixed). Final slat tint tweak not re-rendered. Real phone/GPU not tested.
+
+Open: confirm "lower panel" meant the louver panel.
