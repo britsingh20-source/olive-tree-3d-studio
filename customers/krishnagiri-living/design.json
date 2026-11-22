@@ -394,7 +394,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Tandem drawer"
   },
   "#ff9999": {
    "materialName": "A02_Rose_Quartz",
@@ -667,6 +668,15 @@
    "shutters": "Clear glass",
    "lighting": "Concealed lights inside the cabinet",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff8c65",
+   "faces": [
+    44620
+   ],
+   "unit": "24x9in front (x87.5\u2013111.5, 21\u201330in) directly below the book shelf",
+   "purpose": "Tandem drawer",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -675,6 +685,7 @@
   "Client name",
   "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake",
   "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish",
-  "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side"
+  "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side",
+  "Wall-unit solid fronts (drawer etc.): finish/colour and handles"
  ]
 }

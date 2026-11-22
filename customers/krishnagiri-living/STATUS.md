@@ -4,7 +4,7 @@ Updated 2026-11-22 (Asia/Kolkata). Same client as `krishnagiri-kitchen`.
 
 ## Current state
 
-Colour intake started. No viewer yet. 9 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
+Colour intake started. No viewer yet. 8 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
 
 ## Sources
 
@@ -23,6 +23,8 @@ Colour intake started. No viewer yet. 9 of 14 painted source colours unresolved 
 - #3a3a3a (1 face above opening + crockery unit, 96.7–120in) = plain white wall.
 
 - #660066 (24x54in, 30–84in, right end of wall unit) = book shelf, clear glass shutters, concealed lights inside. Shelf count/hinge open.
+
+- #ff8c65 (24x9in, 21–30in, below book shelf) = tandem drawer.
 
 ## Next action
 
