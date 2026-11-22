@@ -248,3 +248,7 @@ Bright: works on iPhone, but the customer's Android (and Bright's Android) gets 
 Validation: check-krishnagiri-living.mjs passed (lite ≤7 area lights, <700 meshes). Same Android-UA headless test: 34.8 s (was 65 s) in software rendering; ?lite renders at 390x844. Not tested on a real Android phone — ask Bright/customer to retry.
 
 Deployed kl18: push run 45033255684 failed at deploy-pages (GitHub artifact metadata error); workflow_dispatch run 45033407162 succeeded; live index serves studio.js?v=kl18.
+
+## Auto-start walkthrough — 2026-11-22 (kl19)
+
+Bright: kl18 loads on Android, but customers think the page hangs because the 3D view and Walkthrough button are below the intro. Now the page scrolls to the 3D view immediately on open (loading message visible) and starts the walkthrough automatically once loaded; Stop/replay button kept; ?nowalk or ?debug disable it. Validation: check passed; headless Chrome (Android UA, 390x844): scrolled to the viewer at open, walkthrough running ('Stop walkthrough', entrance step) after load, no page errors.

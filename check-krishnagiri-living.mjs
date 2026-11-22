@@ -39,6 +39,7 @@ const studio=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8'),html=fs
 assert(!/overflow='hidden'|classList\.add\('is-focused'\)/.test(studio),'no scroll lock in product view');assert(/controls\.enableDamping=false/.test(studio));
 const v=html.match(/studio\.js\?v=(\w+)/)[1];assert(studio.includes('model.js?v='+v),'asset versions match');
 {const ml=(await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'))).buildModel({lite:true});let lr=0;ml.root.traverse(o=>{if(o.isRectAreaLight)lr++;});assert(lr<=7,'lite area lights '+lr);let meshes=0;m.root.traverse(o=>{if(o.isMesh)meshes++;});assert(meshes<700,'mesh count '+meshes);console.log('lite lights',lr,'meshes',meshes);}
+assert(/setTimeout\(\(\)=>\{revealStage\(\);startWalk\(\);\}/.test(fs.readFileSync('dist/krishnagiri-living/studio.js','utf8')),'walkthrough starts on page open');
 console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.products.length,'products,',m.actions.length,'actions,',rect,'area lights');
 {// no unresolved coplanar overlap: every pushed face renders behind its partner via a positive polygon offset
  const pb=exactLayout.special.pushBack;assert(Object.keys(pb).length>=30);for(const [id,l] of Object.entries(pb)){const o=m.sourceMeshes.find(x=>x.userData.sourceFace===Number(id));assert(o.material.polygonOffset&&o.material.polygonOffsetFactor===2*l,'pushed back '+id);}
