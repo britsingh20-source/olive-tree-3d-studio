@@ -100,3 +100,7 @@ Validation performed:
 ## Next action
 
 Bright reviews the 3D view. Open questions (design.json → openQuestions): pooja shutter colour, glass shades, shelf counts, hinge sides, cushion colour, TV size.
+
+Deployed: commit 94d1b59a8e3a51aa39c6abb8fb24d5838f0dcff0, Pages run 44978272293 success. Live route, model.js?v=kl1, studio.js?v=kl1, exact-layout.js and both textures return HTTP 200; live page loaded in headless Chrome (SwiftShader) at 390x844 and the TV unit product view rendered; only console error is the site favicon 404.
+
+Live URL: https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/
