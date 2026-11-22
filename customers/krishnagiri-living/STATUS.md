@@ -206,3 +206,11 @@ Bright (marked top view): a walkthrough 3D view from the entrance to the pooja, 
 Validation: check-krishnagiri-living.mjs passed (route starts in front of the partition, never crosses the TV wall/bench, ends looking at the pooja). Headless Chrome SwiftShader 1366x900 frames at 0, 9, 17, 30, 42, 52 s inspected (route adjusted after the 9 s and 42 s frames were too close). Smoothness of motion on a phone not tested.
 
 Deployed kl13: commit 6ad76d4fb446a150d6287b34de0f29a58d3b7e47; live index has the Walkthrough button and studio.js?v=kl13.
+
+## Interactive walkthrough — 2026-11-22 (kl14)
+
+Bright: the walkthrough must be interactive — open the entrance glass shutter, a 65-inch TV switched on/off, sit on the bay-window seat, read at the study table, books in the book shelf, open the drawer, open/close crockery, open the pooja and the wooden staircase-storage shutters.
+
+Added props in model.js (all render approximations): 65" TV on the marble panel with setTV(on) (emissive generic landscape + soft area light, light hidden when off), books on the book-shelf base and shelves, open book + cup on the desk niche top (43916, 30 in), crockery (plates, bowls, cups, glasses) on the crockery glass shelves, pooja platform at 30 in with brass diya (glowing flame), kalash and bell, under-stair storage interior (wood lined) with three bins; staircase side faces that share the shutters' plane hide while that storage is open. Pooja cabinet now one open box (no divider between the pair). Walkthrough rewritten as WALK_STEPS (27 steps, ~96 s, eye 62 in / seated 42 in) with fx open/close/tv; labels shown in the hint line.
+
+Validation: check-krishnagiri-living.mjs passed (walk does every requested action, sits on the seat, reads, all fx units have actions, TV toggles). Headless Chrome SwiftShader 1366x900 frames at 11.5 s (entrance display open), 22 s (TV on), 36 s (seated), 46.5 s (reading), 68.5 s (crockery open), 81.5 s (pooja open — found the middle divider, fixed), 93 s (staircase storage open — interior then switched to wood, not re-rendered). Book shelf/drawer frames not rendered. Motion on a phone not tested. Bugs hit while building: two inline // comments swallowed code on the minified lines (fixed with block comments).

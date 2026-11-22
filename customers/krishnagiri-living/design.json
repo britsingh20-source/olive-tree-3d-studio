@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl13",
+  "assetVersion": "kl14",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -34,7 +34,7 @@
   "productView": "Zooms in place; no full-screen overlay or scroll lock (lesson from the kitchen).",
   "coplanarFix": "special.pushBack in exact-layout.js: 40 coplanar overlapping source faces get a levelled positive polygon offset (unit faces win, then coloured over white, then smaller over larger)",
   "staircase": "Staircase faces grouped; auto-fade to 12% opacity whenever the staircase box lies between the camera and the orbit target (full view only); 'Hide staircase' toolbar button hides it completely. Units (pooja, under-stair storage) never fade.",
-  "walkthrough": "'Walkthrough' toolbar button: 60 s eye-level (62 in) camera walk, FOV 60, from in front of the entrance partition around its right end, past the TV wall, seat + book-shelf unit and crockery unit, ending facing the pooja (route from Bright's marked top view). Stops on drag/tap; stairs fade automatically."
+  "walkthrough": "Interactive walkthrough (Walkthrough button), 27 steps / ~96 s at eye level 62 in (42 in seated): entrance partition \u2192 opens/closes the grey glass display \u2192 65-inch TV on the marble panel switched on/off \u2192 sits on the bay-window seat and looks around \u2192 reads an open book at the study table (desk niche at 30 in) \u2192 opens the glass book shelf (books on shelves) and the tandem drawer \u2192 opens/closes the crockery unit (plates, bowls, cups, glasses) \u2192 opens/closes the pooja (platform with brass diya, kalash, bell) \u2192 opens/closes the staircase storage (wood-lined, storage bins). Tap/drag stops it."
  },
  "source": {
   "files": [
@@ -1050,6 +1050,11 @@
    "change": "Walkthrough from the entrance to the pooja",
    "bright": "provide a walkthrough 3D view from the entrance till the puja\u2026 when a human enters, how this view will be",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Interactive walkthrough",
+   "bright": "walkthrough should be interactive: open the entrance glass shutter, 65-inch TV on/off, sit on the bay window seat, read a book at the study table, books in the book shelf, open the drawer, open/close the crockery unit, open the pooja, open the wooden shutters near the pooja",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [
@@ -1061,7 +1066,8 @@
   "Plants: simple procedural money plants and bonsai; pencil lights 4 pendants",
   "Bench seat is at 12in (source geometry); lid hinged at the wall edge",
   "No TV drawn (size not given)",
-  "Pooja CNC pattern redrawn by hand, not traced"
+  "Pooja CNC pattern redrawn by hand, not traced",
+  "Walkthrough props: 65-inch TV (1.44 x 0.81 m, centred on the marble panel at 44 in), generic landscape on screen, books, open book and cup on the study table, crockery set, pooja brass items on a 30 in platform, under-stair storage interior and bins \u2014 sizes/positions not specified by Bright"
  ],
  "openQuestions": [
   "Glass tint shades (crockery, TV lift-up, entrance grey)",
