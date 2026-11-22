@@ -114,3 +114,5 @@ Changes: grainUV() gives every wood box/face its grain along its longer side (so
 Validation: check-krishnagiri-living.mjs passed (adds: grain along the longer side for every wood source face, crockery interior wood, >100 louver slats). Headless Chrome SwiftShader 1366x900 renders inspected: TV wall (marble, LED profile, vertical-grain posts, horizontal-grain TV shutters), wall unit + crockery (wood interiors, vertical grain on tall fronts), entrance rafters (downlights), louver close-up (slats, first attempt showed photo stripes across slats — fixed). Final slat tint tweak not re-rendered. Real phone/GPU not tested.
 
 Open: confirm "lower panel" meant the louver panel.
+
+Deployed kl2: commit 7cb3ea6acff0d94ef8ac3970077f2163182889b0, Pages run 44980406116 success; live serves studio.js?v=kl2 and model.js with grainUV; live page loaded in headless Chrome 390x844.
