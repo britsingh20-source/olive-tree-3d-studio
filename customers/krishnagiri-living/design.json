@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl9",
+  "assetVersion": "kl10",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -1017,26 +1017,46 @@
    "detail": "Repeats by itself: 4 s out of the bay through the side opening into the room, 4 s cleaning a spot (zigzag), 4 s back into the fixed-shutter bay; a different spot each loop",
    "bright": "robo cleaner should come out and go in loop \u2026 first 4 seconds come out/clean, another 4 seconds go in",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#000066",
+   "change": "Pooja CNC shutter colour confirmed: the classy beige already shown (#efebe4)",
+   "bright": "You have made the pooja door beige\u2026 the high classy beige colour is okay, good",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [
   "Glass shades: crockery and TV lift-up dark tint, entrance display grey tint, book shelf and TV display clear \u2014 shades approximate",
   "Shelf counts: crockery 4 glass, book shelf 2, TV display 3 glass, entrance display 5 glass, key box 4 wood shelves",
   "Hinge sides: crockery and pooja pairs open from the middle; TV low shutters in pairs; under-stair shutters hinged on the taller (left) side",
-  "Pooja CNC shutter colour: neutral off-white placeholder (photo used for pattern only); CNC pattern redrawn by hand, not traced",
   "Bench cushion colour: neutral beige placeholder; bench body wooden mica",
   "Marble texture: procedural white with gold veins, 1.2 x 0.6 m slabs",
   "Plants: simple procedural money plants and bonsai; pencil lights 4 pendants",
   "Bench seat is at 12in (source geometry); lid hinged at the wall edge",
-  "No TV drawn (size not given)"
+  "No TV drawn (size not given)",
+  "Pooja CNC pattern redrawn by hand, not traced"
  ],
  "openQuestions": [
-  "Pooja shutter colour/finish",
   "Glass tint shades (crockery, TV lift-up, entrance grey)",
   "Shelf counts in crockery, book shelf, displays, key box",
   "Hinge sides of TV low shutters and under-stair shutters",
   "Cushion colour/fabric",
   "TV size/position",
-  "Client name"
+  "Client name",
+  "Option 2: confirm 'study shutters' = staircase storage shutters"
+ ],
+ "options": [
+  {
+   "id": 1,
+   "name": "Wooden mica",
+   "detail": "TV base shutters and staircase storage shutters in wooden mica (as built)"
+  },
+  {
+   "id": 2,
+   "name": "Beige & wood",
+   "detail": "TV base unit shutters and staircase storage shutters in classy beige like the pooja shutters (acrylic gloss, rendered #e6d9c4 so it reads beige under gloss); glass shutters unchanged; everything else as Option 1",
+   "bright": "apart from the glass shutters, change the TV base unit shutters and the 'study' shutters to beige \u2026 make it option 2",
+   "interpretation": "'study shutters' read as the staircase (under-stair) storage shutters \u2014 no study exists in the model; confirm with Bright"
+  }
  ]
 }

@@ -8,6 +8,10 @@ export const WOOD_TEXTURE='./wood-mica-reference.jpg';
 export const LOUVER_TEXTURE='./louver-reference.jpg';
 export const WOOD_FINISH={name:'Wooden mica (reference)',color:'#a06230',wood:true,texture:WOOD_TEXTURE};
 export const DEFAULT_FINISH=WOOD_FINISH.color;
+// Classy beige: the pooja CNC shutter colour, approved by Bright 2026-11-22 ('high classy beige').
+export const BEIGE='#efebe4',BEIGE_FINISH={name:'Classy beige (as pooja shutters)',color:'#e6d9c4'};// a touch deeper than the matte pooja colour: the acrylic gloss lightens it
+// Design options (Bright 2026-11-22): Option 2 turns the TV base shutters and the staircase storage shutters beige; glass shutters unchanged.
+export const OPTIONS=[{id:1,label:'Option 1',title:'Wooden mica',units:{}},{id:2,label:'Option 2',title:'Beige & wood',units:{'tv-shutters':BEIGE_FINISH,'under-stair':BEIGE_FINISH}}];
 export const FINISH_NAME=WOOD_FINISH.name;
 export const project={id:'krishnagiri-living-v1',customer:'Krishnagiri living area',location:'Krishnagiri',quotation:null};
 export const definitions=exactLayout.units;
@@ -124,7 +128,7 @@ export function buildModel(){
     }
    else if(def.kind==='cnc'){carcass(u,frame,w,h,d,wood);// warm glow behind the CNC cut-outs
     const glow=interior(u,frame);glow.userData.alwaysVisible=true;const back=new T.MeshStandardMaterial({color:'#e9b06d',emissive:'#ffb054',emissiveIntensity:.9});box(glow,w-.04,h-.04,.006,0,0,-d+.06,back);lightNodes.push(glow.children[0]);glow.children[0].userData.onMaterial=back;glow.children[0].userData.led=true;
-    const shutterMat=new T.MeshStandardMaterial({color:'#efebe4',map:cncTex.clone(),alphaTest:.5,alphaToCoverage:true,roughness:.55,side:T.DoubleSide});// APPROX shutter colour — the photo was for the CNC design only
+    const shutterMat=new T.MeshStandardMaterial({color:BEIGE,map:cncTex.clone(),alphaTest:.5,alphaToCoverage:true,roughness:.55,side:T.DoubleSide});// classy beige, confirmed by Bright 2026-11-22
     shutterMat.map.repeat.set(.5,1);shutterMat.map.offset.set(i===1?.5:0,0);shutterMat.map.needsUpdate=true;const pivot=shutter(u,frame,part,{hingeRight:i===1,sourceDoor:true,mat:shutterMat});
     // UVs of the measured face span 0..1 across this shutter: rewrite so the pattern lines up
     const m=pivot.children.find(o=>o.userData.sourceFace);const pos=m.geometry.attributes.position,uvA=m.geometry.attributes.uv;m.updateWorldMatrix(true,false);const f=faceById.get(part.faceId),[lo,hi]=faceBounds(f);const along=Math.abs(hi[0]-lo[0])>Math.abs(hi[2]-lo[2])?0:2;for(let k=0;k<pos.count;k++){const wp=new T.Vector3().fromBufferAttribute(pos,k).applyMatrix4(m.matrixWorld);let s=(wp.getComponent(along)-lo[along])/(hi[along]-lo[along]);const right=new T.Vector3(Math.cos(u.angle),0,-Math.sin(u.angle));if(right.getComponent(along)<0)s=1-s;uvA.setXY(k,s,(wp.y-lo[1])/(hi[1]-lo[1]));}uvA.needsUpdate=true;

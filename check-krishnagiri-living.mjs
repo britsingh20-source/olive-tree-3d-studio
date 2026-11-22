@@ -52,3 +52,5 @@ console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.prod
  const p16=at(4);assert(p16.distanceTo(dock)>1,'second loop goes out again');
  m2.setReference(true);const frozen=m2.robot.position.clone();at(1);assert(m2.robot.position.distanceTo(frozen)<1e-9,'paused in reference mode');
  console.log('robot cleaner loop ok');}
+{const {OPTIONS,BEIGE}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));assert.equal(OPTIONS.length,2);assert.deepEqual(Object.keys(OPTIONS[1].units).sort(),['tv-shutters','under-stair']);assert.equal(BEIGE,'#efebe4');
+ const st=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8');assert(/function applyOption/.test(st)&&/saved\.option/.test(st));assert(!Object.keys(OPTIONS[1].units).some(id=>['crockery','book-shelf','tv-display','entrance-display','tv-lift'].includes(id)),'glass shutters unchanged');console.log('options ok');}

@@ -170,3 +170,11 @@ Bright: the robot cleaner should come out and go in on a loop like the earlier T
 Validation: check-krishnagiri-living.mjs passed (adds loop timing: in the room at 4 s, cleaning phase to 8 s, back at the dock at 12 s, out again at 16 s; frozen in reference mode). Headless Chrome SwiftShader still of the cleaning phase: robot on the floor in front of the wall unit. Motion not viewed in real time here; real phone not tested.
 
 Deployed kl9: commit 60794d753c82a8472eca6823dc0c6b5890a16192; live index serves studio.js?v=kl9.
+
+## Pooja colour confirmed + Option 2 — 2026-11-22 (kl10)
+
+Bright: the beige pooja doors ("high classy beige") are good. Asked for Option 2: apart from the glass shutters, TV base unit shutters and the "study" shutters in beige. Read "study" as the staircase (under-stair) storage shutters — no study in the model; asked Bright to confirm.
+
+Implemented the kitchen-style option panel (two cards with rendered previews option-1.jpg / option-2.jpg, choice saved on the device as saved.option). Option 2 paints the fronts of tv-shutters and under-stair with BEIGE_FINISH (acrylic gloss, #e6d9c4 — the matte pooja #efebe4 looked almost white under gloss); the user's own finish picks on those units are cleared when an option is chosen. paint() now also drops the wood bump map on solid finishes. Pooja shutter colour recorded as confirmed (#efebe4, matte).
+
+Validation: check-krishnagiri-living.mjs passed (adds OPTIONS: two options, Option 2 only touches tv-shutters/under-stair, never glass units). Headless Chrome SwiftShader 1366x900: Option 1 and Option 2 from the same camera (TV base wood vs beige), Option 2 at the staircase (beige sloped storage shutters, beige pooja). Real phone not tested.
