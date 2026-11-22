@@ -4,7 +4,7 @@ Updated 2026-11-22 (Asia/Kolkata). Same client as `krishnagiri-kitchen`.
 
 ## Current state
 
-Colour intake started. No viewer yet. 2 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
+Colour intake started. No viewer yet. 1 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
 
 ## Sources
 
@@ -37,6 +37,8 @@ Colour intake started. No viewer yet. 2 of 14 painted source colours unresolved 
 - #661900 (top of wall unit at 84in) = same wooden mica.
 
 - #000066 (two 15x84in panels beside the staircase) = pooja unit, two CNC shutters. Bright's photo is for the CNC pattern only (mandala split across shutters, round centre handle, hanging bells, lotus motifs) — not its colour. Photo not committed.
+
+- #660033 (108x36in band above entrance, 84–120in) = fixed louver wall panel, vertical wood-look slats per Bright's reference (dist/krishnagiri-living/louver-reference.jpg).
 
 ## Next action
 

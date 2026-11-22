@@ -583,7 +583,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Louver wall panel (fixed, decorative)"
   },
   "#ff6532": {
    "materialName": "B04_Peach_Ember",
@@ -748,6 +749,17 @@
     "reference": "Bright's WhatsApp photo 2026-11-22 \u2014 use for the CNC DESIGN ONLY; do NOT copy its colour. Photo not committed.",
     "description": "Central circular mandala of petal/scale cut-outs split across the two shutters (large outer petals, smaller toward the centre), a round wood-look handle disc at the centre split between the shutters, hanging temple bells on dotted chains along the top, lotus motifs: one per shutter below the mandala near the meeting edge and one per shutter near the bottom outer corner; warm light glows through the cut-outs"
    },
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#660033",
+   "faces": [
+    46502
+   ],
+   "unit": "108in x 36in band on the left wall above the entrance partition (x39.6, y121.7\u2013229.7, 84\u2013120in)",
+   "purpose": "Louver wall panel \u2014 fixed decorative, no opening action",
+   "material": "Vertical wood-look louvers (warm brown slats with dark recessed gaps) per Bright's reference 'pvc_reference.jpg'",
+   "texture": "dist/krishnagiri-living/louver-reference.jpg (sha256 ea2bdd39ab7f13ae\u2026)",
    "confirmedOn": "2026-11-22"
   }
  ],
