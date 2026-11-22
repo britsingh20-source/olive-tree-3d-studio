@@ -64,7 +64,7 @@ export function buildModel(opts={}){const LITE=!!opts.lite;
  const woodSkin=wood.clone();woodSkin.polygonOffset=true;woodSkin.polygonOffsetFactor=-2;woodSkin.polygonOffsetUnits=-4;
  const whiteMat=new T.MeshStandardMaterial({color:'#f1efe9',roughness:.85,side:T.DoubleSide});
  const liner=new T.MeshStandardMaterial({color:'#eeebe3',roughness:.55,side:T.DoubleSide});
- const marble=new T.MeshPhysicalMaterial({color:'#ffffff',map:marbleTexture(),roughness:.05,metalness:0,clearcoat:1,clearcoatRoughness:.02,specularIntensity:1,ior:1.55,envMapIntensity:1.35,side:T.DoubleSide});// polished, glossy (Bright: must not look like the wall)marble.polygonOffset=true;marble.polygonOffsetFactor=-2;marble.polygonOffsetUnits=-4;
+ const marble=new T.MeshPhysicalMaterial({color:'#ffffff',map:browser?imageTexture('./marble.jpg?v=kl21','#e6ddcf'):marbleTexture(),/* 20:38: pre-rendered (was drawn on the phone at every load) */roughness:.05,metalness:0,clearcoat:1,clearcoatRoughness:.02,specularIntensity:1,ior:1.55,envMapIntensity:1.35,side:T.DoubleSide});// polished, glossy (Bright: must not look like the wall)marble.polygonOffset=true;marble.polygonOffsetFactor=-2;marble.polygonOffsetUnits=-4;
  const louverMat=new T.MeshStandardMaterial({color:'#ffffff',map:imageTexture(LOUVER_TEXTURE,'#7a4a2c'),roughness:.6,side:T.DoubleSide});louverMat.polygonOffset=true;louverMat.polygonOffsetFactor=-2;louverMat.polygonOffsetUnits=-4;
  const louverBack=new T.MeshStandardMaterial({color:'#4a301c',roughness:.9,side:T.DoubleSide});louverBack.polygonOffset=true;louverBack.polygonOffsetFactor=-2;louverBack.polygonOffsetUnits=-4;const LT=louverTextures(),louverMat2=new T.MeshPhysicalMaterial({color:'#ffffff',map:LT.color,bumpMap:LT.bump,bumpScale:2.2,roughness:.48,clearcoat:.25,clearcoatRoughness:.3,side:T.DoubleSide});louverMat2.polygonOffset=true;louverMat2.polygonOffsetFactor=-2;louverMat2.polygonOffsetUnits=-4;const slatMat=wood;// Bright 2026-11-22: louver slats in the same wooden mica as the rest (walnut tint was too dark); vertical grain per slat
  const blackHole=new T.MeshStandardMaterial({color:'#0d0d0c',roughness:1,side:T.DoubleSide});blackHole.polygonOffset=true;blackHole.polygonOffsetFactor=-3;blackHole.polygonOffsetUnits=-6;
@@ -106,7 +106,7 @@ export function buildModel(opts={}){const LITE=!!opts.lite;
  // Which source faces belong inside each unit (front face pushed back by its depth): they move with the unit in product view.
  const unitBoxes=[];
  const assigned=new Set();
- const cncTex=cncTexture();
+ const cncTex=browser?imageTexture('./cnc-pattern.png?v=kl21','#ffffff'):cncTexture();
  // Coplanar overlaps: push the losing face behind its partner by a fixed depth level (no z-fighting while rotating).
  const beigeMat=new T.MeshPhysicalMaterial({color:BEIGE_FINISH.color,roughness:.05,clearcoat:1,clearcoatRoughness:.02,side:T.DoubleSide});beigeMat.polygonOffset=true;beigeMat.polygonOffsetFactor=-2;beigeMat.polygonOffsetUnits=-4;beigeMat.userData.beige=true;
  const pushedCache=new Map();const pushed=(mat,lvl)=>{const key=mat.uuid+':'+lvl;if(!pushedCache.has(key)){const c=mat.clone();c.userData={...mat.userData};c.polygonOffset=true;c.polygonOffsetFactor=2*lvl;c.polygonOffsetUnits=4*lvl;pushedCache.set(key,c);}return pushedCache.get(key);};

@@ -262,3 +262,9 @@ Bright: kl19 now auto-starts on Android (earlier failure was the 10-minute page 
 Validation: check-krishnagiri-living.mjs passed (adds: light count unchanged by lights-off/TV-on, stair fade leaves material versions unchanged). Headless Chrome (Android UA, SwiftShader): renderer.info.programs stays 24 from load through walk times 5–135 s incl. TV on/off and stair fade. Frame smoothness on a real Android phone not measured — ask Bright.
 
 Deployed kl20: Pages run 45035438573 success; live index serves studio.js?v=kl20. Note: GitHub Pages sends cache-control max-age=600, so phones may show the previous version for up to 10 minutes.
+
+## Android 4–5 s freeze before the walkthrough — 2026-11-22 (kl21)
+
+Bright: on Android the page sits stuck ~4–5 s before the walkthrough appears (iPhone immediate). The kl20 renderer.compile() at load ran synchronously and froze the screen while the loading text was static, and the marble/CNC textures were drawn on canvas on the phone every load. Changes: renderer.compileAsync() with an animated 'Getting your walkthrough ready…' message, then hide loader and start the walk; marble (1024², 65 KB JPG) and CNC pattern (90 KB PNG) exported once from the canvas and loaded as images in the browser (Node tests still use the canvas code). Timing marks in window.__studio.TIMING (debug). A mistake while adding timing ('async const …') broke loading locally — caught by a browser load test before publishing; module syntax is now checked with node --check on a .mjs copy.
+
+Validation: check passed; module syntax check on studio.js/model.js; headless Chrome load completes within 10 s (SwiftShader, no KHR_parallel_shader_compile → compileAsync falls back fine); renders of the TV wall (marble image) and pooja (CNC image) match before. Real Android timing not measured — ask Bright.

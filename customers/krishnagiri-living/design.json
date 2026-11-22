@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl20",
+  "assetVersion": "kl21",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -38,7 +38,8 @@
   "tvVideo": "'TV video' button: the viewer picks a video file on their own device; it plays (muted, looped) on the TV during the walkthrough via a VideoTexture. Nothing is uploaded or published. The studio does not embed third-party/celebrity footage (Bright asked for a Vijay video \u2014 declined to embed; he can load his own clip locally).",
   "liteMode": "Android or deviceMemory<=4 (or ?lite; ?full forces full): only the main area lights (4 LED strips, beam, plant box; TV when on), no glass-unit/shelf area lights (emissive strips stay), pixel ratio <=1.5, 1024 shadow map. Loading longer than 25 s offers a link to ?lite.",
   "autoWalk": "On page open the page scrolls to the 3D view (loading message visible) and the walkthrough starts automatically once loaded; the Walkthrough button stays to stop/replay. ?nowalk or ?debug skip it.",
-  "androidStutterFix": "No shader recompiles during the walk: staircase materials always transparent (fade changes opacity/depthWrite only), TV light always present (intensity 0 when off) and TV emissive map always bound, lights on/off by intensity, all materials compiled once at load (hidden interiors included)."
+  "androidStutterFix": "No shader recompiles during the walk: staircase materials always transparent (fade changes opacity/depthWrite only), TV light always present (intensity 0 when off) and TV emissive map always bound, lights on/off by intensity, all materials compiled once at load (hidden interiors included).",
+  "startup": "Shaders compiled with renderer.compileAsync behind an animated 'Getting your walkthrough ready\u2026' message (no frozen screen); marble and pooja CNC textures pre-rendered to marble.jpg / cnc-pattern.png (were drawn on canvas at every load)."
  },
  "source": {
   "files": [
