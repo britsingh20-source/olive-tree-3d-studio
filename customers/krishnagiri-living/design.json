@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl2",
+  "assetVersion": "kl3",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -988,6 +988,12 @@
     "More realistic lighting/finish: floor with shadows, softer ambient, aluminium LED profiles, surface-mounted round downlights, marble with soft veining"
    ],
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Louver slats in the same wooden mica as the rest",
+   "bright": "lower panel is too dark, not matching the wooden mica colour",
+   "note": "Confirms 'lower panel' = louver panel",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [
@@ -999,8 +1005,7 @@
   "Marble texture: procedural white with gold veins, 1.2 x 0.6 m slabs",
   "Plants: simple procedural money plants and bonsai; pencil lights 4 pendants",
   "Bench seat is at 12in (source geometry); lid hinged at the wall edge",
-  "No TV drawn (size not given)",
-  "Louver slat tone: walnut tint over the wood mica grain (sampled from Bright's louver swatch, slightly warmer)"
+  "No TV drawn (size not given)"
  ],
  "openQuestions": [
   "Pooja shutter colour/finish",
