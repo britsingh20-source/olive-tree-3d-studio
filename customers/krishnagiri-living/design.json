@@ -809,6 +809,20 @@
    "purpose": "Tinted glass shutter",
    "opening": "Lift-up (opens upwards)",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#660000 (back side)",
+   "faces": [
+    45882,
+    46921,
+    46939,
+    46933
+   ],
+   "unit": "Four TV-wall low fronts 18x12in (8\u201320in) either side of the glass lift-up",
+   "purpose": "Shutters",
+   "material": "Wooden mica",
+   "opening": "Side-hinged (opens sideways); hinge side of each not yet stated",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -824,6 +838,6 @@
   "Hanging lights: number, style, drop height; plants: type/planter position",
   "TV panelling: await Bright's reference; then confirm TV size/position, lower 8\u201320in fronts (drawers?), niche, lighting",
   "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time",
-  "TV low wood-mica fronts (4 x 18x12in): drawers or shutters?"
+  "TV low wood shutters: hinge side of each (Bright said 'opens sideways')"
  ]
 }
