@@ -4,7 +4,7 @@ Updated 2026-11-22 (Asia/Kolkata). Same client as `krishnagiri-kitchen`.
 
 ## Current state
 
-Colour intake started. No viewer yet. 19 non-white source colours unresolved (see design.json → sourceColours).
+Colour intake started. No viewer yet. 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
 
 ## Sources
 
