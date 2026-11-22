@@ -835,6 +835,18 @@
    "internal": "Glass shelves",
    "lighting": "Concealed lights inside the cabinet",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff6532 (back side, TV wall)",
+   "faces": [
+    45617,
+    45644
+   ],
+   "unit": "TV wall horizontal undersides: under the 67\u201368in shelf above the marble panel, and under the floating low shutter row at 8in",
+   "purpose": "Concealed LED strip light positions",
+   "finish": "Surfaces are wooden mica (same as the wood work); LED concealed there",
+   "note": "Here coral means concealed LED strip (over the entrance the same colour meant hanging designer lights)",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
