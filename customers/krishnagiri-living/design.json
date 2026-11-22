@@ -415,7 +415,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Fixed shutter; robot cleaner housed inside"
   },
   "#006666": {
    "materialName": "H08_Emerald_Abyss",
@@ -677,6 +678,16 @@
    "unit": "24x9in front (x87.5\u2013111.5, 21\u201330in) directly below the book shelf",
    "purpose": "Tandem drawer",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff9999",
+   "faces": [
+    44629
+   ],
+   "unit": "24x21in front (x87.5\u2013111.5, 0\u201321in) below the tandem drawer",
+   "purpose": "Robot cleaner (robo cleaner) housing",
+   "shutters": "Fixed shutter \u2014 no opening action",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -686,6 +697,7 @@
   "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake",
   "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish",
   "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side",
-  "Wall-unit solid fronts (drawer etc.): finish/colour and handles"
+  "Wall-unit solid fronts (drawer etc.): finish/colour and handles",
+  "Robot cleaner bay: how the robot exits/enters with a fixed shutter (bottom gap/cut-out height?)"
  ]
 }
