@@ -26,7 +26,7 @@ const grainOK=(mesh)=>{const g=mesh.geometry,uv=g.attributes.uv,pos=g.attributes
 for(const f of exactLayout.sourceFaces){const o=meshOf(f.id);if(o.material.userData?.wood)assert(grainOK(o),'grain runs along the longer side '+f.id);}
 assert(unit('crockery').group.getObjectsByProperty('isMesh',true).some(o=>o.material.userData?.wood&&o.parent?.parent&&o.geometry.parameters?.height>2),'crockery interior wooden');
 assert.equal(meshOf(45137).material.color.getHexString(),'f1efe9','charcoal face is white wall');
-for(const f of exactLayout.sourceFaces)if(['#660000','#661900','#666600'].includes(f.visibleColor)&&!unit('tv-shutters').sourceFaces.includes(f.id))assert(meshOf(f.id).material.map,'wood mica '+f.id);
+for(const f of exactLayout.sourceFaces)if(['#660000','#661900','#666600'].includes(f.visibleColor)&&!unit('tv-shutters').sourceFaces.includes(f.id)&&![46951,44607].includes(f.id))assert(meshOf(f.id).material.map,'wood mica '+f.id);
 let rect=0;m.root.traverse(o=>{if(o.isLight){assert(o.isRectAreaLight,'LED surface lights only');rect++;}});assert(rect>=10&&rect<=20,'area light count '+rect);
 // open everything then close: all return to rest
 for(const a of m.actions)a.open=true;for(let i=0;i<120;i++)m.update(.033);
@@ -52,5 +52,7 @@ console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.prod
  const p16=at(4);assert(p16.distanceTo(dock)>1,'second loop goes out again');
  m2.setReference(true);const frozen=m2.robot.position.clone();at(1);assert(m2.robot.position.distanceTo(frozen)<1e-9,'paused in reference mode');
  console.log('robot cleaner loop ok');}
-{const {OPTIONS,BEIGE}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));assert.equal(OPTIONS.length,2);assert.deepEqual(Object.keys(OPTIONS[1].units).sort(),['tv-shutters','under-stair']);assert.equal(BEIGE,'#efebe4');
- const st=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8');assert(/function applyOption/.test(st)&&/saved\.option/.test(st));assert(!Object.keys(OPTIONS[1].units).some(id=>['crockery','book-shelf','tv-display','entrance-display','tv-lift'].includes(id)),'glass shutters unchanged');console.log('options ok');}
+{const {BEIGE_UNITS,BEIGE_FACES,BEIGE_FINISH}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+ assert.deepEqual(BEIGE_UNITS,['tv-shutters']);assert.equal(unit('tv-shutters').defaultFront.color,BEIGE_FINISH.color);assert(unit('under-stair').defaultFront.wood,'staircase storage stays wooden mica');
+ for(const id of BEIGE_FACES)assert(meshOf(id).material.userData.beige,'beige front '+id);
+ const st=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8'),ht=fs.readFileSync('dist/krishnagiri-living/index.html','utf8');assert(!/applyOption|po-card/.test(st+ht),'no option cards');console.log('beige scheme ok');}

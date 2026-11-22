@@ -11,7 +11,9 @@ export const DEFAULT_FINISH=WOOD_FINISH.color;
 // Classy beige: the pooja CNC shutter colour, approved by Bright 2026-11-22 ('high classy beige').
 export const BEIGE='#efebe4',BEIGE_FINISH={name:'Classy beige (as pooja shutters)',color:'#e6d9c4'};// a touch deeper than the matte pooja colour: the acrylic gloss lightens it
 // Design options (Bright 2026-11-22): Option 2 turns the TV base shutters and the staircase storage shutters beige; glass shutters unchanged.
-export const OPTIONS=[{id:1,label:'Option 1',title:'Wooden mica',units:{}},{id:2,label:'Option 2',title:'Beige & wood',units:{'tv-shutters':BEIGE_FINISH,'under-stair':BEIGE_FINISH}}];
+// Final colour scheme (Bright 2026-11-22 15:10, beige only — no options): beige TV base shutters and the wall-unit fronts beside
+// the bay-window seat (two above the open niche, one at the seat end); staircase storage stays wooden mica; glass unchanged.
+export const BEIGE_UNITS=['tv-shutters'],BEIGE_FACES=[46951,44607,44860];
 export const FINISH_NAME=WOOD_FINISH.name;
 export const project={id:'krishnagiri-living-v1',customer:'Krishnagiri living area',location:'Krishnagiri',quotation:null};
 export const definitions=exactLayout.units;
@@ -104,8 +106,9 @@ export function buildModel(){
  const assigned=new Set();
  const cncTex=cncTexture();
  // Coplanar overlaps: push the losing face behind its partner by a fixed depth level (no z-fighting while rotating).
+ const beigeMat=new T.MeshPhysicalMaterial({color:BEIGE_FINISH.color,roughness:.05,clearcoat:1,clearcoatRoughness:.02,side:T.DoubleSide});beigeMat.polygonOffset=true;beigeMat.polygonOffsetFactor=-2;beigeMat.polygonOffsetUnits=-4;beigeMat.userData.beige=true;
  const pushedCache=new Map();const pushed=(mat,lvl)=>{const key=mat.uuid+':'+lvl;if(!pushedCache.has(key)){const c=mat.clone();c.userData={...mat.userData};c.polygonOffset=true;c.polygonOffsetFactor=2*lvl;c.polygonOffsetUnits=4*lvl;pushedCache.set(key,c);}return pushedCache.get(key);};
- for(const def of definitions){const group=new T.Group();root.add(group);const front=wood.clone(),side=wood.clone(),sideSkin=woodSkin.clone(),u={...def,group,front,side,sideSkin,actions:[],interiors:[],defaultFront:{...WOOD_FINISH},defaultSide:{...WOOD_FINISH},angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};
+ for(const def of definitions){const group=new T.Group();root.add(group);const front=wood.clone(),side=wood.clone(),sideSkin=woodSkin.clone(),u={...def,group,front,side,sideSkin,actions:[],interiors:[],defaultFront:{...(BEIGE_UNITS.includes(def.id)?BEIGE_FINISH:WOOD_FINISH)},defaultSide:{...WOOD_FINISH},angle:Math.atan2(def.parts[0].normal[0],def.parts[0].normal[2])};
   units.push(u);def.sourceFaces.forEach(id=>assigned.add(id));
   for(const part of def.parts){const n=new T.Vector3(...part.normal),b=new T.Box3(new T.Vector3(...part.lo),new T.Vector3(...part.hi));b.expandByPoint(new T.Vector3(...part.center).addScaledVector(n,-part.depth));b.expandByScalar(.012);unitBoxes.push([b,u]);}
   const ordered=orderAcross(def.parts);
@@ -145,7 +148,7 @@ export function buildModel(){
  const ownerOf=f=>{const [lo,hi]=faceBounds(f),c=new T.Vector3(...lo).add(new T.Vector3(...hi)).multiplyScalar(.5);for(const [b,u] of unitBoxes)if(b.containsPoint(c))return u;for(const [b,u] of regions)if(b.containsPoint(c))return u;return null;};
  const groupOf=pid=>units.find(u=>u.product===pid).group;
  for(const f of exactLayout.sourceFaces){if(assigned.has(f.id))continue;const c=f.visibleColor;let mat,uv=null;
-  if(sets.marble.has(f.id)){mat=marble;uv=[1.2,1.2];}else if(sets.louver.has(f.id)){mat=louverMat2;uv=LOUVER_TILE;}else if(sets.whiteWall.has(f.id))mat=whiteMat;else if(sets.robotOpening.has(f.id))mat=blackHole;else if(sets.switchBoxes.has(f.id))mat=plate;else if(sets.pebbles.has(f.id))mat=pebbleBase;else if(woodColours.has(c))mat=woodSkin;else{const o=ownerOf(f),[flo]=faceBounds(f);// unpainted faces inside a unit -> wooden mica, except staircase parts (stair side above the storage, landing above the pooja)
+  if(BEIGE_FACES.includes(f.id))mat=beigeMat;else if(sets.marble.has(f.id)){mat=marble;uv=[1.2,1.2];}else if(sets.louver.has(f.id)){mat=louverMat2;uv=LOUVER_TILE;}else if(sets.whiteWall.has(f.id))mat=whiteMat;else if(sets.robotOpening.has(f.id))mat=blackHole;else if(sets.switchBoxes.has(f.id))mat=plate;else if(sets.pebbles.has(f.id))mat=pebbleBase;else if(woodColours.has(c))mat=woodSkin;else{const o=ownerOf(f),[flo]=faceBounds(f);// unpainted faces inside a unit -> wooden mica, except staircase parts (stair side above the storage, landing above the pooja)
    const stair=o&&(o.product?.id||o.product)==='under-stair'||(o&&o.kind==='cnc'&&flo[1]>=76*IN-.001);mat=(o&&!stair&&!f.points.flat().every(p=>Math.abs(p[1])<.003))?woodSkin:whiteMat;}
   const lvl=S.pushBack[f.id];if(lvl)mat=pushed(mat,lvl);const owner=ownerOf(f),parent=owner?owner.group:architecture;const mesh=sourceFace(f,mat,parent,uv);if(owner){mesh.userData.unit=owner;mesh.userData.outerSkin=true;}
   if(sets.ledStrips.has(f.id))stripUnder(f,f.id===45644?28:40,parent);

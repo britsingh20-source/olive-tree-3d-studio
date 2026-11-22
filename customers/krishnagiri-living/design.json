@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl10",
+  "assetVersion": "kl11",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -1023,6 +1023,17 @@
    "change": "Pooja CNC shutter colour confirmed: the classy beige already shown (#efebe4)",
    "bright": "You have made the pooja door beige\u2026 the high classy beige colour is okay, good",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Final colour scheme \u2014 beige only, no options",
+   "items": [
+    "TV base unit shutters (4): classy beige",
+    "Wall unit beside the bay-window seat: two 24x30in fronts above the open niche (faces 46951, 44607, 54-84in) and the 13x18in front at the seat end (face 44860, 12-30in): classy beige",
+    "Staircase (under-stair) storage shutters near the pooja: wooden mica (not beige)",
+    "Pooja CNC shutters: classy beige; glass shutters unchanged; everything else wooden mica"
+   ],
+   "bright": "change this red mark shutters to beige\u2026 near the puja the three shutters should be wooden mica\u2026 near the bay window seating should be beige\u2026 only the beige option is enough, no need of option one",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [
@@ -1042,21 +1053,6 @@
   "Hinge sides of TV low shutters and under-stair shutters",
   "Cushion colour/fabric",
   "TV size/position",
-  "Client name",
-  "Option 2: confirm 'study shutters' = staircase storage shutters"
- ],
- "options": [
-  {
-   "id": 1,
-   "name": "Wooden mica",
-   "detail": "TV base shutters and staircase storage shutters in wooden mica (as built)"
-  },
-  {
-   "id": 2,
-   "name": "Beige & wood",
-   "detail": "TV base unit shutters and staircase storage shutters in classy beige like the pooja shutters (acrylic gloss, rendered #e6d9c4 so it reads beige under gloss); glass shutters unchanged; everything else as Option 1",
-   "bright": "apart from the glass shutters, change the TV base unit shutters and the 'study' shutters to beige \u2026 make it option 2",
-   "interpretation": "'study shutters' read as the staircase (under-stair) storage shutters \u2014 no study exists in the model; confirm with Bright"
-  }
+  "Client name"
  ]
 }
