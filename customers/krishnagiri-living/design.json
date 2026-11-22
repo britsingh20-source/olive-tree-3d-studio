@@ -604,7 +604,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Hanging designer lights position, with plants underneath"
   }
  },
  "confirmed": [
@@ -761,6 +762,15 @@
    "material": "Vertical wood-look louvers (warm brown slats with dark recessed gaps) per Bright's reference 'pvc_reference.jpg'",
    "texture": "dist/krishnagiri-living/louver-reference.jpg (sha256 ea2bdd39ab7f13ae\u2026)",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff6532",
+   "faces": [
+    46692
+   ],
+   "unit": "Underside at 117in across the top of the entrance partition (x42.6\u2013108.6, y109.7\u2013121.7, 66x12in) between the wood-mica posts",
+   "purpose": "Hanging designer lights from this underside, with plants underneath",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -772,6 +782,7 @@
   "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side",
   "Wall-unit solid fronts (drawer etc.): finish/colour and handles",
   "Bench: cushion colour/fabric; bench body finish",
-  "Pooja shutters: colour/finish (NOT from the reference photo), backing behind CNC (lit?), internal layout"
+  "Pooja shutters: colour/finish (NOT from the reference photo), backing behind CNC (lit?), internal layout",
+  "Hanging lights: number, style, drop height; plants: type/planter position"
  ]
 }
