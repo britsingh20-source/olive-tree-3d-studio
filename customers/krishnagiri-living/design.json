@@ -897,6 +897,17 @@
    "unit": "Outer sides of the first and last entrance rafters",
    "material": "Wooden mica (no shelves in the end gaps)",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#99ff99 (back side)",
+   "faces": [
+    46584
+   ],
+   "unit": "Floor (87.5in) of the open box above the entrance rafters, 72x12in, under the hanging-light ceiling at 117in",
+   "purpose": "2\u20133 plants: money plants and a bonsai tree",
+   "lighting": "Pencil (slim pendant) lights hanging from the #ff6532 ceiling over them \u2014 viewed from above/below the plants should appear to glow",
+   "bright": "'money plans that should with bonanza tree, with pencil lights \u2026 the plants are glowing'",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -909,7 +920,6 @@
   "Wall-unit solid fronts (drawer etc.): finish/colour and handles",
   "Bench: cushion colour/fabric; bench body finish",
   "Pooja shutters: colour/finish (NOT from the reference photo), backing behind CNC (lit?), internal layout",
-  "Hanging lights: number, style, drop height; plants: type/planter position",
   "TV panelling: await Bright's reference; then confirm TV size/position, lower 8\u201320in fronts (drawers?), niche, lighting",
   "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time",
   "TV low wood shutters: hinge side of each (Bright said 'opens sideways')",

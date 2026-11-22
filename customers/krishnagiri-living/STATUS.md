@@ -70,6 +70,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - #666600 (outer sides of the end rafters) = wooden mica.
 
+- #99ff99 (floor of the box above the rafters) = 2–3 plants (money plants + bonsai) lit by hanging pencil lights so they glow.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.
