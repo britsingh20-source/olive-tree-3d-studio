@@ -333,7 +333,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Wooden mica (same as #660000)"
   },
   "#660066": {
    "materialName": "K08_Violet_Crush",
@@ -722,6 +723,15 @@
    ],
    "unit": "Underside at 54in over the open niche (x39.5\u201387.5, 30\u201354in) left of the book shelf",
    "purpose": "Concealed LED strip light",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#661900",
+   "faces": [
+    43872
+   ],
+   "unit": "Top of the wall unit at 84in (x39.5\u2013111.5, 15in deep)",
+   "material": "Same wooden mica as #660000",
    "confirmedOn": "2026-11-22"
   }
  ],
