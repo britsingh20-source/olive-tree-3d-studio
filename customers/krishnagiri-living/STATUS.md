@@ -168,3 +168,5 @@ Deployed kl8: commit 34ffac3014660bd9aef716633b0031d0aed18da1; live index serves
 Bright: the robot cleaner should come out and go in on a loop like the earlier TV wall (pon-karthikeyan) — 4 s out/cleaning, 4 s in, repeating. Implemented a 12 s loop driven by model.update: 4 s out (dock → side opening #006666 at x86.5 → open recess → room), 4 s zigzag cleaning at one of six floor spots in front of the wall unit/TV area (cycles spots), 4 s back to the dock; smoothstep timing, robot turns to its direction of travel, side brush spins; paused in Reference colours. Robot redrawn (13 in dia: body, top, lidar, bumper, status LED, brush) and moved from the carcass interior into the bay unit group so it can leave the cabinet.
 
 Validation: check-krishnagiri-living.mjs passed (adds loop timing: in the room at 4 s, cleaning phase to 8 s, back at the dock at 12 s, out again at 16 s; frozen in reference mode). Headless Chrome SwiftShader still of the cleaning phase: robot on the floor in front of the wall unit. Motion not viewed in real time here; real phone not tested.
+
+Deployed kl9: commit 60794d753c82a8472eca6823dc0c6b5890a16192; live index serves studio.js?v=kl9.
