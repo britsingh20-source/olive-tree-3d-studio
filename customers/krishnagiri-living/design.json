@@ -353,7 +353,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Book shelf with clear glass shutter(s), concealed lights inside"
   },
   "#ff9831": {
    "materialName": "C04_Amber_Sunshine",
@@ -655,6 +656,17 @@
    "unit": "96in-wide face above the opening and crockery unit, 96.7\u2013120in",
    "purpose": "White wall \u2014 render as plain white wall, no cabinet/panel",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#660066",
+   "faces": [
+    43896
+   ],
+   "unit": "24x54in front (x87.5\u2013111.5, 30\u201384in) at right end of the wall unit",
+   "purpose": "Book shelf",
+   "shutters": "Clear glass",
+   "lighting": "Concealed lights inside the cabinet",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -662,6 +674,7 @@
   "Meaning of each source colour (asked one at a time)",
   "Client name",
   "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake",
-  "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish"
+  "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish",
+  "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side"
  ]
 }
