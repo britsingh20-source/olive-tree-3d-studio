@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl6",
+  "assetVersion": "kl7",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -999,6 +999,16 @@
   {
    "change": "Louver panels rendered as one wooden-mica surface (slats and gaps in the finish, bump for depth) \u2014 3D slats pixelated while rotating",
    "bright": "is pixelating, look at the top louver colour; first you had given the same finish as the wooden",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Phone review fixes",
+   "items": [
+    "Shimmer at the crockery unit right side and entrance open box (Bright's marked screenshots) removed",
+    "Entrance open box / partition insides: wooden mica, not white; unpainted faces belonging to any unit render as wooden mica",
+    "Louver keeps the wood colour when zoomed out (thinner, lighter gaps)",
+    "TV marble: glossy polished stone, slightly darker/warmer with stronger veins, distinct from the white wall"
+   ],
    "confirmedOn": "2026-11-22"
   }
  ],

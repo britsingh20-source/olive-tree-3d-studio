@@ -42,4 +42,5 @@ console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.prod
 {// no unresolved coplanar overlap: every pushed face renders behind its partner via a positive polygon offset
  const pb=exactLayout.special.pushBack;assert(Object.keys(pb).length>=30);for(const [id,l] of Object.entries(pb)){const o=m.sourceMeshes.find(x=>x.userData.sourceFace===Number(id));assert(o.material.polygonOffset&&o.material.polygonOffsetFactor===2*l,'pushed back '+id);}
  for(const id of [43495,43517,43511])assert(!pb[id],'under-stair shutters stay in front');assert(pb[43505]&&pb[43474]&&pb[43475],'stair side and white faces behind the pooja/storage faces');
+ for(const id of [46872,46874,46876,46878,46678,43679,43562])assert(meshOf(id).material.map,'white face inside a unit is wooden mica '+id);assert.equal(meshOf(43494).material.map,null,'floor under the stairs stays plain');assert(meshOf(45244).material.roughness<.1&&meshOf(45244).material.clearcoat===1,'marble is glossy');
  console.log('coplanar overlaps resolved:',Object.keys(pb).length);}

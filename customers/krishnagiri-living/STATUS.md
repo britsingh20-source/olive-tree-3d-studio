@@ -144,3 +144,11 @@ Bright (on his phone, so kl5 loaded): the top louver pixelates; first version ha
 Validation: check-krishnagiri-living.mjs passed (asserts louver map + bumpMap and no InstancedMesh). Headless Chrome SwiftShader: close view at 1366x900 and distant view at 390x844 — slats read clearly, wood matches the mica, no aliasing in stills. Motion shimmer not testable here; ask Bright to confirm on the phone.
 
 Deployed kl6: commit f8f467a9fcc2bca3055230374dcecd927d97b66f; live index serves studio.js?v=kl6.
+
+## Phone review fixes — 2026-11-22 (kl7)
+
+Bright (iPhone screenshots, marked): shimmer at the crockery unit's right side and on the entrance open box; inside of the entrance open box/partition white → must be wooden mica; louver looks dark when zoomed out (light when zoomed in); TV marble looks like the wall → make glossy and a little darker.
+
+Causes/changes: generated carcasses shared planes with the measured outer faces (e.g. crockery side 43679, top 45221) → carcass inset 1.5 mm per side. Unpainted white source faces that belong to a unit/product region (crockery sides/back/top, entrance key box and open-box insides, plant-box back, under-stair side) now render wooden mica (floor excluded). Louver texture gaps 14% of pitch (was 24%) and lighter #7a5030 so the mipmapped average stays wood-coloured. Marble base #e6ddcf, stronger gold veins, roughness .05, clearcoat 1, envMapIntensity 1.35. Wood tile enlarged to 2.44 m (one mica sheet) — the 1.1 m tile showed a repeat seam on tall panels.
+
+Validation: check-krishnagiri-living.mjs passed (adds: white faces inside units are wood, floor stays plain, marble glossy). Headless Chrome SwiftShader 1366x900: overview from Bright's angle, crockery right side (clean, seam gone after tile change), entrance key box (wood, shelves, switch plate), TV wall marble (distinct from wall). Motion shimmer cannot be observed in stills — ask Bright to confirm on the phone.
