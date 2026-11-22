@@ -230,3 +230,5 @@ Deployed kl15: push runs 45020074360 and 45020128672 (incl. re-run) FAILED at de
 Bright: after the entrance glass door, from the TV unit look left at the pergola — whole, top, bottom — then TV on/off; the pergola is not highlighted. Walk now (34 steps, ~120 s): close entrance display → pergola from the TV side (rafters, lit shelves) → pergola top (plants, pencil lights) → pergola bottom (pebble planter) → TV wall → TV on → TV off → seat … Lighting: beam downlights 110 (6x6 cm), lens emissive 2.2; new area light under each of the 4 plant shelves (60); plant-box area light 95 (21 area lights total).
 
 Validation: check-krishnagiri-living.mjs passed (pergola whole/top/bottom after closing the entrance display and before the TV switches on; area lights <=24). Headless Chrome SwiftShader frames at 19.4/22.9/26.4 s inspected. Phone performance with 21 area lights not tested.
+
+Deployed kl16: commit 165af3fa901216c9d07bc733172f7c2b665e528f, Pages run 45022275334 success; live index serves studio.js?v=kl16.
