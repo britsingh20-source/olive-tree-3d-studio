@@ -128,3 +128,5 @@ Deployed kl3: commit 9fd5b15596bae08aedf23a88ac60de93fb3d7bc2, Pages run 4498088
 Bright: the box near the staircase pixelates while rotating. Cause: coplanar overlapping faces in the SKP (z-fighting) — pooja wood side 43447 over white 43474/43475, stair side 43505 and stair faces 42978/43135/43141/43147/43157 over the three under-stair shutters, wood band 45003 over the crockery fronts, many entrance-partition faces. Layout script now finds all 40 overlapping pairs (same plane, area overlap) and assigns push-back levels (unit face wins; coloured beats white; smaller beats larger; chains levelled up to 5); model.js renders those faces with polygonOffset 2*level. CNC cut-outs use alphaToCoverage for smoother edges.
 
 Validation: check-krishnagiri-living.mjs passed (adds pushBack assertions). Headless Chrome SwiftShader still renders of the pooja/under-stair corner and the crockery top: no speckling. Flicker is a motion artefact; it was not reproduced or re-tested while rotating on a real GPU/phone — ask Bright to confirm.
+
+Deployed kl4: commit 82ad17b51c0121063d9959051d5fe24ab1b55c98; live index serves studio.js?v=kl4.
