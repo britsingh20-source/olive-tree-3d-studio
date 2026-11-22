@@ -787,6 +787,18 @@
    "purpose": "TV panelling area. Bright: SketchUp geometry here is not uniform (looks irregular from the back); only the front carries the design. Treat source geometry as approximate envelope, not fabrication detail.",
    "pending": "Bright will send a reference for how the TV panelling should look \u2014 build only after that",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff007f (back side)",
+   "faces": [
+    45244,
+    45981
+   ],
+   "unit": "TV wall: 90in x 47in back panel (y121.7\u2013211.7, 20\u201367in) and full-width 108in strip (68\u201384in)",
+   "purpose": "TV background panelling",
+   "material": "White marble-look large-format panels with warm gold/beige veining and fine panel joints (Bright's reference photo). Use ONLY the white marble TV background \u2014 ignore the brown wood panelling and brown floating boxes in that photo. Photo not committed (third-party watermark); look described/sampled only.",
+   "note": "The 68\u201384in strip carries the same colour, so treated as the same marble panelling",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
