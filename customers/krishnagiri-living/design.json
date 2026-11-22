@@ -919,6 +919,15 @@
    "shutters": "Tinted grey glass",
    "lighting": "Concealed lights inside",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#000066 (back side, entrance)",
+   "faces": [
+    46159
+   ],
+   "unit": "Top of the 12.5in base under the rafters",
+   "purpose": "Pebble surface of the planter box (from Bright's earlier answer: base is a planter box for pebbles)",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
