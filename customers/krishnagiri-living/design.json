@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl7",
+  "assetVersion": "kl8",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -32,7 +32,8 @@
    "Seating bench"
   ],
   "productView": "Zooms in place; no full-screen overlay or scroll lock (lesson from the kitchen).",
-  "coplanarFix": "special.pushBack in exact-layout.js: 40 coplanar overlapping source faces get a levelled positive polygon offset (unit faces win, then coloured over white, then smaller over larger)"
+  "coplanarFix": "special.pushBack in exact-layout.js: 40 coplanar overlapping source faces get a levelled positive polygon offset (unit faces win, then coloured over white, then smaller over larger)",
+  "staircase": "Staircase faces grouped; auto-fade to 12% opacity whenever the staircase box lies between the camera and the orbit target (full view only); 'Hide staircase' toolbar button hides it completely. Units (pooja, under-stair storage) never fade."
  },
  "source": {
   "files": [

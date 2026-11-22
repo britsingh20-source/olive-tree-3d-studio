@@ -154,3 +154,9 @@ Causes/changes: generated carcasses shared planes with the measured outer faces 
 Validation: check-krishnagiri-living.mjs passed (adds: white faces inside units are wood, floor stays plain, marble glossy). Headless Chrome SwiftShader 1366x900: overview from Bright's angle, crockery right side (clean, seam gone after tile change), entrance key box (wood, shelves, switch plate), TV wall marble (distinct from wall). Motion shimmer cannot be observed in stills — ask Bright to confirm on the phone.
 
 Deployed kl7: commit c565360d44e1b92eb5bb5d9877966f0aee5a1409; live index serves studio.js?v=kl7.
+
+## Staircase hides the TV unit — 2026-11-22 (kl8)
+
+Bright: while rotating to see the TV unit, the staircase hides it. Unassigned staircase faces (x > 254in) moved into model.staircase with their own transparent-capable materials. Each frame, if the staircase bounding box lies between the camera and the orbit target (full view), it fades smoothly to 12% opacity (no depth write, no shadow); otherwise it returns to solid. New toolbar button 'Hide staircase' / 'Show staircase' hides it entirely. Also fixed: the kl7 'unpainted faces inside a unit → wood' rule had turned the staircase side above the storage shutters and the landing above the pooja to wood; those stay white now.
+
+Validation: check-krishnagiri-living.mjs passed (adds staircase grouping/fade and units-never-faded assertions). Headless Chrome SwiftShader 1366x900 from beyond the staircase looking at the TV wall: stairs faded, TV unit clearly visible, stair sides white again. Real phone not tested.
