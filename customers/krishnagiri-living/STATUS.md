@@ -76,6 +76,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - Beam underside over rafters #ff6532 (84.5in) = small surface lights, one between each pair of pillars/rafters.
 
+- #ffcd9b (three 18in sloped-top panels under the stairs) = staircase storage shutters, wooden mica.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.

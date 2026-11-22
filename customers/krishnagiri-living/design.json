@@ -938,6 +938,19 @@
    "purpose": "Small surface-mounted lights, one in each gap between neighbouring pillars/rafters, so the lighting reads even (not split)",
    "renderPlan": "One small round surface light centred over each gap between uprights (approximation: gap count/positions from source geometry)",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ffcd9b (back side)",
+   "faces": [
+    43495,
+    43511,
+    43517
+   ],
+   "unit": "Three 18in panels under the staircase (x327.5, y208.6\u2013262.6), tops following the stair slope (~51, 62, 74in)",
+   "purpose": "Under-staircase storage shutters",
+   "material": "Wooden mica",
+   "opening": "Side-hinged assumed; hinge sides not stated",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -954,6 +967,7 @@
   "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time",
   "TV low wood shutters: hinge side of each (Bright said 'opens sideways')",
   "Key/decor open display box: number/spacing of shelves",
-  "Entrance-end tinted grey glass display: internal shelves (glass?) and count"
+  "Entrance-end tinted grey glass display: internal shelves (glass?) and count",
+  "Under-stair shutters: hinge sides"
  ]
 }
