@@ -120,3 +120,5 @@ Deployed kl2: commit 7cb3ea6acff0d94ef8ac3970077f2163182889b0, Pages run 4498040
 ## Louver colour — 2026-11-22 (kl3)
 
 Bright: the louver ("lower") panel was too dark and did not match the wooden mica. Slats now use the same wooden mica material (vertical grain); gap backing lightened to dark brown #4a301c. check-krishnagiri-living.mjs passed; headless Chrome SwiftShader render of the louver above the TV wall inspected (slats match the rafters/shelf wood). Real phone not tested.
+
+Deployed kl3: commit 9fd5b15596bae08aedf23a88ac60de93fb3d7bc2, Pages run 44980885892 success; live index serves studio.js?v=kl3.
