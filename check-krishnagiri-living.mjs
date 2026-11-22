@@ -45,3 +45,10 @@ console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.prod
  for(const id of [46872,46874,46876,46878,46678,43679,43562])assert(meshOf(id).material.map,'white face inside a unit is wooden mica '+id);assert.equal(meshOf(43494).material.map,null,'floor under the stairs stays plain');assert(meshOf(45244).material.roughness<.1&&meshOf(45244).material.clearcoat===1,'marble is glossy');
  {let n=0;m.staircase.traverse(o=>{if(o.isMesh)n++;});assert(n>=20,'staircase faces grouped '+n);m.setStairOpacity(.12);m.staircase.traverse(o=>{if(o.isMesh)assert(o.material.opacity<.2&&o.material.transparent);});m.setStairOpacity(1);for(const id of [43495,43517,43511,43445])assert(!m.staircase.getObjectsByProperty('isMesh',true).some(o=>o.userData.sourceFace===id),'units are never faded');}
  console.log('coplanar overlaps resolved:',Object.keys(pb).length);}
+{// robot cleaner loop: 4 s out, 4 s cleaning, 4 s back in the bay, repeating
+ const m2=buildModel(),dock=m2.robot.position.clone();const at=s=>{for(let i=0;i<Math.round(s/0.02);i++)m2.update(.02);return m2.robot.position.clone();};
+ const p4=at(4);assert.equal(m2.cleaner.phase,'clean');assert(p4.distanceTo(dock)>1,'out in the room after 4 s');
+ at(4);assert.equal(m2.cleaner.phase,'back');const p12=at(4);assert.equal(m2.cleaner.phase,'out');assert(p12.distanceTo(dock)<.05,'back in the bay after 12 s');
+ const p16=at(4);assert(p16.distanceTo(dock)>1,'second loop goes out again');
+ m2.setReference(true);const frozen=m2.robot.position.clone();at(1);assert(m2.robot.position.distanceTo(frozen)<1e-9,'paused in reference mode');
+ console.log('robot cleaner loop ok');}

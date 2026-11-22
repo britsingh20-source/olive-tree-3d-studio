@@ -120,8 +120,8 @@ export function buildModel(){
    else if(def.kind==='wood-shutters'){carcass(u,frame,w,h,d);shelves(u,frame,w,h,d,0);// pairs open outward from each pair centre (APPROX hinge sides)
     shutter(u,frame,part,{hingeRight:i%2===1});}
    else if(def.kind==='tandem'){carcass(u,frame,w,h,d);const p=new T.Group();frame.add(p);frame.updateWorldMatrix(true,true);const ref=sourceFace(faceById.get(part.faceId),u.front,p);ref.userData.referenceOnly=true;ref.visible=false;box(p,w-.006,h-.006,.019,0,0,-.0095,u.front);const inside=interior(u,p),ww=w-.07,dd=d-.08,steel=new T.MeshStandardMaterial({color:'#929b9d',metalness:.85,roughness:.25});box(inside,ww,.012,dd,0,-h/2+.02,-d/2,liner);for(const x of [-ww/2,ww/2])box(inside,.012,h-.06,dd,x,0,-d/2,steel);box(inside,ww,h-.06,.012,0,0,-d+.04,liner);action(u,p,'slide',d*.75);}
-   else if(def.kind==='fixed'){carcass(u,frame,w,h,d);const ref=sourceFace(faceById.get(part.faceId),u.front,frame);ref.userData.referenceOnly=true;ref.visible=false;box(frame,w-.006,h-.006,.019,0,0,-.0095,u.front);// robot cleaner inside, visible through the side opening
-    const bot=new T.Mesh(new T.CylinderGeometry(.165,.165,.09,40),new T.MeshStandardMaterial({color:'#2b2d2f',roughness:.35,metalness:.2}));bot.position.set(-.02,-h/2+.065,-d/2);frame.add(bot);const lid=new T.Mesh(new T.CylinderGeometry(.05,.05,.012,24),new T.MeshStandardMaterial({color:'#4a4d50'}));lid.position.set(-.02,-h/2+.115,-d/2+.06);frame.add(lid);}
+   else if(def.kind==='fixed'){carcass(u,frame,w,h,d);const ref=sourceFace(faceById.get(part.faceId),u.front,frame);ref.userData.referenceOnly=true;ref.visible=false;box(frame,w-.006,h-.006,.019,0,0,-.0095,u.front);// robot cleaner (animated loop, see cleaner below)
+    }
    else if(def.kind==='cnc'){carcass(u,frame,w,h,d,wood);// warm glow behind the CNC cut-outs
     const glow=interior(u,frame);glow.userData.alwaysVisible=true;const back=new T.MeshStandardMaterial({color:'#e9b06d',emissive:'#ffb054',emissiveIntensity:.9});box(glow,w-.04,h-.04,.006,0,0,-d+.06,back);lightNodes.push(glow.children[0]);glow.children[0].userData.onMaterial=back;glow.children[0].userData.led=true;
     const shutterMat=new T.MeshStandardMaterial({color:'#efebe4',map:cncTex.clone(),alphaTest:.5,alphaToCoverage:true,roughness:.55,side:T.DoubleSide});// APPROX shutter colour — the photo was for the CNC design only
@@ -184,6 +184,30 @@ export function buildModel(){
  for(const u of units)u.group.traverse(o=>{if(o.isMesh)o.userData.unit??=u;});
  {const b=new T.Box3().setFromObject(root),c=b.getCenter(new T.Vector3()),sz=b.getSize(new T.Vector3());const tile=canvasTexture(512,512,(g,w,h)=>{g.fillStyle='#ddd8cf';g.fillRect(0,0,w,h);const rnd=(s=>()=>(s=(s*16807)%2147483647)/2147483647)(5);for(let k=0;k<120;k++){const x=rnd()*w,y=rnd()*h,r=20+rnd()*80,gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(240,236,228,.25)');gr.addColorStop(1,'rgba(240,236,228,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r);}g.fillStyle='rgba(150,140,128,.5)';g.fillRect(0,0,w,2);g.fillRect(0,0,2,h);},'#ddd8cf');tile.repeat.set((sz.x+4)/.8,(sz.z+4)/.8);
   const floor=new T.Mesh(new T.PlaneGeometry(sz.x+4,sz.z+4),new T.MeshPhysicalMaterial({color:'#ffffff',map:tile,roughness:.22,clearcoat:.5,clearcoatRoughness:.12}));floor.rotation.x=-Math.PI/2;floor.position.set(c.x,-.002,c.z);floor.receiveShadow=true;floor.userData.floor=true;root.add(floor);}
+ // Robot cleaner (Bright 2026-11-22): loops by itself like the Pon Karthikeyan TV wall — 4 s out through the side
+ // opening (#006666) into the room, 4 s cleaning a spot in a zigzag, 4 s back into the fixed-shutter bay.
+ const bay=units.find(u=>u.id==='robot-bay'),robot=new T.Group();bay.group.add(robot);
+ {const std=(c,r,o={})=>new T.MeshStandardMaterial({color:c,roughness:r,...o});const R=6.3*IN;
+  const body=new T.Mesh(new T.CylinderGeometry(R,R,3.2*IN,48),std('#2b2e31',.4));body.position.y=1.8*IN;robot.add(body);
+  const top=new T.Mesh(new T.CylinderGeometry(R*.9,R*.9,.12*IN,48),std('#3c4044',.25,{metalness:.35}));top.position.y=3.45*IN;robot.add(top);
+  const lidar=new T.Mesh(new T.CylinderGeometry(1.5*IN,1.5*IN,.9*IN,24),std('#18191b',.4));lidar.position.set(0,3.95*IN,R*.35);robot.add(lidar);
+  const bump=new T.Mesh(new T.CylinderGeometry(R*1.01,R*1.01,1.2*IN,48,1,true,-Math.PI/2.4,Math.PI/1.2),std('#111214',.5));bump.position.y=1.4*IN;robot.add(bump);
+  const dot=new T.Mesh(new T.SphereGeometry(.25*IN,10,8),new T.MeshStandardMaterial({color:'#8fe3ff',emissive:'#4fd0ff',emissiveIntensity:1.5}));dot.position.set(0,3.55*IN,-R*.4);robot.add(dot);
+  const brush=new T.Mesh(new T.CylinderGeometry(2*IN,2*IN,.15*IN,6),std('#6b6f73',.6));brush.position.set(R*.55,.35*IN,R*.55);robot.add(brush);robot.userData.brush=brush;
+  robot.traverse(o=>{if(o.isMesh){o.castShadow=true;o.userData.unit=bay;}});}
+ const RP=(x,y)=>P(x,y,0),dock=RP(99.5,284.6);robot.position.copy(dock);robot.rotation.y=Math.PI/2;
+ const spots=[[100,238],[130,228],[85,205],[150,250],[115,195],[160,215]];
+ const cleaner={phase:'out',t:0,seg:4,k:-1,paused:false,route:null,
+  plan(){this.k=(this.k+1)%spots.length;const [x,y]=spots[this.k];
+   this.out=[dock,RP(86.5,284.6),RP(70,284.6),RP(70,268),RP(x,y)];// through the side opening, out of the open recess
+   this.clean=[RP(x,y),RP(x+7,y-3),RP(x-7,y-6),RP(x+7,y-9),RP(x-7,y-12),RP(x,y)];
+   this.back=[RP(x,y),RP(70,268),RP(70,284.6),RP(86.5,284.6),dock.clone()];},
+  follow(pts,f){const lens=[];let total=0;for(let n=1;n<pts.length;n++){const l=pts[n].distanceTo(pts[n-1]);lens.push(l);total+=l;}let d=f*total,k=0;while(k<lens.length-1&&d>lens[k]){d-=lens[k];k++;}const a=pts[k],b=pts[k+1];robot.position.lerpVectors(a,b,lens[k]?d/lens[k]:1);return [a,b];},
+  update(dt){if(this.paused)return;if(!this.out)this.plan();this.t+=dt;if(this.t>=this.seg){this.t-=this.seg;this.phase=this.phase==='out'?'clean':this.phase==='clean'?'back':'out';if(this.phase==='out')this.plan();}
+   const f=T.MathUtils.smoothstep(this.t/this.seg,0,1),[a,b]=this.follow(this[this.phase],this.phase==='clean'?this.t/this.seg:f);
+   if(b.distanceTo(a)>1e-4){const target=Math.atan2(b.x-a.x,b.z-a.z);let diff=((target-robot.rotation.y+Math.PI)%(Math.PI*2)+Math.PI*2)%(Math.PI*2)-Math.PI;robot.rotation.y+=diff*Math.min(1,dt*10);}
+   robot.userData.brush.rotation.y+=dt*18;if(this.phase==='back'&&this.t+dt>=this.seg)robot.rotation.y=Math.PI/2;}};
+ bay.cleaner=cleaner;bay.robot=robot;
  // Products (what 'Product view' and the unit list show)
  const products=[];for(const [pid,info] of Object.entries(PRODUCTS)){const members=units.filter(u=>u.product===pid);if(!members.length)continue;if(members.length===1){members[0].productName=info.name;members[0].members=[members[0]];products.push(members[0]);continue;}const g=new T.Group();root.add(g);for(const m of members)g.add(m.group);const prod={id:pid,name:info.name,kind:pid,group:g,members,angle:members[0].angle,actions:members.flatMap(m=>m.actions)};products.push(prod);for(const m of members)m.product=prod;}
  for(const u of units){if(typeof u.product==='string'){u.product=u;u.name=u.productName||u.name;}}
@@ -192,5 +216,5 @@ export function buildModel(){
  function setLights(on){lightsOn=on;for(const n of lightNodes){if(n.isLight)n.visible=on&&!reference;else n.material=on?(n.userData.onMaterial||led):ledOff;}for(const m of glowLeaves)m.emissiveIntensity=on?.35:0;}
  function setReference(on){reference=on;if(on){for(const a of actions){a.open=false;a.value=0;a.node.position.copy(a.initial);a.node.rotation.set(0,0,0);}}for(const mesh of allMeshes){if(on){mesh.userData.finishedMaterial??=mesh.material;const f=faceById.get(mesh.userData.sourceFace);if(f){mesh.userData.referenceMaterial??=new T.MeshStandardMaterial({color:f.visibleColor,roughness:.65,side:T.DoubleSide});mesh.material=mesh.userData.referenceMaterial;mesh.visible=true;}else mesh.visible=false;}else{if(mesh.userData.finishedMaterial)mesh.material=mesh.userData.finishedMaterial;mesh.visible=!mesh.userData.referenceOnly;}}setLights(lightsOn);}
  root.updateMatrixWorld(true);
- return {root,architecture,staircase,setStairOpacity,get stairOpacity(){return stairOpacity;},units,products,actions,sourceMeshes,lightNodes,exactLayout,setReference,setLights,get lightsOn(){return lightsOn;},update(dt){for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='slide')a.node.position.z=a.initial.z+a.travel*a.value;else if(a.type==='liftX')a.node.rotation.x=a.travel*a.value;else if(a.type==='liftZ')a.node.rotation.z=a.travel*a.value;else a.node.rotation.y=a.travel*a.value;}for(const u of units){const glassy=['glass-tinted','glass-clear','glass-grey','cnc'].includes(u.kind);const visible=!reference&&(glassy||u.actions.some(a=>a.value>.015));for(const p of u.interiors)p.visible=visible||(!reference&&p.userData.alwaysVisible);}}};
+ return {robot,cleaner,root,architecture,staircase,setStairOpacity,get stairOpacity(){return stairOpacity;},units,products,actions,sourceMeshes,lightNodes,exactLayout,setReference,setLights,get lightsOn(){return lightsOn;},update(dt){cleaner.paused=reference;cleaner.update(Math.min(dt,.1));for(const a of actions){a.value=T.MathUtils.damp(a.value,a.open?1:0,10,dt);if(a.type==='slide')a.node.position.z=a.initial.z+a.travel*a.value;else if(a.type==='liftX')a.node.rotation.x=a.travel*a.value;else if(a.type==='liftZ')a.node.rotation.z=a.travel*a.value;else a.node.rotation.y=a.travel*a.value;}for(const u of units){const glassy=['glass-tinted','glass-clear','glass-grey','cnc'].includes(u.kind);const visible=!reference&&(glassy||u.actions.some(a=>a.value>.015));for(const p of u.interiors)p.visible=visible||(!reference&&p.userData.alwaysVisible);}}};
 }

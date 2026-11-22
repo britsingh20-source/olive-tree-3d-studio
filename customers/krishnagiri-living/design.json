@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl8",
+  "assetVersion": "kl9",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -1010,6 +1010,12 @@
     "Louver keeps the wood colour when zoomed out (thinner, lighter gaps)",
     "TV marble: glossy polished stone, slightly darker/warmer with stronger veins, distinct from the white wall"
    ],
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Robot cleaner animation loop like the Pon Karthikeyan TV wall",
+   "detail": "Repeats by itself: 4 s out of the bay through the side opening into the room, 4 s cleaning a spot (zigzag), 4 s back into the fixed-shutter bay; a different spot each loop",
+   "bright": "robo cleaner should come out and go in loop \u2026 first 4 seconds come out/clean, another 4 seconds go in",
    "confirmedOn": "2026-11-22"
   }
  ],
