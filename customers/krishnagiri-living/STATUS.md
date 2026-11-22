@@ -216,3 +216,9 @@ Added props in model.js (all render approximations): 65" TV on the marble panel 
 Validation: check-krishnagiri-living.mjs passed (walk does every requested action, sits on the seat, reads, all fx units have actions, TV toggles). Headless Chrome SwiftShader 1366x900 frames at 11.5 s (entrance display open), 22 s (TV on), 36 s (seated), 46.5 s (reading), 68.5 s (crockery open), 81.5 s (pooja open — found the middle divider, fixed), 93 s (staircase storage open — interior then switched to wood, not re-rendered). Book shelf/drawer frames not rendered. Motion on a phone not tested. Bugs hit while building: two inline // comments swallowed code on the minified lines (fixed with block comments).
 
 Deployed kl14: commit 9d7bb9e7d576fd47f5fdbc216cab22fd73f05de6; live index serves studio.js?v=kl14.
+
+## Panel stop + TV video — 2026-11-22 (kl15)
+
+Bright: play a Vijay video on the TV; show the panel between the book shelf and the crockery unit during the walk. Declined to embed a real person's/third-party footage in the published page; added a 'TV video' toolbar button instead — the viewer chooses a video on their own device and it plays on the 65" TV (VideoTexture, muted, loop) during the walkthrough; nothing is uploaded. Added 4 walk steps (31 steps / ~110 s) at the wooden frame panel of the opening (x114.5–171.5): front view, look up to the frame top and LED strip (93 in), pan left post and right side.
+
+Validation: check-krishnagiri-living.mjs passed (panel stop between book shelf and crockery; setTVSource exists). Headless Chrome SwiftShader frames at 64.5 s and 68.2 s show the frame, LED and posts. The video chooser was not exercised with a real file here (headless) — ask Bright to try on the phone.

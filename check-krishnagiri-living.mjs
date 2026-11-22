@@ -59,7 +59,7 @@ console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.prod
 {const st=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8');const steps=JSON.parse(st.match(/WALK_STEPS=(\[.*?\]);\n/)[1]);
  assert(steps[0].at[1]<109,'starts at the entrance');const fx=steps.flatMap(s=>s.fx||[]).map(f=>f.join(':'));
  for(const want of ['open:entrance-display','close:entrance-display','tv:1','tv:0','open:book-shelf','open:tandem','close:tandem','open:crockery','close:crockery','open:pooja','close:pooja','open:under-stair','close:under-stair'])assert(fx.includes(want),'walk does '+want);
- assert(steps.some(s=>s.at[2]<=44&&s.at[0]<53&&s.at[1]>229&&s.at[1]<278),'sits on the bay-window seat');assert(steps.some(s=>/reading/.test(s.label||'')),'reads at the study table');
+ assert(steps.some(s=>s.at[2]<=44&&s.at[0]<53&&s.at[1]>229&&s.at[1]<278),'sits on the bay-window seat');assert(steps.some(s=>/reading/.test(s.label||'')),'reads at the study table');{const bi=steps.findIndex(s=>/Book shelf/.test(s.label||'')),pi=steps.findIndex(s=>/frame panel/.test(s.label||'')),ci=steps.findIndex(s=>s.label==='Crockery unit');assert(bi<pi&&pi<ci,'panel stop between book shelf and crockery');}assert(typeof m.setTVSource==='function');
  for(const id of steps.flatMap(s=>s.fx||[]).filter(f=>f[0]!=='tv').map(f=>f[1]))assert(unit(id)&&unit(id).actions.length,'unit has actions '+id);
  assert(m.tv&&typeof m.setTV==='function');m.setTV(true);assert(m.tv.userData.on);m.setTV(false);
  const total=steps.reduce((a,s)=>a+s.d,0);console.log('walkthrough ok:',steps.length,'steps,',total.toFixed(1),'s');}
