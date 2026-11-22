@@ -74,6 +74,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - Entrance end face #660066 (12in x 0–87.5in, facing living room) = tinted grey glass display shutter, concealed lights inside.
 
+- Beam underside over rafters #ff6532 (84.5in) = small surface lights, one between each pair of pillars/rafters.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.

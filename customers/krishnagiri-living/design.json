@@ -928,6 +928,16 @@
    "unit": "Top of the 12.5in base under the rafters",
    "purpose": "Pebble surface of the planter box (from Bright's earlier answer: base is a planter box for pebbles)",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff6532 (back side, beam over rafters)",
+   "faces": [
+    45702
+   ],
+   "unit": "Underside of the beam over the rafters at 84.5in (x39.5\u2013101.5, 12in deep)",
+   "purpose": "Small surface-mounted lights, one in each gap between neighbouring pillars/rafters, so the lighting reads even (not split)",
+   "renderPlan": "One small round surface light centred over each gap between uprights (approximation: gap count/positions from source geometry)",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
