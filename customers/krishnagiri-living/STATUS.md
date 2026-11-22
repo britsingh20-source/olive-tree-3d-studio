@@ -178,3 +178,5 @@ Bright: the beige pooja doors ("high classy beige") are good. Asked for Option 2
 Implemented the kitchen-style option panel (two cards with rendered previews option-1.jpg / option-2.jpg, choice saved on the device as saved.option). Option 2 paints the fronts of tv-shutters and under-stair with BEIGE_FINISH (acrylic gloss, #e6d9c4 — the matte pooja #efebe4 looked almost white under gloss); the user's own finish picks on those units are cleared when an option is chosen. paint() now also drops the wood bump map on solid finishes. Pooja shutter colour recorded as confirmed (#efebe4, matte).
 
 Validation: check-krishnagiri-living.mjs passed (adds OPTIONS: two options, Option 2 only touches tv-shutters/under-stair, never glass units). Headless Chrome SwiftShader 1366x900: Option 1 and Option 2 from the same camera (TV base wood vs beige), Option 2 at the staircase (beige sloped storage shutters, beige pooja). Real phone not tested.
+
+Deployed kl10: commit 6eeecc18de2a26d840d96c25133c8bb4d35050ce; live index serves studio.js?v=kl10 and option images.
