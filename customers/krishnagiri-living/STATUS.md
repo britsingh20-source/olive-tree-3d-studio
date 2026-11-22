@@ -196,3 +196,5 @@ Deployed kl11: commit b043a24ac6538a1d4439cd5e3c28a44a35990a17; live index serve
 Bright (iPhone, 15:24): the beige panels beside the book-shelf glass shutter don't open and don't look like doors; the drawer and fixed panel below the glass shutter must be beige. Layout now has units wall-upper (46951+44607, two hinged shutters opening from the middle) and seat-end (44860, one hinged shutter), both 'wood-shutters' kind with carcass and 19 mm doors; wall-unit product has 5 members. BEIGE_UNITS = tv-shutters, wall-upper, seat-end, tandem, robot-bay (BEIGE_FACES empty). SCHEME=12 clears any saved finishes for these units once.
 
 Validation: check-krishnagiri-living.mjs passed (13 sections; wall-upper/seat-end open on hinges; beige units). Headless Chrome SwiftShader 1366x900 seat-side view closed and Open all: doors swing, drawer slides, robot panel beige. Real phone not tested.
+
+Deployed kl12: commit 4ce03bd0b65ec68f849260610965a5316f1e629d; live index serves studio.js?v=kl12.
