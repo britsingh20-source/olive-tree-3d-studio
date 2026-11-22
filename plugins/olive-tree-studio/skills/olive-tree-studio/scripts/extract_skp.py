@@ -52,7 +52,11 @@ def extract(path):
         for p in pts:
             assert abs(sum(plane[i]*p[i] for i in range(3))+plane[3])<1e-3,('plane',fid)  # 0.001 in; Krishnagiri living area has 0.00019 in float drift
         mid=number(e.get(2001,b'\x00'));material=mats.get(mid,{'name':'Default','color':'#ffffff'})
-        faces.append({'id':fid,'materialId':mid,**material,'normal':list(plane[:3]),'loops':loops})
+        face={'id':fid,'materialId':mid,**material,'normal':list(plane[:3]),'loops':loops}
+        if 3503 in d:  # back-side material (tag 3503); colour visible from the side opposite the normal
+            bid=number(d[3503]);bm=mats.get(bid,{'name':'Default','color':'#ffffff'})
+            face.update(backMaterialId=bid,backName=bm['name'],backColor=bm['color'])
+        faces.append(face)
     instance_counts={}
     if 5004 in ent:
         instance_counts=dict(collections.Counter(mapping(b).get(6501,b'').decode(errors='replace') for _,b in fields(ent[5004])))

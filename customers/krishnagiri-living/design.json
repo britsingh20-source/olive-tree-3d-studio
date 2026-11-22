@@ -50,7 +50,8 @@
    "entrance": "white louvered/partition block around x 40\u2013112, y 100\u2013230 with #660000/#660033/#ff6532 faces at top",
    "staircase": "white stairs x 255\u2013400; #000066 and #660000 faces on the stair end at x 303.5",
    "plinthSide": "#31ff31 faces at x 39.5\u201352.5 low (0\u201330in)"
-  }
+  },
+  "backMaterials": "62 faces carry colour on their BACK side (TLV tag 3503), missed by the original reader; extractor now records backColor. 7 new colours appear only on backs: #ff007f, #31ffff, #99ff99, #664a00, #6600cc, #666600, #ffcd9b. Earlier colours also appear on backs in new places (TV panelling block, entrance partition, rafter sides, staircase side, louver band above wall unit) \u2014 meaning to be confirmed per place, since Bright reuses colours."
  },
  "sourceColours": {
   "#000066": {
@@ -799,6 +800,7 @@
   "Bench: cushion colour/fabric; bench body finish",
   "Pooja shutters: colour/finish (NOT from the reference photo), backing behind CNC (lit?), internal layout",
   "Hanging lights: number, style, drop height; plants: type/planter position",
-  "TV panelling: await Bright's reference; then confirm TV size/position, lower 8\u201320in fronts (drawers?), niche, lighting"
+  "TV panelling: await Bright's reference; then confirm TV size/position, lower 8\u201320in fronts (drawers?), niche, lighting",
+  "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time"
  ]
 }

@@ -48,6 +48,10 @@ All 14 painted colours confirmed 2026-11-22.
 
 - Unpainted left-wall block under the louver band = TV panelling area; SketchUp geometry irregular, only the front matters. Awaiting Bright's TV panelling reference.
 
+## Back-side colours found — 2026-11-22
+
+Bright said the TV panelling has its own colours. The faces looked white because their colour is on the BACK side (tag 3503), which the reader ignored. extract_skp.py / extract-prem-skp.py now record backColor; 62 faces affected; source-geometry.json regenerated. Asking about these colours next.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.

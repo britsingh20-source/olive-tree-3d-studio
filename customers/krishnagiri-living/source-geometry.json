@@ -5876,7 +5876,10 @@
      43515,
      43503
     ]
-   ]
+   ],
+   "backMaterialId": 47000,
+   "backName": "C02_Golden_Beige",
+   "backColor": "#ffcd9b"
   },
   {
    "id": 43505,
@@ -5920,7 +5923,10 @@
      43507,
      43415
     ]
-   ]
+   ],
+   "backMaterialId": 47000,
+   "backName": "C02_Golden_Beige",
+   "backColor": "#ffcd9b"
   },
   {
    "id": 43517,
@@ -5939,7 +5945,10 @@
      43513,
      43507
     ]
-   ]
+   ],
+   "backMaterialId": 47000,
+   "backName": "C02_Golden_Beige",
+   "backColor": "#ffcd9b"
   },
   {
    "id": 43523,
@@ -7040,7 +7049,10 @@
      45178,
      43620
     ]
-   ]
+   ],
+   "backMaterialId": 46940,
+   "backName": "L08_Velvet_Rose",
+   "backColor": "#660033"
   },
   {
    "id": 45185,
@@ -7447,7 +7459,10 @@
      46929,
      46923
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45459,
@@ -7467,7 +7482,10 @@
      45474,
      46474
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45462,
@@ -7486,7 +7504,10 @@
      45497,
      45435
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45465,
@@ -7566,7 +7587,10 @@
      45500,
      45496
     ]
-   ]
+   ],
+   "backMaterialId": 46945,
+   "backName": "K08_Violet_Crush",
+   "backColor": "#660066"
   },
   {
    "id": 45492,
@@ -7623,7 +7647,10 @@
      45348,
      45350
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45606,
@@ -7663,7 +7690,10 @@
      45473,
      45497
     ]
-   ]
+   ],
+   "backMaterialId": 46959,
+   "backName": "B04_Peach_Ember",
+   "backColor": "#ff6532"
   },
   {
    "id": 45244,
@@ -7684,7 +7714,10 @@
      45428,
      45430
     ]
-   ]
+   ],
+   "backMaterialId": 46941,
+   "backName": "L05_Cherry_Flame",
+   "backColor": "#ff007f"
   },
   {
    "id": 45644,
@@ -7707,7 +7740,10 @@
      46935,
      45437
     ]
-   ]
+   ],
+   "backMaterialId": 46959,
+   "backName": "B04_Peach_Ember",
+   "backColor": "#ff6532"
   },
   {
    "id": 45662,
@@ -7745,7 +7781,10 @@
      45710,
      45709
     ]
-   ]
+   ],
+   "backMaterialId": 46945,
+   "backName": "K08_Violet_Crush",
+   "backColor": "#660066"
   },
   {
    "id": 45704,
@@ -7774,7 +7813,10 @@
      45710,
      46611
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45735,
@@ -7873,7 +7915,10 @@
      46822,
      45774
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45789,
@@ -8020,7 +8065,10 @@
      45636,
      46119
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45953,
@@ -8042,7 +8090,10 @@
      45960,
      45942
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45954,
@@ -8063,7 +8114,10 @@
      45579,
      45794
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45965,
@@ -8158,7 +8212,10 @@
      45627,
      45970
     ]
-   ]
+   ],
+   "backMaterialId": 46941,
+   "backName": "L05_Cherry_Flame",
+   "backColor": "#ff007f"
   },
   {
    "id": 46055,
@@ -8263,7 +8320,10 @@
      46826,
      45761
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46112,
@@ -8340,7 +8400,10 @@
      46136,
      45746
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46159,
@@ -8391,7 +8454,10 @@
      46438,
      46381
     ]
-   ]
+   ],
+   "backMaterialId": 46955,
+   "backName": "I08_Inkstorm",
+   "backColor": "#000066"
   },
   {
    "id": 46195,
@@ -8410,7 +8476,10 @@
      46317,
      46259
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46212,
@@ -8448,7 +8517,10 @@
      46236,
      46232
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46252,
@@ -8467,7 +8539,10 @@
      46248,
      46244
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46256,
@@ -8486,7 +8561,10 @@
      46260,
      46259
     ]
-   ]
+   ],
+   "backMaterialId": 46963,
+   "backName": "E08_Lime_Depth",
+   "backColor": "#666600"
   },
   {
    "id": 46265,
@@ -8524,7 +8602,10 @@
      46316,
      46319
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46315,
@@ -8543,7 +8624,10 @@
      46317,
      46318
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46325,
@@ -8600,7 +8684,10 @@
      46416,
      46396
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46365,
@@ -8619,7 +8706,10 @@
      46361,
      46357
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46371,
@@ -8638,7 +8728,10 @@
      46375,
      46369
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46383,
@@ -8657,7 +8750,10 @@
      46387,
      46381
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46393,
@@ -8676,7 +8772,10 @@
      46399,
      46396
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46395,
@@ -8695,7 +8794,10 @@
      46397,
      46398
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46404,
@@ -8752,7 +8854,10 @@
      46397,
      46319
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46413,
@@ -8771,7 +8876,10 @@
      46418,
      46417
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46415,
@@ -8790,7 +8898,10 @@
      46416,
      46419
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46425,
@@ -8847,7 +8958,10 @@
      46438,
      46457
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46433,
@@ -8866,7 +8980,10 @@
      46438,
      46436
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46435,
@@ -8885,7 +9002,10 @@
      46439,
      46437
     ]
-   ]
+   ],
+   "backMaterialId": 46961,
+   "backName": "C04_Amber_Sunshine",
+   "backColor": "#ff9831"
   },
   {
    "id": 46445,
@@ -8942,7 +9062,10 @@
      46439,
      46417
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46453,
@@ -8961,7 +9084,10 @@
      46456,
      46457
     ]
-   ]
+   ],
+   "backMaterialId": 46963,
+   "backName": "E08_Lime_Depth",
+   "backColor": "#666600"
   },
   {
    "id": 46495,
@@ -9060,7 +9186,10 @@
      46190,
      46189
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 45702,
@@ -9084,7 +9213,10 @@
      46615,
      46189
     ]
-   ]
+   ],
+   "backMaterialId": 46959,
+   "backName": "B04_Peach_Ember",
+   "backColor": "#ff6532"
   },
   {
    "id": 46510,
@@ -9230,7 +9362,10 @@
      46843,
      46834
     ]
-   ]
+   ],
+   "backMaterialId": 46964,
+   "backName": "H04_Cool_Tide",
+   "backColor": "#31ffff"
   },
   {
    "id": 46640,
@@ -9392,7 +9527,10 @@
      46680,
      46698
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46692,
@@ -9602,7 +9740,10 @@
      46617,
      46606
     ]
-   ]
+   ],
+   "backMaterialId": 46998,
+   "backName": "G02_Spring_Lime",
+   "backColor": "#99ff99"
   },
   {
    "id": 46801,
@@ -9638,7 +9779,10 @@
      46516,
      46730
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46803,
@@ -9656,7 +9800,10 @@
      46155,
      45707
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46804,
@@ -9674,7 +9821,10 @@
      45707,
      46155
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46805,
@@ -9692,7 +9842,10 @@
      45708,
      46155
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46806,
@@ -9710,7 +9863,10 @@
      45708,
      46189
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46807,
@@ -9728,7 +9884,10 @@
      45708,
      46662
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46808,
@@ -9783,7 +9942,10 @@
      46828,
      45763
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46830,
@@ -9802,7 +9964,10 @@
      46826,
      46822
     ]
-   ]
+   ],
+   "backMaterialId": 46967,
+   "backName": "D08_Bronzed_Mustard",
+   "backColor": "#664a00"
   },
   {
    "id": 46845,
@@ -9821,7 +9986,10 @@
      46901,
      46886
     ]
-   ]
+   ],
+   "backMaterialId": 46964,
+   "backName": "H04_Cool_Tide",
+   "backColor": "#31ffff"
   },
   {
    "id": 46872,
@@ -9960,7 +10128,10 @@
      46885,
      46883
     ]
-   ]
+   ],
+   "backMaterialId": 46964,
+   "backName": "H04_Cool_Tide",
+   "backColor": "#31ffff"
   },
   {
    "id": 46909,
@@ -9979,7 +10150,10 @@
      46905,
      46901
     ]
-   ]
+   ],
+   "backMaterialId": 46967,
+   "backName": "D08_Bronzed_Mustard",
+   "backColor": "#664a00"
   },
   {
    "id": 46921,
@@ -9998,7 +10172,10 @@
      46925,
      46919
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46927,
@@ -10017,7 +10194,10 @@
      46931,
      46925
     ]
-   ]
+   ],
+   "backMaterialId": 46960,
+   "backName": "J06_Plum_Shadow",
+   "backColor": "#6600cc"
   },
   {
    "id": 46933,
@@ -10036,7 +10216,10 @@
      46937,
      45435
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46939,
@@ -10055,7 +10238,10 @@
      46935,
      46931
     ]
-   ]
+   ],
+   "backMaterialId": 46956,
+   "backName": "A08_Garnet_Shadow",
+   "backColor": "#660000"
   },
   {
    "id": 46951,
