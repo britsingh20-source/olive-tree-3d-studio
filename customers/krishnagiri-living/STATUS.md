@@ -232,3 +232,9 @@ Bright: after the entrance glass door, from the TV unit look left at the pergola
 Validation: check-krishnagiri-living.mjs passed (pergola whole/top/bottom after closing the entrance display and before the TV switches on; area lights <=24). Headless Chrome SwiftShader frames at 19.4/22.9/26.4 s inspected. Phone performance with 21 area lights not tested.
 
 Deployed kl16: commit 165af3fa901216c9d07bc733172f7c2b665e528f, Pages run 45022275334 success; live index serves studio.js?v=kl16.
+
+## Walkthrough order — 2026-11-22 (kl17)
+
+Bright: pooja shown too tight — see top and bottom first, then open; don't open the staircase shutters; end with the whole view towards the pergola/TV unit; TV-on step wasted time — look up/down/right while it plays. WALK_STEPS now 40 steps / ~135 s: TV on → look up (louver) → down (beige base) → right (display box) → off; pooja whole from x235 → top → bottom → step in, open, close; turn back over the hall (crockery, book shelf) → final whole view of the pergola and TV unit. Staircase storage steps removed.
+
+Validation: check-krishnagiri-living.mjs passed (looks up/down while the TV plays; no under-stair fx; pooja top/bottom before opening; ends looking at the pergola/TV). Headless Chrome SwiftShader frames at 31.9 s (look up with TV on), 103.4 s (whole pooja), 106.4 s (pooja top), 132.4 s (final whole view). Motion on a phone not tested.

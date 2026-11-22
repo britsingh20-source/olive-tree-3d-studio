@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl16",
+  "assetVersion": "kl17",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -1065,6 +1065,17 @@
   {
    "change": "Walkthrough: after the entrance display, from the TV area the walk studies the pergola (whole, top, bottom) before switching the TV on/off; pergola lighting highlighted",
    "bright": "from the TV unit we should see the left side \u2014 how the pergola looks, its top and its bottom \u2014 then switch the TV on/off \u2026 the pergola is not highlighted, kindly highlight",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Walkthrough order refined",
+   "items": [
+    "TV switches on immediately; while it plays the view looks up (louver), down (beige base) and right (display box), then TV off \u2014 no idle wait",
+    "Pooja seen from further back (whole), top (bells), bottom (lotus), then doors open and close",
+    "Staircase storage shutters are NOT opened",
+    "Walk ends turning back over the whole hall to the pergola and TV unit"
+   ],
+   "bright": "pooja shown too tight \u2014 look top and bottom, then open; don't open the staircase shutter, end with the whole view from the pergola/TV unit; too much time switching on the TV \u2014 look up, down and right meanwhile",
    "confirmedOn": "2026-11-22"
   }
  ],
