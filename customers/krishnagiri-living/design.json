@@ -857,6 +857,18 @@
    "unit": "Two small panels on the column between TV wall and entrance rafters (~49\u201362in high): one facing the TV side, one facing the entrance side",
    "purpose": "Switch boxes for two-way switches, operable from both sides",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#31ffff (back side)",
+   "faces": [
+    45756,
+    46845,
+    46903
+   ],
+   "unit": "Column beside the entrance rafters (x39.6\u201352, 0\u201384.6in), entrance-side face with a ~10.4in wide, 7in deep, near-full-height recess (switch box inside it)",
+   "purpose": "Open display box for car keys etc., with shelves for decoratives",
+   "finish": "Wooden mica",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -872,6 +884,7 @@
   "Hanging lights: number, style, drop height; plants: type/planter position",
   "TV panelling: await Bright's reference; then confirm TV size/position, lower 8\u201320in fronts (drawers?), niche, lighting",
   "Back-side colours in the TV panelling block and entrance partition \u2014 ask one at a time",
-  "TV low wood shutters: hinge side of each (Bright said 'opens sideways')"
+  "TV low wood shutters: hinge side of each (Bright said 'opens sideways')",
+  "Key/decor open display box: number/spacing of shelves"
  ]
 }
