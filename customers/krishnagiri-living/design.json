@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl15",
+  "assetVersion": "kl16",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -1061,6 +1061,11 @@
    "change": "Walkthrough stops at the wooden frame panel (posts, top band, concealed LED) between the book shelf and the crockery unit",
    "bright": "walking from the study area/bookshelf to the crockery unit, in between there is a panel \u2014 show how this panel has been made",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Walkthrough: after the entrance display, from the TV area the walk studies the pergola (whole, top, bottom) before switching the TV on/off; pergola lighting highlighted",
+   "bright": "from the TV unit we should see the left side \u2014 how the pergola looks, its top and its bottom \u2014 then switch the TV on/off \u2026 the pergola is not highlighted, kindly highlight",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [
@@ -1073,7 +1078,8 @@
   "Bench seat is at 12in (source geometry); lid hinged at the wall edge",
   "No TV drawn (size not given)",
   "Pooja CNC pattern redrawn by hand, not traced",
-  "Walkthrough props: 65-inch TV (1.44 x 0.81 m, centred on the marble panel at 44 in), generic landscape on screen, books, open book and cup on the study table, crockery set, pooja brass items on a 30 in platform, under-stair storage interior and bins \u2014 sizes/positions not specified by Bright"
+  "Walkthrough props: 65-inch TV (1.44 x 0.81 m, centred on the marble panel at 44 in), generic landscape on screen, books, open book and cup on the study table, crockery set, pooja brass items on a 30 in platform, under-stair storage interior and bins \u2014 sizes/positions not specified by Bright",
+  "Pergola highlight: beam downlights brighter (area 110), a soft area light under each plant shelf (60), plant-box light 95 \u2014 intensities chosen for the render"
  ],
  "openQuestions": [
   "Glass tint shades (crockery, TV lift-up, entrance grey)",

@@ -224,3 +224,9 @@ Bright: play a Vijay video on the TV; show the panel between the book shelf and 
 Validation: check-krishnagiri-living.mjs passed (panel stop between book shelf and crockery; setTVSource exists). Headless Chrome SwiftShader frames at 64.5 s and 68.2 s show the frame, LED and posts. The video chooser was not exercised with a real file here (headless) — ask Bright to try on the phone.
 
 Deployed kl15: push runs 45020074360 and 45020128672 (incl. re-run) FAILED at deploy-pages ('No artifacts named github-pages' although upload succeeded — GitHub-side); manual workflow_dispatch run 45020818806 succeeded; live index then served studio.js?v=kl15 with the TV video button.
+
+## Pergola study from the TV side — 2026-11-22 (kl16)
+
+Bright: after the entrance glass door, from the TV unit look left at the pergola — whole, top, bottom — then TV on/off; the pergola is not highlighted. Walk now (34 steps, ~120 s): close entrance display → pergola from the TV side (rafters, lit shelves) → pergola top (plants, pencil lights) → pergola bottom (pebble planter) → TV wall → TV on → TV off → seat … Lighting: beam downlights 110 (6x6 cm), lens emissive 2.2; new area light under each of the 4 plant shelves (60); plant-box area light 95 (21 area lights total).
+
+Validation: check-krishnagiri-living.mjs passed (pergola whole/top/bottom after closing the entrance display and before the TV switches on; area lights <=24). Headless Chrome SwiftShader frames at 19.4/22.9/26.4 s inspected. Phone performance with 21 area lights not tested.
