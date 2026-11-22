@@ -223,4 +223,4 @@ Bright: play a Vijay video on the TV; show the panel between the book shelf and 
 
 Validation: check-krishnagiri-living.mjs passed (panel stop between book shelf and crockery; setTVSource exists). Headless Chrome SwiftShader frames at 64.5 s and 68.2 s show the frame, LED and posts. The video chooser was not exercised with a real file here (headless) — ask Bright to try on the phone.
 
-Deployed kl15: commit 71ae45340719b7d5120f149aa583fd7f44bf0a52; live index serves studio.js?v=kl15 with the TV video button.
+Deployed kl15: push runs 45020074360 and 45020128672 (incl. re-run) FAILED at deploy-pages ('No artifacts named github-pages' although upload succeeded — GitHub-side); manual workflow_dispatch run 45020818806 succeeded; live index then served studio.js?v=kl15 with the TV video button.
