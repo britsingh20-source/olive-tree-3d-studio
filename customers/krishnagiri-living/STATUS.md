@@ -44,6 +44,8 @@ Colour intake started. No viewer yet. All 14 painted source colours confirmed; u
 
 All 14 painted colours confirmed 2026-11-22.
 
+- Unpainted: entrance partition five 4x4in posts = wooden rafters in the same wooden mica; 12.5in base = planter box with pebbles.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.
