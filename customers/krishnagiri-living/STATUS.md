@@ -252,3 +252,5 @@ Deployed kl18: push run 45033255684 failed at deploy-pages (GitHub artifact meta
 ## Auto-start walkthrough — 2026-11-22 (kl19)
 
 Bright: kl18 loads on Android, but customers think the page hangs because the 3D view and Walkthrough button are below the intro. Now the page scrolls to the 3D view immediately on open (loading message visible) and starts the walkthrough automatically once loaded; Stop/replay button kept; ?nowalk or ?debug disable it. Validation: check passed; headless Chrome (Android UA, 390x844): scrolled to the viewer at open, walkthrough running ('Stop walkthrough', entrance step) after load, no page errors.
+
+Deployed kl19: Pages run 45034450279 success; live index serves studio.js?v=kl19.
