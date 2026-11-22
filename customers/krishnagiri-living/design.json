@@ -869,6 +869,24 @@
    "purpose": "Open display box for car keys etc., with shelves for decoratives",
    "finish": "Wooden mica",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff9831 (back side, rafter inner sides)",
+   "faces": [
+    46313,
+    46315,
+    46393,
+    46395,
+    46413,
+    46415,
+    46433,
+    46435
+   ],
+   "unit": "The four 5in gaps between the five entrance rafters (x61\u201366, 70\u201375, 79\u201384, 88\u201393)",
+   "purpose": "Small shelves between the rafters for small plants, at staggered (uneven) heights \u2014 e.g. one gap at 5 ft (60in), the next at 4 ft (48in), alternating",
+   "lighting": "Concealed light under each shelf",
+   "renderPlan": "Gaps left\u2192right from the TV side: 60, 48, 60, 48in (Bright's example pattern; exact heights adjustable)",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],

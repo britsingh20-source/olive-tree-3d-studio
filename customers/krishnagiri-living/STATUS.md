@@ -66,6 +66,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - #31ffff (entrance-side recess in the column by the rafters) = open display box for car keys + decor shelves, wooden mica. Shelf count open.
 
+- Rafter inner sides #ff9831 = small plant shelves in the four gaps between rafters, staggered 5 ft / 4 ft alternately, concealed light under each shelf.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.
