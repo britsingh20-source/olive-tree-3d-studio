@@ -483,7 +483,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Seating bench with cushion top; seat opens for storage"
   },
   "#3a3a3a": {
    "materialName": "M07_Charcoal_Gleam",
@@ -698,6 +699,20 @@
    "unit": "14in deep x 4.1in high opening at floor level (x86.5, y277.6\u2013291.6) on the side of the robot-cleaner bay, into the open recess to its left",
    "purpose": "Opening the robot cleaner goes in and out through \u2014 render as a cut-out/opening, not a panel",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#31ff31",
+   "faces": [
+    44799,
+    44860,
+    44883
+   ],
+   "unit": "Low unit along the left wall (x39.5\u201352.5, y229.7\u2013291.6, ~30in high, inner base at 12in)",
+   "purpose": "Seating bench",
+   "top": "Cushion top",
+   "storage": "Seat opens (lift-up) for storage \u2014 storage only under the seating area",
+   "bright": "'seating bench with cushion top open for storage only the seating area'",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -707,6 +722,7 @@
   "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake",
   "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish",
   "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side",
-  "Wall-unit solid fronts (drawer etc.): finish/colour and handles"
+  "Wall-unit solid fronts (drawer etc.): finish/colour and handles",
+  "Bench: cushion colour/fabric; bench body finish"
  ]
 }
