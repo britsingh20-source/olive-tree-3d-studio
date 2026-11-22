@@ -519,7 +519,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Concealed LED strip light position"
   },
   "#ff31ff": {
    "materialName": "K04_Fuchsia_Dream",
@@ -634,6 +635,15 @@
    "shutters": "Tinted glass shutters (two)",
    "internal": "Glass shelves",
    "lighting": "Concealed lights inside the cabinet",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff7b00",
+   "faces": [
+    43751
+   ],
+   "unit": "Underside at 93in across the top of the 57in opening (x114.5\u2013171.5, 15in deep) left of the crockery unit",
+   "purpose": "Indicates a concealed LED strip light at this underside",
    "confirmedOn": "2026-11-22"
   }
  ],
