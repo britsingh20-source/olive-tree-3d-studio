@@ -4,7 +4,7 @@ Updated 2026-11-22 (Asia/Kolkata). Same client as `krishnagiri-kitchen`.
 
 ## Current state
 
-Colour intake started. No viewer yet. 7 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
+Colour intake started. No viewer yet. 6 of 14 painted source colours unresolved (22 materials defined, 8 unused) (see design.json → sourceColours).
 
 ## Sources
 
@@ -26,7 +26,9 @@ Colour intake started. No viewer yet. 7 of 14 painted source colours unresolved 
 
 - #ff8c65 (24x9in, 21–30in, below book shelf) = tandem drawer.
 
-- #ff9999 (24x21in, 0–21in, below drawer) = fixed shutter with robot cleaner inside (no opening action). Robot exit gap still open.
+- #ff9999 (24x21in, 0–21in, below drawer) = fixed shutter with robot cleaner inside (no opening action). Robot exits via the #006666 side opening.
+
+- #006666 (14in deep x 4.1in high at floor, side of the robot bay) = robot cleaner entry/exit opening.
 
 ## Next action
 

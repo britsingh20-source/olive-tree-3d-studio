@@ -436,7 +436,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Robot cleaner entry/exit opening"
   },
   "#31ff31": {
    "materialName": "G04_Lime_Spark",
@@ -688,6 +689,15 @@
    "purpose": "Robot cleaner (robo cleaner) housing",
    "shutters": "Fixed shutter \u2014 no opening action",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#006666",
+   "faces": [
+    44795
+   ],
+   "unit": "14in deep x 4.1in high opening at floor level (x86.5, y277.6\u2013291.6) on the side of the robot-cleaner bay, into the open recess to its left",
+   "purpose": "Opening the robot cleaner goes in and out through \u2014 render as a cut-out/opening, not a panel",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -697,7 +707,6 @@
   "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake",
   "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish",
   "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side",
-  "Wall-unit solid fronts (drawer etc.): finish/colour and handles",
-  "Robot cleaner bay: how the robot exits/enters with a fixed shutter (bottom gap/cut-out height?)"
+  "Wall-unit solid fronts (drawer etc.): finish/colour and handles"
  ]
 }
