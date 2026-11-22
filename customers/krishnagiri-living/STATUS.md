@@ -142,3 +142,5 @@ Deployed kl5: commit 5f0dc408256a96f7f27fa31f0a286a5aa1d4bce2, Pages run 4498286
 Bright (on his phone, so kl5 loaded): the top louver pixelates; first version had the same wooden finish. Cause: ~160 thin InstancedMesh slats alias/shimmer while rotating (worse after the 2x phone pixel-ratio cap). Louver bands are now a single source face with a mipmapped canvas texture: 10 slats per 0.34 m tile, each a vertical strip of the wooden mica image, dark #4a301c gaps, edge shading, plus a matching bump map (bumpScale 2.2). No instanced slat geometry remains.
 
 Validation: check-krishnagiri-living.mjs passed (asserts louver map + bumpMap and no InstancedMesh). Headless Chrome SwiftShader: close view at 1366x900 and distant view at 390x844 — slats read clearly, wood matches the mica, no aliasing in stills. Motion shimmer not testable here; ask Bright to confirm on the phone.
+
+Deployed kl6: commit f8f467a9fcc2bca3055230374dcecd927d97b66f; live index serves studio.js?v=kl6.
