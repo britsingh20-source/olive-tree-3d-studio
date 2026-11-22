@@ -552,7 +552,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Tinted glass shutters of crockery unit"
   },
   "#660033": {
    "materialName": "L08_Velvet_Rose",
@@ -621,12 +622,26 @@
    "material": "Wooden mica \u2014 same reference as the kitchen (sha256 1a2b5880\u2026, avg colour #a06230)",
    "texture": "dist/krishnagiri-living/wood-mica-reference.jpg",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#ff31ff",
+   "faces": [
+    45220,
+    45225
+   ],
+   "unit": "Two 18x93in fronts (x171.5\u2013207.5) at right end of the big opening \u2014 36in wide crockery unit",
+   "purpose": "Crockery unit",
+   "shutters": "Tinted glass shutters (two)",
+   "internal": "Glass shelves",
+   "lighting": "Concealed lights inside the cabinet",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
  "openQuestions": [
   "Meaning of each source colour (asked one at a time)",
   "Client name",
-  "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake"
+  "Wood grain direction on vertical panels (kitchen end panels were vertical) \u2014 ask after colour intake",
+  "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish"
  ]
 }
