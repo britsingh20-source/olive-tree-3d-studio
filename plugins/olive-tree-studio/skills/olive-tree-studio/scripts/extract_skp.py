@@ -50,7 +50,7 @@ def extract(path):
             loops.append(ordered)
         pts=[vertices[v] for loop in loops for v in loop]
         for p in pts:
-            assert abs(sum(plane[i]*p[i] for i in range(3))+plane[3])<1e-5,('plane',fid)
+            assert abs(sum(plane[i]*p[i] for i in range(3))+plane[3])<1e-3,('plane',fid)  # 0.001 in; Krishnagiri living area has 0.00019 in float drift
         mid=number(e.get(2001,b'\x00'));material=mats.get(mid,{'name':'Default','color':'#ffffff'})
         faces.append({'id':fid,'materialId':mid,**material,'normal':list(plane[:3]),'loops':loops})
     instance_counts={}

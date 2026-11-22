@@ -1,0 +1,603 @@
+{
+ "schemaVersion": 1,
+ "updated": "2026-11-22",
+ "customer": {
+  "id": "krishnagiri-living",
+  "name": "Krishnagiri client (same client as krishnagiri-kitchen; name to confirm)",
+  "relatedProjects": [
+   "krishnagiri-kitchen"
+  ]
+ },
+ "project": "Living area (Krishnagiri)",
+ "viewer": {
+  "status": "Not built \u2014 colour intake in progress",
+  "route": "/krishnagiri-living/",
+  "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
+  "directory": "dist/krishnagiri-living"
+ },
+ "source": {
+  "files": [
+   {
+    "name": "krisnagiri living area.skp",
+    "sha256": "91a4b0bd032bbdce7199c76ba5f3918a97a09fe4e8fdb2c950ce374bbc5a65ec",
+    "bytes": 270550,
+    "role": "current (newer)"
+   },
+   {
+    "name": "krisnagiri living area (1).skp",
+    "sha256": "c516a50e8b3b92509b29d35fc5270f196f79c57da8ffa698428ef61466a8f44b",
+    "bytes": 265183,
+    "role": "older"
+   }
+  ],
+  "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py (planarity tolerance raised 1e-5 -> 1e-3 in on 2026-11-22)",
+  "sourceUnits": "inches",
+  "bounds": {
+   "width": 362.9,
+   "depth": 255.0,
+   "height": 120.7
+  },
+  "vertices": 381,
+  "edges": 649,
+  "rootFaces": 283,
+  "omittedInstances": {},
+  "comparison": "Identical vertices/edges/faces; only face 43750 differs (newer file paints it #660000, older leaves it default white). Newer file used.",
+  "geometry": "customers/krishnagiri-living/source-geometry.json",
+  "observedLayout": {
+   "note": "Geometry reading only \u2014 not customer-confirmed.",
+   "wallUnitLeft": "x 39.5\u2013111.5, y 277.6\u2013292.6 (15in deep), 0\u201384in high: several coloured sections",
+   "tallUnit": "x 171.5\u2013207.5 two #ff31ff fronts 18x93in; #ff7b00 underside at 93in over x114.5\u2013171.5 recess; #3a3a3a panel 111.5\u2013207.5 at 96.7\u2013120in",
+   "entrance": "white louvered/partition block around x 40\u2013112, y 100\u2013230 with #660000/#660033/#ff6532 faces at top",
+   "staircase": "white stairs x 255\u2013400; #000066 and #660000 faces on the stair end at x 303.5",
+   "plinthSide": "#31ff31 faces at x 39.5\u201352.5 low (0\u201330in)"
+  }
+ },
+ "sourceColours": {
+  "#000066": {
+   "materialName": "I08_Inkstorm",
+   "faceCount": 2,
+   "faces": [
+    {
+     "id": 43445,
+     "min": [
+      303.5,
+      262.6,
+      0.0
+     ],
+     "max": [
+      303.5,
+      277.6,
+      84.0
+     ]
+    },
+    {
+     "id": 43523,
+     "min": [
+      303.5,
+      277.6,
+      0.0
+     ],
+     "max": [
+      303.5,
+      292.6,
+      84.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#660000": {
+   "materialName": "A08_Garnet_Shadow",
+   "faceCount": 17,
+   "faces": [
+    {
+     "id": 43447,
+     "min": [
+      303.5,
+      262.6,
+      0.0
+     ],
+     "max": [
+      327.5,
+      262.6,
+      84.0
+     ]
+    },
+    {
+     "id": 43636,
+     "min": [
+      114.5,
+      292.6,
+      0.0
+     ],
+     "max": [
+      114.5,
+      307.6,
+      93.0
+     ]
+    },
+    {
+     "id": 43738,
+     "min": [
+      111.5,
+      292.6,
+      0.0
+     ],
+     "max": [
+      114.5,
+      292.6,
+      84.0
+     ]
+    },
+    {
+     "id": 43750,
+     "min": [
+      171.5,
+      292.6,
+      0.0
+     ],
+     "max": [
+      171.5,
+      307.6,
+      93.0
+     ]
+    },
+    {
+     "id": 43897,
+     "min": [
+      111.5,
+      277.6,
+      0.0
+     ],
+     "max": [
+      111.5,
+      292.6,
+      84.0
+     ]
+    },
+    {
+     "id": 44377,
+     "min": [
+      86.5,
+      277.6,
+      0.0
+     ],
+     "max": [
+      87.5,
+      277.6,
+      30.0
+     ]
+    },
+    {
+     "id": 44496,
+     "min": [
+      87.5,
+      277.6,
+      30.0
+     ],
+     "max": [
+      87.5,
+      292.6,
+      54.0
+     ]
+    },
+    {
+     "id": 44607,
+     "min": [
+      63.5,
+      277.6,
+      54.0
+     ],
+     "max": [
+      87.5,
+      277.6,
+      84.0
+     ]
+    },
+    {
+     "id": 44739,
+     "min": [
+      52.5,
+      277.6,
+      29.0
+     ],
+     "max": [
+      86.5,
+      277.6,
+      30.0
+     ]
+    },
+    {
+     "id": 44691,
+     "min": [
+      52.5,
+      291.6,
+      0.0
+     ],
+     "max": [
+      86.5,
+      291.6,
+      29.0
+     ]
+    },
+    {
+     "id": 43916,
+     "min": [
+      39.5,
+      277.6,
+      30.0
+     ],
+     "max": [
+      87.5,
+      292.6,
+      30.0
+     ]
+    },
+    {
+     "id": 45003,
+     "min": [
+      111.5,
+      292.6,
+      84.0
+     ],
+     "max": [
+      207.5,
+      292.6,
+      96.7
+     ]
+    },
+    {
+     "id": 46501,
+     "min": [
+      111.6,
+      109.7,
+      87.5
+     ],
+     "max": [
+      111.6,
+      121.7,
+      120.0
+     ]
+    },
+    {
+     "id": 46696,
+     "min": [
+      108.6,
+      109.7,
+      87.5
+     ],
+     "max": [
+      108.6,
+      121.7,
+      117.0
+     ]
+    },
+    {
+     "id": 46518,
+     "min": [
+      42.6,
+      109.7,
+      87.0
+     ],
+     "max": [
+      42.6,
+      121.7,
+      117.0
+     ]
+    },
+    {
+     "id": 46951,
+     "min": [
+      39.5,
+      277.6,
+      54.0
+     ],
+     "max": [
+      63.5,
+      277.6,
+      84.0
+     ]
+    },
+    {
+     "id": 46995,
+     "min": [
+      86.5,
+      277.6,
+      4.1
+     ],
+     "max": [
+      86.5,
+      291.6,
+      29.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#661900": {
+   "materialName": "B08_Burnt_Sienna",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 43872,
+     "min": [
+      39.5,
+      277.6,
+      84.0
+     ],
+     "max": [
+      111.5,
+      292.6,
+      84.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#660066": {
+   "materialName": "K08_Violet_Crush",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 43896,
+     "min": [
+      87.5,
+      277.6,
+      30.0
+     ],
+     "max": [
+      111.5,
+      277.6,
+      84.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#ff9831": {
+   "materialName": "C04_Amber_Sunshine",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 44605,
+     "min": [
+      39.5,
+      277.6,
+      54.0
+     ],
+     "max": [
+      87.5,
+      292.6,
+      54.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#ff8c65": {
+   "materialName": "B03_Apricot_Glow",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 44620,
+     "min": [
+      87.5,
+      277.6,
+      21.0
+     ],
+     "max": [
+      111.5,
+      277.6,
+      30.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#ff9999": {
+   "materialName": "A02_Rose_Quartz",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 44629,
+     "min": [
+      87.5,
+      277.6,
+      0.0
+     ],
+     "max": [
+      111.5,
+      277.6,
+      21.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#006666": {
+   "materialName": "H08_Emerald_Abyss",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 44795,
+     "min": [
+      86.5,
+      277.6,
+      0.0
+     ],
+     "max": [
+      86.5,
+      291.6,
+      4.1
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#31ff31": {
+   "materialName": "G04_Lime_Spark",
+   "faceCount": 3,
+   "faces": [
+    {
+     "id": 44799,
+     "min": [
+      52.5,
+      229.7,
+      0.0
+     ],
+     "max": [
+      52.5,
+      291.6,
+      29.0
+     ]
+    },
+    {
+     "id": 44860,
+     "min": [
+      39.5,
+      277.6,
+      12.0
+     ],
+     "max": [
+      52.5,
+      277.6,
+      30.0
+     ]
+    },
+    {
+     "id": 44883,
+     "min": [
+      40.5,
+      230.7,
+      12.0
+     ],
+     "max": [
+      51.5,
+      276.6,
+      12.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#3a3a3a": {
+   "materialName": "M07_Charcoal_Gleam",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 45137,
+     "min": [
+      111.5,
+      292.6,
+      96.7
+     ],
+     "max": [
+      207.5,
+      292.6,
+      120.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#ff7b00": {
+   "materialName": "C05_Golden_Blaze",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 43751,
+     "min": [
+      114.5,
+      292.6,
+      93.0
+     ],
+     "max": [
+      171.5,
+      307.6,
+      93.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#ff31ff": {
+   "materialName": "K04_Fuchsia_Dream",
+   "faceCount": 2,
+   "faces": [
+    {
+     "id": 45220,
+     "min": [
+      171.5,
+      292.6,
+      0.0
+     ],
+     "max": [
+      189.5,
+      292.6,
+      93.0
+     ]
+    },
+    {
+     "id": 45225,
+     "min": [
+      189.5,
+      292.6,
+      0.0
+     ],
+     "max": [
+      207.5,
+      292.6,
+      93.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#660033": {
+   "materialName": "L08_Velvet_Rose",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 46502,
+     "min": [
+      39.6,
+      121.7,
+      84.0
+     ],
+     "max": [
+      39.6,
+      229.7,
+      120.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  },
+  "#ff6532": {
+   "materialName": "B04_Peach_Ember",
+   "faceCount": 1,
+   "faces": [
+    {
+     "id": 46692,
+     "min": [
+      42.6,
+      109.7,
+      117.0
+     ],
+     "max": [
+      108.6,
+      121.7,
+      117.0
+     ]
+    }
+   ],
+   "status": "unresolved"
+  }
+ },
+ "confirmed": [],
+ "approximations": [],
+ "openQuestions": [
+  "Meaning of each source colour (asked one at a time)",
+  "Client name"
+ ]
+}

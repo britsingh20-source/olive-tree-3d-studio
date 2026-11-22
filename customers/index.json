@@ -48,6 +48,14 @@
       "route": "/krishnagiri-kitchen/",
       "design": "customers/krishnagiri-kitchen/design.json",
       "status": "customers/krishnagiri-kitchen/STATUS.md"
+    },
+    {
+      "id": "krishnagiri-living",
+      "name": "Krishnagiri client (same as kitchen)",
+      "project": "Living area \u2014 design intake",
+      "route": "/krishnagiri-living/",
+      "design": "customers/krishnagiri-living/design.json",
+      "status": "customers/krishnagiri-living/STATUS.md"
     }
   ]
 }
