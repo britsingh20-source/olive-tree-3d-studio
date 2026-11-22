@@ -57,7 +57,7 @@ function louverTextures(){const W=512,H=1380,slats=10,pitch=W/slats,gap=Math.rou
  const color=canvasTexture(W,H,g=>draw(g,null,false),'#8a5a35'),bump=canvasTexture(W,H,g=>draw(g,null,true),'#cccccc');bump.colorSpace=T.NoColorSpace;
  if(browser){const img=new Image();img.onload=()=>{const c=color.image,g=c.getContext('2d');draw(g,img,false);color.needsUpdate=true;};img.src=WOOD_TEXTURE;}
  return {color,bump};}
-export function buildModel(){
+export function buildModel(opts={}){const LITE=!!opts.lite;
  const root=new T.Group(),architecture=new T.Group();root.add(architecture);const units=[],actions=[],sourceMeshes=[],lightNodes=[];
  const woodMap=imageTexture(WOOD_TEXTURE,'#a06230');
  const wood=new T.MeshPhysicalMaterial({color:'#ffffff',map:woodMap,bumpMap:woodMap,bumpScale:.6,roughness:.42,clearcoat:.35,clearcoatRoughness:.22,side:T.DoubleSide});wood.userData.wood=true;
@@ -124,7 +124,7 @@ export function buildModel(){
   else for(const part of def.parts){const frame=localPart(u,part),{w,h,depth:d}=part,i=ordered.indexOf(part);
    if(def.kind==='glass-tinted'||def.kind==='glass-clear'||def.kind==='glass-grey'){carcass(u,frame,w,h,d,wood);const count=def.id==='crockery'?4:def.id==='book-shelf'?2:def.id==='entrance-display'?5:3;// APPROX shelf counts
     shelves(u,frame,w,h,d,count,def.id==='book-shelf'?wood:shelfGlass);const pair=def.parts.length===2;shutter(u,frame,part,{glass:def.kind,hingeRight:pair&&i===1});
-    const glow=interior(u,frame);glow.userData.glassLighting=true;addLight(glow,0,h/2-.03,-.05,w-.06,.05,ledBright,22);}
+    const glow=interior(u,frame);glow.userData.glassLighting=true;addLight(glow,0,h/2-.03,-.05,w-.06,.05,ledBright,22,!LITE);}
    else if(def.kind==='glass-lift'){carcass(u,frame,w,h,d);const pivot=new T.Group();pivot.position.y=h/2;frame.add(pivot);frame.updateWorldMatrix(true,true);sourceFace(faceById.get(part.faceId),glassPane('glass-lift'),pivot);box(pivot,w,.02,.02,0,-.01,-.008,frameMetal);box(pivot,w,.02,.02,0,-h+.01,-.008,frameMetal);action(u,pivot,'liftX',-1.15).hingeSide='top';shelves(u,frame,w,h,d,0);}
    else if(def.kind==='wood-shutters'){carcass(u,frame,w,h,d);shelves(u,frame,w,h,d,0);// pairs open outward from each pair centre (APPROX hinge sides)
     shutter(u,frame,part,{hingeRight:i%2===1});}
@@ -160,14 +160,15 @@ export function buildModel(){
  {const beam=faceById.get(S.surfaceLights[0]),[lo]=faceBounds(beam),y=lo[1],zc=P(0,(S.rafterDepth[0]+S.rafterDepth[1])/2,0).z;const g=new T.Group();groupOf('entrance').add(g);
   const body=new T.MeshStandardMaterial({color:'#1c1c1c',roughness:.55,metalness:.3}),lens=new T.MeshStandardMaterial({color:'#fffaf0',emissive:'#ffdcae',emissiveIntensity:2.2,toneMapped:false});
   for(const [x0,x1] of S.beamGaps){const x=P((x0+x1)/2,0,0).x,c=new T.Mesh(new T.CylinderGeometry(.03,.03,.045,32),body);c.position.set(x,y-.0225,zc);c.castShadow=false;g.add(c);const l=new T.Mesh(new T.CylinderGeometry(.022,.022,.003,32),lens);l.position.set(x,y-.046,zc);l.userData.onMaterial=lens;l.userData.led=true;g.add(l);lightNodes.push(l);
-   const a=new T.RectAreaLight('#ffdcb0',110,.06,.06);/* 17:45 pergola highlighted */a.position.set(x,y-.05,zc);a.rotation.x=-Math.PI/2;g.add(a);lightNodes.push(a);}}
+}
+  {/* Android perf (19:56): one area light along the beam instead of one per downlight */const xa=P(S.beamGaps[0][0],0,0).x,xb=P(S.beamGaps.at(-1)[1],0,0).x,a=new T.RectAreaLight('#ffdcb0',70,Math.abs(xb-xa),.06);a.position.set((xa+xb)/2,y-.05,zc);a.rotation.x=-Math.PI/2;g.add(a);lightNodes.push(a);}}
  // Staggered plant shelves between the rafters (Bright: 5 ft / 4 ft alternately), concealed light under each.
  {const ent=groupOf('entrance');const plantMat=new T.MeshStandardMaterial({color:'#4f7a3a',roughness:.8}),potMat=new T.MeshStandardMaterial({color:'#d9d2c4',roughness:.6});
   for(const [x0,x1,h] of S.rafterGaps){worldBox(ent,[x0,S.rafterDepth[0]-.3,h-.6],[x1,S.rafterDepth[1]+.3,h],woodSkin);const c=P((x0+x1)/2,(S.rafterDepth[0]+S.rafterDepth[1])/2,h);const pot=new T.Mesh(new T.CylinderGeometry(.04,.032,.07,20),potMat);pot.position.copy(c).add(new T.Vector3(0,.035,0));ent.add(pot);for(let k=0;k<7;k++){const leaf=new T.Mesh(new T.SphereGeometry(.022,10,8),plantMat);leaf.scale.set(1,.45,.7);leaf.position.copy(c).add(new T.Vector3(Math.cos(k*.9)*.03,.08+(k%3)*.018,Math.sin(k*.9)*.03));leaf.rotation.z=k*.7;ent.add(leaf);}
-   const strip=new T.Mesh(new T.BoxGeometry((x1-x0-.6)*IN,.006,.012),led);strip.position.copy(P((x0+x1)/2,(S.rafterDepth[0]+S.rafterDepth[1])/2,h-.6)).add(new T.Vector3(0,-.004,0));strip.userData.onMaterial=led;strip.userData.led=true;ent.add(strip);lightNodes.push(strip);const sl=new T.RectAreaLight('#ffdcb0',60,(x1-x0-.6)*IN,.06);sl.position.copy(strip.position).add(new T.Vector3(0,-.006,0));sl.rotation.x=-Math.PI/2;ent.add(sl);lightNodes.push(sl);}}
+   const strip=new T.Mesh(new T.BoxGeometry((x1-x0-.6)*IN,.006,.012),led);strip.position.copy(P((x0+x1)/2,(S.rafterDepth[0]+S.rafterDepth[1])/2,h-.6)).add(new T.Vector3(0,-.004,0));strip.userData.onMaterial=led;strip.userData.led=true;ent.add(strip);lightNodes.push(strip);if(!LITE){const sl=new T.RectAreaLight('#ffdcb0',60,(x1-x0-.6)*IN,.06);sl.position.copy(strip.position).add(new T.Vector3(0,-.006,0));sl.rotation.x=-Math.PI/2;ent.add(sl);lightNodes.push(sl);}}}
  // Pebbles on the planter base
  {const top=faceById.get(S.pebbles[0]),[lo,hi]=faceBounds(top),rnd=(s=>()=>(s=(s*16807)%2147483647)/2147483647)(11),geo=new T.SphereGeometry(1,10,8),tones=['#9b968d','#7d786f','#b5afa5','#6c675f'].map(c=>new T.MeshStandardMaterial({color:c,roughness:.7}));
-  for(let k=0;k<260;k++){const r=.008+rnd()*.012,m=new T.Mesh(geo,tones[k%4]);m.scale.set(r*1.3,r*.7,r);m.position.set(lo[0]+r+rnd()*(hi[0]-lo[0]-2*r),hi[1]+r*.5,lo[2]+r+rnd()*(hi[2]-lo[2]-2*r));groupOf('entrance').add(m);}}
+  const insts=tones.map(t=>{const im=new T.InstancedMesh(geo,t,65);im.receiveShadow=true;groupOf('entrance').add(im);return im;}),mx=new T.Matrix4(),q=new T.Quaternion();for(let k=0;k<260;k++){const r=.008+rnd()*.012;mx.compose(new T.Vector3(lo[0]+r+rnd()*(hi[0]-lo[0]-2*r),hi[1]+r*.5,lo[2]+r+rnd()*(hi[2]-lo[2]-2*r)),q,new T.Vector3(r*1.3,r*.7,r));insts[k%4].setMatrixAt(Math.floor(k/4),mx);}insts.forEach(im=>im.instanceMatrix.needsUpdate=true);}
  // Open key/decor display box (wooden mica) — shelves skip the switch box. APPROX shelf heights.
  {const k=S.keyRecess;for(const z of [18,36,48,70])worldBox(groupOf('entrance'),[k.x[0],k.y[0]+.3,z-.7],[k.x[1],k.y[1],z],woodSkin);}
  // Box above the rafters: 2-3 plants (money plants + a bonsai) glowing under hanging pencil lights.
@@ -232,7 +233,8 @@ export function buildModel(){
  function setTV(on){if(tvSource?.image?.play){if(on)tvSource.image.play().catch(()=>{});else tvSource.image.pause();}screen.emissiveMap=on?(tvSource||tvTex):null;screen.emissiveIntensity=on?1.15:0;screen.color.set(on?'#000000':'#050607');screen.needsUpdate=true;tv.userData.light.intensity=on?6:0;tv.userData.light.visible=on;tv.userData.on=on;}
  // Books on the book shelf (glass shutter) — rows on the base and both shelves.
  {const u=uById('book-shelf'),[f,part]=partFrame(u),{w,h,depth:d}=part,rnd=(s=>()=>(s=(s*16807)%2147483647)/2147483647)(23),cols=['#7b2f2a','#24405e','#3e5b3a','#c9b48a','#5a3d2b','#8c6d3f','#2f2f33','#a85a32','#e2dccd'];
-  for(const base of [-h/2+.018,-h/2+h/3+.009,-h/2+2*h/3+.009]){let x=-w/2+.035;while(x<w/2-.06){const bw=.018+rnd()*.02,bh=.17+rnd()*.07,bd=.14+rnd()*.04,b=new T.Mesh(new T.BoxGeometry(bw,bh,bd),pm(cols[Math.floor(rnd()*cols.length)],.7));b.position.set(x+bw/2,base+bh/2,-.022-d*.45);if(rnd()<.12){b.rotation.z=.18;b.position.y-=.004;}b.castShadow=true;f.add(b);x+=bw+.002;}}}
+  const bk=[];for(const base of [-h/2+.018,-h/2+h/3+.009,-h/2+2*h/3+.009]){let x=-w/2+.035;while(x<w/2-.06){const bw=.018+rnd()*.02,bh=.17+rnd()*.07,bd=.14+rnd()*.04,tilt=rnd()<.12;bk.push([x+bw/2,base+bh/2-(tilt?.004:0),bw,bh,bd,tilt?.18:0,cols[Math.floor(rnd()*cols.length)]]);x+=bw+.002;}}
+  {const im=new T.InstancedMesh(new T.BoxGeometry(1,1,1),pm('#ffffff',.7),bk.length),mx=new T.Matrix4(),c=new T.Color();bk.forEach(([x,y,bw,bh,bd,rz,col],n)=>{mx.compose(new T.Vector3(x,y,-.022-d*.45),new T.Quaternion().setFromEuler(new T.Euler(0,0,rz)),new T.Vector3(bw,bh,bd));im.setMatrixAt(n,mx);im.setColorAt(n,c.set(col));});im.castShadow=true;f.add(im);}}
  // Open book on the study table (desk top at 30 in, beside the bay-window seat)
  const desk=new T.Group();desk.name='open-book';uById('book-shelf').group.add(desk);
  {const cover=at(desk,new T.Mesh(new T.BoxGeometry(.34,.006,.235),pm('#7b2f2a',.6)),72,284.5,30.12);const page=pm('#f7f2e6',.85);for(const s of [-1,1]){const p=new T.Mesh(new T.BoxGeometry(.162,.012,.22),page);p.position.copy(cover.position).add(new T.Vector3(s*.083,.009,0));p.rotation.z=-s*.05;p.castShadow=true;desk.add(p);}

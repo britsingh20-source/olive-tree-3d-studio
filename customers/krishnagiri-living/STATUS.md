@@ -240,3 +240,9 @@ Bright: pooja shown too tight — see top and bottom first, then open; don't ope
 Validation: check-krishnagiri-living.mjs passed (looks up/down while the TV plays; no under-stair fx; pooja top/bottom before opening; ends looking at the pergola/TV). Headless Chrome SwiftShader frames at 31.9 s (look up with TV on), 103.4 s (whole pooja), 106.4 s (pooja top), 132.4 s (final whole view). Motion on a phone not tested.
 
 Deployed kl17: commit 5cfdef3d50dbd4a8964c65b40794bb3558752032, Pages run 45023946960 success; live index serves studio.js?v=kl17.
+
+## Android stuck on load — 2026-11-22 (kl18)
+
+Bright: works on iPhone, but the customer's Android (and Bright's Android) gets stuck. Measured (headless Chrome, Android UA, SwiftShader): 21 RectAreaLights and 963 meshes, 65 s to first view — area lights are evaluated in every lit material, too heavy for typical Android GPUs. Changes: six beam downlight area lights merged into one; pebbles (260) → 4 InstancedMeshes; books → 1 InstancedMesh with per-instance colours (963 → 655 meshes, 16 area lights on full). Lite mode (Android / deviceMemory<=4 / ?lite; ?full overrides): no glass-unit or plant-shelf area lights (7 incl. the TV light, which is hidden while off), pixel ratio ≤1.5, shadow map 1024. Watchdog: after 25 s still loading, a 'light version' link (?lite) appears.
+
+Validation: check-krishnagiri-living.mjs passed (lite ≤7 area lights, <700 meshes). Same Android-UA headless test: 34.8 s (was 65 s) in software rendering; ?lite renders at 390x844. Not tested on a real Android phone — ask Bright/customer to retry.

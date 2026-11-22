@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl17",
+  "assetVersion": "kl18",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -35,7 +35,8 @@
   "coplanarFix": "special.pushBack in exact-layout.js: 40 coplanar overlapping source faces get a levelled positive polygon offset (unit faces win, then coloured over white, then smaller over larger)",
   "staircase": "Staircase faces grouped; auto-fade to 12% opacity whenever the staircase box lies between the camera and the orbit target (full view only); 'Hide staircase' toolbar button hides it completely. Units (pooja, under-stair storage) never fade.",
   "walkthrough": "Interactive walkthrough (Walkthrough button), 27 steps / ~96 s at eye level 62 in (42 in seated): entrance partition \u2192 opens/closes the grey glass display \u2192 65-inch TV on the marble panel switched on/off \u2192 sits on the bay-window seat and looks around \u2192 reads an open book at the study table (desk niche at 30 in) \u2192 opens the glass book shelf (books on shelves) and the tandem drawer \u2192 opens/closes the crockery unit (plates, bowls, cups, glasses) \u2192 opens/closes the pooja (platform with brass diya, kalash, bell) \u2192 opens/closes the staircase storage (wood-lined, storage bins). Tap/drag stops it.",
-  "tvVideo": "'TV video' button: the viewer picks a video file on their own device; it plays (muted, looped) on the TV during the walkthrough via a VideoTexture. Nothing is uploaded or published. The studio does not embed third-party/celebrity footage (Bright asked for a Vijay video \u2014 declined to embed; he can load his own clip locally)."
+  "tvVideo": "'TV video' button: the viewer picks a video file on their own device; it plays (muted, looped) on the TV during the walkthrough via a VideoTexture. Nothing is uploaded or published. The studio does not embed third-party/celebrity footage (Bright asked for a Vijay video \u2014 declined to embed; he can load his own clip locally).",
+  "liteMode": "Android or deviceMemory<=4 (or ?lite; ?full forces full): only the main area lights (4 LED strips, beam, plant box; TV when on), no glass-unit/shelf area lights (emissive strips stay), pixel ratio <=1.5, 1024 shadow map. Loading longer than 25 s offers a link to ?lite."
  },
  "source": {
   "files": [

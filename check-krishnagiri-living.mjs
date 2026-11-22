@@ -21,7 +21,7 @@ for(const id of ['wall-unit','tv-unit'])assert(product(id),id);assert.equal(prod
 // materials on fixed source faces
 const meshOf=id=>m.sourceMeshes.find(o=>o.userData.sourceFace===id);
 for(const id of exactLayout.special.marble)assert(meshOf(id).material.map&&meshOf(id).material.clearcoat>.5,'marble '+id);
-for(const id of exactLayout.special.louver){const o=meshOf(id);assert(o.material.map&&o.material.bumpMap,'louver: one mipmapped wood-slat surface '+id);}{let inst=0;m.root.traverse(o=>{if(o.isInstancedMesh)inst++;});assert.equal(inst,0,'no thin slat geometry (pixelated while rotating)');}
+for(const id of exactLayout.special.louver){const o=meshOf(id);assert(o.material.map&&o.material.bumpMap,'louver: one mipmapped wood-slat surface '+id);}{let inst=0;m.root.traverse(o=>{if(o.isInstancedMesh&&o.material.map)inst++;});assert.equal(inst,0,'no thin slat geometry (pixelated while rotating)');}
 const grainOK=(mesh)=>{const g=mesh.geometry,uv=g.attributes.uv,pos=g.attributes.position;let best=null;for(let k=0;k<pos.count;k++)for(let l=k+1;l<pos.count;l++){const du=Math.abs(uv.getX(k)-uv.getX(l)),dv=Math.abs(uv.getY(k)-uv.getY(l));if(!best||du+dv>best[0]+best[1])best=[du,dv];}return best[0]>=best[1]-1e-9;};
 for(const f of exactLayout.sourceFaces){const o=meshOf(f.id);if(o.material.userData?.wood)assert(grainOK(o),'grain runs along the longer side '+f.id);}
 assert(unit('crockery').group.getObjectsByProperty('isMesh',true).some(o=>o.material.userData?.wood&&o.parent?.parent&&o.geometry.parameters?.height>2),'crockery interior wooden');
@@ -38,6 +38,7 @@ m.setReference(true);let shown=0;m.root.traverse(o=>{if(o.isMesh&&o.visible){ass
 const studio=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8'),html=fs.readFileSync('dist/krishnagiri-living/index.html','utf8');
 assert(!/overflow='hidden'|classList\.add\('is-focused'\)/.test(studio),'no scroll lock in product view');assert(/controls\.enableDamping=false/.test(studio));
 const v=html.match(/studio\.js\?v=(\w+)/)[1];assert(studio.includes('model.js?v='+v),'asset versions match');
+{const ml=(await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'))).buildModel({lite:true});let lr=0;ml.root.traverse(o=>{if(o.isRectAreaLight)lr++;});assert(lr<=7,'lite area lights '+lr);let meshes=0;m.root.traverse(o=>{if(o.isMesh)meshes++;});assert(meshes<700,'mesh count '+meshes);console.log('lite lights',lr,'meshes',meshes);}
 console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.products.length,'products,',m.actions.length,'actions,',rect,'area lights');
 {// no unresolved coplanar overlap: every pushed face renders behind its partner via a positive polygon offset
  const pb=exactLayout.special.pushBack;assert(Object.keys(pb).length>=30);for(const [id,l] of Object.entries(pb)){const o=m.sourceMeshes.find(x=>x.userData.sourceFace===Number(id));assert(o.material.polygonOffset&&o.material.polygonOffsetFactor===2*l,'pushed back '+id);}
