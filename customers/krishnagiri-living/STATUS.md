@@ -254,3 +254,9 @@ Deployed kl18: push run 45033255684 failed at deploy-pages (GitHub artifact meta
 Bright: kl18 loads on Android, but customers think the page hangs because the 3D view and Walkthrough button are below the intro. Now the page scrolls to the 3D view immediately on open (loading message visible) and starts the walkthrough automatically once loaded; Stop/replay button kept; ?nowalk or ?debug disable it. Validation: check passed; headless Chrome (Android UA, 390x844): scrolled to the viewer at open, walkthrough running ('Stop walkthrough', entrance step) after load, no page errors.
 
 Deployed kl19: Pages run 45034450279 success; live index serves studio.js?v=kl19.
+
+## Android stutter early in the walk — 2026-11-22 (kl20)
+
+Bright: kl19 now auto-starts on Android (earlier failure was the 10-minute page cache), but panning stutters on Android until after the TV unit; iPhone smooth. Causes found in code: setStairOpacity toggled material.transparent and set needsUpdate on every fade frame → shader recompiles per frame while the staircase faded (first part of the walk pans past it); TV on/off toggled a light's visibility and the screen emissiveMap → recompiled every lit material; lights on/off by visibility likewise. Fixes: stair materials permanently transparent (only opacity/depthWrite change); TV light always present (intensity 0/6) and emissiveMap always bound; setLights uses intensity; renderer.compile(scene) at load with hidden objects temporarily shown and the stairs at 50% so every program exists before the walk. ?debug&walk lets tests auto-run the walk.
+
+Validation: check-krishnagiri-living.mjs passed (adds: light count unchanged by lights-off/TV-on, stair fade leaves material versions unchanged). Headless Chrome (Android UA, SwiftShader): renderer.info.programs stays 24 from load through walk times 5–135 s incl. TV on/off and stair fade. Frame smoothness on a real Android phone not measured — ask Bright.
