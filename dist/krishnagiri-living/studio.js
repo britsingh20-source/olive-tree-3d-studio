@@ -1,10 +1,10 @@
 import * as T from 'three';
-import {createKitchenTour} from './tour.js?v=kl3';
+import {createKitchenTour} from './tour.js?v=kl4';
 import {OrbitControls} from '../vendor/OrbitControls.js';
 import {CompatibilityRenderer} from '../prem/compatibility.js?v=smooth5';
 import {RoomEnvironment} from '../vendor/RoomEnvironment.js';
 import {RectAreaLightUniformsLib} from '../vendor/RectAreaLightUniformsLib.js';
-import {buildModel,WOOD_TEXTURE,WOOD_FINISH,DEFAULT_FINISH,FINISH_NAME,project} from './model.js?v=kl3';
+import {buildModel,WOOD_TEXTURE,WOOD_FINISH,DEFAULT_FINISH,FINISH_NAME,project} from './model.js?v=kl4';
 // Living area: every confirmed solid front is wooden mica (Bright 2026-11-22).
 const $=id=>document.getElementById(id),stage=$('stage'),storageKey=project.id;
 const palette=[{...WOOD_FINISH},{name:'Warm ivory',color:'#e5e0d2'},{name:'Porcelain white',color:'#f4f1e9'},{name:'Sage green',color:'#789283'},{name:'Forest green',color:'#35534a'},{name:'Pebble grey',color:'#989d96'},{name:'Terracotta',color:'#aa7661'},{name:'Champagne',color:'#c7b99f'},{name:'Walnut',color:'#76523b',wood:true},{name:'Natural oak',color:'#b89568',wood:true},{name:'Charcoal',color:'#3c4140'},{name:'Dusty rose',color:'#bc9691'}];

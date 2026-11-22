@@ -39,3 +39,7 @@ const studio=fs.readFileSync('dist/krishnagiri-living/studio.js','utf8'),html=fs
 assert(!/overflow='hidden'|classList\.add\('is-focused'\)/.test(studio),'no scroll lock in product view');assert(/controls\.enableDamping=false/.test(studio));
 const v=html.match(/studio\.js\?v=(\w+)/)[1];assert(studio.includes('model.js?v='+v),'asset versions match');
 console.log('krishnagiri-living check passed:',m.units.length,'sections,',m.products.length,'products,',m.actions.length,'actions,',rect,'area lights');
+{// no unresolved coplanar overlap: every pushed face renders behind its partner via a positive polygon offset
+ const pb=exactLayout.special.pushBack;assert(Object.keys(pb).length>=30);for(const [id,l] of Object.entries(pb)){const o=m.sourceMeshes.find(x=>x.userData.sourceFace===Number(id));assert(o.material.polygonOffset&&o.material.polygonOffsetFactor===2*l,'pushed back '+id);}
+ for(const id of [43495,43517,43511])assert(!pb[id],'under-stair shutters stay in front');assert(pb[43505]&&pb[43474]&&pb[43475],'stair side and white faces behind the pooja/storage faces');
+ console.log('coplanar overlaps resolved:',Object.keys(pb).length);}

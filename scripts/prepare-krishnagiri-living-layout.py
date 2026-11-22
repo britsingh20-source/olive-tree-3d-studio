@@ -85,6 +85,43 @@ special = {
                        'bench': [[39, 229, 0], [53, 278, 31]]},
     'keyRecess': {'x': [40.6, 51.0], 'y': [109.6, 116.6], 'z': [1.0, 83.6], 'switch': [55.0, 62.3]},
 }
+# Coplanar overlapping faces flicker (z-fighting) while rotating (Bright 2026-11-22, box near the stairs).
+# For each overlapping pair push one face behind the other: a unit face always wins; otherwise white loses;
+# otherwise the larger face loses.
+def _area(f):
+    lo = [min(v[i] for l in f['points'] for v in l) for i in range(3)]
+    hi = [max(v[i] for l in f['points'] for v in l) for i in range(3)]
+    return lo, hi
+unit_faces = {fid for u in units for fid in u['sourceFaces']}
+flat = []
+for f in faces:
+    n = [abs(c) for c in f['normal']]
+    if max(n) < .999:
+        continue
+    ax = n.index(max(n)); lo, hi = _area(f)
+    flat.append((f, ax, lo, hi))
+push = set(); edges = []
+for i, (a, ax, alo, ahi) in enumerate(flat):
+    for b, bx, blo, bhi in flat[i + 1:]:
+        if ax != bx or abs(alo[ax] - blo[ax]) > .0005:
+            continue
+        if any(min(ahi[k], bhi[k]) - max(alo[k], blo[k]) <= .001 for k in range(3) if k != ax):
+            continue
+        if a['id'] in unit_faces and b['id'] in unit_faces:
+            continue
+        if a['id'] in unit_faces or b['id'] in unit_faces:
+            loser = b if a['id'] in unit_faces else a
+        elif (a['visibleColor'] == '#ffffff') != (b['visibleColor'] == '#ffffff'):
+            loser = a if a['visibleColor'] == '#ffffff' else b
+        else:
+            sa = [ahi[k] - alo[k] for k in range(3) if k != ax]; sb = [bhi[k] - blo[k] for k in range(3) if k != bx]
+            loser = a if sa[0] * sa[1] >= sb[0] * sb[1] else b
+        push.add(loser['id']); edges.append((loser['id'], (b if loser is a else a)['id']))
+level = {}
+for _ in range(10):
+    for lo_id, win_id in edges:
+        level[lo_id] = max(level.get(lo_id, 0), level.get(win_id, 0) + 1)
+special['pushBack'] = {str(k): v for k, v in sorted(level.items())}
 WOOD = {'#660000', '#661900', '#666600', '#31ffff', '#99ff99', '#31ff31', '#ff9831', '#ff7b00', '#ff6532'}
 d = {'source': p['source'], 'sha256': p['sha256'], 'sourceUnits': 'inches', 'metresPerInch': IN, 'originInches': origin,
      'sourceFaces': faces, 'units': units, 'special': special, 'woodColours': sorted(WOOD),
