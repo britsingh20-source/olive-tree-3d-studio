@@ -847,6 +847,16 @@
    "finish": "Surfaces are wooden mica (same as the wood work); LED concealed there",
    "note": "Here coral means concealed LED strip (over the entrance the same colour meant hanging designer lights)",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#664a00 (back side)",
+   "faces": [
+    46830,
+    46909
+   ],
+   "unit": "Two small panels on the column between TV wall and entrance rafters (~49\u201362in high): one facing the TV side, one facing the entrance side",
+   "purpose": "Switch boxes for two-way switches, operable from both sides",
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],

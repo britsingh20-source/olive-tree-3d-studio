@@ -62,6 +62,8 @@ Bright said the TV panelling has its own colours. The faces looked white because
 
 - TV wall #ff6532 (undersides at 67in and 8in) = concealed LED strips; surfaces wooden mica.
 
+- #664a00 (two small panels on the column, TV side + entrance side) = two-way switch boxes, one each side.
+
 ## Next action
 
 Ask Bright what each source colour is, one at a time (started with #660000, 17 faces), saving each answer here and in design.json. Then build dist/krishnagiri-living/ from the krishnagiri-kitchen viewer.
