@@ -84,7 +84,8 @@
      ]
     }
    ],
-   "status": "unresolved"
+   "status": "confirmed",
+   "meaning": "Pooja unit CNC shutters (two)"
   },
   "#660000": {
    "materialName": "A08_Garnet_Shadow",
@@ -733,6 +734,21 @@
    "unit": "Top of the wall unit at 84in (x39.5\u2013111.5, 15in deep)",
    "material": "Same wooden mica as #660000",
    "confirmedOn": "2026-11-22"
+  },
+  {
+   "sourceColour": "#000066",
+   "faces": [
+    43445,
+    43523
+   ],
+   "unit": "Two 15x84in panels (x303.5, y262.6\u2013292.6, 0\u201384in) on the tall box beside the staircase, facing the living room",
+   "purpose": "Pooja unit",
+   "shutters": "Two CNC-cut shutters",
+   "cncPattern": {
+    "reference": "Bright's WhatsApp photo 2026-11-22 \u2014 use for the CNC DESIGN ONLY; do NOT copy its colour. Photo not committed.",
+    "description": "Central circular mandala of petal/scale cut-outs split across the two shutters (large outer petals, smaller toward the centre), a round wood-look handle disc at the centre split between the shutters, hanging temple bells on dotted chains along the top, lotus motifs: one per shutter below the mandala near the meeting edge and one per shutter near the bottom outer corner; warm light glows through the cut-outs"
+   },
+   "confirmedOn": "2026-11-22"
   }
  ],
  "approximations": [],
@@ -743,6 +759,7 @@
   "Crockery unit: glass tint colour (black like kitchen?), number/spacing of glass shelves, hinge sides, handles, light type/position, cabinet interior finish",
   "Book shelf: number of shelves (glass or wood), one or two shutters, hinge side",
   "Wall-unit solid fronts (drawer etc.): finish/colour and handles",
-  "Bench: cushion colour/fabric; bench body finish"
+  "Bench: cushion colour/fabric; bench body finish",
+  "Pooja shutters: colour/finish (NOT from the reference photo), backing behind CNC (lit?), internal layout"
  ]
 }
