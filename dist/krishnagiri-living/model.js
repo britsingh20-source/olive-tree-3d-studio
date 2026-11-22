@@ -13,7 +13,9 @@ export const BEIGE='#efebe4',BEIGE_FINISH={name:'Classy beige (as pooja shutters
 // Design options (Bright 2026-11-22): Option 2 turns the TV base shutters and the staircase storage shutters beige; glass shutters unchanged.
 // Final colour scheme (Bright 2026-11-22 15:10, beige only — no options): beige TV base shutters and the wall-unit fronts beside
 // the bay-window seat (two above the open niche, one at the seat end); staircase storage stays wooden mica; glass unchanged.
-export const BEIGE_UNITS=['tv-shutters'],BEIGE_FACES=[46951,44607,44860];
+// 15:24: the beige fronts by the seat are real opening shutters (units wall-upper, seat-end); tandem drawer and robot-bay
+// fixed panel below the book shelf are beige too.
+export const BEIGE_UNITS=['tv-shutters','wall-upper','seat-end','tandem','robot-bay'],BEIGE_FACES=[];
 export const FINISH_NAME=WOOD_FINISH.name;
 export const project={id:'krishnagiri-living-v1',customer:'Krishnagiri living area',location:'Krishnagiri',quotation:null};
 export const definitions=exactLayout.units;

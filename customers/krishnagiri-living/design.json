@@ -15,7 +15,7 @@
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/krishnagiri-living/",
   "directory": "dist/krishnagiri-living",
   "storageKey": "krishnagiri-living-v1",
-  "assetVersion": "kl11",
+  "assetVersion": "kl12",
   "template": "krishnagiri-kitchen studio shell (camera/selection/tour/finish code) with a new living-area model.js",
   "layout": "dist/krishnagiri-living/exact-layout.js",
   "layoutScript": "scripts/prepare-krishnagiri-living-layout.py",
@@ -1033,6 +1033,16 @@
     "Pooja CNC shutters: classy beige; glass shutters unchanged; everything else wooden mica"
    ],
    "bright": "change this red mark shutters to beige\u2026 near the puja the three shutters should be wooden mica\u2026 near the bay window seating should be beige\u2026 only the beige option is enough, no need of option one",
+   "confirmedOn": "2026-11-22"
+  },
+  {
+   "change": "Seat-side beige fronts are real opening shutters; drawer and robot panel beige",
+   "items": [
+    "Faces 46951+44607 \u2192 unit wall-upper: two side-hinged beige shutters (open from the middle) with a 15in carcass",
+    "Face 44860 \u2192 unit seat-end: one side-hinged beige shutter (hinge side approximate)",
+    "Tandem drawer and robot-bay fixed panel below the book-shelf glass shutter: classy beige"
+   ],
+   "bright": "the beige you changed beside the glass shutter is not opening, does not look like a door\u2026 below the glass shutter the drawer and fixed panel should be beige",
    "confirmedOn": "2026-11-22"
   }
  ],

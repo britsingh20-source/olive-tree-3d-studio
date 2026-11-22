@@ -37,6 +37,8 @@ by = {f['id']: f for f in faces}
 groups = [
     ('crockery', 'Crockery unit · tinted glass', 'glass-tinted', 'crockery', [45220, 45225], 15),
     ('book-shelf', 'Book shelf · clear glass', 'glass-clear', 'wall-unit', [43896], 15),
+    ('wall-upper', 'Wall unit · beige shutters above the niche', 'wood-shutters', 'wall-unit', [46951, 44607], 15),
+    ('seat-end', 'Wall unit · beige shutter at the seat end', 'wood-shutters', 'wall-unit', [44860], 15),
     ('tandem', 'Tandem drawer', 'tandem', 'wall-unit', [44620], 15),
     ('robot-bay', 'Robot cleaner bay · fixed shutter', 'fixed', 'wall-unit', [44629], 15),
     ('tv-shutters', 'TV unit · wooden mica shutters', 'wood-shutters', 'tv-unit', [45882, 46921, 46939, 46933], 12.5),
