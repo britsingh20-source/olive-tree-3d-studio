@@ -188,3 +188,5 @@ Bright (marked iPhone screenshots, 15:10): the three staircase storage shutters 
 Changes: option cards, option images and applyOption removed; BEIGE_UNITS=['tv-shutters'] get the beige acrylic default front; BEIGE_FACES render with a beige acrylic material (#e6d9c4, clearcoat); under-stair back to wooden mica. Saved per-device finishes for tv-shutters/under-stair and the stored option are cleared once (saved.scheme=11) so phones that picked an option see the final scheme.
 
 Validation: check-krishnagiri-living.mjs passed (beige scheme: TV shutters default beige, under-stair wood, three beige faces, no option code). Headless Chrome SwiftShader 1366x900: seat-side wall unit (beige fronts above the niche and at the seat end), staircase storage (wood) with beige pooja, TV base (beige shutters, glass lift-up). Real phone not tested.
+
+Deployed kl11: commit b043a24ac6538a1d4439cd5e3c28a44a35990a17; live index serves studio.js?v=kl11 without option cards.
