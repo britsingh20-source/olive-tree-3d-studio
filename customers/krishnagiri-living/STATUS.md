@@ -134,3 +134,5 @@ Deployed kl4: commit 82ad17b51c0121063d9959051d5fe24ab1b55c98; live index serves
 ## iPhone load failure — 2026-11-22 (kl5)
 
 Bright's iPhone (screenshot 09:22) showed "The 3D view could not load" on kl4 — an exception in start(). Not reproduced: kl4 loads in headless Chrome (SwiftShader), in Playwright WebKit 26.6 (Linux) and in the no-WebGL compatibility fallback. Likely device-side (iOS refusing/losing a WebGL context under memory pressure or with other 3D tabs open) but unconfirmed. Changes: the error box now shows the real error message + browser/OS and a Try again button (clickable); render-loop exceptions and webglcontextlost also show it; phone pixel ratio capped at 2x (was up to 3x) to cut GPU memory. Next: if it still fails, ask Bright for a screenshot of the Details line.
+
+Deployed kl5: commit 5f0dc408256a96f7f27fa31f0a286a5aa1d4bce2, Pages run 44982863503 success; live page loads in Playwright WebKit 390x844 (loading hidden, no errors). Real iPhone not yet re-tested.
