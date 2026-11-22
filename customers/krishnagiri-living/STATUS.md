@@ -222,3 +222,5 @@ Deployed kl14: commit 9d7bb9e7d576fd47f5fdbc216cab22fd73f05de6; live index serve
 Bright: play a Vijay video on the TV; show the panel between the book shelf and the crockery unit during the walk. Declined to embed a real person's/third-party footage in the published page; added a 'TV video' toolbar button instead — the viewer chooses a video on their own device and it plays on the 65" TV (VideoTexture, muted, loop) during the walkthrough; nothing is uploaded. Added 4 walk steps (31 steps / ~110 s) at the wooden frame panel of the opening (x114.5–171.5): front view, look up to the frame top and LED strip (93 in), pan left post and right side.
 
 Validation: check-krishnagiri-living.mjs passed (panel stop between book shelf and crockery; setTVSource exists). Headless Chrome SwiftShader frames at 64.5 s and 68.2 s show the frame, LED and posts. The video chooser was not exercised with a real file here (headless) — ask Bright to try on the phone.
+
+Deployed kl15: commit 71ae45340719b7d5120f149aa583fd7f44bf0a52; live index serves studio.js?v=kl15 with the TV video button.
