@@ -332,8 +332,14 @@
       "materialsNote": "Faces ARE painted. Colour field per face; 5 source colours: #ffb299 (21 faces), #ffffff (9), #5a7a43 (7), #db3500 (2), #a56348 (1). (Earlier note saying 'unpainted' was an intake grouping error, corrected 2026-11-23.)",
       "geometry": "customers/ratesh/foyer-pooja-source-geometry.json"
     },
-    "confirmed": [],
-    "nextQuestion": "What is the green #5a7a43 colour?",
+    "confirmed": [
+      {
+        "date": "2026-11-23",
+        "sourceColour": "#5a7a43",
+        "decision": "Artificial grass mat on all green faces: back wall above counter (left 41 in), left side wall above counter, tall-unit end face, front-left post"
+      }
+    ],
+    "nextQuestion": "What is the red-orange #db3500 colour (two bands on tall unit at 18-30 in)?",
     "sourceColours": [
       {
         "colour": "#ffb299",
@@ -345,7 +351,7 @@
         "colour": "#5a7a43",
         "faces": 7,
         "where": "Pooja-niche back wall (left 41 in) and its left side wall above 30 in; tall unit's front-end face; front-left post",
-        "meaning": null
+        "meaning": "Artificial green grass wall mat (user: 'place green matt', clarified as artificial grass mat) on all green faces"
       },
       {
         "colour": "#db3500",
