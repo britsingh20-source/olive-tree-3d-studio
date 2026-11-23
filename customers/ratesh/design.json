@@ -347,15 +347,31 @@
         "date": "2026-11-23",
         "sourceColour": "#a56348",
         "decision": "Louvers on right 12 in of back wall above counter, 30-84 in. Fixed (no opening). Material/colour not yet confirmed."
+      },
+      {
+        "date": "2026-11-23",
+        "sourceColour": "#ffb299",
+        "decision": "Wooden mica shutters in ACE MICA 'Straight Wood' Design No. 1201 (user-supplied image). Applied to all peach faces: tall-unit upper and lower shutters, counter shutters and end strips, counter top, toe kicks, post outer face. User called them shutters; same-colour counter top/toe kicks/post assumed same mica as drawn.",
+        "reference": {
+          "path": "dist/ratesh/foyer-pooja/straight-wood-1201.jpg",
+          "sourceFilename": "277d9b6afc4b3421b2c98b731fccb0eb.jpg",
+          "sha256": "48fb39f7de40533ec6b366cd2412986ed128e785f3423292ba0bc30a07cb21ba",
+          "bytes": 55071,
+          "size": "500x1000",
+          "avgColour": "#533621",
+          "printedLabel": "Straight Wood — Design No. 1201 — ACE MICA",
+          "mapping": "Exclude bottom label strip; vertical grain"
+        },
+        "sheen": null
       }
     ],
-    "nextQuestion": "What is the light peach #ffb299 colour (fronts, counter top, toe kicks, post face)?",
+    "nextQuestion": "What is the white #ffffff colour (outer carcass back, sides, tops)?",
     "sourceColours": [
       {
         "colour": "#ffb299",
         "faces": 21,
         "where": "Tall-unit fronts (two lower, two upper panels), counter shutters and end panels, counter top at 30 in, all toe kicks, outer face of front-left post",
-        "meaning": null
+        "meaning": "Wooden mica shutters — ACE MICA Straight Wood, Design No. 1201"
       },
       {
         "colour": "#5a7a43",
