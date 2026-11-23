@@ -60,3 +60,5 @@ New project for the same customer (user confirmed Mr. Ratesh, wardrobe record). 
 Nothing built yet. Planned route /ratesh/foyer-pooja/ (existing /ratesh/ wardrobe route untouched).
 
 Next: confirm meaning of section 1, then 2 and 3, then finishes/fittings one question at a time.
+
+Correction (same day): second file `gn mills foir and pooja.skp` (107,825 bytes, sha256 28d2aba3…fd75) parsed EXTRACTION_OK and is identical in geometry and face colours to Untitled (8).skp. Both ARE painted — the earlier "unpainted" note came from grouping on a wrong JSON key. User rejected the position-based section reading; intake now proceeds colour by colour (design.json `foyerPooja.sourceColours`).

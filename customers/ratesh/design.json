@@ -308,6 +308,13 @@
           "localFolder": "Downloads/foir and pooja",
           "bytes": 109242,
           "sha256": "7a01bdcdcfcfcef74fdde888dc50ccbabb1959c66f9d4807c591c61090e4e387"
+        },
+        {
+          "name": "gn mills foir and pooja.skp",
+          "localFolder": "Downloads/foir and pooja",
+          "bytes": 107825,
+          "sha256": "28d2aba343f68caa59d8db048904976f33404398984b9df7b7d52458f3ebfd75",
+          "comparison": "Identical vertices, face loops and face colours to Untitled (8).skp"
         }
       ],
       "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py (identical to scripts/extract-prem-skp.py)",
@@ -322,32 +329,48 @@
       "edges": 107,
       "rootFaces": 40,
       "omittedInstances": {},
-      "materialsNote": "All 40 faces unpainted (default material); only Ty figure materials present. Sections are therefore identified by position, not colour.",
+      "materialsNote": "Faces ARE painted. Colour field per face; 5 source colours: #ffb299 (21 faces), #ffffff (9), #5a7a43 (7), #db3500 (2), #a56348 (1). (Earlier note saying 'unpainted' was an intake grouping error, corrected 2026-11-23.)",
       "geometry": "customers/ratesh/foyer-pooja-source-geometry.json"
     },
-    "sectionsByPosition": [
+    "confirmed": [],
+    "nextQuestion": "What is the green #5a7a43 colour?",
+    "sourceColours": [
       {
-        "id": "1",
-        "position": "Tall unit along left leg",
-        "size": "15 in deep x 41 in long x 84 in high",
-        "sourceDivisions": "4 in toe kick (1 in recess); two lower panels 4-18 in; full-width bands 18-26 in and 26-30 in; two tall panels 30-84 in split at mid-length",
+        "colour": "#ffb299",
+        "faces": 21,
+        "where": "Tall-unit fronts (two lower, two upper panels), counter shutters and end panels, counter top at 30 in, all toe kicks, outer face of front-left post",
         "meaning": null
       },
       {
-        "id": "2",
-        "position": "Low counter along back leg",
-        "size": "54 in wide x 12 in deep; top at 30 in; back panel 1 in thick to 84 in, open above counter",
-        "sourceDivisions": "4 in toe kick; two 17.5 in panels between 2 in end panels, 4-30 in",
+        "colour": "#5a7a43",
+        "faces": 7,
+        "where": "Pooja-niche back wall (left 41 in) and its left side wall above 30 in; tall unit's front-end face; front-left post",
         "meaning": null
       },
       {
-        "id": "3",
-        "position": "Thin full-height post at front-left corner",
-        "size": "3 x 2 in x 84 in",
+        "colour": "#db3500",
+        "faces": 2,
+        "where": "Two full-length bands on tall-unit front at 18-26 in and 26-30 in",
+        "meaning": null
+      },
+      {
+        "colour": "#a56348",
+        "faces": 1,
+        "where": "Right 12 in of the back wall above the counter (30-84 in)",
+        "meaning": null
+      },
+      {
+        "colour": "#ffffff",
+        "faces": 9,
+        "where": "Outer carcass: back, sides and tops",
         "meaning": null
       }
     ],
-    "confirmed": [],
-    "nextQuestion": "What is section 1 (the tall 15 in deep unit)?"
+    "userFeedback": [
+      {
+        "date": "2026-11-23",
+        "note": "User rejected the position-based section reading ('Not like this'); asked to analyse the second SKP. Proceed colour by colour."
+      }
+    ]
   }
 }
