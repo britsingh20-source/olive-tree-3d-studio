@@ -362,7 +362,7 @@
           "printedLabel": "Straight Wood — Design No. 1201 — ACE MICA",
           "mapping": "Exclude bottom label strip; vertical grain"
         },
-        "sheen": null
+        "sheen": "Matte (user answered matte to matte-or-glossy question, 2026-11-23)"
       },
       {
         "date": "2026-11-23",
@@ -380,7 +380,7 @@
         "decision": "Storage box for books (user's words). Internal shelf layout not yet confirmed."
       }
     ],
-    "nextQuestion": "Straight Wood 1201 mica: matte or glossy?",
+    "nextQuestion": "Handles or handleless for the shutters and drawers?",
     "sourceColours": [
       {
         "colour": "#ffb299",
