@@ -52,3 +52,11 @@ User requested small plants on the glass shelves. Added one compact green plant 
 Validation: model.js syntax passed; local 1280 × 712 WebGL preview selected Open glass shelves and visually confirmed three plants standing on the shelves with visible warm lighting. No source geometry or opening actions changed. No new mobile-specific check needed for this static decoration change. Module versions bumped to plants1 for both studio.js and model.js. Deployment verification pending.
 
 Plant update commit 985de618a2fc23fa934116bbfdc8c6635074ab63 deployed successfully in run 41118233495. Existing live /ratesh/ tab refreshed; selected Open glass shelves and visually confirmed all three plants, pots, shelves and warm lighting. Captured live console errors: none. Ready for customer review.
+
+## Foyer + pooja unit — intake started 2026-11-23
+
+New project for the same customer (user confirmed Mr. Ratesh, wardrobe record). Source `Untitled (8).skp` (109,242 bytes, sha256 7a01bdcd…e387) from the user's local "foir and pooja" folder, staged and parsed with the bundled read_skp.py on Linux Python 3: EXTRACTION_OK, 68 vertices, 107 edges, 40 root faces, 54 × 53 × 84 in bounds, zero omitted instances. Geometry stored at customers/ratesh/foyer-pooja-source-geometry.json. The model is unpainted, so sections are identified by position (see design.json `foyerPooja.sectionsByPosition`). Folder name suggests foyer + pooja; not yet confirmed.
+
+Nothing built yet. Planned route /ratesh/foyer-pooja/ (existing /ratesh/ wardrobe route untouched).
+
+Next: confirm meaning of section 1, then 2 and 3, then finishes/fittings one question at a time.

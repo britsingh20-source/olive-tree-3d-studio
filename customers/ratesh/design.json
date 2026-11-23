@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-10-31",
+  "updated": "2026-11-23",
   "customer": {
     "id": "ratesh",
     "name": "Mr. Ratesh"
@@ -296,5 +296,58 @@
     "Three illustrative apple hooks; exact hardware/count/placement unconfirmed",
     "Cushion thickness 65 mm and lift angle approximately 60 degrees are render approximations",
     "Door angles and black glass frame profile are illustrative; smoke tint is an approximation"
-  ]
+  ],
+  "foyerPooja": {
+    "status": "Intake — source read, section meanings being confirmed one at a time",
+    "plannedRoute": "/ratesh/foyer-pooja/",
+    "plannedDirectory": "dist/ratesh/foyer-pooja",
+    "source": {
+      "files": [
+        {
+          "name": "Untitled (8).skp",
+          "localFolder": "Downloads/foir and pooja",
+          "bytes": 109242,
+          "sha256": "7a01bdcdcfcfcef74fdde888dc50ccbabb1959c66f9d4807c591c61090e4e387"
+        }
+      ],
+      "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py (identical to scripts/extract-prem-skp.py)",
+      "result": "EXTRACTION_OK",
+      "sourceUnits": "inches",
+      "bounds": {
+        "x": 54,
+        "y": 53,
+        "z": 84
+      },
+      "vertices": 68,
+      "edges": 107,
+      "rootFaces": 40,
+      "omittedInstances": {},
+      "materialsNote": "All 40 faces unpainted (default material); only Ty figure materials present. Sections are therefore identified by position, not colour.",
+      "geometry": "customers/ratesh/foyer-pooja-source-geometry.json"
+    },
+    "sectionsByPosition": [
+      {
+        "id": "1",
+        "position": "Tall unit along left leg",
+        "size": "15 in deep x 41 in long x 84 in high",
+        "sourceDivisions": "4 in toe kick (1 in recess); two lower panels 4-18 in; full-width bands 18-26 in and 26-30 in; two tall panels 30-84 in split at mid-length",
+        "meaning": null
+      },
+      {
+        "id": "2",
+        "position": "Low counter along back leg",
+        "size": "54 in wide x 12 in deep; top at 30 in; back panel 1 in thick to 84 in, open above counter",
+        "sourceDivisions": "4 in toe kick; two 17.5 in panels between 2 in end panels, 4-30 in",
+        "meaning": null
+      },
+      {
+        "id": "3",
+        "position": "Thin full-height post at front-left corner",
+        "size": "3 x 2 in x 84 in",
+        "meaning": null
+      }
+    ],
+    "confirmed": [],
+    "nextQuestion": "What is section 1 (the tall 15 in deep unit)?"
+  }
 }
