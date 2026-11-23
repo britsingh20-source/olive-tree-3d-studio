@@ -405,9 +405,14 @@
         "unit": "Upper pooja shutters CNC",
         "decision": "Pattern 1 — the studio's existing pooja CNC reference (dist/pon-karthikeyan/pooja-cnc-reference.jpg design: mandala jali, hanging bells, lotus motifs). Cut into Straight Wood 1201 matte mica shutters.",
         "note": "Reference shows a round wooden centre handle; fronts were confirmed handleless, so the round centre is to be treated as decorative only unless user says otherwise."
+      },
+      {
+        "date": "2026-11-23",
+        "unit": "Lighting",
+        "decision": "Warm light inside the pooja (upper section, glowing through CNC cut-outs) and a warm strip light on the grass-mat wall above the book counter. No louver lighting."
       }
     ],
-    "nextQuestion": "Lighting",
+    "nextQuestion": null,
     "sourceColours": [
       {
         "colour": "#ffb299",
@@ -451,7 +456,6 @@
     ],
     "unconfirmed": [
       "Book-box internal layout",
-      "Lighting",
       "Shutter hinge sides",
       "Whether Pattern 1's round centre disc is kept (decorative) given handleless fronts"
     ]
