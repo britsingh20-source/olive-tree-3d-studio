@@ -383,9 +383,14 @@
         "date": "2026-11-23",
         "unit": "All opening fronts (4 pooja-storage shutters, 2 drawers, 2 book-storage shutters)",
         "decision": "Handleless. Exact mechanism (push-open vs G-profile) not specified."
+      },
+      {
+        "date": "2026-11-23",
+        "sourceColour": "#a56348",
+        "decision": "PVC louvers in Straight Wood colour (matching 1201). Kept as a separate PVC material from the wood-mica shutters; fixed, no opening."
       }
     ],
-    "nextQuestion": "Louvers (brown): material and finish?",
+    "nextQuestion": "Inside the tall pooja-storage unit: shelf arrangement?",
     "sourceColours": [
       {
         "colour": "#ffb299",
@@ -409,7 +414,7 @@
         "colour": "#a56348",
         "faces": 1,
         "where": "Right 12 in of the back wall above the counter (30-84 in)",
-        "meaning": "Louvers (fixed decorative panel, no opening action)"
+        "meaning": "Fixed PVC louvers in Straight Wood colour (match 1201 mica), no opening action"
       },
       {
         "colour": "#ffffff",
