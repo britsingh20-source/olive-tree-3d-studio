@@ -62,3 +62,15 @@ Nothing built yet. Planned route /ratesh/foyer-pooja/ (existing /ratesh/ wardrob
 Next: confirm meaning of section 1, then 2 and 3, then finishes/fittings one question at a time.
 
 Correction (same day): second file `gn mills foir and pooja.skp` (107,825 bytes, sha256 28d2aba3…fd75) parsed EXTRACTION_OK and is identical in geometry and face colours to Untitled (8).skp. Both ARE painted — the earlier "unpainted" note came from grouping on a wrong JSON key. User rejected the position-based section reading; intake now proceeds colour by colour (design.json `foyerPooja.sourceColours`).
+
+### Foyer + pooja — first viewer draft (2026-11-23)
+
+Confirmed in chat (all saved in design.json `foyerPooja.confirmed`): green = artificial grass mat; red-orange = two drawers; brown = fixed PVC louvers in Straight Wood colour; peach and white = ACE MICA Straight Wood 1201, matte; tall unit = pooja items storage, upper two shutters with Pattern 1 CNC pooja cutting and 2 shelves, lower two plain shutters with no shelves; counter = storage box for books; all fronts handleless; warm light inside pooja + strip light on grass wall.
+
+Built dist/ratesh/foyer-pooja/ (index.html, studio.js copied from /ratesh/ with paths/text adapted, new model.js, exact-layout.js from scripts/prepare-ratesh-foyer-pooja-layout.py, textures from scripts/make-ratesh-foyer-textures.py, reference straight-wood-1201.jpg). /ratesh/ wardrobe page only gained a nav link to the new page.
+
+Validation performed:
+- `node check-ratesh-foyer-pooja.mjs` passed: 40 source faces retained exactly, 54 × 84 × 53 in bounds, 5 source colours, 7 units, 8 actions; every door swings outward and drawers slide out; lights and reference toggles. Texture loader stubbed — not visual proof.
+- Local headless Google Chrome (Playwright, SwiftShader software WebGL — not GPU hardware) at 1280 × 800 and 390 × 844: canvas rendered, no compatibility note, no page errors (only favicon 404). Visually checked full view, Open all (doors + drawers), lights off, Reference colours, selecting the CNC pooja unit and opening it (2 shelves + warm light visible), finish saved to localStorage and retained after reload, tour started and stopped on drag.
+- Known limitation found: previewing another finish on the pooja unit changes only its sides; CNC door faces stay Straight Wood.
+- Not tested: real phone/GPU hardware, CPU compatibility renderer, drag-then-resize camera persistence, full tour completion.

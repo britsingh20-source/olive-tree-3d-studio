@@ -20,7 +20,7 @@
     {
       "id": "ratesh",
       "name": "Mr. Ratesh",
-      "project": "Wardrobe, bay-window seating and glass display",
+      "project": "Wardrobe, bay-window seating and glass display; foyer + pooja unit (/ratesh/foyer-pooja/)",
       "route": "/ratesh/",
       "design": "customers/ratesh/design.json",
       "status": "customers/ratesh/STATUS.md"

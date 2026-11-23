@@ -298,7 +298,7 @@
     "Door angles and black glass frame profile are illustrative; smoke tint is an approximation"
   ],
   "foyerPooja": {
-    "status": "All 5 source colours named; unit purposes/fittings being confirmed",
+    "status": "First interactive draft built at /ratesh/foyer-pooja/ for customer review",
     "plannedRoute": "/ratesh/foyer-pooja/",
     "plannedDirectory": "dist/ratesh/foyer-pooja",
     "source": {
@@ -455,9 +455,37 @@
       "Ask unit questions with a colour-highlighted image of the part (user: 'ask me with colour')."
     ],
     "unconfirmed": [
-      "Book-box internal layout",
-      "Shutter hinge sides",
-      "Whether Pattern 1's round centre disc is kept (decorative) given handleless fronts"
-    ]
+      "Book-counter interior layout (shown empty)",
+      "Shutter hinge sides (assumed centre-opening pairs)",
+      "Whether Pattern 1's round centre disc is kept (decorative) given handleless fronts",
+      "Quotation — none imported"
+    ],
+    "viewer": {
+      "route": "/ratesh/foyer-pooja/",
+      "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/foyer-pooja/",
+      "directory": "dist/ratesh/foyer-pooja",
+      "storageKey": "ratesh-foyer-pooja-v1",
+      "assetVersion": "fp1",
+      "units": [
+        "pooja-upper (CNC shutters, 2 shelves, warm light)",
+        "drawers (8 in + 4 in, slide)",
+        "pooja-lower (plain shutters, no shelves)",
+        "book-counter (2 shutters)",
+        "grass-wall (fixed, strip light)",
+        "louvers (fixed PVC)",
+        "surround (fixed panels)"
+      ],
+      "layoutScript": "scripts/prepare-ratesh-foyer-pooja-layout.py",
+      "textureScript": "scripts/make-ratesh-foyer-textures.py",
+      "check": "check-ratesh-foyer-pooja.mjs"
+    },
+    "visualApproximations": [
+      "CNC Pattern 1 drawn procedurally (pooja-door-left/right.jpg, glow masks) — not a fabrication file; round centre decorative",
+      "Grass mat texture illustrative",
+      "Panel thicknesses (0.75 in), counter-top thickness, shelf heights (48/66 in), drawer boxes, louver slat width/spacing, light positions",
+      "Hinge sides: double shutters assumed to open from the centre outward",
+      "CNC door faces keep Straight Wood when another finish is previewed on the pooja unit (only its sides change)"
+    ],
+    "nextAction": "Customer review of /ratesh/foyer-pooja/; then confirm book-counter interior."
   }
 }
