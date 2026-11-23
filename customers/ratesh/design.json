@@ -426,6 +426,20 @@
           "mapping": "Exclude bottom label strip; vertical grain"
         },
         "supersedes": "Straight Wood 1201 (reference image removed from dist; hash kept in earlier entry)"
+      },
+      {
+        "date": "2026-11-23",
+        "unit": "All wood surfaces",
+        "decision": "Replace Natural Rough Cut Wood 9189 with ACE MICA Scandic Wood, Design No. 1382 (matte). User said the previous texture output looked clumsy; asked for a cleaner, better-looking texture.",
+        "reference": {
+          "path": "dist/ratesh/foyer-pooja/scandic-wood-1382.jpg",
+          "sourceFilename": "f79c1fdea7ea38f118f07615182e411e.jpg",
+          "sha256": "c86eea464087cd3bcd4b995c59b89e6a193c2bcc3cc7a8fad520d73766272ab0",
+          "size": "500x1000",
+          "avgColour": "#8c5d3c",
+          "printedLabel": "Scandic Wood — Design No. 1382 — ACE MICA"
+        },
+        "supersedes": "Natural Rough Cut Wood 9189"
       }
     ],
     "nextQuestion": null,
@@ -434,7 +448,7 @@
         "colour": "#ffb299",
         "faces": 21,
         "where": "Tall-unit fronts (two lower, two upper panels), counter shutters and end panels, counter top at 30 in, all toe kicks, outer face of front-left post",
-        "meaning": "Wooden mica shutters — ACE MICA Natural Rough Cut Wood, Design No. 9189 (was Natural Rough Cut Wood 9189)"
+        "meaning": "Wooden mica shutters — ACE MICA Natural Rough Cut Wood, Design No. 9189 (was Scandic Wood 1382)"
       },
       {
         "colour": "#5a7a43",
@@ -452,13 +466,13 @@
         "colour": "#a56348",
         "faces": 1,
         "where": "Right 12 in of the back wall above the counter (30-84 in)",
-        "meaning": "Fixed PVC louvers in Natural Rough Cut Wood colour (match 1201 mica), no opening action"
+        "meaning": "Fixed PVC louvers in Scandic Wood colour (match 1201 mica), no opening action"
       },
       {
         "colour": "#ffffff",
         "faces": 9,
         "where": "Outer carcass: back, sides and tops",
-        "meaning": "Same Natural Rough Cut Wood 9189 mica (exposed carcass: tall-unit top, counter right end side, outer faces)"
+        "meaning": "Same Scandic Wood 1382 mica (exposed carcass: tall-unit top, counter right end side, outer faces)"
       }
     ],
     "userFeedback": [
@@ -481,7 +495,7 @@
       "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/foyer-pooja/",
       "directory": "dist/ratesh/foyer-pooja",
       "storageKey": "ratesh-foyer-pooja-v1",
-      "assetVersion": "fp2",
+      "assetVersion": "fp3",
       "units": [
         "pooja-upper (CNC shutters, 2 shelves, warm light)",
         "drawers (8 in + 4 in, slide)",
@@ -503,8 +517,10 @@
       "Grass mat texture illustrative",
       "Panel thicknesses (0.75 in), counter-top thickness, shelf heights (48/66 in), drawer boxes, louver slat width/spacing, light positions",
       "Hinge sides: double shutters assumed to open from the centre outward",
-      "CNC door faces keep Natural Rough Cut Wood when another finish is previewed on the pooja unit (only its sides change)"
+      "CNC door faces keep Scandic Wood when another finish is previewed on the pooja unit (only its sides change)",
+      "Sheet size 48 x 87.4 in assumed for grain scale"
     ],
-    "nextAction": "Customer review of /ratesh/foyer-pooja/; then confirm book-counter interior."
+    "nextAction": "Customer review of /ratesh/foyer-pooja/; then confirm book-counter interior.",
+    "textureMapping": "Rendering fix: label strip cropped (rows 0-910 kept), sample upscaled 2x with light sharpening to scandic-wood-1382-tile.jpg, treated as one 48 x 87.4 in sheet. Box UVs are world-scale (grain vertical on upright faces, along long side of flat faces), mirrored repeat, anisotropy 16 — replaces the earlier per-face stretching that made grain look smeared. CNC door textures cut from the same tile at true scale."
   }
 }

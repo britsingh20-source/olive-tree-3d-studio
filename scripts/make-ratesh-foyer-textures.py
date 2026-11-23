@@ -1,6 +1,6 @@
 """Generate render textures for Ratesh's foyer + pooja viewer.
 
-- pooja-door-left.jpg / pooja-door-right.jpg: Natural Rough Cut Wood 9189 mica (ACE MICA) with the
+- pooja-door-left.jpg / pooja-door-right.jpg: Scandic Wood 1382 mica (ACE MICA) with the
   studio's Pattern 1 pooja CNC cutting (mandala jali, hanging bells, lotus),
   drawn procedurally as a visual approximation (not a fabrication drawing).
 - pooja-glow-left.png / pooja-glow-right.png: emissive masks of the cut-outs so
@@ -20,8 +20,10 @@ PX = 20  # pixels per inch
 W, H = 37 * PX, 54 * PX  # pair of upper pooja shutters
 SEAM = W // 2
 
-wood = Image.open(f"{out}/{sys.argv[2] if len(sys.argv) > 2 else 'natural-rough-cut-9189.jpg'}").convert("RGB")
-wood = wood.crop((0, 0, wood.width, int(wood.height * 0.9))).resize((W, H), Image.LANCZOS)
+# Wood at true sheet scale: the tile represents a 48 x 87.4 in ACE MICA sheet (label removed).
+tile = Image.open(f"{out}/{sys.argv[2] if len(sys.argv) > 2 else 'scandic-wood-1382-tile.jpg'}").convert("RGB")
+ppi = tile.width / 48
+wood = tile.crop((int(5 * ppi), int(8 * ppi), int(5 * ppi + 37 * ppi), int(8 * ppi + 54 * ppi))).resize((W, H), Image.LANCZOS)
 
 mask = Image.new("L", (W, H), 0)  # 255 = cut-out
 md = ImageDraw.Draw(mask)

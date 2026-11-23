@@ -83,3 +83,9 @@ Next: customer review; confirm book-counter interior and shutter hinge sides; de
 
 User said Straight Wood 1201 looks too dark; all wood surfaces now use ACE MICA Natural Rough Cut Wood 9189 (matte), including louver colour and CNC door textures (regenerated with scripts/make-ratesh-foyer-textures.py). Asset version fp2. Source checks re-passed; local headless Chrome (SwiftShader) at 1280 × 800 and 390 × 844 rendered with the lighter wood and no page errors.
 Deployed 57bcfeaf in run 45231706439 (success); live page serves studio.js?v=fp2 and rendered in headless Chrome (SwiftShader) with the new wood, no page errors.
+
+### Scandic Wood 1382 + texture rendering fix — 2026-11-23
+
+User supplied ACE MICA Scandic Wood 1382 and said earlier texture output looked clumsy. Cause found: every box face stretched the whole 500 × 1000 sample (label included) to its own size, so grain was smeared on long panels and squashed on edges. Fix: label-free, 2× upscaled tile treated as a 48 × 87.4 in sheet; world-scale UVs on every box (vertical grain on upright faces, along the long side of flat faces), mirrored repeat, 16× anisotropy; CNC door textures regenerated from the same tile at true scale; studio paint() sets mirrored wrap on preview textures. Asset version fp3.
+
+Validation: check-ratesh-foyer-pooja.mjs passed; local headless Chrome (SwiftShader) 1280 × 800 and 390 × 844 rendered without page errors; drawer close-up visually shows continuous, natural grain at consistent scale. Rendered tone reads slightly darker than the flat sample under studio lighting.

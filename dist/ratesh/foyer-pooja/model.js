@@ -5,25 +5,34 @@ export {exactLayout};
 // Mr. Ratesh · foyer + pooja unit (source: gn mills foir and pooja.skp, identical to Untitled (8).skp).
 // World axes (metres): X = source x - 86.8 in, Y = height, Z = 215.4 in - source y.
 // Book counter faces +Z; tall pooja unit faces +X. Positions below are in source inches.
-export const DEFAULT_FINISH='#886040';
+export const DEFAULT_FINISH='#8c5d3c';
 export const project={id:'ratesh-foyer-pooja-v1',customer:'Mr. Ratesh',quotation:null};
-export const WOOD_TEXTURE='./natural-rough-cut-9189.jpg';
+// Supplied ACE MICA sample, label strip removed, treated as one 48 x 87.4 in sheet at true scale.
+export const WOOD_TEXTURE='./scandic-wood-1382-tile.jpg';
+export const SHEET_INCHES=[48,87.4];
 let woodTexture;
 export function createWoodTexture(){
  if(!woodTexture){woodTexture=new T.TextureLoader().load(WOOD_TEXTURE);woodTexture.colorSpace=T.SRGBColorSpace;
- woodTexture.wrapS=woodTexture.wrapT=T.ClampToEdgeWrapping;woodTexture.offset.set(0,.1);woodTexture.repeat.set(1,.88);
- woodTexture.anisotropy=8;woodTexture.userData.shared=true;}return woodTexture;
+ woodTexture.wrapS=woodTexture.wrapT=T.MirroredRepeatWrapping;woodTexture.minFilter=T.LinearMipmapLinearFilter;woodTexture.magFilter=T.LinearFilter;
+ woodTexture.anisotropy=16;woodTexture.userData.shared=true;}return woodTexture;
 }
-const I=.0254,straight={name:'Natural Rough Cut Wood 9189 matte',color:DEFAULT_FINISH,wood:true};
+const I=.0254,straight={name:'Scandic Wood 1382 matte',color:DEFAULT_FINISH,wood:true};
 function tex(path,srgb=true){const t=new T.TextureLoader().load(path);if(srgb)t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.userData.shared=true;return t;}
 export function buildModel(){
  const root=new T.Group(),architecture=new T.Group(),referenceRoot=new T.Group();root.add(architecture,referenceRoot);referenceRoot.visible=false;
  const units=[],actions=[],sourceMeshes=[],glowMaterials=[],lightMaterial=new T.MeshBasicMaterial({color:'#ffe2a6'});
  function mat(f){const m=new T.MeshPhysicalMaterial({color:f.wood?'#ffffff':f.color,map:f.wood?createWoodTexture():null,roughness:.84,clearcoat:0,side:T.DoubleSide});m.userData.compatColor=f.color;return m;}
  const grassTex=tex('./grass-mat.jpg');grassTex.wrapS=grassTex.wrapT=T.RepeatWrapping;
- function grassMat(w,h){const t=grassTex.clone();t.needsUpdate=true;t.repeat.set(w/12,h/12);t.userData.shared=true;const m=new T.MeshStandardMaterial({map:t,roughness:1,side:T.DoubleSide});m.userData.compatColor='#4f7a3a';return m;}
+ function grassMat(){const t=grassTex.clone();t.needsUpdate=true;t.repeat.set(SHEET_INCHES[0]/12,SHEET_INCHES[1]/12);t.userData.shared=true;const m=new T.MeshStandardMaterial({map:t,roughness:1,side:T.DoubleSide});m.userData.compatColor='#4f7a3a';return m;}
+
+ // World-scale UVs: grain runs vertically on upright faces and along the longer side of flat faces,
+ // at true sheet size, so edges, shelves, doors and panels all show grain at the same scale.
+ function sheetUV(geo,x0,x1,y0,y1,z0,z1,keepFront){const pos=geo.attributes.position,uv=geo.attributes.uv,cx=(x0+x1)/2,cy=(y0+y1)/2,cz=(z0+z1)/2,[sw,sh]=SHEET_INCHES;
+  for(let i=0;i<pos.count;i++){const face=Math.floor(i/4);if(keepFront&&face===0)continue;const x=pos.getX(i)/I+cx,y=pos.getY(i)/I+cy,z=pos.getZ(i)/I+cz;let u,v;
+   if(face<2){u=z;v=y;}else if(face<4){if(x1-x0>=z1-z0){u=z;v=x;}else{u=x;v=z;}}else{u=x;v=y;}
+   uv.setXY(i,u/sw,v/sh);}uv.needsUpdate=true;}
  // Box from world-inch extents, placed relative to the parent's world origin (parent.userData.o, metres).
- function B(p,x0,x1,y0,y1,z0,z1,m){const o=p.userData.o||new T.Vector3();const g=new T.Mesh(new T.BoxGeometry((x1-x0)*I,(y1-y0)*I,(z1-z0)*I),m);
+ function B(p,x0,x1,y0,y1,z0,z1,m,keepFront=false){const o=p.userData.o||new T.Vector3();const geo=new T.BoxGeometry((x1-x0)*I,(y1-y0)*I,(z1-z0)*I);sheetUV(geo,x0,x1,y0,y1,z0,z1,keepFront);const g=new T.Mesh(geo,m);
   g.position.set((x0+x1)/2*I-o.x,(y0+y1)/2*I-o.y,(z0+z1)/2*I-o.z);g.castShadow=true;g.receiveShadow=true;p.add(g);return g;}
  function pivotAt(p,x,y,z){const q=new T.Group();const o=p.userData.o||new T.Vector3();q.position.set(x*I-o.x,y*I-o.y,z*I-o.z);q.userData.o=new T.Vector3(x*I,y*I,z*I);p.add(q);return q;}
  function unit(id,name,kind,angle,front=straight,side=straight){const group=new T.Group();root.add(group);
@@ -33,12 +42,12 @@ export function buildModel(){
  function lamp(u,x,y,z,intensity=.18,distance=1.2){const l=new T.PointLight('#ffd9a0',intensity,distance,2);l.position.set(x*I,y*I,z*I);u.group.add(l);u.lightNodes.push(l);return l;}
  const t=.75,gap=.06;
 
- // 1 · Upper pooja (30-84 in): CNC-cut Natural Rough Cut Wood shutters, two shelves, warm light inside.
+ // 1 · Upper pooja (30-84 in): CNC-cut Scandic Wood shutters, two shelves, warm light inside.
  const pooja=unit('pooja-upper','Pooja · CNC shutters','pooja',Math.PI/2);const pg=pooja.group;
  B(pg,0,t,30,84,14,51,pooja.side);B(pg,t,14.25,30,84,50.25,51,pooja.side);B(pg,t,14.25,30,84,14,14.75,pooja.side);
  B(pg,t,14.25,83.25,84,14.75,50.25,pooja.side);B(pg,t,14.25,30,30.75,14.75,50.25,pooja.side);
  for(const y of [48,66])B(pg,t,13.9,y-.75,y,14.75,50.25,pooja.side);
- pooja.shelfCount=2;pooja.shelfHeightsInches=[48,66];pooja.shelfMaterial='Natural Rough Cut Wood 9189 mica';
+ pooja.shelfCount=2;pooja.shelfHeightsInches=[48,66];pooja.shelfMaterial='Scandic Wood 9189 mica';
  const glowStrip=B(pg,t+.2,t+.6,82.6,83.1,15.5,49.5,lightMaterial);
  lamp(pooja,8,72,32.5,.22,1.4);lamp(pooja,8,40,32.5,.12,1);
  pooja.doors=[];
@@ -46,10 +55,10 @@ export function buildModel(){
   const p=pivotAt(pg,15,57,hingeZ);
   const face=new T.MeshStandardMaterial({map:tex('./pooja-door-'+side+'.jpg'),emissiveMap:tex('./pooja-glow-'+side+'.png'),emissive:new T.Color('#ffffff'),emissiveIntensity:1,roughness:.84});
   face.userData.compatColor=DEFAULT_FINISH;glowMaterials.push(face);
-  const door=B(p,14.25,15,30+gap,84-gap,z0,z1,[face,pooja.front,pooja.front,pooja.front,pooja.front,pooja.front]);door.userData.cnc=true;
+  const door=B(p,14.25,15,30+gap,84-gap,z0,z1,[face,pooja.front,pooja.front,pooja.front,pooja.front,pooja.front],true);door.userData.cnc=true;
   act(pooja,p,'hinge',travel,{side});pooja.doors.push(p);}
  pooja.doorCount=2;pooja.handles='Handleless';pooja.carving='Pattern 1 pooja CNC (mandala jali, hanging bells, lotus)';
- pooja.renderNote='CNC cutting is a drawn visual approximation of Pattern 1, not a fabrication file. Round centre is decorative only (fronts are handleless). Shelf spacing evenly assumed. CNC faces keep Natural Rough Cut Wood when other finishes are previewed.';
+ pooja.renderNote='CNC cutting is a drawn visual approximation of Pattern 1, not a fabrication file. Round centre is decorative only (fronts are handleless). Shelf spacing evenly assumed. CNC faces keep Scandic Wood when other finishes are previewed.';
 
  // 2 · Drawers (18-26 in and 26-30 in).
  const dr=unit('drawers','Drawers','drawer',Math.PI/2);const dg=dr.group;
@@ -88,11 +97,11 @@ export function buildModel(){
  lamp(gr,14,80,5,.16,1.3);lamp(gr,30,80,5,.16,1.3);
  gr.material='Artificial grass mat (illustrative texture)';gr.renderNote='Grass texture is illustrative. Strip-light position along the top edge is an approximation.';
 
- // 6 · Fixed PVC louvers, Natural Rough Cut Wood colour.
+ // 6 · Fixed PVC louvers, Scandic Wood colour.
  const lv=unit('louvers','PVC louvers','louver',0);lv.fixed=true;
  B(lv.group,42,53.25,30,83.25,1,1.4,lv.side);
  for(let x=42.6;x<=52.4;x+=1.6)B(lv.group,x,x+.9,30,83.25,1.4,2.4,lv.front);
- lv.material='PVC louvers in Natural Rough Cut Wood colour';lv.renderNote='Fixed — no opening. Slat width/spacing approximate.';
+ lv.material='PVC louvers in Scandic Wood colour';lv.renderNote='Fixed — no opening. Slat width/spacing approximate.';
 
  // 7 · Back, end and top panels (fixed).
  const sr=unit('surround','Back & end panels','fixed',.6);sr.fixed=true;
