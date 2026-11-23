@@ -399,9 +399,15 @@
         "date": "2026-11-23",
         "unit": "Tall pooja unit interior",
         "decision": "Upper section (30-84 in): 2 shelves. Lower section (4-18 in): no shelves. Shelves in Straight Wood 1201 mica ('seals' confirmed as shelves). Spacing not specified — render evenly spaced as approximation."
+      },
+      {
+        "date": "2026-11-23",
+        "unit": "Upper pooja shutters CNC",
+        "decision": "Pattern 1 — the studio's existing pooja CNC reference (dist/pon-karthikeyan/pooja-cnc-reference.jpg design: mandala jali, hanging bells, lotus motifs). Cut into Straight Wood 1201 matte mica shutters.",
+        "note": "Reference shows a round wooden centre handle; fronts were confirmed handleless, so the round centre is to be treated as decorative only unless user says otherwise."
       }
     ],
-    "nextQuestion": "CNC pattern design for upper pooja shutters",
+    "nextQuestion": "Lighting",
     "sourceColours": [
       {
         "colour": "#ffb299",
@@ -444,10 +450,10 @@
       "Ask unit questions with a colour-highlighted image of the part (user: 'ask me with colour')."
     ],
     "unconfirmed": [
-      "CNC pattern design for upper shutters",
       "Book-box internal layout",
       "Lighting",
-      "Shutter hinge sides"
+      "Shutter hinge sides",
+      "Whether Pattern 1's round centre disc is kept (decorative) given handleless fronts"
     ]
   }
 }
