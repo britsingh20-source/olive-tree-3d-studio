@@ -378,9 +378,14 @@
         "date": "2026-11-23",
         "unit": "Low counter (54 in wide, top 30 in, two shutters)",
         "decision": "Storage box for books (user's words). Internal shelf layout not yet confirmed."
+      },
+      {
+        "date": "2026-11-23",
+        "unit": "All opening fronts (4 pooja-storage shutters, 2 drawers, 2 book-storage shutters)",
+        "decision": "Handleless. Exact mechanism (push-open vs G-profile) not specified."
       }
     ],
-    "nextQuestion": "Handles or handleless for the shutters and drawers?",
+    "nextQuestion": "Louvers (brown): material and finish?",
     "sourceColours": [
       {
         "colour": "#ffb299",
