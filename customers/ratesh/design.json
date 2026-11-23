@@ -388,9 +388,15 @@
         "date": "2026-11-23",
         "sourceColour": "#a56348",
         "decision": "PVC louvers in Straight Wood colour (matching 1201). Kept as a separate PVC material from the wood-mica shutters; fixed, no opening."
+      },
+      {
+        "date": "2026-11-23",
+        "unit": "Tall pooja unit shutters",
+        "decision": "Upper two shutters (30-84 in): CNC pooja cutting design. Lower two shutters (4-18 in): normal plain shutters. Both in Straight Wood 1201 matte mica. CNC pattern design not yet chosen.",
+        "userWords": "need a CNC puja cutting in the upper shutter. In the lower shutter, maintain it as a normal shutter to all both the seals are also wooden mica finish"
       }
     ],
-    "nextQuestion": "Inside the tall pooja-storage unit: shelf arrangement?",
+    "nextQuestion": "Confirm 'seals' = shelves (wooden mica) and shelf count in upper/lower sections",
     "sourceColours": [
       {
         "colour": "#ffb299",
@@ -431,6 +437,13 @@
     ],
     "userPreferences": [
       "Ask unit questions with a colour-highlighted image of the part (user: 'ask me with colour')."
+    ],
+    "unconfirmed": [
+      "'both the seals are also wooden mica finish' — interpreted as shelves; awaiting confirmation and shelf counts",
+      "CNC pattern design for upper shutters",
+      "Book-box internal layout",
+      "Lighting",
+      "Shutter hinge sides"
     ]
   }
 }
