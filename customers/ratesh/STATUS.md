@@ -78,3 +78,7 @@ Validation performed:
 Published: commit 9cca7a5dc6767737cc30fc6e7043bdf60247a69f deployed in GitHub Actions run 45230755034 (success). Live https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/foyer-pooja/ returned 200 and rendered in headless Chrome (SwiftShader) at 1280 × 800; Open all, lights off and Reference colours behaved as locally; no page errors (only favicon 404). Ready for customer review.
 
 Next: customer review; confirm book-counter interior and shutter hinge sides; decide on round centre disc of CNC pattern.
+
+### Mica change — 2026-11-23
+
+User said Straight Wood 1201 looks too dark; all wood surfaces now use ACE MICA Natural Rough Cut Wood 9189 (matte), including louver colour and CNC door textures (regenerated with scripts/make-ratesh-foyer-textures.py). Asset version fp2. Source checks re-passed; local headless Chrome (SwiftShader) at 1280 × 800 and 390 × 844 rendered with the lighter wood and no page errors.

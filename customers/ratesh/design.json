@@ -410,6 +410,22 @@
         "date": "2026-11-23",
         "unit": "Lighting",
         "decision": "Warm light inside the pooja (upper section, glowing through CNC cut-outs) and a warm strip light on the grass-mat wall above the book counter. No louver lighting."
+      },
+      {
+        "date": "2026-11-23",
+        "unit": "All Straight Wood surfaces (shutters, drawers, shelves, panels, counter top, CNC doors, louver colour)",
+        "decision": "Replace Straight Wood 1201 (too dark per user) with ACE MICA Natural Rough Cut Wood, Design No. 9189. Matte retained.",
+        "reference": {
+          "path": "dist/ratesh/foyer-pooja/natural-rough-cut-9189.jpg",
+          "sourceFilename": "7e15af41708738c3e5986a00d1707a4b.jpg",
+          "sha256": "d81474f238185cd5d1c0d37ef2ee5ec6e75a59cc3046ba91a8081f28a11fb6f1",
+          "bytes": 77070,
+          "size": "500x1000",
+          "avgColour": "#886040",
+          "printedLabel": "Natural Rough Cut Wood — Design No. 9189 — ACE MICA",
+          "mapping": "Exclude bottom label strip; vertical grain"
+        },
+        "supersedes": "Straight Wood 1201 (reference image removed from dist; hash kept in earlier entry)"
       }
     ],
     "nextQuestion": null,
@@ -418,7 +434,7 @@
         "colour": "#ffb299",
         "faces": 21,
         "where": "Tall-unit fronts (two lower, two upper panels), counter shutters and end panels, counter top at 30 in, all toe kicks, outer face of front-left post",
-        "meaning": "Wooden mica shutters — ACE MICA Straight Wood, Design No. 1201"
+        "meaning": "Wooden mica shutters — ACE MICA Natural Rough Cut Wood, Design No. 9189 (was Natural Rough Cut Wood 9189)"
       },
       {
         "colour": "#5a7a43",
@@ -436,13 +452,13 @@
         "colour": "#a56348",
         "faces": 1,
         "where": "Right 12 in of the back wall above the counter (30-84 in)",
-        "meaning": "Fixed PVC louvers in Straight Wood colour (match 1201 mica), no opening action"
+        "meaning": "Fixed PVC louvers in Natural Rough Cut Wood colour (match 1201 mica), no opening action"
       },
       {
         "colour": "#ffffff",
         "faces": 9,
         "where": "Outer carcass: back, sides and tops",
-        "meaning": "Same Straight Wood 1201 mica (exposed carcass: tall-unit top, counter right end side, outer faces)"
+        "meaning": "Same Natural Rough Cut Wood 9189 mica (exposed carcass: tall-unit top, counter right end side, outer faces)"
       }
     ],
     "userFeedback": [
@@ -465,7 +481,7 @@
       "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/foyer-pooja/",
       "directory": "dist/ratesh/foyer-pooja",
       "storageKey": "ratesh-foyer-pooja-v1",
-      "assetVersion": "fp1",
+      "assetVersion": "fp2",
       "units": [
         "pooja-upper (CNC shutters, 2 shelves, warm light)",
         "drawers (8 in + 4 in, slide)",
@@ -487,7 +503,7 @@
       "Grass mat texture illustrative",
       "Panel thicknesses (0.75 in), counter-top thickness, shelf heights (48/66 in), drawer boxes, louver slat width/spacing, light positions",
       "Hinge sides: double shutters assumed to open from the centre outward",
-      "CNC door faces keep Straight Wood when another finish is previewed on the pooja unit (only its sides change)"
+      "CNC door faces keep Natural Rough Cut Wood when another finish is previewed on the pooja unit (only its sides change)"
     ],
     "nextAction": "Customer review of /ratesh/foyer-pooja/; then confirm book-counter interior."
   }

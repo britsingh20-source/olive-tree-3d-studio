@@ -1,13 +1,13 @@
 """Generate render textures for Ratesh's foyer + pooja viewer.
 
-- pooja-door-left.jpg / pooja-door-right.jpg: Straight Wood 1201 mica with the
+- pooja-door-left.jpg / pooja-door-right.jpg: Natural Rough Cut Wood 9189 mica (ACE MICA) with the
   studio's Pattern 1 pooja CNC cutting (mandala jali, hanging bells, lotus),
   drawn procedurally as a visual approximation (not a fabrication drawing).
 - pooja-glow-left.png / pooja-glow-right.png: emissive masks of the cut-outs so
   the warm pooja light glows through them.
 - grass-mat.jpg: illustrative artificial-grass texture.
 
-Usage: python scripts/make-ratesh-foyer-textures.py dist/ratesh/foyer-pooja
+Usage: python scripts/make-ratesh-foyer-textures.py dist/ratesh/foyer-pooja [wood.jpg]
 """
 import math
 import random
@@ -20,7 +20,7 @@ PX = 20  # pixels per inch
 W, H = 37 * PX, 54 * PX  # pair of upper pooja shutters
 SEAM = W // 2
 
-wood = Image.open(f"{out}/straight-wood-1201.jpg").convert("RGB")
+wood = Image.open(f"{out}/{sys.argv[2] if len(sys.argv) > 2 else 'natural-rough-cut-9189.jpg'}").convert("RGB")
 wood = wood.crop((0, 0, wood.width, int(wood.height * 0.9))).resize((W, H), Image.LANCZOS)
 
 mask = Image.new("L", (W, H), 0)  # 255 = cut-out
