@@ -82,3 +82,4 @@ Next: customer review; confirm book-counter interior and shutter hinge sides; de
 ### Mica change — 2026-11-23
 
 User said Straight Wood 1201 looks too dark; all wood surfaces now use ACE MICA Natural Rough Cut Wood 9189 (matte), including louver colour and CNC door textures (regenerated with scripts/make-ratesh-foyer-textures.py). Asset version fp2. Source checks re-passed; local headless Chrome (SwiftShader) at 1280 × 800 and 390 × 844 rendered with the lighter wood and no page errors.
+Deployed 57bcfeaf in run 45231706439 (success); live page serves studio.js?v=fp2 and rendered in headless Chrome (SwiftShader) with the new wood, no page errors.
