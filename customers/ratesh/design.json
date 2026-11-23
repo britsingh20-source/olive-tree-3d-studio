@@ -337,9 +337,14 @@
         "date": "2026-11-23",
         "sourceColour": "#5a7a43",
         "decision": "Artificial grass mat on all green faces: back wall above counter (left 41 in), left side wall above counter, tall-unit end face, front-left post"
+      },
+      {
+        "date": "2026-11-23",
+        "sourceColour": "#db3500",
+        "decision": "Two drawers on tall-unit front, 18-26 in (8 in) and 26-30 in (4 in), full 37 in length as drawn. Handles/finish not yet confirmed."
       }
     ],
-    "nextQuestion": "What is the red-orange #db3500 colour (two bands on tall unit at 18-30 in)?",
+    "nextQuestion": "What is the brown #a56348 colour (right 12 in of back wall above counter)?",
     "sourceColours": [
       {
         "colour": "#ffb299",
@@ -357,7 +362,7 @@
         "colour": "#db3500",
         "faces": 2,
         "where": "Two full-length bands on tall-unit front at 18-26 in and 26-30 in",
-        "meaning": null
+        "meaning": "Drawers (two full-length drawers: 18-26 in and 26-30 in)"
       },
       {
         "colour": "#a56348",
