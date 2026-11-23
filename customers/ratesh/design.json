@@ -368,9 +368,14 @@
         "date": "2026-11-23",
         "sourceColour": "#ffffff",
         "decision": "White faces finished in the same ACE MICA Straight Wood 1201 as the shutters."
+      },
+      {
+        "date": "2026-11-23",
+        "unit": "Tall 15 in deep unit",
+        "decision": "Pooja items storage behind both tall (30-84 in) and low (4-18 in) shutters. Shelf count/spacing not yet confirmed."
       }
     ],
-    "nextQuestion": "What goes inside the tall unit (behind the two tall shutters 30-84 in and two low shutters 4-18 in)?",
+    "nextQuestion": "What is the low 30 in counter with grass-mat wall above (purpose)?",
     "sourceColours": [
       {
         "colour": "#ffb299",
