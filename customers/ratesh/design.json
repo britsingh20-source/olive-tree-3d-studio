@@ -477,7 +477,10 @@
       ],
       "layoutScript": "scripts/prepare-ratesh-foyer-pooja-layout.py",
       "textureScript": "scripts/make-ratesh-foyer-textures.py",
-      "check": "check-ratesh-foyer-pooja.mjs"
+      "check": "check-ratesh-foyer-pooja.mjs",
+      "deployedCommit": "9cca7a5dc6767737cc30fc6e7043bdf60247a69f",
+      "deployRun": 45230755034,
+      "status": "Live; rendered in headless Chrome (software WebGL)"
     },
     "visualApproximations": [
       "CNC Pattern 1 drawn procedurally (pooja-door-left/right.jpg, glow masks) — not a fabrication file; round centre decorative",

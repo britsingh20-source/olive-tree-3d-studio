@@ -74,3 +74,7 @@ Validation performed:
 - Local headless Google Chrome (Playwright, SwiftShader software WebGL — not GPU hardware) at 1280 × 800 and 390 × 844: canvas rendered, no compatibility note, no page errors (only favicon 404). Visually checked full view, Open all (doors + drawers), lights off, Reference colours, selecting the CNC pooja unit and opening it (2 shelves + warm light visible), finish saved to localStorage and retained after reload, tour started and stopped on drag.
 - Known limitation found: previewing another finish on the pooja unit changes only its sides; CNC door faces stay Straight Wood.
 - Not tested: real phone/GPU hardware, CPU compatibility renderer, drag-then-resize camera persistence, full tour completion.
+
+Published: commit 9cca7a5dc6767737cc30fc6e7043bdf60247a69f deployed in GitHub Actions run 45230755034 (success). Live https://britsingh20-source.github.io/olive-tree-3d-studio/ratesh/foyer-pooja/ returned 200 and rendered in headless Chrome (SwiftShader) at 1280 × 800; Open all, lights off and Reference colours behaved as locally; no page errors (only favicon 404). Ready for customer review.
+
+Next: customer review; confirm book-counter interior and shutter hinge sides; decide on round centre disc of CNC pattern.
