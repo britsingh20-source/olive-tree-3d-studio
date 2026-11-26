@@ -218,6 +218,20 @@
       "handles": "Small chrome-gold knobs",
       "sheen": "Matte",
       "finishUserResponse": "2 (Matte wood mica with small chrome-gold knobs)"
+    },
+    {
+      "sourceColour": "#ff00ff",
+      "sourceName": "K05_Neon_Blossom",
+      "faceIds": [
+        46587,
+        46609
+      ],
+      "location": "Bottom of the pooja unit, floor to 20 in, two 18 in halves (front facing -x)",
+      "unit": "Two storage doors opening from the middle (outer-edge hinges)",
+      "userResponse": "1 (Two doors, storage that opens from the middle)",
+      "finish": null,
+      "handles": null,
+      "internal": null
     }
   ],
   "approximations": [
@@ -336,7 +350,7 @@
     {
       "sourceColour": "#ff00ff",
       "sourceName": "K05_Neon_Blossom",
-      "meaning": null
+      "meaning": "Two storage doors under the pooja drawers, open from the middle; finish/handles pending"
     },
     {
       "sourceColour": "#ff007f",
