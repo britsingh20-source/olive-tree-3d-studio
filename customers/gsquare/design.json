@@ -37,7 +37,24 @@
     "extractedJson": "customers/gsquare/source/gsquare-extract.json",
     "notes": "Model shows a staircase with an under-stair unit. 22 source materials; G01_Mint_Mist unused. Several colours are on back faces only (I08 Inkstorm, H05 Lagoon Spark)."
   },
-  "confirmed": [],
+  "confirmed": [
+    {
+      "sourceColour": "#00ffff",
+      "sourceName": "H05_Lagoon_Spark",
+      "location": "Large sloped panel under the stair (back face; ~72 in wide, ~20\u2013100 in high)",
+      "finish": "Wooden mica, same grain as the reference photo",
+      "sheen": "Glossy",
+      "referenceTexture": {
+        "path": "dist/gsquare/textures/wood-mica-gloss-ref.jpg",
+        "sha256": "1a2b58801055150205362712a097191c220a94bf9271174fa91aad1467aa1568",
+        "size": "845x845",
+        "grainInPhoto": "horizontal",
+        "note": "Medium honey/teak-toned wood grain supplied by Bright 27 Nov 2026; laminate brand/code not given"
+      },
+      "userResponse": "this wooden Micah with the same grains in glossy finish.",
+      "purpose": null
+    }
+  ],
   "approximations": [],
   "openQuestions": [
     {
@@ -108,7 +125,7 @@
     {
       "sourceColour": "#00ffff",
       "sourceName": "H05_Lagoon_Spark",
-      "meaning": null
+      "meaning": "Finish confirmed (glossy wood-grain mica); purpose (fixed panel / shutters / other) still open"
     },
     {
       "sourceColour": "#31ff31",
