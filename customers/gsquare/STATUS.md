@@ -23,6 +23,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Bright pink #ff00ff, bottom of the pooja unit (0–20 in): two storage doors opening from the middle, matte wood mica, small chrome-gold knobs. Inside not asked (render empty).
 - Violet #7b00ff, narrow outer side of the pooja unit: plain matte wood mica panel.
 - Dark mustard #664a00, back of the TV wall facing the stair: fixed back panel covered with artificial green grass mat (procedural texture; product photo not committed).
+- Red #cc0000, side wall next to the grass panel: a 24 x 78 in door into a storage space under the stair. Hinge/finish/handles pending.
 
 ## How Bright wants questions asked (27 Nov 2026)
 

@@ -258,6 +258,20 @@
       "finish": "Artificial green grass mat covering",
       "userResponse": "This is a fixed back panel. Need to place green grass matte",
       "referenceNote": "Bright sent a product photo of a rolled artificial grass mat (bright green, dense blades). Photo NOT committed to the public repo (retail product image); viewer uses a procedural grass texture as approximation."
+    },
+    {
+      "sourceColour": "#cc0000",
+      "sourceName": "A06_Ruby_Spark",
+      "faceIds": [
+        45131
+      ],
+      "location": "Behind the TV wall on the staircase side: plane x 322.6, y 256.4\u2013280.4 (24 in), z 0\u201378, facing -x (toward the grass panel area)",
+      "unit": "Door into a storage space (under the stair, behind the right part of the TV wall)",
+      "userResponse": "3 (A door into a storage space)",
+      "hinge": null,
+      "finish": null,
+      "handles": null,
+      "internal": null
     }
   ],
   "approximations": [
@@ -325,7 +339,7 @@
     {
       "sourceColour": "#cc0000",
       "sourceName": "A06_Ruby_Spark",
-      "meaning": null
+      "meaning": "Door (24 x 78 in) into under-stair storage behind TV wall; hinge/finish/handles pending"
     },
     {
       "sourceColour": "#006666",
