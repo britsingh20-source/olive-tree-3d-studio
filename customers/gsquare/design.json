@@ -214,8 +214,10 @@
       "location": "Below the pooja doors on the far-right tall unit, full 36 in width (z 20\u201326 and 26\u201330, front facing -x)",
       "unit": "Two drawers stacked: lower 6 in tall (z 20\u201326), upper 4 in tall (z 26\u201330)",
       "userResponse": "2 (Two drawers)",
-      "finish": null,
-      "handles": null
+      "finish": "Wood mica",
+      "handles": "Small chrome-gold knobs",
+      "sheen": "Matte",
+      "finishUserResponse": "2 (Matte wood mica with small chrome-gold knobs)"
     }
   ],
   "approximations": [
@@ -234,6 +236,10 @@
     {
       "item": "Pooja CNC pattern",
       "approximation": "Viewer will trace the reference photo's motif layout as a cut-out/alpha texture on the 36 x 54.8 in door pair; exact CNC vector file not supplied"
+    },
+    {
+      "item": "Pooja drawer knobs",
+      "approximation": "Rendered as two knobs per 36 in drawer, horizontally spaced, vertically centred \u2014 count/position not specified"
     }
   ],
   "openQuestions": [
