@@ -275,6 +275,18 @@
       "hingeUserResponse": "2 (Staircase side)",
       "sheen": "Matte",
       "finishUserResponse": "2 (Matte wood mica, no handle)"
+    },
+    {
+      "sourceColour": "#660000",
+      "sourceName": "A08_Garnet_Shadow",
+      "faceIds": [
+        44932
+      ],
+      "location": "Side of the stair at the storage area (plane y 280.4, x 322.6\u2013354, z 36\u201378; stepped bottom, sloped top), seen from the staircase",
+      "unit": "Wall cladding on the side of the stair",
+      "finish": "Wood mica",
+      "sheen": "Matte",
+      "userResponse": "2 (Wall cladding in matte wood mica)"
     }
   ],
   "approximations": [
@@ -311,7 +323,7 @@
     {
       "sourceColour": "#660000",
       "sourceName": "A08_Garnet_Shadow",
-      "meaning": null
+      "meaning": "Matte wood mica cladding on the stair side"
     },
     {
       "sourceColour": "#ffff00",
