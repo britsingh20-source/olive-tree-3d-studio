@@ -174,11 +174,12 @@
       "opening": "From the middle: left door hinged on its left edge (x 354.8), right door on its right edge (x 384.1)",
       "finish": "Wood mica",
       "handles": "Handleless, push to open",
-      "internal": null,
+      "internal": "Empty storage space behind the shutters \u2014 no shelves, racks or fittings inside",
       "openingUserResponse": "1 (From the middle)",
       "sheen": "Matte",
       "finishUserResponse": "2 (Matte wood mica, like the low cabinet doors)",
-      "handlesUserResponse": "3 (No handles, push to open)"
+      "handlesUserResponse": "3 (No handles, push to open)",
+      "internalUserResponse": "This is only a undershutter the storage covering. No bugs inside it. When they want, they need to open this door and keep the things inside. Like that it is."
     }
   ],
   "approximations": [
