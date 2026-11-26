@@ -73,9 +73,10 @@
       "finish": "Aluminium frame with grey tinted glass",
       "userResponse": "Aluminium glasses, tinted grey shutters.",
       "opening": "Pair of hinged doors opening from the middle: left shutter hinged on its left edge, right shutter hinged on its right edge",
-      "handles": null,
+      "handles": "Small knobs, chrome gold finish",
       "internal": null,
-      "openingUserResponse": "1 (Like two doors from the middle)"
+      "openingUserResponse": "1 (Like two doors from the middle)",
+      "handlesUserResponse": "small knobs chrome gold finish"
     },
     {
       "sourceColour": "#663300",
@@ -89,18 +90,23 @@
       "userResponse": "2 (Doors \u2014 they swing open)",
       "opening": "Outer-edge hinges: left door hinged on its left edge, right door on its right edge (both open away from the glass shutters)",
       "finish": "Wood mica",
-      "handles": null,
+      "handles": "Small knobs, chrome gold finish",
       "internal": null,
       "note": "Other C08 faces (ids 45407, 45978 at x 263.2\u2013280.8, z 0\u201330, left of the orange column) are NOT covered by this answer",
       "openingUserResponse": "1 (Outer sides)",
       "sheen": "Matte",
-      "finishUserResponse": "wood mica only but matte finish"
+      "finishUserResponse": "wood mica only but matte finish",
+      "handlesUserResponse": "small knobs chrome gold finish"
     }
   ],
   "approximations": [
     {
       "item": "Brown side doors (#663300 faces 46545/45208) wood grain",
       "approximation": "Render uses the same wood-grain reference photo as the TV back panel, in matte; Bright said 'wood mica' without naming a different grain \u2014 correct if a different laminate is chosen"
+    },
+    {
+      "item": "Knob positions on the four low-cabinet doors",
+      "approximation": "One knob per door near the opening edge, vertically centred \u2014 position not specified by Bright"
     }
   ],
   "openQuestions": [
