@@ -234,6 +234,18 @@
       "internal": null,
       "sheen": "Matte",
       "finishUserResponse": "1 (Matte wood mica with small chrome-gold knobs)"
+    },
+    {
+      "sourceColour": "#7b00ff",
+      "sourceName": "J05_Violet_Prism",
+      "faceIds": [
+        45075
+      ],
+      "location": "Narrow outer side of the pooja unit (16 x 84.8 in, faces -y like the TV)",
+      "unit": "Plain side panel",
+      "finish": "Wood mica",
+      "sheen": "Matte",
+      "userResponse": "1 (Matte wood mica side panel, plain)"
     }
   ],
   "approximations": [
@@ -272,7 +284,7 @@
     {
       "sourceColour": "#7b00ff",
       "sourceName": "J05_Violet_Prism",
-      "meaning": null
+      "meaning": "Plain matte wood mica side panel of the pooja unit"
     },
     {
       "sourceColour": "#660033",

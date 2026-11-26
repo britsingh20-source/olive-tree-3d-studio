@@ -21,6 +21,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Dark plum #660033, upper part of the far-right tall unit: POOJA unit — two CNC-cut doors in the pattern of Bright's photo (dist/gsquare/textures/pooja-cnc-pattern-ref.jpg), but in our matte wood mica, not the photo's colour. Open from the middle. Warm light inside makes the cut-outs glow (no acrylic).
 - Pink #ff007f, under the pooja doors: two stacked drawers (lower 6 in, upper 4 in, 36 in wide), matte wood mica, small chrome-gold knobs.
 - Bright pink #ff00ff, bottom of the pooja unit (0–20 in): two storage doors opening from the middle, matte wood mica, small chrome-gold knobs. Inside not asked (render empty).
+- Violet #7b00ff, narrow outer side of the pooja unit: plain matte wood mica panel.
 
 ## How Bright wants questions asked (27 Nov 2026)
 
