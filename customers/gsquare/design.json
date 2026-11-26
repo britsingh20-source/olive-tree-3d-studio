@@ -76,6 +76,22 @@
       "handles": null,
       "internal": null,
       "openingUserResponse": "1 (Like two doors from the middle)"
+    },
+    {
+      "sourceColour": "#663300",
+      "sourceName": "C08_Toffee_Ember",
+      "faceIds": [
+        46545,
+        45208
+      ],
+      "location": "Two fronts beside the glass shutters in the low cabinet under the TV (each 18 x 12 in; x 282.8\u2013300.8 and 336.8\u2013354.8, z 8\u201320)",
+      "unit": "Two hinged doors",
+      "userResponse": "2 (Doors \u2014 they swing open)",
+      "opening": null,
+      "finish": null,
+      "handles": null,
+      "internal": null,
+      "note": "Other C08 faces (ids 45407, 45978 at x 263.2\u2013280.8, z 0\u201330, left of the orange column) are NOT covered by this answer"
     }
   ],
   "approximations": [],
@@ -113,7 +129,7 @@
     {
       "sourceColour": "#663300",
       "sourceName": "C08_Toffee_Ember",
-      "meaning": null
+      "meaning": "Faces 46545/45208 confirmed as two hinged doors (hinge side, finish pending); faces 45407/45978 still unknown"
     },
     {
       "sourceColour": "#cc0000",
