@@ -50,6 +50,10 @@ Textures: dist/gsquare/textures (wood-mica-gloss-ref.jpg, wood-tile-vertical.jpg
 - Headless Google Chrome with SwiftShader WebGL, 1280x900, local http server: page loads, no page errors (only favicon 404); full view, each of the 10 units selected and opened, and rotated left/rear views screenshotted and inspected.
 - NOT yet done: mobile viewport, real GPU/device, close-up check of the closed pooja CNC face orientation, reload persistence of finishes, tour run-through.
 
+## Deployment
+
+Published at commit b9f9ee7; GitHub Pages run 45887344804 succeeded. Live https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare/ loaded in headless Chrome (SwiftShader WebGL, 1000x800): renders, no page errors, no failed requests. Not a real-device check.
+
 ## Known issue / question for Bright
 
 The storage door right of the TV, hinged at the corner shared with the pooja unit, can open only ~80 deg (pooja drawer knobs) and can't be open together with the pooja left doors. Viewer limits it to 80 deg and leaves it out of "Open all". Asked Bright whether to keep this or hinge it on its other side.

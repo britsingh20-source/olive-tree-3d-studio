@@ -10,7 +10,7 @@
     "route": "/gsquare/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare/",
     "directory": "dist/gsquare",
-    "status": "Built 27 Nov 2026; headless Chrome (SwiftShader WebGL) desktop checks done; mobile and real-device checks pending",
+    "status": "Live 27 Nov 2026 (Pages run 45887344804 success); live page loaded in headless Chrome SwiftShader with no errors or failed requests; mobile/real-device checks pending",
     "storageKey": "gsquare-v1",
     "files": [
       "dist/gsquare/index.html",
@@ -23,7 +23,8 @@
       "scripts/prepare-gsquare-layout.py",
       "scripts/make-gsquare-textures.py",
       "check-gsquare.mjs"
-    ]
+    ],
+    "deployedCommit": "b9f9ee7"
   },
   "source": {
     "files": [
