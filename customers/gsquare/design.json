@@ -60,10 +60,10 @@
       "size": "65-inch",
       "placement": "In front of the cyan TV back panel",
       "userResponse": "place a 65-inch TV in the foreground",
-      "position": null,
-      "positionProposal": "Centred on the 72 in panel width; bottom 26 in from floor (6 in above the lower cabinet top at 20 in) \u2014 awaiting Bright's OK",
+      "position": "Centred on the TV back panel width; bottom edge 26 in from floor",
       "renderSizeApprox": "56.7 x 31.9 in screen body (generic 16:9 65-inch; exact model not given)",
-      "constraint": "Panel top slopes from 100.2 in (stair-start side) to 60 in (other side); a centred TV must have its bottom no higher than about 32 in to stay under the slope"
+      "constraint": "Panel top slopes from 100.2 in (stair-start side) to 60 in (other side); a centred TV must have its bottom no higher than about 32 in to stay under the slope",
+      "positionUserResponse": "yes ok"
     }
   ],
   "approximations": [],
