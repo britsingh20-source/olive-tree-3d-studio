@@ -16,7 +16,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Brown #663300, two fronts beside the glass shutters: hinged doors on their outer edges (open away from the glass). Wood mica, matte (grain rendered same as TV panel photo — approximation). Small chrome-gold knobs. The other brown pieces at the far left (behind the orange column) are still unknown.
 - Green #00ff00, inner sides + bottom of the TV recess: matte wood mica. The low green strip at floor level is a skirting with an LED strip lighting the floor — matte wood mica skirting, warm white LED.
 - Yellow #ffff00, sloping top of the TV recess: matte wood mica with a warm white LED strip shining down on the TV panel.
-- Orange #ff3b00, front of the tall column left of the TV: fixed panel, no opening. Finish pending.
+- Orange #ff3b00, front of the tall column left of the TV: fixed fluted panel, no opening (reference photo dist/gsquare/textures/fluted-panel-ref.jpg, vertical flutes).
 
 ## How Bright wants questions asked (27 Nov 2026)
 

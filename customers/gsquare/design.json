@@ -150,8 +150,16 @@
       "location": "Front of the tall column left of the TV (x 263.2\u2013280.8, ~17.6 in wide, floor to stair, y 244.9)",
       "unit": "Fixed panel (closed, no storage, no opening action)",
       "userResponse": "2 (A fixed panel)",
-      "finish": null,
-      "note": "Faces behind this front (Bluebell Mist 46773, Lime Spark, Emerald Abyss, back Toffee) are still unexplained; do not assume storage"
+      "finish": "Fluted panels, as in Bright's reference photo (vertical wood-tone flutes with dark grooves; photo file was named pvc_reference.jpg)",
+      "note": "Faces behind this front (Bluebell Mist 46773, Lime Spark, Emerald Abyss, back Toffee) are still unexplained; do not assume storage",
+      "finishUserResponse": "fluted panels",
+      "referenceTexture": {
+        "path": "dist/gsquare/textures/fluted-panel-ref.jpg",
+        "sha256": "ea2bdd39ab7f13aea0512f3a91e06f319f69dc7445d904edf253eff131ffc0a6",
+        "size": "329x391",
+        "orientation": "flutes vertical"
+      },
+      "materialNote": "Keep as a separate material from the wood mica; fixed, no opening action"
     }
   ],
   "approximations": [
@@ -247,7 +255,7 @@
     {
       "sourceColour": "#ff3b00",
       "sourceName": "B05_Tangerine_Flame",
-      "meaning": "Fixed panel front of the tall left column; finish pending"
+      "meaning": "Fixed fluted panel (reference photo) on the tall left column front"
     },
     {
       "sourceColour": "#cc6600",
