@@ -97,6 +97,21 @@
       "sheen": "Matte",
       "finishUserResponse": "wood mica only but matte finish",
       "handlesUserResponse": "small knobs chrome gold finish"
+    },
+    {
+      "sourceColour": "#00ff00",
+      "sourceName": "G05_Neon_Leaf",
+      "faceIds": [
+        45548,
+        45826,
+        46300
+      ],
+      "location": "Inner sides and bottom of the 9 in deep TV recess (back faces)",
+      "unit": "TV recess frame",
+      "finish": "Wood mica (matte, like the brown side doors)",
+      "sheen": "Matte",
+      "userResponse": "2 (Matte wood mica, like the brown doors)",
+      "note": "Green face 45433 (low strip x 282.8\u2013354.8, z 0\u20138, set back at y 249.4) not covered by this answer"
     }
   ],
   "approximations": [
@@ -107,6 +122,10 @@
     {
       "item": "Knob positions on the four low-cabinet doors",
       "approximation": "One knob per door near the opening edge, vertically centred \u2014 position not specified by Bright"
+    },
+    {
+      "item": "TV recess frame grain",
+      "approximation": "Rendered with the same wood-grain reference photo in matte"
     }
   ],
   "openQuestions": [
@@ -138,7 +157,7 @@
     {
       "sourceColour": "#00ff00",
       "sourceName": "G05_Neon_Leaf",
-      "meaning": null
+      "meaning": "Faces 45548/45826/46300 = TV recess frame, matte wood mica; face 45433 (bottom strip) still unknown"
     },
     {
       "sourceColour": "#663300",
