@@ -126,6 +126,20 @@
       "ledColour": "Warm white",
       "sheen": "Matte",
       "finishUserResponse": "1 (Matte wood mica skirting, warm white LED)"
+    },
+    {
+      "sourceColour": "#ffff00",
+      "sourceName": "E05_Leaf_Glow",
+      "faceIds": [
+        45370
+      ],
+      "location": "Sloping top (underside) of the 9 in deep TV recess, under the stair",
+      "unit": "TV recess top",
+      "finish": "Wood mica",
+      "sheen": "Matte",
+      "lighting": "Warm white LED strip shining down on the TV panel",
+      "userResponse": "2 (Matte wood mica with warm white LED strip)",
+      "note": "Yellow face 46137 (narrow sloped strip at y 255.4\u2013257.1, x 282.8\u2013322.6) not covered"
     }
   ],
   "approximations": [
@@ -151,7 +165,7 @@
     {
       "sourceColour": "#ffff00",
       "sourceName": "E05_Leaf_Glow",
-      "meaning": null
+      "meaning": "Face 45370 = TV recess top, matte wood mica + warm white LED down-light; face 46137 still unknown"
     },
     {
       "sourceColour": "#7b00ff",

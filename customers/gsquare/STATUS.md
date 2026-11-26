@@ -15,6 +15,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Light purple #9999ff (two fronts under the TV, 18 x 12 in each): aluminium-frame shutters with grey tinted glass, opening from the middle (left hinged on left edge, right on right edge). Small chrome-gold knobs.
 - Brown #663300, two fronts beside the glass shutters: hinged doors on their outer edges (open away from the glass). Wood mica, matte (grain rendered same as TV panel photo — approximation). Small chrome-gold knobs. The other brown pieces at the far left (behind the orange column) are still unknown.
 - Green #00ff00, inner sides + bottom of the TV recess: matte wood mica. The low green strip at floor level is a skirting with an LED strip lighting the floor — matte wood mica skirting, warm white LED.
+- Yellow #ffff00, sloping top of the TV recess: matte wood mica with a warm white LED strip shining down on the TV panel.
 
 ## How Bright wants questions asked (27 Nov 2026)
 
