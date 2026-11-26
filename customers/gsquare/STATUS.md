@@ -48,7 +48,12 @@ Textures: dist/gsquare/textures (wood-mica-gloss-ref.jpg, wood-tile-vertical.jpg
 
 - node check-gsquare.mjs passed: all 170 source faces exact; source bounds 144.3 x 120 x 108.1 in; TV centred, bottom 26 in, clears the slope; 13 actions all open outward (front +Z, pooja and rear door -X); rear door 0-85 deg sweep clears the grass border; corner storage door at 80 deg clears the closed pooja unit; lights toggle; reference mode.
 - Headless Google Chrome with SwiftShader WebGL, 1280x900, local http server: page loads, no page errors (only favicon 404); full view, each of the 10 units selected and opened, and rotated left/rear views screenshotted and inspected.
-- NOT yet done: mobile viewport, real GPU/device, close-up check of the closed pooja CNC face orientation, reload persistence of finishes, tour run-through.
+- Live-page checks, headless Chrome SwiftShader (27 Nov 2026, 01:30 IST):
+  - Mobile 390x844 (touch): page and 3D stage render, no page errors.
+  - Pooja selected, doors closed: CNC pattern upright (bells top, lotus bottom), not mirrored, centre disc split at the door seam.
+  - Storage right of TV -> Ivory matte swatch -> reload: localStorage gsquare-v1 unchanged, swatch still pressed, status "Current finish: Ivory matte".
+  - Tour: Start tour -> status "TV back panel & frame · exploring"; a drag on the stage stopped it ("Tour stopped · you are in control", button "Replay tour").
+- NOT yet done: real phone / real GPU check (SwiftShader is not material-fidelity proof).
 
 ## Deployment
 

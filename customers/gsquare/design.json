@@ -10,7 +10,7 @@
     "route": "/gsquare/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare/",
     "directory": "dist/gsquare",
-    "status": "Live 27 Nov 2026 (Pages run 45887344804 success); live page loaded in headless Chrome SwiftShader with no errors or failed requests; mobile/real-device checks pending",
+    "status": "Live 27 Nov 2026. Headless Chrome (SwiftShader WebGL) checks on the live page: desktop 1100x850 and mobile 390x844 layouts, closed pooja CNC face orientation, finish persistence after reload, tour start and stop-on-drag. Real phone/GPU check pending.",
     "storageKey": "gsquare-v1",
     "files": [
       "dist/gsquare/index.html",
