@@ -269,10 +269,12 @@
       "unit": "Door into a storage space (under the stair, behind the right part of the TV wall)",
       "userResponse": "3 (A door into a storage space)",
       "hinge": "Staircase-side edge (y 280.4)",
-      "finish": null,
-      "handles": null,
+      "finish": "Wood mica",
+      "handles": "Handleless, push to open",
       "internal": null,
-      "hingeUserResponse": "2 (Staircase side)"
+      "hingeUserResponse": "2 (Staircase side)",
+      "sheen": "Matte",
+      "finishUserResponse": "2 (Matte wood mica, no handle)"
     }
   ],
   "approximations": [
