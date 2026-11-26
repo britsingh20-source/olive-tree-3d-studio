@@ -172,10 +172,12 @@
       "unit": "Pair of doors (shutters) with storage inside",
       "userResponse": "1 (Two doors with storage inside)",
       "opening": "From the middle: left door hinged on its left edge (x 354.8), right door on its right edge (x 384.1)",
-      "finish": null,
+      "finish": "Wood mica",
       "handles": null,
       "internal": null,
-      "openingUserResponse": "1 (From the middle)"
+      "openingUserResponse": "1 (From the middle)",
+      "sheen": "Matte",
+      "finishUserResponse": "2 (Matte wood mica, like the low cabinet doors)"
     }
   ],
   "approximations": [
