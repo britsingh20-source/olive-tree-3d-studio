@@ -11,8 +11,8 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 
 ## Confirmed so far
 
-- Cyan #00ffff (large sloped panel under the stair): wooden mica, same grain as Bright's reference photo, glossy. Photo saved at dist/gsquare/textures/wood-mica-gloss-ref.jpg. What the panel is (fixed panel, shutters, etc.) is still open.
+- Cyan #00ffff (large sloped panel under the stair): wooden mica, same grain as Bright's reference photo, glossy. Photo saved at dist/gsquare/textures/wood-mica-gloss-ref.jpg. It is a fixed TV back panel; a 65-inch TV goes in front of it.
 
 ## Next action
 
-Ask whether the cyan panel is a fixed panel or opening shutters (and if shutters, how many and how they open). Then continue with the remaining 20 source colours, one at a time.
+Get Bright's OK on the proposed TV position (centred, bottom 26 in from floor). Then continue with the remaining 20 source colours, one at a time.
