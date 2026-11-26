@@ -72,9 +72,10 @@
       "unit": "Two shutters",
       "finish": "Aluminium frame with grey tinted glass",
       "userResponse": "Aluminium glasses, tinted grey shutters.",
-      "opening": null,
+      "opening": "Pair of hinged doors opening from the middle: left shutter hinged on its left edge, right shutter hinged on its right edge",
       "handles": null,
-      "internal": null
+      "internal": null,
+      "openingUserResponse": "1 (Like two doors from the middle)"
     }
   ],
   "approximations": [],
@@ -167,7 +168,7 @@
     {
       "sourceColour": "#9999ff",
       "sourceName": "I02_Moonlit_Azure",
-      "meaning": "Confirmed: two aluminium-frame grey tinted glass shutters; opening direction pending"
+      "meaning": "Confirmed: two aluminium-frame grey tinted glass shutters, open from the middle (outer-edge hinges); handles pending"
     },
     {
       "sourceColour": "#ff00ff",
