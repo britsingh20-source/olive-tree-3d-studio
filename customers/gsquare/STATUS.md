@@ -17,7 +17,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Green #00ff00, inner sides + bottom of the TV recess: matte wood mica. The low green strip at floor level is a skirting with an LED strip lighting the floor — matte wood mica skirting, warm white LED.
 - Yellow #ffff00, sloping top of the TV recess: matte wood mica with a warm white LED strip shining down on the TV panel.
 - Orange #ff3b00, front of the tall column left of the TV: fixed fluted panel, no opening (reference photo dist/gsquare/textures/fluted-panel-ref.jpg, vertical flutes).
-- Dark blue #000066, right of the TV (60 in tall, two ~15 in halves): pair of storage doors. Opening, finish, handles, inside layout pending.
+- Dark blue #000066, right of the TV (60 in tall, two ~15 in halves): pair of storage doors opening from the middle (outer-edge hinges). Finish, handles, inside layout pending.
 
 ## How Bright wants questions asked (27 Nov 2026)
 

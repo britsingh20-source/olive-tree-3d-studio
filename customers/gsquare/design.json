@@ -171,10 +171,11 @@
       "location": "Right of the TV: two halves x 354.8\u2013369.5 and 369.5\u2013384.1 (~14.7 in each), z 0\u201360, front plane y 244.3",
       "unit": "Pair of doors (shutters) with storage inside",
       "userResponse": "1 (Two doors with storage inside)",
-      "opening": null,
+      "opening": "From the middle: left door hinged on its left edge (x 354.8), right door on its right edge (x 384.1)",
       "finish": null,
       "handles": null,
-      "internal": null
+      "internal": null,
+      "openingUserResponse": "1 (From the middle)"
     }
   ],
   "approximations": [
