@@ -246,6 +246,18 @@
       "finish": "Wood mica",
       "sheen": "Matte",
       "userResponse": "1 (Matte wood mica side panel, plain)"
+    },
+    {
+      "sourceColour": "#664a00",
+      "sourceName": "D08_Bronzed_Mustard",
+      "faceIds": [
+        46239
+      ],
+      "location": "Back of the TV wall facing the staircase (y 255.4, x 282.8\u2013322.6, z 3 to 96.8/74.6 sloped top); ~24 in gap to the stair",
+      "unit": "Fixed back panel (no opening)",
+      "finish": "Artificial green grass mat covering",
+      "userResponse": "This is a fixed back panel. Need to place green grass matte",
+      "referenceNote": "Bright sent a product photo of a rolled artificial grass mat (bright green, dense blades). Photo NOT committed to the public repo (retail product image); viewer uses a procedural grass texture as approximation."
     }
   ],
   "approximations": [
@@ -268,6 +280,10 @@
     {
       "item": "Pooja drawer knobs",
       "approximation": "Rendered as two knobs per 36 in drawer, horizontally spaced, vertically centred \u2014 count/position not specified"
+    },
+    {
+      "item": "Grass mat on rear back panel",
+      "approximation": "Procedural bright-green artificial grass texture; actual product/pile height not specified"
     }
   ],
   "openQuestions": [
@@ -334,7 +350,7 @@
     {
       "sourceColour": "#664a00",
       "sourceName": "D08_Bronzed_Mustard",
-      "meaning": null
+      "meaning": "Fixed rear back panel covered with artificial green grass mat"
     },
     {
       "sourceColour": "#00ffff",
