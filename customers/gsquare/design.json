@@ -314,6 +314,27 @@
       "sheen": "Matte",
       "lighting": "Concealed lights in the border so the grass mat glows",
       "userResponse": "1 Matte wood mica border around the grass with concealed lights the grass matte should glow"
+    },
+    {
+      "sourceColours": [
+        "#cc9900",
+        "#cc6600"
+      ],
+      "sourceNames": [
+        "D06_Sunflower_Bright",
+        "C06_Saffron_Kiss"
+      ],
+      "faceIds": [
+        45985,
+        46464
+      ],
+      "location": "Thin 2 in upright strip between the fluted column and the TV recess, floor to stair (front face y 244.4; side face x 280.8 toward the column)",
+      "unit": "Concealed profile light strip",
+      "finish": "Front face matte wood mica",
+      "sheen": "Matte",
+      "lighting": "Concealed LED (not visible from the front) washing/highlighting the fluted (louver) column beside it",
+      "interpretation": "'highlight the lower' read as 'highlight the louver' (fluted panel) \u2014 confirm if wrong",
+      "userResponse": "2 Profile light. A thin glowing LED strip line. Yeah, but the light should be concealed. It should highlight the lower the front facing should be wooden matte mica"
     }
   ],
   "approximations": [
@@ -399,7 +420,7 @@
     {
       "sourceColour": "#cc9900",
       "sourceName": "D06_Sunflower_Bright",
-      "meaning": null
+      "meaning": "Concealed profile light strip, matte wood mica front, lights the fluted column"
     },
     {
       "sourceColour": "#336600",
@@ -434,7 +455,7 @@
     {
       "sourceColour": "#cc6600",
       "sourceName": "C06_Saffron_Kiss",
-      "meaning": null
+      "meaning": "Concealed profile light strip, matte wood mica front, lights the fluted column"
     },
     {
       "sourceColour": "#9999ff",
