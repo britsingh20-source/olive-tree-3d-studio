@@ -90,11 +90,27 @@ export function buildModel(){
  const fl=unit('fluted-column','Fluted column & profile light','fluted',0);fl.finishable=false;fl.fixed=true;fl.front=flutedMat;const fg=fl.group;
  const colPts=[[7.07,0],[24.73,0],[24.73,101.31],[7.07,111.17]];
  slab(fg,colPts,'z',-1.4,t,[flutedMat,fl.side],[16,19.1]);
- slab(fg,colPts,'z',-12.9,t,fl.side);B(fg,7.07,7.82,0,111.17,-12.15,-1.4,fl.side);
+ B(fg,7.07,7.82,0,111.17,-12.94,-1.4,fl.side);
  B(fg,24.73,26.73,0,100.19,-12.9,-.15,fl.side);
  B(fg,24.66,24.73,2,99,-.6,-.2,lightMaterial);for(const y of [14,42,70,96])lamp(fl,22.5,y,1.2,.08,.7);
  fl.material='Fixed fluted panel (Bright’s reference photo), matte wood mica back and sides';fl.lighting='Concealed LED in the 2 in matte strip, lighting the fluted face';
- fl.renderNote='Flutes are a photo texture, not modelled grooves. Back of the column closed with matte wood mica as confirmed.';
+ fl.renderNote='Flutes are a photo texture, not modelled grooves. The back of the column is the wash-basin niche (separate unit).';
+
+ // 4b · Wash-basin niche at the back of the fluted column (staircase side): fixed box 0-30 in, basin counter at 30 in, mirror on the back wall.
+ const wb=unit('wash-basin','Wash basin & mirror','basin',Math.PI);wb.fixed=true;const wg=wb.group;
+ B(wg,7.82,24.73,0,30,-12.94,-12.19,wb.front);B(wg,7.82,24.73,0,.75,-12.19,-1.4,inner);
+ B(wg,7.82,24.73,29.25,30,-12.94,-1.4,wb.side);
+ B(wg,7.82,24.73,30,101.3,-1.4,-1.15,wb.side,[]);
+ const mirror=new T.MeshPhysicalMaterial({color:'#c8d3d8',metalness:.6,roughness:.05,clearcoat:1,envMapIntensity:1.2});mirror.userData.compatColor='#cfd8dc';
+ B(wg,10.07,21.73,45.68,86.56,-1.65,-1.4,mirror);
+ const ceramic=new T.MeshPhysicalMaterial({color:'#fbfaf7',roughness:.18,clearcoat:.6,side:T.DoubleSide});ceramic.userData.compatColor='#f4f3ef';
+ const chrome=new T.MeshStandardMaterial({color:'#e6e8ea',metalness:1,roughness:.12});chrome.userData.compatColor='#d8dadc';
+ {const pts=[];for(let i=0;i<=12;i++){const a=i/12*Math.PI/2;pts.push(new T.Vector2((.2+5.8*Math.sin(a))*I,(4.6-4.6*Math.cos(a))*I));}pts.push(new T.Vector2(5.8*I,4.8*I));
+  const bowl=new T.Mesh(new T.LatheGeometry(pts,40),ceramic);bowl.position.set(15.9*I,30*I,-7.2*I);bowl.castShadow=true;wg.add(bowl);
+  const spout=new T.Mesh(new T.CylinderGeometry(.45*I,.45*I,9*I,16),chrome);spout.position.set(15.9*I,34.5*I,-2.6*I);wg.add(spout);
+  const arm=new T.Mesh(new T.CylinderGeometry(.35*I,.35*I,3.2*I,16),chrome);arm.rotation.x=Math.PI/2;arm.position.set(15.9*I,38.7*I,-4*I);wg.add(arm);}
+ wb.purpose='Wash basin: fixed box below, basin counter at 30 in, mirror on the back wall';
+ wb.renderNote='Basin shape/size, tap and counter thickness are approximations (not specified). Niche inner finish rendered matte wood mica. No light in the niche (not specified).';
 
  // 5 · Storage doors right of the TV: matte, push-to-open, from the middle; empty inside.
  const st=unit('right-storage','Storage right of the TV','storage',0);const sg=st.group;

@@ -27,7 +27,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Dark red #660000, stepped panel on the side of the stair: matte wood mica cladding.
 - Dark green #336600 + gold #ffbf00 + yellow face 46137, thin edges around the grass panel: matte wood mica border with concealed lights making the grass glow (light colour rendered warm white — approximation).
 - Gold #cc9900 + #cc6600, 2 in upright strip between fluted column and TV area: matte wood mica front with a concealed LED that lights up the fluted (louver) column (my reading of 'highlight the lower').
-- Lime/teal/blue (#31ff31, #006666, #6565ff), open space at the back of the fluted column: closed with a matte wood mica panel on the staircase side; the inner blue rectangle and shelf are hidden.
+- Lime/teal/blue (#31ff31, #006666, #6565ff) + brown back box, back of the fluted column: CORRECTED 27 Nov 01:34 — wash-basin niche: fixed matte box 0–30 in, basin on the counter at 30 in, mirror on the back wall (blue). (Earlier 'closed panel' answer superseded.) Basin type, niche finish and lighting not specified yet.
 - Brown back faces 45978/45407, low box behind the fluted column: closed plain matte wood mica.
 
 All source colours are now explained (G01 Mint Mist is unused; white Default faces are the staircase/structure).
@@ -62,6 +62,10 @@ Published at commit b9f9ee7; GitHub Pages run 45887344804 succeeded. Live https:
 ## Known issue / question for Bright
 
 The storage door right of the TV, hinged at the corner shared with the pooja unit, can open only ~80 deg (pooja drawer knobs) and can't be open together with the pooja left doors. Viewer limits it to 80 deg and leaves it out of "Open all". Asked Bright whether to keep this or hinge it on its other side.
+
+## Pending from Bright (27 Nov 01:34)
+
+Not satisfied with the 'front lower finish' and 'lighting finish' — clarifying which part and what change.
 
 ## Next action
 

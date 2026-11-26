@@ -22,8 +22,9 @@ const st=get('right-storage');assert.equal(st.actions.length,2);assert.equal(st.
 const pj=get('pooja');assert.equal(pj.doorCount,2);assert(pj.lightNodes.length>0);
 const dr=get('pooja-drawers');assert.deepEqual(dr.drawerHeightsInches,[6,4]);assert(dr.actions.every(a=>a.type==='slide'));
 const lo=get('pooja-lower');assert.equal(lo.actions.length,2);
-for(const id of ['fluted-column','grass-panel','tv-wall','tv'])assert.equal(get(id).actions.length,0,id+' must stay fixed');
+for(const id of ['fluted-column','grass-panel','tv-wall','tv','wash-basin'])assert.equal(get(id).actions.length,0,id+' must stay fixed');
 assert.equal(get('grass-panel').finishable,false);assert.equal(get('fluted-column').finishable,false);
+const wb=get('wash-basin');assert(wb.purpose.includes('mirror'));{const b=new T.Box3().setFromObject(wb.group);assert(Math.abs(b.min.x/.0254-7.82)<.01&&Math.abs(b.max.x/.0254-24.73)<.01,'basin niche width');}
 const rs=get('rear-storage');assert.equal(rs.actions.length,1);assert.equal(rs.hinge,'Staircase side');
 // Opening direction: front doors +Z, pooja unit and rear door -X; drawers slide -X.
 m.root.updateMatrixWorld(true);

@@ -368,11 +368,12 @@
         46773
       ],
       "location": "Open space at the back of the fluted column, staircase side (x 263.2\u2013280.8, y 245.4\u2013257.2, z 30 to stair)",
-      "unit": "Closed \u2014 covered on the staircase side with a matte wood mica panel (no niche, no door)",
+      "unit": "SUPERSEDED (was: closed with matte panel)",
       "finish": "Wood mica",
       "sheen": "Matte",
       "userResponse": "2 (Closed, covered with a matte wood mica panel)",
-      "note": "The blue rectangle (46773) and green shelf (45981) inside become hidden; not modelled as features. The closing panel is a new render element on plane y 257.2, top following the stair slope (approximation)."
+      "note": "The blue rectangle (46773) and green shelf (45981) inside become hidden; not modelled as features. The closing panel is a new render element on plane y 257.2, top following the stair slope (approximation).",
+      "superseded": "27 Nov 2026 01:34 \u2014 Bright corrected this: the space is a wash-basin niche, not closed"
     },
     {
       "sourceColour": "#663300",
@@ -385,7 +386,32 @@
       "unit": "Closed, plain matte wood mica (same as the closing panel above)",
       "finish": "Wood mica",
       "sheen": "Matte",
-      "userResponse": "1 (Closed, plain matte wood mica)"
+      "userResponse": "1 (Closed, plain matte wood mica)",
+      "purposeCorrection": "Fixed box under the wash-basin counter (Bright, 27 Nov 2026 01:34)"
+    },
+    {
+      "sourceColours": [
+        "#31ff31",
+        "#006666",
+        "#6565ff",
+        "#663300"
+      ],
+      "faceIds": [
+        46417,
+        45885,
+        45981,
+        46773,
+        45978,
+        45407
+      ],
+      "location": "Back of the fluted column, staircase side (x 7.07\u201324.73, z 0 to stair; niche depth ~11.8 in)",
+      "unit": "Wash-basin niche: fixed matte wood mica box 0\u201330 in; wash basin on the counter at 30 in (teal face); mirror on the back wall (blue face, 11.7 x 40.9 in, 45.7\u201386.6 in high)",
+      "userResponse": "Closely watch this area in the previously attached SKP file. In this area, I have been given a blue color, that is for mirror, and kind of bottom, that is fixed box. Okay, above that I have been placed with a blue color, that is for keeping the wash basin. That is the this area's purpose.",
+      "pending": [
+        "Basin type/size and tap",
+        "Niche inner finish (rendered matte wood mica)",
+        "Niche/mirror lighting"
+      ]
     }
   ],
   "approximations": [
@@ -436,6 +462,10 @@
     {
       "item": "Rear storage door swing",
       "approximation": "Outward toward the grass niche"
+    },
+    {
+      "item": "Wash basin",
+      "approximation": "Round white vessel basin ~11.6 in dia with a chrome deck tap; counter 0.75 in matte wood mica; mirror plain, no light"
     }
   ],
   "openQuestions": [
@@ -547,6 +577,10 @@
     {
       "question": "Right storage door next to the pooja shares the hinge corner with the pooja unit: it can open only ~80 deg before the pooja drawer knobs and cannot be open together with the pooja left doors. Viewer limits it to 80 deg and skips it in 'Open all'. Keep, or hinge that door on its other side?",
       "status": "Asked Bright 27 Nov 2026 \u2014 awaiting answer"
+    },
+    {
+      "question": "Bright is not satisfied with the 'front lower finish' and the 'lighting finish' \u2014 which part and what change?",
+      "status": "Asked 27 Nov 2026 01:3x"
     }
   ]
 }
