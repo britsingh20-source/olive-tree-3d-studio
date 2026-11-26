@@ -268,10 +268,11 @@
       "location": "Behind the TV wall on the staircase side: plane x 322.6, y 256.4\u2013280.4 (24 in), z 0\u201378, facing -x (toward the grass panel area)",
       "unit": "Door into a storage space (under the stair, behind the right part of the TV wall)",
       "userResponse": "3 (A door into a storage space)",
-      "hinge": null,
+      "hinge": "Staircase-side edge (y 280.4)",
       "finish": null,
       "handles": null,
-      "internal": null
+      "internal": null,
+      "hingeUserResponse": "2 (Staircase side)"
     }
   ],
   "approximations": [
@@ -298,6 +299,10 @@
     {
       "item": "Grass mat on rear back panel",
       "approximation": "Procedural bright-green artificial grass texture; actual product/pile height not specified"
+    },
+    {
+      "item": "Rear storage door swing",
+      "approximation": "Rendered swinging outward (toward -x, into the grass-panel gap); inward/outward not specified"
     }
   ],
   "openQuestions": [
