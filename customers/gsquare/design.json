@@ -10,7 +10,20 @@
     "route": "/gsquare/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare/",
     "directory": "dist/gsquare",
-    "status": "Colour intake complete (27 Nov 2026); viewer build in progress"
+    "status": "Built 27 Nov 2026; headless Chrome (SwiftShader WebGL) desktop checks done; mobile and real-device checks pending",
+    "storageKey": "gsquare-v1",
+    "files": [
+      "dist/gsquare/index.html",
+      "dist/gsquare/studio.js",
+      "dist/gsquare/model.js",
+      "dist/gsquare/exact-layout.js",
+      "dist/gsquare/textures/"
+    ],
+    "scripts": [
+      "scripts/prepare-gsquare-layout.py",
+      "scripts/make-gsquare-textures.py",
+      "check-gsquare.mjs"
+    ]
   },
   "source": {
     "files": [
@@ -406,6 +419,22 @@
     {
       "item": "Grass-panel concealed light colour",
       "approximation": "Rendered warm white to match the other LEDs; colour not specified by Bright"
+    },
+    {
+      "item": "Wood grain scale",
+      "approximation": "Reference photo treated as a 24 x 24 in sample; vertical grain on upright panels, horizontal on the TV back panel (as in the photo)"
+    },
+    {
+      "item": "Carcass/panel thicknesses, knob sizes, storage depths",
+      "approximation": "Visual approximations around verified source planes"
+    },
+    {
+      "item": "Pooja CNC doors",
+      "approximation": "Studio Pattern 1 drawing (mandala jali, bells, lotus, round centre) on matte wood mica; not a fabrication file. Interior shelves not specified (empty)"
+    },
+    {
+      "item": "Rear storage door swing",
+      "approximation": "Outward toward the grass niche"
     }
   ],
   "openQuestions": [
@@ -513,6 +542,10 @@
       "sourceColour": "#6565ff",
       "sourceName": "I03_Bluebell_Mist",
       "meaning": "Back of fluted column closed with matte wood mica panel; interior faces hidden"
+    },
+    {
+      "question": "Right storage door next to the pooja shares the hinge corner with the pooja unit: it can open only ~80 deg before the pooja drawer knobs and cannot be open together with the pooja left doors. Viewer limits it to 80 deg and skips it in 'Open all'. Keep, or hinge that door on its other side?",
+      "status": "Asked Bright 27 Nov 2026 \u2014 awaiting answer"
     }
   ]
 }
