@@ -122,8 +122,10 @@
       "location": "Floor-level strip under the low cabinet (72 x 8 in, set back 5 in at y 249.4)",
       "unit": "Skirting / plinth with LED strip light shining on the floor",
       "userResponse": "2 (Skirting with LED strip light)",
-      "finish": null,
-      "ledColour": null
+      "finish": "Wood mica",
+      "ledColour": "Warm white",
+      "sheen": "Matte",
+      "finishUserResponse": "1 (Matte wood mica skirting, warm white LED)"
     }
   ],
   "approximations": [
