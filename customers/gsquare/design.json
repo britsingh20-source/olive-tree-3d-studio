@@ -160,6 +160,21 @@
         "orientation": "flutes vertical"
       },
       "materialNote": "Keep as a separate material from the wood mica; fixed, no opening action"
+    },
+    {
+      "sourceColour": "#000066",
+      "sourceName": "I08_Inkstorm",
+      "faceIds": [
+        45500,
+        46380
+      ],
+      "location": "Right of the TV: two halves x 354.8\u2013369.5 and 369.5\u2013384.1 (~14.7 in each), z 0\u201360, front plane y 244.3",
+      "unit": "Pair of doors (shutters) with storage inside",
+      "userResponse": "1 (Two doors with storage inside)",
+      "opening": null,
+      "finish": null,
+      "handles": null,
+      "internal": null
     }
   ],
   "approximations": [
@@ -200,7 +215,7 @@
     {
       "sourceColour": "#000066",
       "sourceName": "I08_Inkstorm",
-      "meaning": null
+      "meaning": "Pair of storage doors right of the TV; opening/finish/handles/internals pending"
     },
     {
       "sourceColour": "#00ff00",
