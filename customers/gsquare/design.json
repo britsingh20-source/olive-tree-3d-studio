@@ -180,6 +180,27 @@
       "finishUserResponse": "2 (Matte wood mica, like the low cabinet doors)",
       "handlesUserResponse": "3 (No handles, push to open)",
       "internalUserResponse": "This is only a undershutter the storage covering. No bugs inside it. When they want, they need to open this door and keep the things inside. Like that it is."
+    },
+    {
+      "sourceColour": "#660033",
+      "sourceName": "L08_Velvet_Rose",
+      "faceIds": [
+        45104,
+        45017
+      ],
+      "location": "Upper section of the tall far-right unit, front facing -x (two 18 in halves, y 208.3\u2013244.3, z 30\u201384.8)",
+      "unit": "Pooja unit \u2014 pair of CNC-cut doors",
+      "cncPattern": "As Bright's reference photo: large circular floral/mandala cut-out across both doors, hanging bells at top, lotus motifs lower down, round wooden centre handle split between the doors",
+      "patternReference": {
+        "path": "dist/gsquare/textures/pooja-cnc-pattern-ref.jpg",
+        "sha256": "843493cb2fc6062250026993a32ccd0714826a5a099937de6397073f0bb1ed22",
+        "use": "Pattern only \u2014 NOT the colour"
+      },
+      "finish": "Wood mica (same as our matte wood mica, not the white/grey shown in the photo)",
+      "sheen": "Matte",
+      "opening": "Pair opening from the middle (as the split centre handle in the reference photo shows)",
+      "userResponse": "cnc pooja But don't use this color for mica finish. Follow our matte wooden micra finish",
+      "behindCutouts": null
     }
   ],
   "approximations": [
@@ -194,6 +215,10 @@
     {
       "item": "TV recess frame grain",
       "approximation": "Rendered with the same wood-grain reference photo in matte"
+    },
+    {
+      "item": "Pooja CNC pattern",
+      "approximation": "Viewer will trace the reference photo's motif layout as a cut-out/alpha texture on the 36 x 54.8 in door pair; exact CNC vector file not supplied"
     }
   ],
   "openQuestions": [
@@ -215,7 +240,7 @@
     {
       "sourceColour": "#660033",
       "sourceName": "L08_Velvet_Rose",
-      "meaning": null
+      "meaning": "Pooja unit CNC doors, matte wood mica, pattern per reference photo; backing/light behind cut-outs pending"
     },
     {
       "sourceColour": "#000066",

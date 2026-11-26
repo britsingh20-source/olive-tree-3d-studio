@@ -18,6 +18,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Yellow #ffff00, sloping top of the TV recess: matte wood mica with a warm white LED strip shining down on the TV panel.
 - Orange #ff3b00, front of the tall column left of the TV: fixed fluted panel, no opening (reference photo dist/gsquare/textures/fluted-panel-ref.jpg, vertical flutes).
 - Dark blue #000066, right of the TV (60 in tall, two ~15 in halves): pair of storage doors opening from the middle (outer-edge hinges), matte wood mica, handleless push-to-open. Inside: empty storage, no shelves or fittings.
+- Dark plum #660033, upper part of the far-right tall unit: POOJA unit — two CNC-cut doors in the pattern of Bright's photo (dist/gsquare/textures/pooja-cnc-pattern-ref.jpg), but in our matte wood mica, not the photo's colour. Open from the middle. What's behind the cut-outs pending.
 
 ## How Bright wants questions asked (27 Nov 2026)
 
