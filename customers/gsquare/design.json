@@ -200,7 +200,9 @@
       "sheen": "Matte",
       "opening": "Pair opening from the middle (as the split centre handle in the reference photo shows)",
       "userResponse": "cnc pooja But don't use this color for mica finish. Follow our matte wooden micra finish",
-      "behindCutouts": null
+      "behindCutouts": "Open cut-outs with warm light inside the pooja, so they glow when the light is on (no acrylic backing)",
+      "behindCutoutsUserResponse": "1 (Warm light inside)",
+      "lighting": "Warm light inside pooja \u2014 toggle in viewer"
     }
   ],
   "approximations": [
