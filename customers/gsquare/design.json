@@ -88,14 +88,21 @@
       "unit": "Two hinged doors",
       "userResponse": "2 (Doors \u2014 they swing open)",
       "opening": "Outer-edge hinges: left door hinged on its left edge, right door on its right edge (both open away from the glass shutters)",
-      "finish": null,
+      "finish": "Wood mica",
       "handles": null,
       "internal": null,
       "note": "Other C08 faces (ids 45407, 45978 at x 263.2\u2013280.8, z 0\u201330, left of the orange column) are NOT covered by this answer",
-      "openingUserResponse": "1 (Outer sides)"
+      "openingUserResponse": "1 (Outer sides)",
+      "sheen": "Matte",
+      "finishUserResponse": "wood mica only but matte finish"
     }
   ],
-  "approximations": [],
+  "approximations": [
+    {
+      "item": "Brown side doors (#663300 faces 46545/45208) wood grain",
+      "approximation": "Render uses the same wood-grain reference photo as the TV back panel, in matte; Bright said 'wood mica' without naming a different grain \u2014 correct if a different laminate is chosen"
+    }
+  ],
   "openQuestions": [
     {
       "sourceColour": "#660000",
