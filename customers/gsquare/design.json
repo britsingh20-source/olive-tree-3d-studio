@@ -229,9 +229,11 @@
       "location": "Bottom of the pooja unit, floor to 20 in, two 18 in halves (front facing -x)",
       "unit": "Two storage doors opening from the middle (outer-edge hinges)",
       "userResponse": "1 (Two doors, storage that opens from the middle)",
-      "finish": null,
-      "handles": null,
-      "internal": null
+      "finish": "Wood mica",
+      "handles": "Small chrome-gold knobs",
+      "internal": null,
+      "sheen": "Matte",
+      "finishUserResponse": "1 (Matte wood mica with small chrome-gold knobs)"
     }
   ],
   "approximations": [
