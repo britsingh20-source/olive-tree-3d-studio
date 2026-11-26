@@ -1,6 +1,7 @@
 import * as T from 'three';
 import {earcut} from '../venki/triangulate.js';
 import {exactLayout} from './exact-layout.js';
+import {RectAreaLightUniformsLib} from '../vendor/RectAreaLightUniformsLib.js';
 export {exactLayout};
 // gsquare · under-staircase TV wall, pooja unit and rear grass niche (source: gsquare.skp, identical to gsquare (1).skp).
 // World axes (metres): X = source x - 256.1 in, Y = height, Z = 244.3 in - source y.
@@ -19,6 +20,7 @@ const wood={name:'Wood mica matte',color:DEFAULT_FINISH,wood:true},woodGloss={na
 let horizontalWood;
 export function createHorizontalWood(){if(!horizontalWood){horizontalWood=tex('./textures/wood-mica-gloss-ref.jpg');horizontalWood.wrapS=horizontalWood.wrapT=T.MirroredRepeatWrapping;horizontalWood.anisotropy=16;}return horizontalWood;}
 export function buildModel(){
+  RectAreaLightUniformsLib.init();
  const root=new T.Group(),architecture=new T.Group(),referenceRoot=new T.Group();root.add(architecture,referenceRoot);referenceRoot.visible=false;
  const units=[],actions=[],sourceMeshes=[],glowMaterials=[],lightMaterial=new T.MeshBasicMaterial({color:'#ffe2a6'});
  function mat(f){const m=new T.MeshPhysicalMaterial({color:'#ffffff',map:createWoodTexture(),roughness:f.gloss?.22:.84,clearcoat:f.gloss?.85:0,clearcoatRoughness:.08,side:T.DoubleSide});m.userData.compatColor=f.color;m.userData.gloss=!!f.gloss;return m;}
@@ -51,6 +53,10 @@ export function buildModel(){
   u.sideSkin=u.side;u.members=[u];u.product=u;units.push(u);return u;}
  function act(u,node,type,travel,extra={}){const a={unit:u,node,type,travel,initial:node.position.clone(),open:false,value:0,...extra};actions.push(a);u.actions.push(a);node.traverse(o=>{if(o.isMesh)o.userData.action=a;});return a;}
  function lamp(u,x,y,z,intensity=.18,distance=1.2){const l=new T.PointLight('#ffd9a0',intensity,distance,2);l.position.set(x*I,y*I,z*I);u.group.add(l);u.lightNodes.push(l);return l;}
+ // Soft linear LED: rect-area light centred at (x,y,z) inches, long edge along dir L, emitting toward dir F.
+ function strip(u,x,y,z,len,wid,L,F,intensity=6){const l=new T.RectAreaLight('#ffd6a0',intensity,len*I,wid*I);l.position.set(x*I,y*I,z*I);
+  const xa=new T.Vector3(...L).normalize(),za=new T.Vector3(...F).normalize().negate();const ya=za.clone().cross(xa).normalize();xa.copy(ya.clone().cross(za)).normalize();
+  l.quaternion.setFromRotationMatrix(new T.Matrix4().makeBasis(xa,ya,za));u.group.add(l);u.lightNodes.push(l);return l;}
  // Chrome-gold knob; axis = outward normal ('z' or '-x').
  function knob(p,x,y,z,axis){const o=p.userData.o||new T.Vector3(),g=new T.Group();const stem=new T.Mesh(new T.CylinderGeometry(.22*I,.22*I,.55*I,16),gold),cap=new T.Mesh(new T.SphereGeometry(.55*I,20,14),gold);
   stem.position.y=.27*I;cap.position.y=.75*I;cap.scale.y=.75;g.add(stem,cap);if(axis==='z')g.rotation.x=Math.PI/2;else g.rotation.z=Math.PI/2;g.position.set(x*I-o.x,y*I-o.y,z*I-o.z);p.add(g);return g;}
@@ -62,7 +68,7 @@ export function buildModel(){
  B(tg,97.98,98.73,20,60,-9.1,-.15,tvw.side);
  slab(tg,[[26.73,100.19],[98.73,60],[98.73,60.85],[26.73,101.04]],'z',-9.1,8.95,tvw.side);
  slab(tg,[[27.6,slopeY(27.6)-.42],[97.8,slopeY(97.8)-.42],[97.8,slopeY(97.8)-.04],[27.6,slopeY(27.6)-.04]],'z',-1.7,.5,lightMaterial);
- for(const x of [38,62,86])lamp(tvw,x,slopeY(x)-6,-5,.05,.9);
+ tvw.slopeLight=strip(tvw,62.73,slopeY(62.73)-.6,-1.6,Math.hypot(72,40.19)-3,.8,[72,-40.19,0],[-.42,-.75,-.5],30);
  tvw.material='Glossy wood mica (Bright’s reference grain), matte wood mica frame';tvw.lighting='Warm white LED under the sloping top, shining down on the panel';
  tvw.renderNote='Fixed back panel. Panel/frame thicknesses are approximations around the verified source planes.';
 
@@ -82,19 +88,28 @@ export function buildModel(){
   const p=pivotAt(lg,hx,14,-.1);const f=1;B(p,x0,x1,8+gap,8+gap+f,-.85,-.1,alu);B(p,x0,x1,20-gap-f,20-gap,-.85,-.1,alu);B(p,x0,x0+f,8+gap+f,20-gap-f,-.85,-.1,alu);B(p,x1-f,x1,8+gap+f,20-gap-f,-.85,-.1,alu);
   B(p,x0+f,x1-f,8+gap+f,20-gap-f,-.6,-.35,glass);knob(p,kx,14,-.1,'z');act(lc,p,'hinge',travel,{door:'glass'});lc.doors.push(p);}
  B(lg,26.73,98.73,0,8,-5.9,-5.15,lc.side);
- B(lg,27.5,98,7.45,7.75,-4.9,-4.3,lightMaterial);for(const x of [36,62,88])lamp(lc,x,3,-2,.10,.8);
+ B(lg,27.5,98,7.45,7.75,-4.9,-4.3,lightMaterial);strip(lc,62.73,7.3,-4.6,70,.6,[1,0,0],[0,-1,.45],30);
  lc.doorCount=4;lc.glassDoors=2;lc.handles='Small chrome-gold knobs';lc.skirting='Matte wood mica skirting, 5 in set back, warm white LED washing the floor';
  lc.renderNote='Knob positions, carcass thickness and inner partitions are approximations. Inside layout not specified (shown empty).';
 
  // 4 · Fluted column (fixed) with matte back/side and a concealed profile light strip.
  const fl=unit('fluted-column','Fluted column & profile light','fluted',0);fl.finishable=false;fl.fixed=true;fl.front=flutedMat;const fg=fl.group;
  const colPts=[[7.07,0],[24.73,0],[24.73,101.31],[7.07,111.17]];
- slab(fg,colPts,'z',-1.4,t,[flutedMat,fl.side],[16,19.1]);
+ // Real 3D louvers: dark grooved backing board + 9 wood slats (texture cut from Bright's louver photo).
+ const grooveMat=new T.MeshStandardMaterial({color:'#2b1f18',roughness:.8});grooveMat.userData.compatColor='#2b1f18';
+ const slatTex=tex('./textures/louver-slat.jpg');slatTex.wrapS=slatTex.wrapT=T.MirroredRepeatWrapping;
+ const slatMat=new T.MeshStandardMaterial({map:slatTex,roughness:.62,side:T.DoubleSide});slatMat.userData.compatColor='#7a4a2c';fl.front=slatMat;
+ slab(fg,colPts,'z',-1.4,.45,grooveMat);
+ const colTop=x=>111.17-(x-7.07)*(9.86/17.66),N=9,pitch=(24.73-7.07)/N,gw=.42;fl.slats=[];
+ for(let k=0;k<N;k++){const x0=7.07+k*pitch+gw/2,x1=7.07+(k+1)*pitch-gw/2;
+  const m=slab(fg,[[x0,0],[x1,0],[x1,colTop(x1)-.15],[x0,colTop(x0)-.15]],'z',-.95,.7,slatMat,[x1-x0,36]);
+  const uv=m.geometry.attributes.uv;for(let i=0;i<uv.count;i++)uv.setX(i,uv.getX(i)-x0/(x1-x0)+k*.25);uv.needsUpdate=true;fl.slats.push(m);}
+ fl.louverCount=N;
  B(fg,7.07,7.82,0,111.17,-12.94,-1.4,fl.side);
  B(fg,24.73,26.73,0,100.19,-12.9,-.15,fl.side);
- B(fg,24.66,24.73,2,99,-.6,-.2,lightMaterial);for(const y of [14,42,70,96])lamp(fl,22.5,y,1.2,.08,.7);
+ B(fg,24.66,24.73,2,99,-.6,-.2,lightMaterial);strip(fl,24.55,50,-.45,96,.5,[0,1,0],[-1,0,-.05],22);
  fl.material='Fixed fluted panel (Bright’s reference photo), matte wood mica back and sides';fl.lighting='Concealed LED in the 2 in matte strip, lighting the fluted face';
- fl.renderNote='Flutes are a photo texture, not modelled grooves. The back of the column is the wash-basin niche (separate unit).';
+ fl.renderNote='Louvers modelled as 9 slats (~1.55 in) with ~0.4 in dark grooves, wood from Bright\u2019s louver photo; slat count/size approximate. The back of the column is the wash-basin niche (separate unit).';
 
  // 4b · Wash-basin niche at the back of the fluted column (staircase side): fixed box 0-30 in, basin counter at 30 in, mirror on the back wall.
  const wb=unit('wash-basin','Wash basin & mirror','basin',Math.PI);wb.fixed=true;const wg=wb.group;
@@ -151,7 +166,7 @@ export function buildModel(){
  B(gg,26.73,66.48,0,3,-12.15,-10.4,gr.side);B(gg,66.48,67.23,0,78,-12.15,-10.4,gr.side);
  slab(gg,[[26.73,96.75],[66.48,74.56],[66.48,78],[26.73,100.19]],'z',-12.15,1.75,gr.side);
  slab(gg,[[27.2,96.2],[66,74.2],[66,74.5],[27.2,96.5]],'z',-11.9,.3,lightMaterial);B(gg,27.2,66,2.7,3,-11.9,-11.6,lightMaterial);
- for(const [x,y] of [[36,60],[56,52],[46,20]])lamp(gr,x,y,-22,.04,1);
+ gr.slopeLight=strip(gr,46.6,85.4,-11.8,43,.6,[39.75,-22.19,0],[-.45,-.8,.25],22);strip(gr,46.6,3.2,-11.8,38,.6,[1,0,0],[0,1,.2],14);
  gr.material='Artificial green grass mat (illustrative texture), matte wood mica border';gr.lighting='Concealed lights in the border make the grass glow';
  gr.renderNote='Grass texture and pile are illustrative; light colour not specified (shown warm white).';
 
