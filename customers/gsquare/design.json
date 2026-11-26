@@ -203,6 +203,19 @@
       "behindCutouts": "Open cut-outs with warm light inside the pooja, so they glow when the light is on (no acrylic backing)",
       "behindCutoutsUserResponse": "1 (Warm light inside)",
       "lighting": "Warm light inside pooja \u2014 toggle in viewer"
+    },
+    {
+      "sourceColour": "#ff007f",
+      "sourceName": "L05_Cherry_Flame",
+      "faceIds": [
+        46603,
+        46595
+      ],
+      "location": "Below the pooja doors on the far-right tall unit, full 36 in width (z 20\u201326 and 26\u201330, front facing -x)",
+      "unit": "Two drawers stacked: lower 6 in tall (z 20\u201326), upper 4 in tall (z 26\u201330)",
+      "userResponse": "2 (Two drawers)",
+      "finish": null,
+      "handles": null
     }
   ],
   "approximations": [
@@ -322,7 +335,7 @@
     {
       "sourceColour": "#ff007f",
       "sourceName": "L05_Cherry_Flame",
-      "meaning": null
+      "meaning": "Two stacked drawers under the pooja doors; finish/handles pending"
     },
     {
       "sourceColour": "#6565ff",
