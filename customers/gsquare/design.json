@@ -287,6 +287,33 @@
       "finish": "Wood mica",
       "sheen": "Matte",
       "userResponse": "2 (Wall cladding in matte wood mica)"
+    },
+    {
+      "sourceColours": [
+        "#336600",
+        "#ffbf00",
+        "#ffff00"
+      ],
+      "sourceNames": [
+        "F08_Forest_Shadow",
+        "D05_Goldenrod_Hue",
+        "E05_Leaf_Glow"
+      ],
+      "faceIds": [
+        46126,
+        45878,
+        46219,
+        46140,
+        46235,
+        46130,
+        46137
+      ],
+      "location": "Thin edges (1\u20132 in) around the rear grass panel: top, bottom and side",
+      "unit": "Border around the grass panel",
+      "finish": "Wood mica",
+      "sheen": "Matte",
+      "lighting": "Concealed lights in the border so the grass mat glows",
+      "userResponse": "1 Matte wood mica border around the grass with concealed lights the grass matte should glow"
     }
   ],
   "approximations": [
@@ -317,6 +344,10 @@
     {
       "item": "Rear storage door swing",
       "approximation": "Rendered swinging outward (toward -x, into the grass-panel gap); inward/outward not specified"
+    },
+    {
+      "item": "Grass-panel concealed light colour",
+      "approximation": "Rendered warm white to match the other LEDs; colour not specified by Bright"
     }
   ],
   "openQuestions": [
@@ -328,7 +359,7 @@
     {
       "sourceColour": "#ffff00",
       "sourceName": "E05_Leaf_Glow",
-      "meaning": "Face 45370 = TV recess top, matte wood mica + warm white LED down-light; face 46137 still unknown"
+      "meaning": "Face 45370 = TV recess top (matte wood mica + LED); face 46137 = part of the grass-panel border"
     },
     {
       "sourceColour": "#7b00ff",
@@ -373,12 +404,12 @@
     {
       "sourceColour": "#336600",
       "sourceName": "F08_Forest_Shadow",
-      "meaning": null
+      "meaning": "Matte wood mica border around the grass panel with concealed glow lights"
     },
     {
       "sourceColour": "#ffbf00",
       "sourceName": "D05_Goldenrod_Hue",
-      "meaning": null
+      "meaning": "Matte wood mica border around the grass panel with concealed glow lights"
     },
     {
       "sourceColour": "#664a00",

@@ -25,6 +25,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Dark mustard #664a00, back of the TV wall facing the stair: fixed back panel covered with artificial green grass mat (procedural texture; product photo not committed).
 - Red #cc0000, side wall next to the grass panel: a 24 x 78 in door into a storage space under the stair, hinged on the staircase-side edge, matte wood mica, push-to-open (no handle).
 - Dark red #660000, stepped panel on the side of the stair: matte wood mica cladding.
+- Dark green #336600 + gold #ffbf00 + yellow face 46137, thin edges around the grass panel: matte wood mica border with concealed lights making the grass glow (light colour rendered warm white — approximation).
 
 ## How Bright wants questions asked (27 Nov 2026)
 
