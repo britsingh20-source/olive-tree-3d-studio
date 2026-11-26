@@ -64,6 +64,17 @@
       "renderSizeApprox": "56.7 x 31.9 in screen body (generic 16:9 65-inch; exact model not given)",
       "constraint": "Panel top slopes from 100.2 in (stair-start side) to 60 in (other side); a centred TV must have its bottom no higher than about 32 in to stay under the slope",
       "positionUserResponse": "yes ok"
+    },
+    {
+      "sourceColour": "#9999ff",
+      "sourceName": "I02_Moonlit_Azure",
+      "location": "Two fronts in the low cabinet under the TV (each 18 in wide x 12 in high, x 300.8\u2013336.8, z 8\u201320; inner 1 in inset loop)",
+      "unit": "Two shutters",
+      "finish": "Aluminium frame with grey tinted glass",
+      "userResponse": "Aluminium glasses, tinted grey shutters.",
+      "opening": null,
+      "handles": null,
+      "internal": null
     }
   ],
   "approximations": [],
@@ -156,7 +167,7 @@
     {
       "sourceColour": "#9999ff",
       "sourceName": "I02_Moonlit_Azure",
-      "meaning": null
+      "meaning": "Confirmed: two aluminium-frame grey tinted glass shutters; opening direction pending"
     },
     {
       "sourceColour": "#ff00ff",

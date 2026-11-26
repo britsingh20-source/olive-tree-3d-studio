@@ -12,6 +12,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 ## Confirmed so far
 
 - Cyan #00ffff (large sloped panel under the stair): wooden mica, same grain as Bright's reference photo, glossy. Photo saved at dist/gsquare/textures/wood-mica-gloss-ref.jpg. It is a fixed TV back panel; a 65-inch TV goes in front of it, centred, bottom edge 26 in from floor (confirmed).
+- Light purple #9999ff (two fronts under the TV, 18 x 12 in each): aluminium-frame shutters with grey tinted glass. Opening direction pending.
 
 ## How Bright wants questions asked (27 Nov 2026)
 
