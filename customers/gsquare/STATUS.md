@@ -27,6 +27,7 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Dark red #660000, stepped panel on the side of the stair: matte wood mica cladding.
 - Dark green #336600 + gold #ffbf00 + yellow face 46137, thin edges around the grass panel: matte wood mica border with concealed lights making the grass glow (light colour rendered warm white — approximation).
 - Gold #cc9900 + #cc6600, 2 in upright strip between fluted column and TV area: matte wood mica front with a concealed LED that lights up the fluted (louver) column (my reading of 'highlight the lower').
+- Lime/teal/blue (#31ff31, #006666, #6565ff), open space at the back of the fluted column: closed with a matte wood mica panel on the staircase side; the inner blue rectangle and shelf are hidden.
 
 ## How Bright wants questions asked (27 Nov 2026)
 

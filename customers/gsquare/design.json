@@ -335,6 +335,30 @@
       "lighting": "Concealed LED (not visible from the front) washing/highlighting the fluted (louver) column beside it",
       "interpretation": "'highlight the lower' read as 'highlight the louver' (fluted panel) \u2014 confirm if wrong",
       "userResponse": "2 Profile light. A thin glowing LED strip line. Yeah, but the light should be concealed. It should highlight the lower the front facing should be wooden matte mica"
+    },
+    {
+      "sourceColours": [
+        "#31ff31",
+        "#006666",
+        "#6565ff"
+      ],
+      "sourceNames": [
+        "G04_Lime_Spark",
+        "H08_Emerald_Abyss",
+        "I03_Bluebell_Mist"
+      ],
+      "faceIds": [
+        46417,
+        45885,
+        45981,
+        46773
+      ],
+      "location": "Open space at the back of the fluted column, staircase side (x 263.2\u2013280.8, y 245.4\u2013257.2, z 30 to stair)",
+      "unit": "Closed \u2014 covered on the staircase side with a matte wood mica panel (no niche, no door)",
+      "finish": "Wood mica",
+      "sheen": "Matte",
+      "userResponse": "2 (Closed, covered with a matte wood mica panel)",
+      "note": "The blue rectangle (46773) and green shelf (45981) inside become hidden; not modelled as features. The closing panel is a new render element on plane y 257.2, top following the stair slope (approximation)."
     }
   ],
   "approximations": [
@@ -415,7 +439,7 @@
     {
       "sourceColour": "#006666",
       "sourceName": "H08_Emerald_Abyss",
-      "meaning": null
+      "meaning": "Back of fluted column closed with matte wood mica panel; interior faces hidden"
     },
     {
       "sourceColour": "#cc9900",
@@ -445,7 +469,7 @@
     {
       "sourceColour": "#31ff31",
       "sourceName": "G04_Lime_Spark",
-      "meaning": null
+      "meaning": "Back of fluted column closed with matte wood mica panel; interior faces hidden"
     },
     {
       "sourceColour": "#ff3b00",
@@ -475,7 +499,7 @@
     {
       "sourceColour": "#6565ff",
       "sourceName": "I03_Bluebell_Mist",
-      "meaning": null
+      "meaning": "Back of fluted column closed with matte wood mica panel; interior faces hidden"
     }
   ]
 }
