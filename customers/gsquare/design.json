@@ -10,7 +10,7 @@
     "route": "/gsquare/",
     "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare/",
     "directory": "dist/gsquare",
-    "status": "Not built yet \u2014 colour intake in progress"
+    "status": "Colour intake complete (27 Nov 2026); viewer build in progress"
   },
   "source": {
     "files": [
@@ -359,6 +359,19 @@
       "sheen": "Matte",
       "userResponse": "2 (Closed, covered with a matte wood mica panel)",
       "note": "The blue rectangle (46773) and green shelf (45981) inside become hidden; not modelled as features. The closing panel is a new render element on plane y 257.2, top following the stair slope (approximation)."
+    },
+    {
+      "sourceColour": "#663300",
+      "sourceName": "C08_Toffee_Ember",
+      "faceIds": [
+        45978,
+        45407
+      ],
+      "location": "Low box at the back bottom of the fluted column, staircase side (x 263.2\u2013280.8, z 0\u201330)",
+      "unit": "Closed, plain matte wood mica (same as the closing panel above)",
+      "finish": "Wood mica",
+      "sheen": "Matte",
+      "userResponse": "1 (Closed, plain matte wood mica)"
     }
   ],
   "approximations": [
@@ -429,7 +442,7 @@
     {
       "sourceColour": "#663300",
       "sourceName": "C08_Toffee_Ember",
-      "meaning": "Faces 46545/45208 confirmed as two hinged doors (hinge side, finish pending); faces 45407/45978 still unknown"
+      "meaning": "46545/45208 = low-cabinet side doors; 45978/45407 = closed matte back box of fluted column"
     },
     {
       "sourceColour": "#cc0000",

@@ -28,6 +28,9 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 - Dark green #336600 + gold #ffbf00 + yellow face 46137, thin edges around the grass panel: matte wood mica border with concealed lights making the grass glow (light colour rendered warm white — approximation).
 - Gold #cc9900 + #cc6600, 2 in upright strip between fluted column and TV area: matte wood mica front with a concealed LED that lights up the fluted (louver) column (my reading of 'highlight the lower').
 - Lime/teal/blue (#31ff31, #006666, #6565ff), open space at the back of the fluted column: closed with a matte wood mica panel on the staircase side; the inner blue rectangle and shelf are hidden.
+- Brown back faces 45978/45407, low box behind the fluted column: closed plain matte wood mica.
+
+All source colours are now explained (G01 Mint Mist is unused; white Default faces are the staircase/structure).
 
 ## How Bright wants questions asked (27 Nov 2026)
 
@@ -35,4 +38,4 @@ Each question gets its own picture where ONLY the item being asked about is in c
 
 ## Next action
 
-Continue with the remaining 20 source colours, one at a time.
+Build dist/gsquare viewer from the confirmed design.
