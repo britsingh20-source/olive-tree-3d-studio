@@ -112,6 +112,18 @@
       "sheen": "Matte",
       "userResponse": "2 (Matte wood mica, like the brown doors)",
       "note": "Green face 45433 (low strip x 282.8\u2013354.8, z 0\u20138, set back at y 249.4) not covered by this answer"
+    },
+    {
+      "sourceColour": "#00ff00",
+      "sourceName": "G05_Neon_Leaf",
+      "faceIds": [
+        45433
+      ],
+      "location": "Floor-level strip under the low cabinet (72 x 8 in, set back 5 in at y 249.4)",
+      "unit": "Skirting / plinth with LED strip light shining on the floor",
+      "userResponse": "2 (Skirting with LED strip light)",
+      "finish": null,
+      "ledColour": null
     }
   ],
   "approximations": [
@@ -157,7 +169,7 @@
     {
       "sourceColour": "#00ff00",
       "sourceName": "G05_Neon_Leaf",
-      "meaning": "Faces 45548/45826/46300 = TV recess frame, matte wood mica; face 45433 (bottom strip) still unknown"
+      "meaning": "Faces 45548/45826/46300 = TV recess frame, matte wood mica; face 45433 = skirting with floor LED strip (finish/LED colour pending)"
     },
     {
       "sourceColour": "#663300",
