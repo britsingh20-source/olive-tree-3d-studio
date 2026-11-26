@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-11-27",
+  "customer": {
+    "id": "gsquare",
+    "name": "gsquare (provisional \u2014 confirm client name)"
+  },
+  "project": "Under-staircase unit \u2014 design intake",
+  "viewer": {
+    "route": "/gsquare/",
+    "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare/",
+    "directory": "dist/gsquare",
+    "status": "Not built yet \u2014 colour intake in progress"
+  },
+  "source": {
+    "files": [
+      "gsquare.skp",
+      "gsquare (1).skp"
+    ],
+    "sha256": [
+      "ce0e9062feec07ce3e476de04cff4b70b15afc4a98412a7a601b396b6f525092",
+      "37ac0f14f93694e45d2e66fbc3823a870e741880c5657c25e095edbcdc4f0394"
+    ],
+    "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py (extract_skp.py, identical to scripts/extract-prem-skp.py)",
+    "sourceUnits": "inches",
+    "bounds": {
+      "x": 144.3,
+      "y": 108.13,
+      "z": 120.0
+    },
+    "vertices": 259,
+    "edges": 424,
+    "rootFaces": 170,
+    "comparison": "Both files extract identical vertices, edges, faces and materials; they differ only in saved camera/thumbnail (model.dat, meta)",
+    "omitted": "None (no component instances)",
+    "originalFilesInRepository": false,
+    "extractedJson": "customers/gsquare/source/gsquare-extract.json",
+    "notes": "Model shows a staircase with an under-stair unit. 22 source materials; G01_Mint_Mist unused. Several colours are on back faces only (I08 Inkstorm, H05 Lagoon Spark)."
+  },
+  "confirmed": [],
+  "approximations": [],
+  "openQuestions": [
+    {
+      "sourceColour": "#660000",
+      "sourceName": "A08_Garnet_Shadow",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#ffff00",
+      "sourceName": "E05_Leaf_Glow",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#7b00ff",
+      "sourceName": "J05_Violet_Prism",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#660033",
+      "sourceName": "L08_Velvet_Rose",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#000066",
+      "sourceName": "I08_Inkstorm",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#00ff00",
+      "sourceName": "G05_Neon_Leaf",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#663300",
+      "sourceName": "C08_Toffee_Ember",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#cc0000",
+      "sourceName": "A06_Ruby_Spark",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#006666",
+      "sourceName": "H08_Emerald_Abyss",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#cc9900",
+      "sourceName": "D06_Sunflower_Bright",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#336600",
+      "sourceName": "F08_Forest_Shadow",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#ffbf00",
+      "sourceName": "D05_Goldenrod_Hue",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#664a00",
+      "sourceName": "D08_Bronzed_Mustard",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#00ffff",
+      "sourceName": "H05_Lagoon_Spark",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#31ff31",
+      "sourceName": "G04_Lime_Spark",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#ff3b00",
+      "sourceName": "B05_Tangerine_Flame",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#cc6600",
+      "sourceName": "C06_Saffron_Kiss",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#9999ff",
+      "sourceName": "I02_Moonlit_Azure",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#ff00ff",
+      "sourceName": "K05_Neon_Blossom",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#ff007f",
+      "sourceName": "L05_Cherry_Flame",
+      "meaning": null
+    },
+    {
+      "sourceColour": "#6565ff",
+      "sourceName": "I03_Bluebell_Mist",
+      "meaning": null
+    }
+  ]
+}

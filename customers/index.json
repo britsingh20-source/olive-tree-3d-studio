@@ -56,6 +56,14 @@
       "route": "/krishnagiri-living/",
       "design": "customers/krishnagiri-living/design.json",
       "status": "customers/krishnagiri-living/STATUS.md"
+    },
+    {
+      "id": "gsquare",
+      "name": "gsquare (provisional)",
+      "project": "Under-staircase unit \u2014 design intake",
+      "route": "/gsquare/",
+      "design": "customers/gsquare/design.json",
+      "status": "customers/gsquare/STATUS.md"
     }
   ]
 }
