@@ -24,7 +24,7 @@
       "scripts/make-gsquare-textures.py",
       "check-gsquare.mjs"
     ],
-    "deployedCommit": "b9f9ee7"
+    "deployedCommit": "0da30f3"
   },
   "source": {
     "files": [
@@ -412,6 +412,15 @@
         "Niche inner finish (rendered matte wood mica)",
         "Niche/mirror lighting"
       ]
+    },
+    {
+      "item": "Feedback 27 Nov 2026 01:38",
+      "userResponse": "That is not lower finish, louver finish, and the lightings. See, you have been placed under strip lightings, but it is like spot lightings. It has been looking to me, and the lightings look deeply.",
+      "changes": [
+        "Louvers rebuilt as real 3D slats (9 x ~1.55 in, ~0.4 in dark grooves) using wood cut from Bright's louver photo (textures/louver-slat.jpg)",
+        "All strip LEDs changed from point lights (round spots) to soft linear rect-area lights: TV recess top, skirting floor wash, concealed louver strip, grass border top and bottom"
+      ],
+      "pendingReview": "Bright to confirm the new louver look and lighting"
     }
   ],
   "approximations": [
@@ -577,10 +586,6 @@
     {
       "question": "Right storage door next to the pooja shares the hinge corner with the pooja unit: it can open only ~80 deg before the pooja drawer knobs and cannot be open together with the pooja left doors. Viewer limits it to 80 deg and skips it in 'Open all'. Keep, or hinge that door on its other side?",
       "status": "Asked Bright 27 Nov 2026 \u2014 awaiting answer"
-    },
-    {
-      "question": "Bright is not satisfied with the 'front lower finish' and the 'lighting finish' \u2014 which part and what change?",
-      "status": "Asked 27 Nov 2026 01:3x"
     }
   ]
 }

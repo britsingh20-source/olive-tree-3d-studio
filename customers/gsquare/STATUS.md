@@ -65,7 +65,7 @@ The storage door right of the TV, hinged at the corner shared with the pooja uni
 
 ## Pending from Bright (27 Nov 01:34)
 
-Not satisfied with the 'front lower finish' and 'lighting finish' — clarifying which part and what change.
+He meant the LOUVER (fluted) finish and the strip lights looking like spot lights. Changed in commit 0da30f3 (asset version gs4): louvers are now 9 real 3D slats with dark grooves using wood from his louver photo; strip LEDs are soft linear rect-area lights (no round hotspots). Local headless Chrome (SwiftShader) lights-on vs lights-off screenshots show even washes, no spots, no page errors; live model.js confirmed updated. Waiting for his review.
 
 ## Next action
 
