@@ -13,6 +13,10 @@ Updated 27 November 2026. Confirmed choices are in design.json.
 
 - Cyan #00ffff (large sloped panel under the stair): wooden mica, same grain as Bright's reference photo, glossy. Photo saved at dist/gsquare/textures/wood-mica-gloss-ref.jpg. It is a fixed TV back panel; a 65-inch TV goes in front of it.
 
+## How Bright wants questions asked (27 Nov 2026)
+
+Each question gets its own picture where ONLY the item being asked about is in colour (bold, outlined); everything else is light grey. Do not show the full multi-colour model. One simple question per picture, plain words, short answer options.
+
 ## Next action
 
 Get Bright's OK on the proposed TV position (centred, bottom 26 in from floor). Then continue with the remaining 20 source colours, one at a time.
