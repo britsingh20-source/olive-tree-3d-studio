@@ -87,11 +87,12 @@
       "location": "Two fronts beside the glass shutters in the low cabinet under the TV (each 18 x 12 in; x 282.8\u2013300.8 and 336.8\u2013354.8, z 8\u201320)",
       "unit": "Two hinged doors",
       "userResponse": "2 (Doors \u2014 they swing open)",
-      "opening": null,
+      "opening": "Outer-edge hinges: left door hinged on its left edge, right door on its right edge (both open away from the glass shutters)",
       "finish": null,
       "handles": null,
       "internal": null,
-      "note": "Other C08 faces (ids 45407, 45978 at x 263.2\u2013280.8, z 0\u201330, left of the orange column) are NOT covered by this answer"
+      "note": "Other C08 faces (ids 45407, 45978 at x 263.2\u2013280.8, z 0\u201330, left of the orange column) are NOT covered by this answer",
+      "openingUserResponse": "1 (Outer sides)"
     }
   ],
   "approximations": [],
