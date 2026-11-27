@@ -32,10 +32,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q8 light blue #65ffff (27 Nov 21:43): open box, no shutter, 2 wicker baskets visible inside (wicker like his product photo - photo not committed, procedural texture planned); inside of box in wood mica (his wood photo saved at dist/gsquare-kitchen/textures/wood-mica-inside-ref.jpg).
 
+- Q9 dark green #336600 (27 Nov 21:44): tall unit outer side in wood mica (same as wicker box inside).
+
 ## Asked, waiting
 
-- Q9: dark green #336600, full-height outer side of the tall unit (24 x 84 in): what finish?
+- Q10: orange #ff8c65, open space in the tall unit (34 w x 18 h, 41-59 in from floor): what is it?
 
 ## Next action
 
-Record Q9, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q10, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).

@@ -103,7 +103,7 @@
    "material": "F08_Forest_Shadow",
    "faces": 1,
    "location": "Full-height outer side of the tall unit (x=72, 24 x 84 in)",
-   "meaning": null
+   "meaning": "Tall unit outer side panel (fixed) in wood mica, same as inside of wicker box"
   },
   {
    "hex": "#ff8c65",
@@ -201,6 +201,11 @@
     "woodInside": "dist/gsquare-kitchen/textures/wood-mica-inside-ref.jpg (Bright's photo, committed)",
     "wicker": "Bright's product photo has a brand logo - NOT committed; viewer will use a procedural wicker texture in that colour (approximation)"
    }
+  },
+  {
+   "item": "Dark green #336600",
+   "date": "2026-11-27 21:44",
+   "answer": "Tall unit outer side: wood mica, same as the inside of the wicker box (dist/gsquare-kitchen/textures/wood-mica-inside-ref.jpg)."
   }
  ],
  "approximations": [
