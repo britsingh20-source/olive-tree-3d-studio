@@ -73,7 +73,7 @@ He meant the LOUVER (fluted) finish and the strip lights looking like spot light
 
 ## Small door under the lower stair (27 Nov 07:01)
 
-New SKP v2 (sha 711da2dc…) read from Downloads\1: same geometry; faces 45605/45611 now teal #006666 on the stair side wall facing the under-stair passage. 45611 (triangle nearer the stair bottom) = fixed; 45605 (19.7 in wide, top 12→24 in) = door. Location confirmed; door hinged on the short edge next to the fixed triangle; matte wood mica, push to open. Built as unit 'Small door under the stair' (gs7). exact-layout.js regenerated from v2 extract (Reference colours now show the teal faces). Checks pass; door opens into the passage; no clash with the rear storage door when each opens alone (they can't be open together — skipped in Open all).
+New SKP v2 (sha 711da2dc…) read from Downloads\1: same geometry; faces 45605/45611 now teal #006666 on the stair side wall facing the under-stair passage. 45611 (triangle nearer the stair bottom) = fixed; 45605 (19.7 in wide, top 12→24 in) = door. Location confirmed; door hinged on the short edge next to the fixed triangle; matte wood mica, push to open. Built as unit 'Small door under the stair' (gs7). exact-layout.js regenerated from v2 extract (Reference colours now show the teal faces). Checks pass; door opens into the passage; no clash with the rear storage door when each opens alone (they can't be open together — skipped in Open all). Live (commit 5bcecb3; Pages rerun after GitHub artifact error); live page opened in headless Chrome: unit selects, door opens, no page errors.
 
 ## Next action
 
