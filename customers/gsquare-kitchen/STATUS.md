@@ -55,7 +55,8 @@ All 15 source colours now explained (white Default = carcass sides/backs/worktop
 - Q18 answered (23:27): "No handles" - ambiguous between black profile grooves and push-to-open.
 - Q19 answered (23:34, after a simple picture): option 1 - black profile grooves like his photo.
 - Q20 answered (23:35): black granite worktop.
-- Q21: where does the sink go (plan picture)?
+- Q21 answered (23:36): sink above the left doors on the long counter.
+- Q22: where does the hob go (same plan picture)?
 
 ## Next action
 
