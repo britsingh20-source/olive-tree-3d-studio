@@ -77,7 +77,7 @@ Published at commit 6d45771; GitHub Pages run 46048673736 succeeded. Live https:
 
 ## Change gk2 (27 Nov 23:59 request)
 
-Chimney removed. Wood mica grain made vertical: Bright's wood photo rotated 90 deg (textures/wood-mica-vertical.jpg, original kept as wood-mica-inside-ref.jpg). Asset version gk2. node check-gsquare-kitchen.mjs passed (10 units, 20 actions; asserts no chimney). Local headless Chrome SwiftShader 1280x900: full view (no chimney, vertical grain on tall-unit side) and wicker box (vertical grain inside) inspected.
+Chimney removed. Wood mica grain made vertical: Bright's wood photo rotated 90 deg (textures/wood-mica-vertical.jpg, original kept as wood-mica-inside-ref.jpg). Asset version gk2. node check-gsquare-kitchen.mjs passed (10 units, 20 actions; asserts no chimney). Local headless Chrome SwiftShader 1280x900: full view (no chimney, vertical grain on tall-unit side) and wicker box (vertical grain inside) inspected. Published commit 174d01c, Pages run 46050037250 succeeded; live model.js confirmed (vertical texture, no chimney); live page loaded in headless Chrome without page errors.
 
 ## Next action
 
