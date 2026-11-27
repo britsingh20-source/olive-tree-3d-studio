@@ -110,7 +110,7 @@
    "material": "B03_Apricot_Glow",
    "faces": 4,
    "location": "Open niche in tall unit, 34 w x 18 h x ~23 d, z41-59",
-   "meaning": null
+   "meaning": "OTG / oven space (open, 34 w x 18 h, 41-59 in from floor)"
   },
   {
    "hex": "#ff3131",
@@ -206,6 +206,11 @@
    "item": "Dark green #336600",
    "date": "2026-11-27 21:44",
    "answer": "Tall unit outer side: wood mica, same as the inside of the wicker box (dist/gsquare-kitchen/textures/wood-mica-inside-ref.jpg)."
+  },
+  {
+   "item": "Orange #ff8c65",
+   "date": "2026-11-27 21:45",
+   "answer": "OTG / oven space."
   }
  ],
  "approximations": [
@@ -216,7 +221,8 @@
   "Cutlery drawer front in shutter aqua; tray divisions generic.",
   "Oil pull-out front in shutter aqua; basket tiers generic.",
   "S-corner front in shutter aqua; corner fitting shape generic.",
-  "Wicker baskets: procedural weave texture approximating Bright's photo; basket heights split evenly inside the 27 in box (not specified)."
+  "Wicker baskets: procedural weave texture approximating Bright's photo; basket heights split evenly inside the 27 in box (not specified).",
+  "OTG/oven space: appliance shown as a generic placeholder; inner finish of the space not yet specified."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",

@@ -34,10 +34,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q9 dark green #336600 (27 Nov 21:44): tall unit outer side in wood mica (same as wicker box inside).
 
+- Q10 orange #ff8c65 (27 Nov 21:45): OTG / oven space. Appliance generic placeholder (approximation).
+
 ## Asked, waiting
 
-- Q10: orange #ff8c65, open space in the tall unit (34 w x 18 h, 41-59 in from floor): what is it?
+- Q11: red #ff3131, 32 x 8 in strip below the OTG space (32-40 in from floor): what is it?
 
 ## Next action
 
-Record Q10, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q11, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
