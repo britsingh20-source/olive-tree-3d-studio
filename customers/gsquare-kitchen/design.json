@@ -236,6 +236,11 @@
    "item": "Dark green #006600",
    "date": "2026-11-27 21:48",
    "answer": "Wall cabinet end side: wood mica, same as the tall unit side."
+  },
+  {
+   "item": "Wall cabinet glass shutters",
+   "date": "2026-11-27 21:49",
+   "answer": "Aluminium frame with clear glass."
   }
  ],
  "approximations": [
@@ -257,6 +262,6 @@
   "Confirm client name / same client as /gsquare/",
   "Worktop material",
   "Sink and hob positions (not modelled)",
-  "Wall cabinet glass shutters: glass type/tint, frame, hinge sides, inside shelves/light - not asked yet"
+  "Wall cabinet glass shutters: frame colour, hinge sides, inside shelves/light - not asked yet"
  ]
 }

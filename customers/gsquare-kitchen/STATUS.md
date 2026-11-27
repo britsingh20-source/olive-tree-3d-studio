@@ -50,7 +50,8 @@ All 15 source colours now explained (white Default = carcass sides/backs/worktop
 
 ## Asked, waiting
 
-- Q16: wall cabinet glass shutters - what kind of glass (frame + glass type)?
+- Q16 answered (21:49): aluminium frame with clear glass.
+- Q17: aluminium frame colour?
 
 ## Next action
 
