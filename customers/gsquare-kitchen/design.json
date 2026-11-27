@@ -10,7 +10,7 @@
   "route": "/gsquare-kitchen/",
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare-kitchen/",
   "directory": "dist/gsquare-kitchen",
-  "status": "Built 27 Nov 2026 (asset version gk1). Local headless Chrome SwiftShader checks only until live check recorded in STATUS.md.",
+  "status": "Live 27 Nov 2026 (gk1, commit 6d45771, Pages run 46048673736). Headless Chrome SwiftShader checks local + live; real phone/GPU check pending.",
   "storageKey": "gsquare-kitchen-v1",
   "files": [
    "dist/gsquare-kitchen/index.html",
@@ -23,7 +23,8 @@
    "scripts/prepare-gsquare-kitchen-layout.py",
    "scripts/make-gsquare-kitchen-textures.py",
    "check-gsquare-kitchen.mjs"
-  ]
+  ],
+  "deployedCommit": "6d45771"
  },
  "source": {
   "files": [

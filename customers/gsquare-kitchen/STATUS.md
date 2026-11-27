@@ -71,6 +71,10 @@ Textures: dist/gsquare-kitchen/textures/wood-mica-inside-ref.jpg (Bright's wood 
 - Local headless Google Chrome (SwiftShader WebGL) via Playwright, local http server: desktop 1280x900 full view; tall unit, wicker box, glass wall cabinet, sink cabinet, thali/cutlery selected and opened - screenshots inspected. Mobile 390x844 (touch): renders; tour started ("Find it here: Sink cabinet") and stopped on tap ("Tour stopped · you are in control"); sink cabinet set to Wood mica swatch -> reload -> localStorage kept it. Only console error: a 404 (favicon). No page errors.
 - NOT done: real phone / real GPU check.
 
+## Deployment
+
+Published at commit 6d45771; GitHub Pages run 46048673736 succeeded. Live https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare-kitchen/ opened in headless Chrome (SwiftShader WebGL, 1280x900): renders, wicker box selected and opened, no page errors (one 404, favicon). Live model.js confirmed to contain the new build. Not a real-device check.
+
 ## Next action
 
-Publish gk1, check the live page, then send Bright the link. Remaining details to ask one at a time when he reviews: hinge sides, LED colour, left end panel, sink/hob models.
+Wait for Bright's review of the live link. Remaining details to ask one at a time when he reviews: hinge sides, LED colour, left end panel, sink/hob models.
