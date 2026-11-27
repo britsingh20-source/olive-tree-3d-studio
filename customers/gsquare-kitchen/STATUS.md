@@ -38,10 +38,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q11 red #ff3131 (27 Nov 21:45): drawer below the OTG space. Front aqua (approximation).
 
+- Q12 bright green #31ff31 (27 Nov 21:46): open space with a tabletop grinder inside (generic placeholder).
+
 ## Asked, waiting
 
-- Q12: lime #31ff31, open space in the right part of the tall unit (22 w x 17 h, 30-47 in from floor): what is it?
+- Q13: gold #ffbf00, undersides — top of the OTG space, top of the grinder space, underside of the wall cabinet: what are they (lights?)
 
 ## Next action
 
-Record Q12, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q13, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).

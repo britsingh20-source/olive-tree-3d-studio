@@ -124,7 +124,7 @@
    "material": "G04_Lime_Spark",
    "faces": 4,
    "location": "Open niche in right part of tall unit, 22 w x 17 h x 23 d, z30-47",
-   "meaning": null
+   "meaning": "Open space for a tabletop wet grinder (22 w x 17 h, from counter height 30 in)"
   },
   {
    "hex": "#ffbf00",
@@ -216,6 +216,11 @@
    "item": "Red #ff3131",
    "date": "2026-11-27 21:45",
    "answer": "Drawer (32 x 8 in, below the OTG space)."
+  },
+  {
+   "item": "Bright green #31ff31",
+   "date": "2026-11-27 21:46",
+   "answer": "Open space; a tabletop grinder is placed inside."
   }
  ],
  "approximations": [
@@ -228,7 +233,8 @@
   "S-corner front in shutter aqua; corner fitting shape generic.",
   "Wicker baskets: procedural weave texture approximating Bright's photo; basket heights split evenly inside the 27 in box (not specified).",
   "OTG/oven space: appliance shown as a generic placeholder; inner finish of the space not yet specified.",
-  "Drawer below OTG: front assumed shutter aqua (other drawer fronts aqua); handle not specified."
+  "Drawer below OTG: front assumed shutter aqua (other drawer fronts aqua); handle not specified.",
+  "Tabletop grinder shown as a generic placeholder; inner finish of the space not yet specified."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",
