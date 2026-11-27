@@ -113,11 +113,11 @@ export function buildModel(){
 
  // 4b · Wash-basin niche at the back of the fluted column (staircase side): fixed box 0-30 in, basin counter at 30 in, mirror on the back wall.
  const wb=unit('wash-basin','Wash basin & mirror','basin',Math.PI);wb.fixed=true;const wg=wb.group;
- B(wg,7.82,24.73,0,30,-12.94,-12.19,wb.front);B(wg,7.82,24.73,0,.75,-12.19,-1.4,inner);
+ B(wg,7.82,24.73,0,29.25,-12.94,-12.19,wb.front);B(wg,7.82,24.73,0,.75,-12.19,-1.4,inner);
  B(wg,7.82,24.73,29.25,30,-12.94,-1.4,wb.side);
- B(wg,7.82,24.73,30,101.3,-1.4,-1.15,wb.side,[]);
+ B(wg,7.82,24.6,30,101.3,-1.62,-1.4,wb.side);
  const mirror=new T.MeshPhysicalMaterial({color:'#c8d3d8',metalness:.6,roughness:.05,clearcoat:1,envMapIntensity:1.2});mirror.userData.compatColor='#cfd8dc';
- B(wg,10.07,21.73,45.68,86.56,-1.65,-1.4,mirror);
+ B(wg,10.07,21.73,45.68,86.56,-1.87,-1.62,mirror);
  const ceramic=new T.MeshPhysicalMaterial({color:'#fbfaf7',roughness:.18,clearcoat:.6,side:T.DoubleSide});ceramic.userData.compatColor='#f4f3ef';
  const chrome=new T.MeshStandardMaterial({color:'#e6e8ea',metalness:1,roughness:.12});chrome.userData.compatColor='#d8dadc';
  {const pts=[];for(let i=0;i<=12;i++){const a=i/12*Math.PI/2;pts.push(new T.Vector2((.2+5.8*Math.sin(a))*I,(4.6-4.6*Math.cos(a))*I));}pts.push(new T.Vector2(5.8*I,4.8*I));
@@ -129,8 +129,8 @@ export function buildModel(){
 
  // 5 · Storage doors right of the TV: matte, push-to-open, from the middle; empty inside.
  const st=unit('right-storage','Storage right of the TV','storage',0);const sg=st.group;
- B(sg,98.73,128.02,59.25,60,-36.15,-.75,st.side);B(sg,98.73,128.02,0,.75,-36.15,-.75,inner);B(sg,98.73,128.02,.75,59.25,-36.15,-35.4,inner);
- B(sg,98.73,99.48,.75,59.25,-36.15,-.75,st.side);B(sg,127.27,128.02,.75,59.25,-36.15,-.75,st.side);
+ B(sg,99.48,127.27,59.25,60,-35.4,-.75,st.side);B(sg,99.48,127.27,0,.75,-35.4,-.75,inner);B(sg,98.73,128.02,0,60,-36.15,-35.4,inner);
+ B(sg,98.73,99.48,0,60,-35.4,-.75,st.side);B(sg,127.27,128.02,0,60,-35.4,-.75,st.side);
  // The right door shares its hinge corner with the pooja unit: limited to 80° so it stops short of the pooja drawer knobs.
  for(const [hx,x0,x1,travel] of [[98.73,98.73+gap/2,113.38-gap/2,-Math.PI*.47],[128.02,113.38+gap/2,128.02-gap/2,Math.PI*80/180]]){
   const p=pivotAt(sg,hx,30,0);B(p,x0,x1,gap,60-gap,-.75,0,st.front);act(st,p,'hinge',travel,hx===128.02?{skipOpenAll:true}:{});}
@@ -138,7 +138,7 @@ export function buildModel(){
 
  // 6 · Pooja unit (faces -X): CNC doors 30-84.8 in, two drawers 20-26 / 26-30 in, lower doors 0-20 in; plain matte side.
  const px0=128.02,pf=128.77,pb=144.32,zA=0,zB=35.98,zM=(zA+zB)/2;
- function poojaCarcass(g,u,y0,y1){B(g,pf,pb,y0,y0+t,zA,zB,u.side);B(g,pf,pb,y1-t,y1,zA,zB,u.side);B(g,pb-t,pb,y0+t,y1-t,zA,zB,u.side);B(g,pf,pb,y0+t,y1-t,zA,zA+t,u.side);B(g,pf,pb,y0+t,y1-t,zB-t,zB,u.side);}
+ function poojaCarcass(g,u,y0,y1){B(g,pf,pb-t,y0,y0+t,zA+t,zB-t,u.side);B(g,pf,pb-t,y1-t,y1,zA+t,zB-t,u.side);B(g,pb-t,pb,y0,y1,zA,zB,u.side);B(g,pf,pb-t,y0,y1,zA,zA+t,u.side);B(g,pf,pb-t,y0,y1,zB-t,zB,u.side);}
  const pj=unit('pooja','Pooja · CNC doors','pooja',-Math.PI/2);const pg=pj.group;poojaCarcass(pg,pj,30,84.8);
  lamp(pj,136,72,zM,.22,1.4);lamp(pj,136,44,zM,.14,1.1);B(pg,pf+.5,pb-1,83.6,84.05,zA+1,zB-1,lightMaterial);
  pj.doors=[];
@@ -151,7 +151,7 @@ export function buildModel(){
  pj.renderNote='CNC pattern is a drawn visual approximation, not a fabrication file. Cut-outs shown on our matte wood mica, not the photo’s colour. Interior shelves not specified (shown empty).';
  const dr=unit('pooja-drawers','Pooja drawers','drawer',-Math.PI/2);const dg=dr.group;poojaCarcass(dg,dr,20,30);
  for(const [y0,y1] of [[20,26],[26,30]]){const p=pivotAt(dg,px0,(y0+y1)/2,zM);B(p,px0,pf,y0+gap,y1-gap,zA+gap,zB-gap,dr.front);
-  const h=y1-y0-1.8;B(p,pf,pb-2,y0+.9,y0+1.3,zA+1,zB-1,inner);for(const z of [zA+1,zB-1.4])B(p,pf,pb-2,y0+.9,y0+.9+h,z,z+.4,inner);B(p,pb-2.4,pb-2,y0+.9,y0+.9+h,zA+1,zB-1,inner);
+  const h=y1-y0-1.8;B(p,pf+.02,pb-2.4,y0+.9,y0+1.3,zA+1.4,zB-1.4,inner);for(const z of [zA+1,zB-1.4])B(p,pf+.02,pb-2.4,y0+.9,y0+.9+h,z,z+.4,inner);B(p,pb-2.4,pb-2,y0+.9,y0+.9+h,zA+1,zB-1,inner);
   for(const z of [9,27])knob(p,px0,(y0+y1)/2,z,'-x');act(dr,p,'slide',-11*I);}
  dr.drawerCount=2;dr.drawerHeightsInches=[6,4];dr.handles='Small chrome-gold knobs';dr.renderNote='Two knobs per drawer and drawer box depth are approximations.';
  const lo=unit('pooja-lower','Pooja lower storage','lower',-Math.PI/2);const log=lo.group;poojaCarcass(log,lo,0,20);
@@ -165,7 +165,7 @@ export function buildModel(){
  slab(gg,[[26.73,3],[66.48,3],[66.48,74.56],[26.73,96.75]],'z',-11.15,.75,grassMat,[12,12]);
  B(gg,26.73,66.48,0,3,-12.15,-10.4,gr.side);B(gg,66.48,67.23,0,78,-12.15,-10.4,gr.side);
  slab(gg,[[26.73,96.75],[66.48,74.56],[66.48,78],[26.73,100.19]],'z',-12.15,1.75,gr.side);
- slab(gg,[[27.2,96.2],[66,74.2],[66,74.5],[27.2,96.5]],'z',-11.9,.3,lightMaterial);B(gg,27.2,66,2.7,3,-11.9,-11.6,lightMaterial);
+ slab(gg,[[27.2,96.2],[66,74.2],[66,74.5],[27.2,96.5]],'z',-11.9,.3,lightMaterial);B(gg,27.2,66,3,3.25,-11.9,-11.6,lightMaterial);
  gr.slopeLight=strip(gr,46.6,85.4,-11.8,43,.6,[39.75,-22.19,0],[-.45,-.8,.25],22);strip(gr,46.6,3.2,-11.8,38,.6,[1,0,0],[0,1,.2],14);
  gr.material='Artificial green grass mat (illustrative texture), matte wood mica border';gr.lighting='Concealed lights in the border make the grass glow';
  gr.renderNote='Grass texture and pile are illustrative; light colour not specified (shown warm white).';
@@ -179,7 +179,7 @@ export function buildModel(){
  rs.renderNote='Door swings outward toward the grass niche (direction not specified). Storage interior shown empty.';
 
  function polygon(f,material){const n=new T.Vector3(...f.normal).normalize(),ax=Math.abs(n.y)<.8?new T.Vector3(0,1,0).cross(n).normalize():new T.Vector3(1,0,0),ay=n.clone().cross(ax).normalize(),loops=f.points.map(l=>l.map(p=>new T.Vector3(...p))),flat=loops.flat(),xy=flat.flatMap(p=>[p.dot(ax),p.dot(ay)]),holes=[];let count=loops[0].length;for(const l of loops.slice(1)){holes.push(count);count+=l.length;}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(flat.flatMap(p=>p.toArray()),3));g.setIndex(earcut(xy,holes));g.computeVertexNormals();return new T.Mesh(g,material);}
- const plaster=new T.MeshStandardMaterial({color:'#efebe4',roughness:1,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:3,polygonOffsetUnits:3});plaster.userData.compatColor='#efebe4';
+ const plaster=new T.MeshStandardMaterial({color:'#efebe4',roughness:1,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:4,polygonOffsetUnits:16});plaster.userData.compatColor='#efebe4';
  for(const f of exactLayout.sourceFaces){const shown=f.color==='#ffffff'&&f.backColor?f.backColor:f.color;const m=polygon(f,new T.MeshStandardMaterial({color:shown,side:T.DoubleSide,roughness:1,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}));m.userData.sourceFace=f.id;referenceRoot.add(m);sourceMeshes.push(m);
   if(f.color==='#ffffff'&&!f.backColor){const s=polygon(f,plaster);s.receiveShadow=true;s.userData.sourceFace=f.id;architecture.add(s);}}
  const floor=B(architecture,-24,170,-1,-.02,-80,60,new T.MeshStandardMaterial({color:'#ded9cf',roughness:1}));floor.receiveShadow=true;

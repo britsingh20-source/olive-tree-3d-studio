@@ -59,6 +59,10 @@ Textures: dist/gsquare/textures (wood-mica-gloss-ref.jpg, wood-tile-vertical.jpg
 
 Published at commit b9f9ee7; GitHub Pages run 45887344804 succeeded. Live https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare/ loaded in headless Chrome (SwiftShader WebGL, 1000x800): renders, no page errors, no failed requests. Not a real-device check.
 
+## Flicker fix (27 Nov 2026 06:47, asset version gs6)
+
+Bright reported jittering on the mirror's background mica while rotating. Cause: coplanar same-facing surfaces (z-fighting). A full scan of all cabinet triangles found: niche back mica vs louver backing board (z -1.4), basin box vs counter front, pooja carcass top/bottom vs sides, drawer-box parts, right-storage carcass, grass light strip vs ledge top. All separated; plaster architecture polygon offset raised to 4/16. check-gsquare.mjs now fails on any same-facing coplanar overlap between cabinet surfaces. Remaining coplanar contact is only cabinet vs plaster architecture (handled by polygon offset). Not yet re-checked on Bright's phone.
+
 ## Known issue / question for Bright
 
 The storage door right of the TV, hinged at the corner shared with the pooja unit, can open only ~80 deg (pooja drawer knobs) and can't be open together with the pooja left doors. Viewer limits it to 80 deg and leaves it out of "Open all". Asked Bright whether to keep this or hinge it on its other side.

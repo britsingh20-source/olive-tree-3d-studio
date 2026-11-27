@@ -43,6 +43,17 @@ const meshes=n=>{const r=[];n.traverse(o=>{if(o.isMesh)r.push(o)});return r;};
 function obbHit(d,t){d.geometry.computeBoundingBox();const tb=new T.Box3().setFromObject(t),inv=d.matrixWorld.clone().invert(),lb=new T.Box3();for(const x of [tb.min.x,tb.max.x])for(const y of [tb.min.y,tb.max.y])for(const z of [tb.min.z,tb.max.z])lb.expandByPoint(new T.Vector3(x,y,z).applyMatrix4(inv));return d.geometry.boundingBox.intersectsBox(lb.expandByScalar(-.0008));}
 for(const d of meshes(corner.node))for(const id of ['pooja','pooja-drawers','pooja-lower'])for(const t of meshes(get(id).group))assert(!obbHit(d,t),'corner door clears '+id);
 corner.node.rotation.y=0;
+
+// No two cabinet surfaces may share a plane and overlap while facing the same way (z-fighting flicker).
+{const tris=[];m.root.updateMatrixWorld(true);const arch=new Set();m.architecture.traverse(o=>arch.add(o));const ref=new Set(m.sourceMeshes);
+ m.root.traverse(o=>{if(!o.isMesh||ref.has(o)||arch.has(o))return;const g=o.geometry.index?o.geometry.toNonIndexed():o.geometry,pos=g.attributes.position;
+  for(let i=0;i<pos.count;i+=3){const a=new T.Vector3().fromBufferAttribute(pos,i).applyMatrix4(o.matrixWorld),b=new T.Vector3().fromBufferAttribute(pos,i+1).applyMatrix4(o.matrixWorld),c=new T.Vector3().fromBufferAttribute(pos,i+2).applyMatrix4(o.matrixWorld);
+   const n=b.clone().sub(a).cross(c.clone().sub(a));if(n.length()<2e-7)continue;n.normalize();tris.push({a,b,c,n,d:n.dot(a),o});}});
+ const inside=(p,t)=>{const v0=t.c.clone().sub(t.a),v1=t.b.clone().sub(t.a),v2=p.clone().sub(t.a),d00=v0.dot(v0),d01=v0.dot(v1),d02=v0.dot(v2),d11=v1.dot(v1),d12=v1.dot(v2),inv=1/(d00*d11-d01*d01),u=(d11*d02-d01*d12)*inv,v=(d00*d12-d01*d02)*inv;return u>1e-3&&v>1e-3&&u+v<1-1e-3;};
+ const buckets=new Map();for(const t of tris){const k=[t.n.x,t.n.y,t.n.z].map(v=>v.toFixed(2)).join()+','+(t.d/.0254).toFixed(1);(buckets.get(k)||buckets.set(k,[]).get(k)).push(t);}
+ let bad=[];for(const list of buckets.values())for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){const s=list[i],t=list[j];if(s.o===t.o||Math.abs(s.d-t.d)>4e-4)continue;
+  const ctr=x=>x.a.clone().add(x.b).add(x.c).multiplyScalar(1/3);if(inside(ctr(s),t)||inside(ctr(t),s))bad.push((s.o.userData.unit?.id)+'/'+(t.o.userData.unit?.id)+' @'+(s.d/.0254).toFixed(2));}
+ assert.equal(bad.length,0,'coplanar same-facing overlaps: '+[...new Set(bad)].slice(0,8).join('; '));}
 m.setLights(false);assert(m.units.every(u=>u.lightNodes.every(l=>!l.visible)));m.setLights(true);
 m.setReference(true);assert(m.units.every(u=>!u.group.visible));m.setReference(false);
 console.log('gsquare checks passed:',m.units.length,'units,',m.actions.length,'actions');
