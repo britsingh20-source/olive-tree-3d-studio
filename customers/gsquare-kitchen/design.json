@@ -10,8 +10,20 @@
   "route": "/gsquare-kitchen/",
   "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare-kitchen/",
   "directory": "dist/gsquare-kitchen",
-  "status": "Not built yet",
-  "storageKey": "gsquare-kitchen-v1"
+  "status": "Built 27 Nov 2026 (asset version gk1). Local headless Chrome SwiftShader checks only until live check recorded in STATUS.md.",
+  "storageKey": "gsquare-kitchen-v1",
+  "files": [
+   "dist/gsquare-kitchen/index.html",
+   "dist/gsquare-kitchen/studio.js",
+   "dist/gsquare-kitchen/model.js",
+   "dist/gsquare-kitchen/exact-layout.js",
+   "dist/gsquare-kitchen/textures/"
+  ],
+  "scripts": [
+   "scripts/prepare-gsquare-kitchen-layout.py",
+   "scripts/make-gsquare-kitchen-textures.py",
+   "check-gsquare-kitchen.mjs"
+  ]
  },
  "source": {
   "files": [
@@ -271,6 +283,11 @@
    "item": "Hob position",
    "date": "2026-11-27 23:37",
    "answer": "Above the oil pull-out and the S corner on the long counter (x78-106)."
+  },
+  {
+   "item": "Chimney",
+   "date": "2026-11-27 23:39",
+   "answer": "Yes, black chimney, 90 cm wide, above the hob."
   }
  ],
  "approximations": [
@@ -288,12 +305,19 @@
   "LED profile light colour not specified; rendered warm white.",
   "Black groove profile placement (top of each base door/drawer, between stacked drawers) follows the reference photo pattern; tall-unit doors' groove position not specified.",
   "Sink type/size not specified; rendered as a generic stainless sink centred over the left doors.",
-  "Hob type/burner count not specified; rendered as a generic black glass hob."
+  "Hob type/burner count not specified; rendered as a generic black glass hob.",
+  "Chimney style and mounting height not specified; rendered as a black 90 cm (35.4 in) wall chimney centred over the hob, bottom ~26 in above the worktop.",
+  "Hinge sides of all doors not specified: pairs open from the middle; tall right upper door hinged on the wall side; wall cabinet: first door alone, other two from the middle.",
+  "Corner clash: short-counter door next to the tall unit and the tall unit's right lower door are limited to 75 deg and left out of 'Open all' (they cannot both be open).",
+  "Walls and floor are illustrative (the SKP has none). Long counter left end panel shown aqua (not asked). Tall unit top and inner shells shown light grey.",
+  "Tall-unit doors and the wall-cabinet glass doors have no groove profile drawn (method not specified)."
  ],
  "openQuestions": [
-  "Meaning and finish of each source colour (asked one at a time)",
   "Confirm client name / same client as /gsquare/",
-  "Wall cabinet glass shutters: hinge sides, inside shelves/light - not asked yet",
-  "Chimney above the hob? (asked Q23)"
+  "Hinge sides (shown from the middle)",
+  "LED light colour (shown warm white)",
+  "Sink and hob models",
+  "Long counter left end panel finish",
+  "Inner finish of OTG / grinder spaces"
  ]
 }
