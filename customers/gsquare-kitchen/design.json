@@ -82,7 +82,7 @@
    "material": "K06_Magenta_Charm",
    "faces": 1,
    "location": "10 in front (x78-88)",
-   "meaning": null
+   "meaning": "Oil pull-out (10 in wide)"
   },
   {
    "hex": "#000099",
@@ -182,6 +182,11 @@
    "item": "Sea-blue #00cccc",
    "date": "2026-11-27 21:41",
    "answer": "Cutlery drawer (26 in wide, above the thali basket)."
+  },
+  {
+   "item": "Pink #cc00cc",
+   "date": "2026-11-27 21:41",
+   "answer": "Oil pull-out (10 in wide)."
   }
  ],
  "approximations": [
@@ -189,7 +194,8 @@
   "Brown-coloured frames around the tall-unit niches and the red strip are treated as fixed panels in the same shutter colour.",
   "Pan pull-out front rendered in the shutter aqua; inner basket rows rendered generic (not specified).",
   "Thali basket front rendered in shutter aqua; plate-rack wire layout generic.",
-  "Cutlery drawer front in shutter aqua; tray divisions generic."
+  "Cutlery drawer front in shutter aqua; tray divisions generic.",
+  "Oil pull-out front in shutter aqua; basket tiers generic."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",

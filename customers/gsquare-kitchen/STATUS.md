@@ -26,10 +26,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q5 sea-blue #00cccc (27 Nov 21:41): cutlery drawer. Front aqua, tray generic (approximation).
 
+- Q6 pink #cc00cc (27 Nov 21:41): oil pull-out (10 in). Front aqua, tiers generic (approximation).
+
 ## Asked, waiting
 
-- Q6: magenta #cc00cc, 10 in wide front on the long counter (x78-88): what is it?
+- Q7: navy #000099, 18 in wide front next to the inside corner on the long counter (x88-106): what is it?
 
 ## Next action
 
-Record Q6, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q7, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
