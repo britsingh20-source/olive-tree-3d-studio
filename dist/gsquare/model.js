@@ -16,7 +16,7 @@ const I=.0254,loader=new T.TextureLoader();
 function tex(path,srgb=true){const t=loader.load(path);if(srgb)t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.userData.shared=true;return t;}
 let woodTexture;
 export function createWoodTexture(){if(!woodTexture){woodTexture=tex(WOOD_TEXTURE);woodTexture.wrapS=woodTexture.wrapT=T.MirroredRepeatWrapping;woodTexture.minFilter=T.LinearMipmapLinearFilter;woodTexture.magFilter=T.LinearFilter;woodTexture.anisotropy=16;}return woodTexture;}
-const wood={name:'Wood mica matte',color:DEFAULT_FINISH,wood:true},woodGloss={name:'Wood mica glossy',color:DEFAULT_FINISH,wood:true,gloss:true,horizontal:true};
+const wood={name:'Wood mica matte',color:DEFAULT_FINISH,wood:true},woodGloss={name:'Wood mica high gloss',color:DEFAULT_FINISH,wood:true,gloss:true};
 let horizontalWood;
 export function createHorizontalWood(){if(!horizontalWood){horizontalWood=tex('./textures/wood-mica-gloss-ref.jpg');horizontalWood.wrapS=horizontalWood.wrapT=T.MirroredRepeatWrapping;horizontalWood.anisotropy=16;}return horizontalWood;}
 export function buildModel(){
@@ -24,8 +24,8 @@ export function buildModel(){
  const root=new T.Group(),architecture=new T.Group(),referenceRoot=new T.Group();root.add(architecture,referenceRoot);referenceRoot.visible=false;
  const units=[],actions=[],sourceMeshes=[],glowMaterials=[],lightMaterial=new T.MeshBasicMaterial({color:'#ffe2a6'});
  function mat(f){const m=new T.MeshPhysicalMaterial({color:'#ffffff',map:createWoodTexture(),roughness:f.gloss?.22:.84,clearcoat:f.gloss?.85:0,clearcoatRoughness:.08,side:T.DoubleSide});m.userData.compatColor=f.color;m.userData.gloss=!!f.gloss;return m;}
- // TV back panel keeps the photo's horizontal grain.
- function glossPanelMat(){const m=new T.MeshPhysicalMaterial({color:'#ffffff',map:createHorizontalWood(),roughness:.22,clearcoat:.85,clearcoatRoughness:.08,side:T.DoubleSide});m.userData.compatColor=DEFAULT_FINISH;m.userData.gloss=true;return m;}
+ // TV back panel: vertical grain, high gloss (Bright, 27 Nov 06:36).
+ function glossPanelMat(){const m=new T.MeshPhysicalMaterial({color:'#ffffff',map:createWoodTexture(),roughness:.06,clearcoat:1,clearcoatRoughness:.02,reflectivity:.6,envMapIntensity:1.4,side:T.DoubleSide});m.userData.compatColor=DEFAULT_FINISH;m.userData.gloss=true;return m;}
  const gold=new T.MeshStandardMaterial({color:'#d4ae62',metalness:1,roughness:.22});gold.userData.compatColor='#d4ae62';
  const alu=new T.MeshStandardMaterial({color:'#b9bdc0',metalness:.85,roughness:.32});alu.userData.compatColor='#b9bdc0';
  const glass=new T.MeshPhysicalMaterial({color:'#4a4f55',roughness:.06,metalness:0,transparent:true,opacity:.55,clearcoat:1});glass.userData.compatColor='#5b6168';

@@ -13,7 +13,7 @@ for(const mesh of m.sourceMeshes){const f=exactLayout.sourceFaces.find(f=>f.id==
 m.setReference(true);const ref=new T.Box3();for(const s of m.sourceMeshes)ref.expandByObject(s);const size=ref.getSize(new T.Vector3());m.setReference(false);
 for(const [i,w] of [144.30,120,108.13].entries())assert(Math.abs(size.getComponent(i)-w*.0254)<.002,'source bounds '+i);
 // Confirmed design.
-const tvw=get('tv-wall');assert.equal(tvw.actions.length,0);assert(tvw.defaultFront.gloss);assert(tvw.lightNodes.length>0);
+const tvw=get('tv-wall');assert.equal(tvw.actions.length,0);assert(tvw.defaultFront.gloss);assert(!tvw.defaultFront.horizontal);assert(tvw.front.roughness<=.06&&tvw.front.clearcoat===1);assert(tvw.lightNodes.length>0);
 const tv=get('tv');assert.deepEqual(tv.sizeInches,[56.7,31.9]);assert.equal(tv.bottomInches,26);
 const tvBox=new T.Box3().setFromObject(tv.group),tvC=tvBox.getCenter(new T.Vector3());assert(Math.abs(tvC.x/.0254-62.73)<.01,'TV centred on panel');assert(Math.abs(tvBox.min.y/.0254-26)<.01);
 const slope=x=>100.19-(x-26.73)*(40.19/72);assert(tvBox.max.y/.0254<slope(tvBox.max.x/.0254),'TV clears the sloping top');

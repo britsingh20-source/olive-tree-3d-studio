@@ -57,7 +57,7 @@
       "sourceName": "H05_Lagoon_Spark",
       "location": "Large sloped panel under the stair (back face; ~72 in wide, ~20\u2013100 in high)",
       "finish": "Wooden mica, same grain as the reference photo",
-      "sheen": "Glossy",
+      "sheen": "High gloss (increased 27 Nov 2026 06:36)",
       "referenceTexture": {
         "path": "dist/gsquare/textures/wood-mica-gloss-ref.jpg",
         "sha256": "1a2b58801055150205362712a097191c220a94bf9271174fa91aad1467aa1568",
@@ -67,7 +67,9 @@
       },
       "userResponse": "this wooden Micah with the same grains in glossy finish.",
       "purpose": "TV back panel (fixed, no opening action)",
-      "purposeUserResponse": "This is a back panel. This is a TV's background. So place a 65-inch TV in the foreground."
+      "purposeUserResponse": "This is a back panel. This is a TV's background. So place a 65-inch TV in the foreground.",
+      "grainDirection": "Vertical (changed from horizontal 27 Nov 2026 06:36)",
+      "changeUserResponse": "TV background grains, you've been made it as horizontal, make it as vertical, and increase the glossiness of the TV background mica."
     },
     {
       "item": "TV",
