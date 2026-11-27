@@ -89,7 +89,7 @@
    "material": "I07_Midnight_Hue",
    "faces": 1,
    "location": "18 in front next to the corner (x88-106)",
-   "meaning": null
+   "meaning": "S-corner unit (18 in front next to inside corner, long counter)"
   },
   {
    "hex": "#65ffff",
@@ -187,6 +187,11 @@
    "item": "Pink #cc00cc",
    "date": "2026-11-27 21:41",
    "answer": "Oil pull-out (10 in wide)."
+  },
+  {
+   "item": "Dark blue #000099",
+   "date": "2026-11-27 21:42",
+   "answer": "S corner (corner pull-out reaching into the blind corner)."
   }
  ],
  "approximations": [
@@ -195,7 +200,8 @@
   "Pan pull-out front rendered in the shutter aqua; inner basket rows rendered generic (not specified).",
   "Thali basket front rendered in shutter aqua; plate-rack wire layout generic.",
   "Cutlery drawer front in shutter aqua; tray divisions generic.",
-  "Oil pull-out front in shutter aqua; basket tiers generic."
+  "Oil pull-out front in shutter aqua; basket tiers generic.",
+  "S-corner front in shutter aqua; corner fitting shape generic."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",

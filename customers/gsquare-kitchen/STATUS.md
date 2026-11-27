@@ -28,10 +28,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q6 pink #cc00cc (27 Nov 21:41): oil pull-out (10 in). Front aqua, tiers generic (approximation).
 
+- Q7 dark blue #000099 (27 Nov 21:42): S corner. Front aqua, fitting generic (approximation).
+
 ## Asked, waiting
 
-- Q7: navy #000099, 18 in wide front next to the inside corner on the long counter (x88-106): what is it?
+- Q8: light cyan #65ffff, 18 in front on the short arm next to the corner (y52-70): what is it?
 
 ## Next action
 
-Record Q7, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q8, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
