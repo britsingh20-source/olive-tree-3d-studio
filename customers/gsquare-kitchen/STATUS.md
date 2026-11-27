@@ -14,10 +14,14 @@ Updated 27 November 2026, 21:40 IST.
 
 One question per picture. Only the item asked about is in colour; everything else is light grey. Plain, simple words. Pictures rendered with a back-face-culled projection of the extract (two views: from the open side and from the long-counter side).
 
+## Confirmed
+
+- Q1 brown #663300 (27 Nov 21:35): only shutters, storage shells inside. Colour follows Bright's reference photo: pastel aqua/teal (sampled #71a199-#8cbcbc, render #86b8b4), glossy like the photo (approximation). Photo not committed (other firm's watermark).
+
 ## Asked, waiting
 
-- Q1 (27 Nov 21:40): brown #663300 — all brown pieces (base doors, tall unit doors and frames): what finish?
+- Q2: black #000000 thin strips (left end filler, two corner fillers): what are they?
 
 ## Next action
 
-Record the answer to Q1, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q2, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).

@@ -47,7 +47,7 @@
    "material": "C08_Toffee_Ember",
    "faces": 13,
    "location": "Brown fronts: 2 base doors on long counter (x4-40), 2 doors on short arm (x=108, y24-52), tall unit: 2 base doors, frame/drawer around red strip, frames round both niches, 3 upper doors",
-   "meaning": null
+   "meaning": "Shutters (doors) with plain storage carcass inside; same colour as Bright reference photo"
   },
   {
    "hex": "#000000",
@@ -155,8 +155,19 @@
    "meaning": null
   }
  ],
- "confirmed": [],
- "approximations": [],
+ "confirmed": [
+  {
+   "item": "Brown #663300",
+   "date": "2026-11-27 21:35",
+   "answer": "Only shutters, with storage shells (carcass) inside. Colour: follow Bright's reference kitchen photo.",
+   "colour": "Pastel aqua/teal; sampled from the photo #71a199 (shadowed base doors) to #8cbcbc (lit wall doors); render base value #86b8b4",
+   "referencePhoto": "Bright's uploaded kitchen photo (chat 27 Nov 21:35, has another firm's watermark) - NOT committed to the public repo"
+  }
+ ],
+ "approximations": [
+  "Brown shutters: photo shows high-gloss acrylic-type finish; viewer will render gloss like the photo until Bright says otherwise. Inside shells rendered empty (no shelves specified).",
+  "Brown-coloured frames around the tall-unit niches and the red strip are treated as fixed panels in the same shutter colour."
+ ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",
   "Confirm client name / same client as /gsquare/",
