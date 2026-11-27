@@ -18,10 +18,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q1 brown #663300 (27 Nov 21:35): only shutters, storage shells inside. Colour follows Bright's reference photo: pastel aqua/teal (sampled #71a199-#8cbcbc, render #86b8b4), glossy like the photo (approximation). Photo not committed (other firm's watermark).
 
+- Q2 black #000000 (27 Nov 21:39): fixed filler strips, same aqua as the shutters; no opening.
+
 ## Asked, waiting
 
-- Q2: black #000000 thin strips (left end filler, two corner fillers): what are they?
+- Q3: purple #490099, 12 in wide front on the long counter (x40-52): what is it?
 
 ## Next action
 
-Record Q2, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q3, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).

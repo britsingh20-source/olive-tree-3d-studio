@@ -54,7 +54,7 @@
    "material": "M09_Shadow_Night",
    "faces": 3,
    "location": "Thin fillers: 4 in at left end of long counter, 2 in each side of the inside corner",
-   "meaning": null
+   "meaning": "Fixed filler strips, same aqua as the shutters (no opening)"
   },
   {
    "hex": "#490099",
@@ -162,6 +162,11 @@
    "answer": "Only shutters, with storage shells (carcass) inside. Colour: follow Bright's reference kitchen photo.",
    "colour": "Pastel aqua/teal; sampled from the photo #71a199 (shadowed base doors) to #8cbcbc (lit wall doors); render base value #86b8b4",
    "referencePhoto": "Bright's uploaded kitchen photo (chat 27 Nov 21:35, has another firm's watermark) - NOT committed to the public repo"
+  },
+  {
+   "item": "Black #000000",
+   "date": "2026-11-27 21:39",
+   "answer": "Fixed filler strips in the same aqua as the shutters (4 in at left end, 2 in each side of the inside corner)."
   }
  ],
  "approximations": [
