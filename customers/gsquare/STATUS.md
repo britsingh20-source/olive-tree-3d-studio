@@ -61,7 +61,7 @@ Published at commit b9f9ee7; GitHub Pages run 45887344804 succeeded. Live https:
 
 ## Flicker fix (27 Nov 2026 06:47, asset version gs6)
 
-Bright reported jittering on the mirror's background mica while rotating. Cause: coplanar same-facing surfaces (z-fighting). A full scan of all cabinet triangles found: niche back mica vs louver backing board (z -1.4), basin box vs counter front, pooja carcass top/bottom vs sides, drawer-box parts, right-storage carcass, grass light strip vs ledge top. All separated; plaster architecture polygon offset raised to 4/16. check-gsquare.mjs now fails on any same-facing coplanar overlap between cabinet surfaces. Remaining coplanar contact is only cabinet vs plaster architecture (handled by polygon offset). Not yet re-checked on Bright's phone.
+Bright reported jittering on the mirror's background mica while rotating. Cause: coplanar same-facing surfaces (z-fighting). A full scan of all cabinet triangles found: niche back mica vs louver backing board (z -1.4), basin box vs counter front, pooja carcass top/bottom vs sides, drawer-box parts, right-storage carcass, grass light strip vs ledge top. All separated; plaster architecture polygon offset raised to 4/16. check-gsquare.mjs now fails on any same-facing coplanar overlap between cabinet surfaces. Remaining coplanar contact is only cabinet vs plaster architecture (handled by polygon offset). Live after Pages run 45922010362 (rerun after GitHub artifact error); live model.js confirmed. Not yet re-checked on Bright's phone.
 
 ## Known issue / question for Bright
 
