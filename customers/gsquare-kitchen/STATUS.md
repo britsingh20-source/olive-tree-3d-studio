@@ -24,10 +24,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q4 green #00cc00 (27 Nov 21:40): thali basket (pull-out). Front aqua, wire layout generic (approximation).
 
+- Q5 sea-blue #00cccc (27 Nov 21:41): cutlery drawer. Front aqua, tray generic (approximation).
+
 ## Asked, waiting
 
-- Q5: sea-blue #00cccc, upper 26 in wide front above the thali basket (17.7-27 in high): what is it?
+- Q6: magenta #cc00cc, 10 in wide front on the long counter (x78-88): what is it?
 
 ## Next action
 
-Record Q5, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q6, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).

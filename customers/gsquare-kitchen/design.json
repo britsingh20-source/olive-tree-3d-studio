@@ -75,7 +75,7 @@
    "material": "H06_Ocean_Depth",
    "faces": 1,
    "location": "26 in wide upper front above jade (x52-78, z17.7-27)",
-   "meaning": null
+   "meaning": "Cutlery drawer (26 in wide, top front above thali basket)"
   },
   {
    "hex": "#cc00cc",
@@ -177,13 +177,19 @@
    "item": "Green #00cc00",
    "date": "2026-11-27 21:40",
    "answer": "Thali basket (26 in wide lower front)."
+  },
+  {
+   "item": "Sea-blue #00cccc",
+   "date": "2026-11-27 21:41",
+   "answer": "Cutlery drawer (26 in wide, above the thali basket)."
   }
  ],
  "approximations": [
   "Brown shutters: photo shows high-gloss acrylic-type finish; viewer will render gloss like the photo until Bright says otherwise. Inside shells rendered empty (no shelves specified).",
   "Brown-coloured frames around the tall-unit niches and the red strip are treated as fixed panels in the same shutter colour.",
   "Pan pull-out front rendered in the shutter aqua; inner basket rows rendered generic (not specified).",
-  "Thali basket front rendered in shutter aqua; plate-rack wire layout generic."
+  "Thali basket front rendered in shutter aqua; plate-rack wire layout generic.",
+  "Cutlery drawer front in shutter aqua; tray divisions generic."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",
