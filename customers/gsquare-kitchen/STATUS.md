@@ -44,10 +44,14 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q14 blue #3131ff (27 Nov 21:47): glass shutters. Glass type, frame and hinge sides still open.
 
+- Q15 dark green #006600 (27 Nov 21:48): wall cabinet end side in wood mica.
+
+All 15 source colours now explained (white Default = carcass sides/backs/worktop band).
+
 ## Asked, waiting
 
-- Q15: dark green #006600, end side of the wall cabinet (15 x 24 in): what finish?
+- Q16: wall cabinet glass shutters - what kind of glass (frame + glass type)?
 
 ## Next action
 
-Record Q15, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Remaining details, one at a time: glass shutter type; hinge/opening sides; handles (photo shows black handle profiles); worktop; sink/hob positions; light colour. Then build dist/gsquare-kitchen from the gsquare viewer.

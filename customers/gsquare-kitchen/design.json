@@ -145,7 +145,7 @@
    "material": "G08_Forest_Moss",
    "faces": 1,
    "location": "Wall cabinet end side (y=48), 15 x 24 in",
-   "meaning": null
+   "meaning": "Wall cabinet end side panel in wood mica (same as tall unit side)"
   },
   {
    "hex": "#ffffff",
@@ -231,6 +231,11 @@
    "item": "Blue #3131ff",
    "date": "2026-11-27 21:47",
    "answer": "Glass shutters (three, on the wall cabinet)."
+  },
+  {
+   "item": "Dark green #006600",
+   "date": "2026-11-27 21:48",
+   "answer": "Wall cabinet end side: wood mica, same as the tall unit side."
   }
  ],
  "approximations": [
