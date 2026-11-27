@@ -56,7 +56,8 @@ All 15 source colours now explained (white Default = carcass sides/backs/worktop
 - Q19 answered (23:34, after a simple picture): option 1 - black profile grooves like his photo.
 - Q20 answered (23:35): black granite worktop.
 - Q21 answered (23:36): sink above the left doors on the long counter.
-- Q22: where does the hob go (same plan picture)?
+- Q22 answered (23:37): hob above the oil pull-out and S corner.
+- Q23: is there a chimney above the hob?
 
 ## Next action
 

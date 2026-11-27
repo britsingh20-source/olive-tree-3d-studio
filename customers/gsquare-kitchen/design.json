@@ -266,6 +266,11 @@
    "item": "Sink position",
    "date": "2026-11-27 23:36",
    "answer": "Above the two doors at the left end of the long counter (x4-40)."
+  },
+  {
+   "item": "Hob position",
+   "date": "2026-11-27 23:37",
+   "answer": "Above the oil pull-out and the S corner on the long counter (x78-106)."
   }
  ],
  "approximations": [
@@ -282,12 +287,13 @@
   "Tabletop grinder shown as a generic placeholder; inner finish of the space not yet specified.",
   "LED profile light colour not specified; rendered warm white.",
   "Black groove profile placement (top of each base door/drawer, between stacked drawers) follows the reference photo pattern; tall-unit doors' groove position not specified.",
-  "Sink type/size not specified; rendered as a generic stainless sink centred over the left doors."
+  "Sink type/size not specified; rendered as a generic stainless sink centred over the left doors.",
+  "Hob type/burner count not specified; rendered as a generic black glass hob."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",
   "Confirm client name / same client as /gsquare/",
-  "Hob position (sink placed)",
-  "Wall cabinet glass shutters: hinge sides, inside shelves/light - not asked yet"
+  "Wall cabinet glass shutters: hinge sides, inside shelves/light - not asked yet",
+  "Chimney above the hob? (asked Q23)"
  ]
 }
