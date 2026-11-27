@@ -442,10 +442,11 @@
       "location": "Stair side wall facing the under-stair passage (plane world z -36.15). 45611: triangle x 27.02\u201346.75, 0\u219211.96 in high (nearer the bottom of the stairs). 45605: x 46.75\u201366.48 (19.7 in wide), 0 in, top sloping 11.96\u219223.92 in (next to the rear storage door).",
       "unit": "45611 = fixed panel (next to the stair); 45605 = door",
       "userResponse": "this area also I have been marked for door. The one with adjacent to the star is fixed, another is door.",
-      "hinge": null,
+      "hinge": "On the short (12 in) edge next to the fixed triangle (x 46.75)",
       "finish": null,
       "handles": null,
-      "status": "Location shown to Bright for confirmation"
+      "status": "Location confirmed by Bright",
+      "hingeUserResponse": "2 (Correct, hinge next to the fixed triangle)"
     }
   ],
   "approximations": [

@@ -73,7 +73,7 @@ He meant the LOUVER (fluted) finish and the strip lights looking like spot light
 
 ## Small door under the lower stair (27 Nov 07:01)
 
-New SKP v2 (sha 711da2dc…) read from Downloads\1: same geometry; faces 45605/45611 now teal #006666 on the stair side wall facing the under-stair passage. 45611 (triangle nearer the stair bottom) = fixed; 45605 (19.7 in wide, top 12→24 in) = door. Location confirmation and hinge/finish pending. Not built yet.
+New SKP v2 (sha 711da2dc…) read from Downloads\1: same geometry; faces 45605/45611 now teal #006666 on the stair side wall facing the under-stair passage. 45611 (triangle nearer the stair bottom) = fixed; 45605 (19.7 in wide, top 12→24 in) = door. Location confirmed; door hinged on the short edge next to the fixed triangle. Finish/handle pending. Not built yet.
 
 ## Next action
 
