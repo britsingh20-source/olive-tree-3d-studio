@@ -36,10 +36,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q10 orange #ff8c65 (27 Nov 21:45): OTG / oven space. Appliance generic placeholder (approximation).
 
+- Q11 red #ff3131 (27 Nov 21:45): drawer below the OTG space. Front aqua (approximation).
+
 ## Asked, waiting
 
-- Q11: red #ff3131, 32 x 8 in strip below the OTG space (32-40 in from floor): what is it?
+- Q12: lime #31ff31, open space in the right part of the tall unit (22 w x 17 h, 30-47 in from floor): what is it?
 
 ## Next action
 
-Record Q11, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q12, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
