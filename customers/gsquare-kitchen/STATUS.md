@@ -53,7 +53,8 @@ All 15 source colours now explained (white Default = carcass sides/backs/worktop
 - Q16 answered (21:49): aluminium frame with clear glass.
 - Q17 answered (22:39): black aluminium frame.
 - Q18 answered (23:27): "No handles" - ambiguous between black profile grooves and push-to-open.
-- Q19: clarify - black profile grooves like his photo, or push-to-open?
+- Q19 answered (23:34, after a simple picture): option 1 - black profile grooves like his photo.
+- Q20: worktop (counter top) material/colour?
 
 ## Next action
 
