@@ -83,6 +83,7 @@ Chimney removed. Wood mica grain made vertical: Bright's wood photo rotated 90 d
 
 Worktop changed to white (quartz-white.jpg, generated). Microwave oven modelled in the OTG space and animated in a loop (9 s: cooking with turning plate and inside light, door opens, closes). Grinder animated in a loop (10 s: slides 14 in out onto the short counter, drum turns, slides back in). Toolbar button "Animation on/off" (model.setAnimation). Asset version gk3.
 Checks: node check-gsquare-kitchen.mjs passed (geometry checks with animation paused; animation test: grinder out 14.0 in and back, sits at 30 in, door opens >80 deg and closes, plate/drum/light animate, loop restarts at home; white worktop, no black). Local headless Chrome SwiftShader 1280x900: tall unit view at loop 0.5 s (cooking, window glowing) and 5.3 s (door open, lit cavity, bowl) inspected; full view shows the white worktop; in-page probe of grinder position over the loop: Z 35.6 / 29.0 / 22.0 / 22.0 / 29.0 / 36.0 in at 0.2/1/3/5/8/9.5 s (states moving/grinding/inside). No close-up screenshot of the grinder standing out on the counter was captured.
+Published commit 7256e90, Pages run 46051940250 succeeded; live page loaded in headless Chrome and the same in-page grinder/microwave probe returned the same loop states. Not a real-device check.
 
 ## Next action
 
