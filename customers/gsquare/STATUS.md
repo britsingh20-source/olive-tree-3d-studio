@@ -71,9 +71,9 @@ The storage door right of the TV, hinged at the corner shared with the pooja uni
 
 He meant the LOUVER (fluted) finish and the strip lights looking like spot lights. Changed in commit 0da30f3 (asset version gs4): louvers are now 9 real 3D slats with dark grooves using wood from his louver photo; strip LEDs are soft linear rect-area lights (no round hotspots). Local headless Chrome (SwiftShader) lights-on vs lights-off screenshots show even washes, no spots, no page errors; live model.js confirmed updated. Waiting for his review.
 
-## Waiting on Bright (27 Nov 06:56)
+## Small door under the lower stair (27 Nov 07:01)
 
-He will send an SKP with a door + fixed panel marked (fixed one next to the stair). Both uploaded SKPs have no geometry there; my guessed location (left entrance of the under-stair corridor) was wrong. Do not build this until the new SKP is read.
+New SKP v2 (sha 711da2dc…) read from Downloads\1: same geometry; faces 45605/45611 now teal #006666 on the stair side wall facing the under-stair passage. 45611 (triangle nearer the stair bottom) = fixed; 45605 (19.7 in wide, top 12→24 in) = door. Location confirmation and hinge/finish pending. Not built yet.
 
 ## Next action
 

@@ -49,7 +49,16 @@
     "omitted": "None (no component instances)",
     "originalFilesInRepository": false,
     "extractedJson": "customers/gsquare/source/gsquare-extract.json",
-    "notes": "Model shows a staircase with an under-stair unit. 22 source materials; G01_Mint_Mist unused. Several colours are on back faces only (I08 Inkstorm, H05 Lagoon Spark)."
+    "notes": "Model shows a staircase with an under-stair unit. 22 source materials; G01_Mint_Mist unused. Several colours are on back faces only (I08 Inkstorm, H05 Lagoon Spark).",
+    "revisions": [
+      {
+        "file": "gsquare.skp (v2, from Downloads\\1, 27 Nov 2026 07:01)",
+        "sha256": "711da2dc136abd04652879c7a4f8ab951ce16345611c4fe216f496cf00fb9a7a",
+        "extractedJson": "customers/gsquare/source/gsquare-v2-extract.json",
+        "diffFromV1": "Identical geometry (259 vertices, 424 edges, 170 faces). Only faces 45605 and 45611 changed from Default white to H08_Emerald_Abyss #006666.",
+        "note": "An earlier chat upload of this file was corrupted in transfer (binary bytes replaced by U+FFFD) and unreadable; this copy was staged directly from the computer."
+      }
+    ]
   },
   "confirmed": [
     {
@@ -423,6 +432,20 @@
         "All strip LEDs changed from point lights (round spots) to soft linear rect-area lights: TV recess top, skirting floor wash, concealed louver strip, grass border top and bottom"
       ],
       "pendingReview": "Bright to confirm the new louver look and lighting"
+    },
+    {
+      "sourceColour": "#006666 (v2)",
+      "faceIds": [
+        45605,
+        45611
+      ],
+      "location": "Stair side wall facing the under-stair passage (plane world z -36.15). 45611: triangle x 27.02\u201346.75, 0\u219211.96 in high (nearer the bottom of the stairs). 45605: x 46.75\u201366.48 (19.7 in wide), 0 in, top sloping 11.96\u219223.92 in (next to the rear storage door).",
+      "unit": "45611 = fixed panel (next to the stair); 45605 = door",
+      "userResponse": "this area also I have been marked for door. The one with adjacent to the star is fixed, another is door.",
+      "hinge": null,
+      "finish": null,
+      "handles": null,
+      "status": "Location shown to Bright for confirmation"
     }
   ],
   "approximations": [
@@ -588,10 +611,6 @@
     {
       "question": "Right storage door next to the pooja shares the hinge corner with the pooja unit: it can open only ~80 deg before the pooja drawer knobs and cannot be open together with the pooja left doors. Viewer limits it to 80 deg and skips it in 'Open all'. Keep, or hinge that door on its other side?",
       "status": "Asked Bright 27 Nov 2026 \u2014 awaiting answer"
-    },
-    {
-      "question": "Bright says he marked a door + fixed panel (fixed one next to the stair) in an area left of the fluted column / near the lower stair flight (his phone screenshot, 27 Nov 06:55). Neither uploaded SKP contains faces or loose edges there. My guessed location (corridor entrance at world x 7.07) was NOT the area (answer 3).",
-      "status": "Waiting for Bright to send the SKP with the door marked"
     }
   ]
 }
