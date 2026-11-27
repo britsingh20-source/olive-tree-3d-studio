@@ -96,7 +96,7 @@
    "material": "H03_Glacier_Glow",
    "faces": 1,
    "location": "18 in front on short arm next to the corner (y52-70)",
-   "meaning": null
+   "meaning": "Open box, NO shutter, with 2 wicker baskets visible inside; inside of box in wood mica"
   },
   {
    "hex": "#336600",
@@ -192,6 +192,15 @@
    "item": "Dark blue #000099",
    "date": "2026-11-27 21:42",
    "answer": "S corner (corner pull-out reaching into the blind corner)."
+  },
+  {
+   "item": "Light blue #65ffff",
+   "date": "2026-11-27 21:43",
+   "answer": "No shutter - open box on the short counter next to the corner. Two wicker pull-out baskets inside, visible, in the cane/rattan wicker finish of Bright's photo (wooden frame with slot handle). Inside of the box in wood mica (Bright's wood photo, warm honey-brown, horizontal grain).",
+   "textures": {
+    "woodInside": "dist/gsquare-kitchen/textures/wood-mica-inside-ref.jpg (Bright's photo, committed)",
+    "wicker": "Bright's product photo has a brand logo - NOT committed; viewer will use a procedural wicker texture in that colour (approximation)"
+   }
   }
  ],
  "approximations": [
@@ -201,7 +210,8 @@
   "Thali basket front rendered in shutter aqua; plate-rack wire layout generic.",
   "Cutlery drawer front in shutter aqua; tray divisions generic.",
   "Oil pull-out front in shutter aqua; basket tiers generic.",
-  "S-corner front in shutter aqua; corner fitting shape generic."
+  "S-corner front in shutter aqua; corner fitting shape generic.",
+  "Wicker baskets: procedural weave texture approximating Bright's photo; basket heights split evenly inside the 27 in box (not specified)."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",
