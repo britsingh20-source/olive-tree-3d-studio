@@ -178,6 +178,16 @@ export function buildModel(){
  rs.doorCount=1;rs.handles='Handleless, push to open';rs.hinge='Staircase side';rs.cladding='Matte wood mica cladding on the stair side';
  rs.renderNote='Door swings outward toward the grass niche (direction not specified). Storage interior shown empty.';
 
+ // 9 · Small door + fixed triangle low on the stair-side wall of the under-stair passage (SKP v2 teal faces 45605/45611).
+ // Faces +Z into the passage; set flush into the wall (front face on the source plane). Door hinged on its short edge next to the fixed triangle; push to open.
+ const sd=unit('stair-door','Small door under the stair','stairdoor',-Math.PI/4);const sdg=sd.group;
+ slab(sdg,[[27.02,0],[46.75,0],[46.75,11.96]],'z',-36.9,.75,sd.front);
+ const sdp=pivotAt(sdg,46.75,6,-36.15),sy=x=>11.96+(x-46.75)*(11.96/19.73);
+ slab(sdp,[[46.75+gap,gap],[66.48-gap,gap],[66.48-gap,sy(66.48)-gap],[46.75+gap,sy(46.75)-gap]],'z',-36.9,.75,sd.front);
+ act(sd,sdp,'hinge',-Math.PI*.47,{skipOpenAll:true});
+ sd.doorCount=1;sd.fixedPanel='Triangle next to the bottom of the stairs';sd.handles='Handleless, push to open';sd.hinge='Short edge next to the fixed triangle';
+ sd.renderNote='Set flush into the stair-side wall (depth approximate). It shares the passage corner with the rear storage door: when that door is fully open it lies over this one, so they cannot be open together (\u201cOpen all\u201d leaves this one shut).';
+
  function polygon(f,material){const n=new T.Vector3(...f.normal).normalize(),ax=Math.abs(n.y)<.8?new T.Vector3(0,1,0).cross(n).normalize():new T.Vector3(1,0,0),ay=n.clone().cross(ax).normalize(),loops=f.points.map(l=>l.map(p=>new T.Vector3(...p))),flat=loops.flat(),xy=flat.flatMap(p=>[p.dot(ax),p.dot(ay)]),holes=[];let count=loops[0].length;for(const l of loops.slice(1)){holes.push(count);count+=l.length;}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(flat.flatMap(p=>p.toArray()),3));g.setIndex(earcut(xy,holes));g.computeVertexNormals();return new T.Mesh(g,material);}
  const plaster=new T.MeshStandardMaterial({color:'#efebe4',roughness:1,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:4,polygonOffsetUnits:16});plaster.userData.compatColor='#efebe4';
  for(const f of exactLayout.sourceFaces){const shown=f.color==='#ffffff'&&f.backColor?f.backColor:f.color;const m=polygon(f,new T.MeshStandardMaterial({color:shown,side:T.DoubleSide,roughness:1,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}));m.userData.sourceFace=f.id;referenceRoot.add(m);sourceMeshes.push(m);

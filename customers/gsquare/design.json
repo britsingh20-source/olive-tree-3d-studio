@@ -48,7 +48,7 @@
     "comparison": "Both files extract identical vertices, edges, faces and materials; they differ only in saved camera/thumbnail (model.dat, meta)",
     "omitted": "None (no component instances)",
     "originalFilesInRepository": false,
-    "extractedJson": "customers/gsquare/source/gsquare-extract.json",
+    "extractedJson": "customers/gsquare/source/gsquare-v2-extract.json (v2; v1 kept as gsquare-extract.json)",
     "notes": "Model shows a staircase with an under-stair unit. 22 source materials; G01_Mint_Mist unused. Several colours are on back faces only (I08 Inkstorm, H05 Lagoon Spark).",
     "revisions": [
       {
@@ -443,10 +443,12 @@
       "unit": "45611 = fixed panel (next to the stair); 45605 = door",
       "userResponse": "this area also I have been marked for door. The one with adjacent to the star is fixed, another is door.",
       "hinge": "On the short (12 in) edge next to the fixed triangle (x 46.75)",
-      "finish": null,
-      "handles": null,
-      "status": "Location confirmed by Bright",
-      "hingeUserResponse": "2 (Correct, hinge next to the fixed triangle)"
+      "finish": "Wood mica",
+      "handles": "Handleless, push to open",
+      "status": "Built (asset version gs7)",
+      "hingeUserResponse": "2 (Correct, hinge next to the fixed triangle)",
+      "sheen": "Matte",
+      "finishUserResponse": "1 (Matte wood mica, no handle)"
     }
   ],
   "approximations": [
@@ -501,6 +503,10 @@
     {
       "item": "Wash basin",
       "approximation": "Round white vessel basin ~11.6 in dia with a chrome deck tap; counter 0.75 in matte wood mica; mirror plain, no light"
+    },
+    {
+      "item": "Small stair door",
+      "approximation": "Set flush into the stair-side wall, 0.75 in thick; opens outward into the passage. Cannot be open together with the rear storage door (shared corner) \u2014 viewer leaves it shut on 'Open all'"
     }
   ],
   "openQuestions": [

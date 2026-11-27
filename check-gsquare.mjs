@@ -25,10 +25,11 @@ const lo=get('pooja-lower');assert.equal(lo.actions.length,2);
 for(const id of ['fluted-column','grass-panel','tv-wall','tv','wash-basin'])assert.equal(get(id).actions.length,0,id+' must stay fixed');
 assert.equal(get('grass-panel').finishable,false);assert.equal(get('fluted-column').finishable,false);
 const wb=get('wash-basin');assert(wb.purpose.includes('mirror'));{const b=new T.Box3().setFromObject(wb.group);assert(Math.abs(b.min.x/.0254-7.82)<.01&&Math.abs(b.max.x/.0254-24.73)<.01,'basin niche width');}
+{const sd=get('stair-door');assert.equal(sd.actions.length,1);assert(sd.actions[0].skipOpenAll);assert.equal(sd.handles,'Handleless, push to open');}
 const rs=get('rear-storage');assert.equal(rs.actions.length,1);assert.equal(rs.hinge,'Staircase side');
 // Opening direction: front doors +Z, pooja unit and rear door -X; drawers slide -X.
 m.root.updateMatrixWorld(true);
-const outward={'tv-cabinet':['z',1],'right-storage':['z',1],pooja:['x',-1],'pooja-drawers':['x',-1],'pooja-lower':['x',-1],'rear-storage':['x',-1]};
+const outward={'stair-door':['z',1],'tv-cabinet':['z',1],'right-storage':['z',1],pooja:['x',-1],'pooja-drawers':['x',-1],'pooja-lower':['x',-1],'rear-storage':['x',-1]};
 function centre(a){return new T.Box3().setFromObject(a.node).getCenter(new T.Vector3());}
 for(const a of m.actions){const before=centre(a);a.open=true;for(let i=0;i<120;i++)m.update(1/30);m.root.updateMatrixWorld(true);const after=centre(a),[axis,sgn]=outward[a.unit.id];
  assert((after[axis]-before[axis])*sgn>.04,a.unit.id+' opens outward');a.open=false;for(let i=0;i<120;i++)m.update(1/30);}
