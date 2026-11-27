@@ -7,6 +7,7 @@ const T=await import(vendor);
 T.TextureLoader.prototype.load=function(){return new T.Texture();};
 const {buildModel,exactLayout,AQUA}=await import('./dist/gsquare-kitchen/model.js');
 const m=buildModel(),get=id=>m.units.find(u=>u.id===id),I=.0254;
+m.setAnimation(false);// appliance loops paused for the geometry checks; tested at the end
 // Every source face retained exactly; bounds 132 x 84 x 96 in.
 assert.equal(exactLayout.sourceFaces.length,62);assert.equal(m.sourceMeshes.length,62);
 for(const mesh of m.sourceMeshes){const f=exactLayout.sourceFaces.find(f=>f.id===mesh.userData.sourceFace),p=mesh.geometry.attributes.position;assert.equal(p.count,f.points.flat().length);for(let i=0;i<p.count;i++)assert(new T.Vector3().fromBufferAttribute(p,i).distanceTo(new T.Vector3(...f.points.flat()[i]))<1e-6);}
@@ -45,4 +46,14 @@ m.root.updateMatrixWorld(true);
  assert.equal(bad.length,0,'coplanar same-facing overlaps: '+[...new Set(bad)].slice(0,12).join('; '));}
 m.setLights(false);assert(m.units.every(u=>u.lightNodes.every(l=>!l.visible)));m.setLights(true);
 m.setReference(true);assert(m.units.every(u=>!u.group.visible));m.setReference(false);
+// White worktop (no black).
+{const mats=new Set();get('worktop').group.traverse(o=>{if(o.isMesh&&o.geometry.type==='BoxGeometry'&&o.geometry.parameters.width>1)mats.add(o.material.userData.compatColor);});assert(mats.has('#f2f1ec'),'white worktop');assert(!mats.has('#1a1a1b'),'no black granite');}
+// Appliance loops: microwave cooks (turntable turns, light), door opens >=80 deg and closes; grinder slides out 14 in, grinds, returns.
+{m.setAnimation(true);const g=m.grinder,mw=m.microwave,home=g.node.position.clone();let maxOut=0,maxDoor=0,turned=0,spun=0,lit=0,states=new Set();
+ for(let i=0;i<30*20;i++){const tb=mw.table.rotation.y,dr=g.drum.rotation.y;m.update(1/30);turned+=Math.abs(mw.table.rotation.y-tb);spun+=Math.abs(g.drum.rotation.y-dr);maxOut=Math.max(maxOut,home.z-g.node.position.z);maxDoor=Math.max(maxDoor,-mw.door.rotation.y);lit=Math.max(lit,mw.lining.emissiveIntensity);states.add(g.state+'/'+mw.state);}
+ assert(Math.abs(maxOut/I-14)<.05,'grinder comes out 14 in');assert(maxDoor>80*Math.PI/180,'microwave door opens');assert(turned>1&&spun>5&&lit>0,'turntable, drum and light animate');
+ // grinder must clear the niche frame and land on the worktop (bottom at 30 in) when out
+ const gb=new T.Box3().setFromObject(g.node);assert(Math.abs(gb.min.y/I-30)<.01,'grinder sits at 30 in');
+ m.clock=0;m.update(0);assert(Math.abs(g.node.position.z-home.z)<1e-6&&Math.abs(mw.door.rotation.y)<1e-9,'loop restarts at home');
+ m.setAnimation(false);assert.equal(m.grinder.state,'inside');assert.equal(m.microwave.state,'idle');}
 console.log('gsquare-kitchen checks passed:',m.units.length,'units,',m.actions.length,'actions');

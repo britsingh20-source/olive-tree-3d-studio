@@ -54,7 +54,7 @@ All 15 source colours now explained (white Default = carcass sides/backs/worktop
 - Q17 answered (22:39): black aluminium frame.
 - Q18 answered (23:27): "No handles" - ambiguous between black profile grooves and push-to-open.
 - Q19 answered (23:34, after a simple picture): option 1 - black profile grooves like his photo.
-- Q20 answered (23:35): black granite worktop.
+- Q20 answered (23:35): black granite worktop. SUPERSEDED 28 Nov 00:11: white worktop, no black.
 - Q21 answered (23:36): sink above the left doors on the long counter.
 - Q22 answered (23:37): hob above the oil pull-out and S corner.
 - Q23 answered (23:39): yes, black chimney 90 cm. SUPERSEDED 23:59: chimney removed.
@@ -78,6 +78,11 @@ Published at commit 6d45771; GitHub Pages run 46048673736 succeeded. Live https:
 ## Change gk2 (27 Nov 23:59 request)
 
 Chimney removed. Wood mica grain made vertical: Bright's wood photo rotated 90 deg (textures/wood-mica-vertical.jpg, original kept as wood-mica-inside-ref.jpg). Asset version gk2. node check-gsquare-kitchen.mjs passed (10 units, 20 actions; asserts no chimney). Local headless Chrome SwiftShader 1280x900: full view (no chimney, vertical grain on tall-unit side) and wicker box (vertical grain inside) inspected. Published commit 174d01c, Pages run 46050037250 succeeded; live model.js confirmed (vertical texture, no chimney); live page loaded in headless Chrome without page errors.
+
+## Change gk3 (28 Nov 00:11 request)
+
+Worktop changed to white (quartz-white.jpg, generated). Microwave oven modelled in the OTG space and animated in a loop (9 s: cooking with turning plate and inside light, door opens, closes). Grinder animated in a loop (10 s: slides 14 in out onto the short counter, drum turns, slides back in). Toolbar button "Animation on/off" (model.setAnimation). Asset version gk3.
+Checks: node check-gsquare-kitchen.mjs passed (geometry checks with animation paused; animation test: grinder out 14.0 in and back, sits at 30 in, door opens >80 deg and closes, plate/drum/light animate, loop restarts at home; white worktop, no black). Local headless Chrome SwiftShader 1280x900: tall unit view at loop 0.5 s (cooking, window glowing) and 5.3 s (door open, lit cavity, bowl) inspected; full view shows the white worktop; in-page probe of grinder position over the loop: Z 35.6 / 29.0 / 22.0 / 22.0 / 29.0 / 36.0 in at 0.2/1/3/5/8/9.5 s (states moving/grinding/inside). No close-up screenshot of the grinder standing out on the counter was captured.
 
 ## Next action
 

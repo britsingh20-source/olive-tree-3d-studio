@@ -1,7 +1,8 @@
 """Generate illustrative textures for the gsquare kitchen viewer.
 
 - wicker.jpg: cane/rattan weave in the honey-brown of Bright's basket photo (photo itself not committed: brand logo).
-- granite-black.jpg: black granite with fine grey/white speckle.
+- granite-black.jpg: black granite with fine grey/white speckle (no longer used: worktop changed to white).
+- quartz-white.jpg: white worktop with faint grey speckle (Bright, 28 Nov 00:11).
 Usage: python scripts/make-gsquare-kitchen-textures.py dist/gsquare-kitchen/textures
 """
 import random
@@ -44,8 +45,21 @@ def granite(path, size=512):
     img.filter(ImageFilter.GaussianBlur(0.5)).save(path, quality=90)
 
 
+def quartz(path, size=512):
+    rnd = random.Random(5)
+    img = Image.new("RGB", (size, size), (242, 241, 236))
+    d = ImageDraw.Draw(img)
+    for _ in range(5000):
+        x, y = rnd.randrange(size), rnd.randrange(size)
+        r = rnd.choice([0, 0, 1])
+        v = rnd.choice([205, 215, 222, 228, 190])
+        d.ellipse([x - r, y - r, x + r, y + r], fill=(v, v, v - 3))
+    img.filter(ImageFilter.GaussianBlur(0.6)).save(path, quality=90)
+
+
 if __name__ == "__main__":
     out = sys.argv[1]
     wicker(out + "/wicker.jpg")
     granite(out + "/granite-black.jpg")
+    quartz(out + "/quartz-white.jpg")
     print("ok")
