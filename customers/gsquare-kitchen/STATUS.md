@@ -54,7 +54,8 @@ All 15 source colours now explained (white Default = carcass sides/backs/worktop
 - Q17 answered (22:39): black aluminium frame.
 - Q18 answered (23:27): "No handles" - ambiguous between black profile grooves and push-to-open.
 - Q19 answered (23:34, after a simple picture): option 1 - black profile grooves like his photo.
-- Q20: worktop (counter top) material/colour?
+- Q20 answered (23:35): black granite worktop.
+- Q21: where does the sink go (plan picture)?
 
 ## Next action
 
