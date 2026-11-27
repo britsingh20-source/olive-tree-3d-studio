@@ -51,7 +51,8 @@ All 15 source colours now explained (white Default = carcass sides/backs/worktop
 ## Asked, waiting
 
 - Q16 answered (21:49): aluminium frame with clear glass.
-- Q17: aluminium frame colour?
+- Q17 answered (22:39): black aluminium frame.
+- Q18: handles for the aqua shutters and drawers?
 
 ## Next action
 
