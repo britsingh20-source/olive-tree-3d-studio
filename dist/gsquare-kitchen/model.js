@@ -9,7 +9,8 @@ export {exactLayout};
 export const AQUA='#86b8b4';            // sampled from Bright's reference kitchen photo (#71a199 shaded .. #8cbcbc lit)
 export const DEFAULT_FINISH='#a8662f';  // wood mica (Bright's wood photo) — used where the swatch is the photo texture
 export const project={id:'gsquare-kitchen-v1',customer:'gsquare',quotation:null};
-export const WOOD_TEXTURE='./textures/wood-mica-inside-ref.jpg';
+// Bright's wood photo rotated 90° so the grain runs vertically (Bright, 27 Nov 23:59).
+export const WOOD_TEXTURE='./textures/wood-mica-vertical.jpg';
 export const SHEET_INCHES=[24,24];
 const I=.0254,loader=new T.TextureLoader();
 function tex(path,srgb=true){const t=loader.load(path);if(srgb)t.colorSpace=T.SRGBColorSpace;t.anisotropy=8;t.userData.shared=true;return t;}
@@ -169,7 +170,7 @@ export function buildModel(){
  wc.doorCount=3;wc.glass='Clear glass in black aluminium frames';
  wc.renderNote='Hinge sides not specified (shown: left door on its own, other two from the middle). Inside not specified (shown empty).';
 
- // ---- Worktop (black granite), sink, hob and 90 cm black chimney (fixed).
+ // ---- Worktop (black granite), sink and hob (fixed).
  const wt=unit('worktop','Granite top, sink & hob','top',0);wt.finishable=false;wt.fixed=true;const wtg=wt.group;
  S(wtg,0,132,FL-.5,96,29.2,30,granite,[30,30]);S(wtg,SX-.5,132,24,FL-.5,29.2,30,granite,[30,30]);
  // sink over the left doors (generic stainless, centred on xr 4-40)
@@ -179,9 +180,7 @@ export function buildModel(){
  // hob over the oil pull-out and S corner (xr 78-106)
  {S(wtg,79,105,FL+2.5,FL+20.5,30,30.25,black);for(const [x,y,r] of [[84.5,FL+11.5,2.6],[92,FL+11.5,3.2],[99.5,FL+11.5,2.6]]){const b=new T.Mesh(new T.CylinderGeometry(r*I,r*I,.6*I,24),burner);b.position.set(wx(x)*I,30.55*I,wz(y)*I);wtg.add(b);}}
  wt.material='Black granite worktop';wt.renderNote='Granite speckle is illustrative. Sink and hob types/sizes not specified (generic stainless sink with tap, black glass 3-burner hob).';
- const ch=unit('chimney','Black chimney 90 cm','chimney',0);ch.finishable=false;ch.fixed=true;const cg=ch.group;
- {const c=92,w=35.4;S(cg,c-w/2,c+w/2,76,96,56,61,black);S(cg,c-w/2+1,c+w/2-1,77,95,61,63.5,black);S(cg,c-6,c+6,85,96,63.5,96,black);}
- ch.sizeCm=90;ch.renderNote='Chimney style and mounting height not specified: 90 cm (35.4 in) wide, bottom 26 in above the worktop, duct to 96 in.';
+ // Chimney removed at Bright's request (27 Nov 23:59).
 
  // ---- Room shell (not in the SKP — illustrative): floor, back wall behind the long counter, side wall behind the short counter.
  const plaster=new T.MeshStandardMaterial({color:'#efebe4',roughness:1,side:T.FrontSide,polygonOffset:true,polygonOffsetFactor:4,polygonOffsetUnits:16});plaster.userData.compatColor='#efebe4';

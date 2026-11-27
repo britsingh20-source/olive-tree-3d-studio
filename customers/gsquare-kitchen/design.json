@@ -287,8 +287,13 @@
   },
   {
    "item": "Chimney",
-   "date": "2026-11-27 23:39",
-   "answer": "Yes, black chimney, 90 cm wide, above the hob."
+   "date": "2026-11-27 23:59",
+   "answer": "REMOVED - no chimney (supersedes the 23:39 'black chimney 90 cm' answer)."
+  },
+  {
+   "item": "Wood mica grain direction",
+   "date": "2026-11-27 23:59",
+   "answer": "Vertical grain (photo rotated 90 deg): dist/gsquare-kitchen/textures/wood-mica-vertical.jpg. Applies to wicker box inside, tall unit side, wall cabinet end."
   }
  ],
  "approximations": [
@@ -307,7 +312,6 @@
   "Black groove profile placement (top of each base door/drawer, between stacked drawers) follows the reference photo pattern; tall-unit doors' groove position not specified.",
   "Sink type/size not specified; rendered as a generic stainless sink centred over the left doors.",
   "Hob type/burner count not specified; rendered as a generic black glass hob.",
-  "Chimney style and mounting height not specified; rendered as a black 90 cm (35.4 in) wall chimney centred over the hob, bottom ~26 in above the worktop.",
   "Hinge sides of all doors not specified: pairs open from the middle; tall right upper door hinged on the wall side; wall cabinet: first door alone, other two from the middle.",
   "Corner clash: short-counter door next to the tall unit and the tall unit's right lower door are limited to 75 deg and left out of 'Open all' (they cannot both be open).",
   "Walls and floor are illustrative (the SKP has none). Long counter left end panel shown aqua (not asked). Tall unit top and inner shells shown light grey.",

@@ -18,7 +18,7 @@ assert.equal(get('tall-unit').defaultSide.wood,true);assert.equal(get('glass-wal
 assert.equal(get('wicker-box').baskets.length,2);assert.equal(get('wicker-box').shutter,'None — open box');
 assert.equal(get('glass-wall-cabinet').doorCount,3);assert.equal(get('sink-cabinet').doorCount,2);assert.equal(get('short-doors').doorCount,2);
 assert.equal(get('thali-cutlery').actions.length,2);for(const id of ['pan-pullout','oil-pullout','s-corner'])assert.equal(get(id).actions.length,1,id);
-assert.equal(get('chimney').sizeCm,90);for(const id of ['worktop','chimney'])assert.equal(get(id).actions.length,0,id+' fixed');
+assert(!get('chimney'),'chimney removed');for(const id of ['worktop'])assert.equal(get(id).actions.length,0,id+' fixed');
 for(const id of ['tall-unit','glass-wall-cabinet'])assert(get(id).lightNodes.length>0,id+' LED');
 // Sink over the left doors (xr 4-40), hob over oil pull-out + S corner (xr 78-106) — world X = xr-66.
 // Openings move outward: long counter +Z, short counter & wall cabinet -X, tall unit -Z.
