@@ -1,0 +1,166 @@
+{
+ "schemaVersion": 1,
+ "updated": "2026-11-27",
+ "customer": {
+  "id": "gsquare-kitchen",
+  "name": "gsquare (provisional \u2014 assumed same client as /gsquare/; confirm)"
+ },
+ "project": "U-shaped kitchen \u2014 design intake",
+ "viewer": {
+  "route": "/gsquare-kitchen/",
+  "url": "https://britsingh20-source.github.io/olive-tree-3d-studio/gsquare-kitchen/",
+  "directory": "dist/gsquare-kitchen",
+  "status": "Not built yet",
+  "storageKey": "gsquare-kitchen-v1"
+ },
+ "source": {
+  "files": [
+   "gsquare k.skp",
+   "gsquare k (1).skp",
+   "gsquare k (2).skp"
+  ],
+  "deviceFolder": "C:\\Users\\Asus\\Downloads\\gsquare kitchen",
+  "sha256": {
+   "gsquare k.skp": "465b4aa7cf2c0253d61b5f5978c47bf44f4458833cc5a799d6e643abb17cb1e0",
+   "gsquare k (1).skp": "1acda98733121e713752d2aaf7594719138267599d5fcefbff2c730ae6e805b1",
+   "gsquare k (2).skp": "821f9402f49947e0a84055ee1d9c324feafb5c6f685b90f32ba982f1cb2865b5"
+  },
+  "extractor": "plugins/olive-tree-studio/skills/olive-tree-studio/scripts/read_skp.py (extract_skp.py identical to scripts/extract-prem-skp.py)",
+  "sourceUnits": "inches",
+  "bounds": {
+   "x": 132.0,
+   "y": 96.0,
+   "z": 84.0
+  },
+  "vertices": 101,
+  "edges": 158,
+  "rootFaces": 62,
+  "comparison": "All three files extract identical vertices, faces and face colours; only saved view/thumbnail differs.",
+  "omitted": "None (no component instances)",
+  "originalFilesInRepository": false,
+  "extractedJson": "customers/gsquare-kitchen/source/gsquare-k-extract.json",
+  "layoutReading": "(Geometry reading, not yet confirmed by Bright) Base counter 30 in high, 24 in deep: long run 108 in along the back (y72-96) plus short arm 24 in wide (x108-132, y24-72) forming an L; tall unit 60 x 24 x 84 in (x72-132, y0-24) facing the counter; one wall cabinet 15 in deep, 24 in high at z60-84 over the short arm (x117-132, y48-96). Coordinates relative to model minimum, x right, y toward back wall, z up."
+ },
+ "sourceColours": [
+  {
+   "hex": "#663300",
+   "material": "C08_Toffee_Ember",
+   "faces": 13,
+   "location": "Brown fronts: 2 base doors on long counter (x4-40), 2 doors on short arm (x=108, y24-52), tall unit: 2 base doors, frame/drawer around red strip, frames round both niches, 3 upper doors",
+   "meaning": null
+  },
+  {
+   "hex": "#000000",
+   "material": "M09_Shadow_Night",
+   "faces": 3,
+   "location": "Thin fillers: 4 in at left end of long counter, 2 in each side of the inside corner",
+   "meaning": null
+  },
+  {
+   "hex": "#490099",
+   "material": "J07_Grape_Bloom",
+   "faces": 1,
+   "location": "12 in front on long counter (x40-52), z0-27",
+   "meaning": null
+  },
+  {
+   "hex": "#00cc00",
+   "material": "G06_Jade_Sprout",
+   "faces": 1,
+   "location": "26 in wide lower front (x52-78, z0-17.7)",
+   "meaning": null
+  },
+  {
+   "hex": "#00cccc",
+   "material": "H06_Ocean_Depth",
+   "faces": 1,
+   "location": "26 in wide upper front above jade (x52-78, z17.7-27)",
+   "meaning": null
+  },
+  {
+   "hex": "#cc00cc",
+   "material": "K06_Magenta_Charm",
+   "faces": 1,
+   "location": "10 in front (x78-88)",
+   "meaning": null
+  },
+  {
+   "hex": "#000099",
+   "material": "I07_Midnight_Hue",
+   "faces": 1,
+   "location": "18 in front next to the corner (x88-106)",
+   "meaning": null
+  },
+  {
+   "hex": "#65ffff",
+   "material": "H03_Glacier_Glow",
+   "faces": 1,
+   "location": "18 in front on short arm next to the corner (y52-70)",
+   "meaning": null
+  },
+  {
+   "hex": "#336600",
+   "material": "F08_Forest_Shadow",
+   "faces": 1,
+   "location": "Full-height outer side of the tall unit (x=72, 24 x 84 in)",
+   "meaning": null
+  },
+  {
+   "hex": "#ff8c65",
+   "material": "B03_Apricot_Glow",
+   "faces": 4,
+   "location": "Open niche in tall unit, 34 w x 18 h x ~23 d, z41-59",
+   "meaning": null
+  },
+  {
+   "hex": "#ff3131",
+   "material": "A04_Scarlet_Glow",
+   "faces": 1,
+   "location": "32 x 8 in face inside the brown frame below the apricot niche (z32-40)",
+   "meaning": null
+  },
+  {
+   "hex": "#31ff31",
+   "material": "G04_Lime_Spark",
+   "faces": 4,
+   "location": "Open niche in right part of tall unit, 22 w x 17 h x 23 d, z30-47",
+   "meaning": null
+  },
+  {
+   "hex": "#ffbf00",
+   "material": "D05_Goldenrod_Hue",
+   "faces": 3,
+   "location": "Undersides: top of both niches and underside of wall cabinet",
+   "meaning": null
+  },
+  {
+   "hex": "#3131ff",
+   "material": "I04_Royal_Indigo",
+   "faces": 3,
+   "location": "Wall cabinet fronts (x=117), 3 doors ~18/15/15 in, z60-84",
+   "meaning": null
+  },
+  {
+   "hex": "#006600",
+   "material": "G08_Forest_Moss",
+   "faces": 1,
+   "location": "Wall cabinet end side (y=48), 15 x 24 in",
+   "meaning": null
+  },
+  {
+   "hex": "#ffffff",
+   "material": "Default",
+   "faces": 23,
+   "location": "Carcass sides, backs, worktop band, floor outline",
+   "meaning": null
+  }
+ ],
+ "confirmed": [],
+ "approximations": [],
+ "openQuestions": [
+  "Meaning and finish of each source colour (asked one at a time)",
+  "Confirm client name / same client as /gsquare/",
+  "Worktop material",
+  "Sink and hob positions (not modelled)"
+ ]
+}

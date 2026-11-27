@@ -64,6 +64,14 @@
       "route": "/gsquare/",
       "design": "customers/gsquare/design.json",
       "status": "customers/gsquare/STATUS.md"
+    },
+    {
+      "id": "gsquare-kitchen",
+      "name": "gsquare (provisional, same client as /gsquare/)",
+      "project": "U-shaped kitchen \u2014 design intake",
+      "route": "/gsquare-kitchen/",
+      "design": "customers/gsquare-kitchen/design.json",
+      "status": "customers/gsquare-kitchen/STATUS.md"
     }
   ]
 }
