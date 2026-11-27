@@ -68,7 +68,7 @@
    "material": "G06_Jade_Sprout",
    "faces": 1,
    "location": "26 in wide lower front (x52-78, z0-17.7)",
-   "meaning": null
+   "meaning": "Thali basket (pull-out drawer, 26 in wide, lower front)"
   },
   {
    "hex": "#00cccc",
@@ -172,12 +172,18 @@
    "item": "Purple #490099",
    "date": "2026-11-27 21:39",
    "answer": "Pan pull-out (12 in wide front on long counter)."
+  },
+  {
+   "item": "Green #00cc00",
+   "date": "2026-11-27 21:40",
+   "answer": "Thali basket (26 in wide lower front)."
   }
  ],
  "approximations": [
   "Brown shutters: photo shows high-gloss acrylic-type finish; viewer will render gloss like the photo until Bright says otherwise. Inside shells rendered empty (no shelves specified).",
   "Brown-coloured frames around the tall-unit niches and the red strip are treated as fixed panels in the same shutter colour.",
-  "Pan pull-out front rendered in the shutter aqua; inner basket rows rendered generic (not specified)."
+  "Pan pull-out front rendered in the shutter aqua; inner basket rows rendered generic (not specified).",
+  "Thali basket front rendered in shutter aqua; plate-rack wire layout generic."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",

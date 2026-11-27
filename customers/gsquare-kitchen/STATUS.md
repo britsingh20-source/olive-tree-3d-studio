@@ -22,10 +22,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q3 purple #490099 (27 Nov 21:39): pan pull-out (12 in). Front in aqua, basket rows generic (approximation).
 
+- Q4 green #00cc00 (27 Nov 21:40): thali basket (pull-out). Front aqua, wire layout generic (approximation).
+
 ## Asked, waiting
 
-- Q4: green #00cc00, lower 26 in wide front (x52-78, 0-17.7 in high): what is it?
+- Q5: sea-blue #00cccc, upper 26 in wide front above the thali basket (17.7-27 in high): what is it?
 
 ## Next action
 
-Record Q4, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q5, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
