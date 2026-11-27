@@ -42,10 +42,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q13 yellow #ffbf00 (27 Nov 21:47): LED profile lights shining down under the wall cabinet and at the top of the OTG and grinder spaces. Light colour rendered warm white (approximation).
 
+- Q14 blue #3131ff (27 Nov 21:47): glass shutters. Glass type, frame and hinge sides still open.
+
 ## Asked, waiting
 
-- Q14: blue #3131ff, the three wall cabinet fronts (~18/15/15 in, 24 in high): what are they?
+- Q15: dark green #006600, end side of the wall cabinet (15 x 24 in): what finish?
 
 ## Next action
 
-Record Q14, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q15, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).

@@ -138,7 +138,7 @@
    "material": "I04_Royal_Indigo",
    "faces": 3,
    "location": "Wall cabinet fronts (x=117), 3 doors ~18/15/15 in, z60-84",
-   "meaning": null
+   "meaning": "Wall cabinet: three glass shutters"
   },
   {
    "hex": "#006600",
@@ -226,6 +226,11 @@
    "item": "Yellow #ffbf00",
    "date": "2026-11-27 21:47",
    "answer": "Profile lights (LED strip) shining down at all three undersides: wall cabinet, OTG space top, grinder space top."
+  },
+  {
+   "item": "Blue #3131ff",
+   "date": "2026-11-27 21:47",
+   "answer": "Glass shutters (three, on the wall cabinet)."
   }
  ],
  "approximations": [
@@ -246,6 +251,7 @@
   "Meaning and finish of each source colour (asked one at a time)",
   "Confirm client name / same client as /gsquare/",
   "Worktop material",
-  "Sink and hob positions (not modelled)"
+  "Sink and hob positions (not modelled)",
+  "Wall cabinet glass shutters: glass type/tint, frame, hinge sides, inside shelves/light - not asked yet"
  ]
 }
