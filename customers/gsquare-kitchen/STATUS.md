@@ -40,10 +40,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q12 bright green #31ff31 (27 Nov 21:46): open space with a tabletop grinder inside (generic placeholder).
 
+- Q13 yellow #ffbf00 (27 Nov 21:47): LED profile lights shining down under the wall cabinet and at the top of the OTG and grinder spaces. Light colour rendered warm white (approximation).
+
 ## Asked, waiting
 
-- Q13: gold #ffbf00, undersides — top of the OTG space, top of the grinder space, underside of the wall cabinet: what are they (lights?)
+- Q14: blue #3131ff, the three wall cabinet fronts (~18/15/15 in, 24 in high): what are they?
 
 ## Next action
 
-Record Q13, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q14, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
