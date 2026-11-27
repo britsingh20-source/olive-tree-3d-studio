@@ -61,7 +61,7 @@
    "material": "J07_Grape_Bloom",
    "faces": 1,
    "location": "12 in front on long counter (x40-52), z0-27",
-   "meaning": null
+   "meaning": "Pan pull-out (12 in wide front, full base height)"
   },
   {
    "hex": "#00cc00",
@@ -167,11 +167,17 @@
    "item": "Black #000000",
    "date": "2026-11-27 21:39",
    "answer": "Fixed filler strips in the same aqua as the shutters (4 in at left end, 2 in each side of the inside corner)."
+  },
+  {
+   "item": "Purple #490099",
+   "date": "2026-11-27 21:39",
+   "answer": "Pan pull-out (12 in wide front on long counter)."
   }
  ],
  "approximations": [
   "Brown shutters: photo shows high-gloss acrylic-type finish; viewer will render gloss like the photo until Bright says otherwise. Inside shells rendered empty (no shelves specified).",
-  "Brown-coloured frames around the tall-unit niches and the red strip are treated as fixed panels in the same shutter colour."
+  "Brown-coloured frames around the tall-unit niches and the red strip are treated as fixed panels in the same shutter colour.",
+  "Pan pull-out front rendered in the shutter aqua; inner basket rows rendered generic (not specified)."
  ],
  "openQuestions": [
   "Meaning and finish of each source colour (asked one at a time)",

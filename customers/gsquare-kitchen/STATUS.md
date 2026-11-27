@@ -20,10 +20,12 @@ One question per picture. Only the item asked about is in colour; everything els
 
 - Q2 black #000000 (27 Nov 21:39): fixed filler strips, same aqua as the shutters; no opening.
 
+- Q3 purple #490099 (27 Nov 21:39): pan pull-out (12 in). Front in aqua, basket rows generic (approximation).
+
 ## Asked, waiting
 
-- Q3: purple #490099, 12 in wide front on the long counter (x40-52): what is it?
+- Q4: green #00cc00, lower 26 in wide front (x52-78, 0-17.7 in high): what is it?
 
 ## Next action
 
-Record Q3, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
+Record Q4, then ask the next colour (black fillers, then each base front, tall unit niches, wall cabinet).
