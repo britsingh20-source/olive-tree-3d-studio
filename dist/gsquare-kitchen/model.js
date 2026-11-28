@@ -197,11 +197,7 @@ export function buildModel(){
  wt.material='White worktop';wt.renderNote='White top with faint illustrative speckle (stone type not specified). Sink and hob types/sizes not specified (generic stainless sink with tap, black glass 3-burner hob).';
  // Chimney removed at Bright's request (27 Nov 23:59).
 
- // ---- Room shell (not in the SKP — illustrative): floor, back wall behind the long counter, side wall behind the short counter.
- const plaster=new T.MeshStandardMaterial({color:'#efebe4',roughness:1,side:T.FrontSide,polygonOffset:true,polygonOffsetFactor:4,polygonOffsetUnits:16});plaster.userData.compatColor='#efebe4';
- const backWall=B(architecture,-80,66.6,-.5,100,-48.6,-48.05,plaster);const sideWall=B(architecture,66.05,66.6,-.5,100,-48.6,49,plaster);
- for(const w of [backWall,sideWall]){w.material=plaster;}
- const floor=B(architecture,-90,80,-1,-.02,-50,70,new T.MeshStandardMaterial({color:'#d9d6cf',roughness:.9}));floor.receiveShadow=true;
+ // Room walls and floor removed at Bright's request (28 Nov 08:12): they blocked the view when rotating.
 
  function polygon(f,material){const n=new T.Vector3(...f.normal).normalize(),ax=Math.abs(n.y)<.8?new T.Vector3(0,1,0).cross(n).normalize():new T.Vector3(1,0,0),ay=n.clone().cross(ax).normalize(),loops=f.points.map(l=>l.map(p=>new T.Vector3(...p))),flat=loops.flat(),xy=flat.flatMap(p=>[p.dot(ax),p.dot(ay)]),holes=[];let count=loops[0].length;for(const l of loops.slice(1)){holes.push(count);count+=l.length;}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(flat.flatMap(p=>p.toArray()),3));g.setIndex(earcut(xy,holes));g.computeVertexNormals();return new T.Mesh(g,material);}
  for(const f of exactLayout.sourceFaces){const m=polygon(f,new T.MeshStandardMaterial({color:f.color,side:T.DoubleSide,roughness:1,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1}));m.userData.sourceFace=f.id;referenceRoot.add(m);sourceMeshes.push(m);}

@@ -85,6 +85,10 @@ Worktop changed to white (quartz-white.jpg, generated). Microwave oven modelled 
 Checks: node check-gsquare-kitchen.mjs passed (geometry checks with animation paused; animation test: grinder out 14.0 in and back, sits at 30 in, door opens >80 deg and closes, plate/drum/light animate, loop restarts at home; white worktop, no black). Local headless Chrome SwiftShader 1280x900: tall unit view at loop 0.5 s (cooking, window glowing) and 5.3 s (door open, lit cavity, bowl) inspected; full view shows the white worktop; in-page probe of grinder position over the loop: Z 35.6 / 29.0 / 22.0 / 22.0 / 29.0 / 36.0 in at 0.2/1/3/5/8/9.5 s (states moving/grinding/inside). No close-up screenshot of the grinder standing out on the counter was captured.
 Published commit 7256e90, Pages run 46051940250 succeeded; live page loaded in headless Chrome and the same in-page grinder/microwave probe returned the same loop states. Not a real-device check.
 
+## Change gk4 (28 Nov 08:12 request, from Bright's phone screenshot)
+
+Illustrative back wall, side wall and floor removed from model.js (they blocked the view while rotating). Asset version gk4. node check-gsquare-kitchen.mjs passed. Local headless Chrome SwiftShader at 390x844: kitchen shows with no walls or floor, no page errors.
+
 ## Next action
 
 Wait for Bright's review of the live link. Remaining details to ask one at a time when he reviews: hinge sides, LED colour, left end panel, sink/hob models.
