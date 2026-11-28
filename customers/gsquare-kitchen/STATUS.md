@@ -87,7 +87,7 @@ Published commit 7256e90, Pages run 46051940250 succeeded; live page loaded in h
 
 ## Change gk4 (28 Nov 08:12 request, from Bright's phone screenshot)
 
-Illustrative back wall, side wall and floor removed from model.js (they blocked the view while rotating). Asset version gk4. node check-gsquare-kitchen.mjs passed. Local headless Chrome SwiftShader at 390x844: kitchen shows with no walls or floor, no page errors.
+Illustrative back wall, side wall and floor removed from model.js (they blocked the view while rotating). Asset version gk4. node check-gsquare-kitchen.mjs passed. Local headless Chrome SwiftShader at 390x844: kitchen shows with no walls or floor, no page errors. Published edfbf8d, Pages run 46099451481 succeeded; live model.js has no walls; live page at 390x844 loads without page errors.
 
 ## Next action
 
